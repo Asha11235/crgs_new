@@ -1,0 +1,25 @@
+#{extends 'main.html' /}
+
+<div class="page-header top">
+<h1>Import GEO CSV Files </h1>
+</div>
+
+#{if flash.success}
+    #{alert flash.success/}
+#{/if}
+
+#{form @submit(), class:'form-horizontal', method:'post', enctype:'multipart/form-data'}
+	 
+	 <fieldset>
+        	 <div class="control-group">
+			     <label class="control-label" for="geo_location_csv">Geo Location CSV :</label>
+			     <div class="controls">
+			       <div class="input-prepend">
+			         <input type="file" name="geo_location_csv" id="geo_location_csv" accept:'text/csv'/>
+			       </div>
+			     </div>
+			   </div>
+	</fieldset>
+	 
+    #{submit /}
+#{/form}

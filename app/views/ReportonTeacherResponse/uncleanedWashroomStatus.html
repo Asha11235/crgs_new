@@ -1,0 +1,222 @@
+#{extends 'main.html' /}
+#{set title:'Uncleaned toilet status ' /}
+
+<div id="containt_wrapper">
+      <div id="containt_area">
+          <div class="leftmenu">
+          <div class="list-group">
+            <a href="@{ReportonTeacherResponse.waterTankStatus()}" class="list-group-item "> Water tank cleanliness status</a>
+            <a href="@{ReportonTeacherResponse.unusableToiletStatus()}" class="list-group-item">Unusable Toilet Status</a>
+            <a href="@{ReportonTeacherResponse.actionStatusRegardingWashroom()}" class="list-group-item"> Regular toilet cleanliness status</a>
+            <a href="@{ReportonTeacherResponse.disableChildrenWashroomStatus()}" class="list-group-item"> Disable children toilet status</a>
+            <a href="@{ReportonTeacherResponse.presenceofMugStatus()}" class="list-group-item">Presence of mug/pot in toilet status</a>
+            <a href="@{ReportonTeacherResponse.presenceofHandWashStatus()}" class="list-group-item"> Presence of soap in toilet status</a>
+            <a href="@{ReportonTeacherResponse.menstrualHygieneStatus()}" class="list-group-item">Menstrual hygiene status</a>
+            <a href="@{ReportonTeacherResponse.uncleanedWashroomStatus()}" class="list-group-item active">Uncleaned toilet status </a>
+            <a href="@{ReportonTeacherResponse.awarenessStatusRegardingHygiene()}" class="list-group-item"> Health hygiene learn in class room</a>
+            <a href="@{ReportonTeacherResponse.studentParticipationStatus()}" class="list-group-item">Student participation status </a>
+          </div>
+        </div>
+        <!--containt_area-->
+        <div class='container2'>
+           <div class="page-header top">
+	<h1>${title}</h1>
+</div>
+
+<!-- <div class="graph-table"> -->	
+      <div class="col-lg-12">
+		<div id="filter" >
+		#{select 'select_school', value:'school_id', id:'select_school',  class:'form-control2 ajax_data'}
+			#{option 'school_id' } School #{/option}
+			#{list info, as:'key' }
+				#{option key.id} ${key.name} #{/option}
+			#{/list}
+		#{/select}
+		#{select 'select_gender', value:'gender', id:'select_gender',  class:'form-control2 ajax_data'}
+			#{option 'gender' } Gender #{/option}
+			#{option '1' } Male #{/option}
+			#{option '2' } Female #{/option}
+		#{/select}
+		<div class="col-lg-12"><!-- table -->
+		<div class="panel panel-default">
+		<div class = "form-horizontal">
+           Start date <input id="start_date" name ="start_date"  value="" class="startDatepicker" type="text"/> End date <input id="end_date" value="" name="end_date" class="endDatepicker" type="text"/>
+           <input id="datesearch" value="Search" name="Button" type="button"/>
+           </div>
+        </div> 
+        </div> 
+        
+
+		
+		<br/><br/><br/>
+		</div> 
+		</div>
+		<div  class="col-md-12">
+		<div id="graph">
+		</div>
+		</div>
+		<div  class="col-md-12">
+		<div id="table-data" >
+		</div>
+		</div>
+        </div>
+      </div>
+      <!--//containt_area-->
+    </div>
+  </div>
+ <!-- </div>-->
+
+#{script src:'jquery.msgbox.js' /}
+#{script src:'messagebox.js' /}
+#{stylesheet 'messagebox.css' /}
+
+#{script 'jquery.mpower.utils.js' /}
+#{script 'mpower-geolocation.js' /}	
+
+
+#{script 'bootstrap-datepicker_groupbarchart.js' /}
+*{#{script 'bootstrap-datepicker_latest.js' /}}*
+#{stylesheet 'datepicker_latest.css' /}
+
+
+#{stylesheet 'allDesign.css' /}
+#{script 'd3.min.js' /}
+#{script 'd3.tip.v0.6.3.js' /}
+#{script 'line_chart.js' /}
+#{script 'GroupedBarChart.js' /}
+
+<script>
+	$("document").ready(function(){
+		$(".startDatepicker" ).datepicker({  
+	  		dateFormat:'yy-mm-dd'  
+	  	});  
+	  	 
+	  	$(".endDatepicker").datepicker({  
+	  	  	dateFormat:'yy-mm-dd'  
+	  	 });
+	  	 
+	  	var data = ${json_dataList.raw()};
+  		//console.log(data);
+  		groupedBarChartTest(data);
+  		generateTable(data,"default");
+  		
+	  	$(".ajax_data").on('change', function(){ 
+			var school_id = $("#select_school").attr('value');
+			var gender = $("#select_gender").attr('value');
+  	 		$.ajax({
+				type : 'GET',
+				url : "@{ReportonTeacherResponse.uncleanedWashroomStatus}",
+				data: { school_id : school_id, gender : gender },
+				success: function(json_dataList){
+					$("#graph").html('');
+					groupedBarChartTest(JSON.parse(json_dataList));
+  					generateTable(JSON.parse(json_dataList),"default");
+				}, // end successJSON.parse(
+				error: function (error) {
+	                  alert('error');
+	              }
+			});//End of Ajax
+		});
+		
+		$("#datesearch").on('click', function(){
+			var school_id = $("#select_school").attr('value');
+			var gender = $("#select_gender").attr('value');
+			var startDate = $("#start_date").attr('value');
+			var endDate = $("#end_date").attr('value');
+			
+			if(startDate !== '' && endDate !== '' ){
+				$.ajax({
+				type : 'GET',
+				url : "@{ReportonTeacherResponse.uncleanedWashroomStatus}",
+				data: { school_id : school_id, gender : gender,startDate : startDate, endDate:endDate},
+				success: function(json_dataList){
+					$("#graph").html("");
+					groupedBarChartTest(JSON.parse(json_dataList));
+  					generateTable(JSON.parse(json_dataList),"default");
+				}, // end success
+				error: function (error) {
+	                  alert('error');
+	              }
+			});
+				
+			}
+			else{
+				$.MessageBox("Please input Two Date");
+			}
+		});
+
+  function generateTable(data,flag){
+  
+		var content = "<table class=\"table table-striped table-bordered\">";
+	   	content+="<tr><th class='col-md-2'></th>";
+	   	console.log("Inside Table " + data)
+	   	$("#table-data").html("");
+	   	jQuery.each(data, function(i, val) {
+	   		if(flag == "ajax"){
+	   			val.date = "01 " + val.date;
+	   		}
+	   		//if(i<3){
+	   			//console.log("Data::"+val.date);
+	   			//console.log("Formated Data::"+monthNames[new Date("01 Jul 2015").getMonth()]);
+	   		content += "<th class='col-md-5'>"+val.State +"</th>";
+	   		//}
+	    });
+	   	content+="</tr><tr><td>No WASH worker available</td>";
+	   	jQuery.each(data, function(i, val) {
+	   		console.log(i);
+	   		if(val.NoWASHWorkerAvailable !== '')
+	   		content += "<td>"+ val.NoWASHWorkerAvailable +"</td/>";
+	    });
+	    content+="</tr><tr><td>No water supply</td>";
+	    jQuery.each(data, function(i, val) {
+	    	if(val.NoWaterSupply !== '')
+	    	content += "<td>"+ val.NoWaterSupply +"</td>";
+	    });
+	    content+="</tr><tr><td>Not assigned any person for it</td>";
+	    jQuery.each(data, function(i, val) {
+	    	if(val.NotAssignedAnnyPersonForIt !== '' )
+	    	content += "<td>"+ val.NotAssignedAnnyPersonForIt +"</td>";
+	    });
+	    content+="</tr><tr><td>Shortage of necessary materials</td>";
+	    jQuery.each(data, function(i, val) {
+	    	if(val.ShortageOfNecessaryMaterials !== '')
+	    	content += "<td>"+ val.ShortageOfNecessaryMaterials +"</td>";
+	    });
+	    content+="</tr><tr><td>Other</td>";
+	    jQuery.each(data, function(i, val) {
+	    	if(val.Other !== '' )
+	    	content += "<td>"+ val.Other +"</td>";
+	    });
+	    content+="</tr>";
+	    content += "</table>";
+	    $("#table-data").append(content);
+  }
+  });
+  
+</script>
+
+
+
+<style>
+body { font: 12px Arial;}
+
+path { 
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+.legend {
+    font-size: 16px;
+    font-weight: bold;
+    text-anchor: middle;
+}
+</style>

@@ -1,0 +1,13 @@
+#Role
+#
+Role(admin):
+    name:       "Admin"
+
+#User
+#
+User(root):
+	displayName:    "Admin"
+    email:          "admin@mpower-health.com"
+    name:           "admin"
+    password:       "admin"
+    role:           [admin]

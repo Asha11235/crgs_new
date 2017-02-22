@@ -1,0 +1,44 @@
+#{extends 'main.html' /}
+
+#{set title:'List Of NGO' /}
+
+<div class="page-header top">
+	<h1>${title}</h1>
+</div>
+
+#{if flash.success}
+    #{alert flash.success/}
+#{/if}
+<div id = "delete_msg"></div>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>NGO Name</th>
+			<th>Division</th>
+			<th>District</th>
+			<th>Upazilla</th>
+		</tr>
+	<thead>
+	<tbody>
+	#{list items:ngoList, as:'ngo'}
+		<tr id = "${ngo.id}">
+			<td>${ngo.ngoName}</td>
+			<td>${ngo.geoDivision?.name}</td>
+			<td>${ngo.geoDistrict?.name}</td>
+			<td>${ngo.geoUpazilla?.name}</td>
+			<td>	
+				#{deadbolt.externalizedRestriction externalRestrictions:['Edit NGO']}
+            	<a class="btn btn-mini" href="@{Ngos.details(ngo.id)}">Details</a>
+				<a class="btn btn-mini" href="@{Ngos.edit(ngo.id)}"><i class="icon-edit"></i> Edit</a>
+				<a class="btn btn-mini btn-danger delete_user" id = "${ngo.id}" ><i class="icon-remove icon-white"></i> Delete</a>
+				#{/deadbolt.externalizedRestriction}
+			</td>
+		</tr>
+	#{/list}
+	#{else}
+		<tr>
+			<td colspan="8">No User Available</td>
+		</tr>
+	#{/else}
+	<tbody>
+</table>

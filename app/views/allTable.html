@@ -1,0 +1,24 @@
+
+<div>
+	<h1>${header}</h1>
+	<div class="col-md-12 table_containt" style="padding-top: 40px;overflow-x: scroll;">
+		<div class="table-responsive">
+			<table id="example" class="display"></table>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function() {
+		var dataJson = null;
+		dataJson = ${JSON_TABLE_DATA.raw()};
+		//mpower_Json_to_table(dataJson);
+		if (dataJson.length != 0) {
+			mpower_Json_to_table(dataJson, 0); //mpower_Json_to_table.js calling for table creation.
+		}
+	});
+</script>
+
+ #{script src:'mPower.json.to.table.js' /}
+ #{script src:'mpower_delete.js' /}
+ 

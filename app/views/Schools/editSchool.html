@@ -1,0 +1,195 @@
+#{extends 'main.html' /}
+
+<div class="f_align2">
+     	<h1 style="width:430px; background-color:#ec2027;color:#fff;padding:10px">School Registration Form</h1>
+	   <div class="bor" ></div>
+	   <div class="tab-content2">
+	   <div class="row">
+	   			#{form @submit(), class:'form-horizontal'}
+	                  <div class="col-sm-6">
+					   <h4>Basic Information</h4>
+		               <div class="bor2" style="margin-bottom:20px"></div>
+						<div class="tab-pane active" id="horizontal-form">
+							
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">School Name</label>
+									<div class="col-sm-10">
+										<input name="school.name" type="text" class="form-control1" id="school.name" value="${school?.name}" placeholder="Default Input">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="selector1" class="col-sm-2 control-label">School Type</label>
+									<div class="col-sm-8">
+										 #{input 'school.schoolType' , type:'select', items:schoolType } 
+												#{option}Any#{/option}
+										 #{/input}
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label for="selector1" class="col-sm-2 control-label">Division</label>
+									<div id="geoDivision" class="col-sm-8 geo" url="@{Schools.loadGeoDistrict()}" load-data-container="#geoDistrict">
+										#{input 'school.geoDivision.id' , type:'select', items:geoDivisionList, labelProperty:'name' }
+											#{option}Any#{/option}
+										#{/input}
+									</div>
+								</div>
+								
+								
+								<div class="form-group">
+									<label for="selector1" class="col-sm-2 control-label">District</label>
+									<div id="geoDistrict" class="col-sm-8 geo" url="@{Schools.loadGeoUpazilla()}"  load-data-container="#geoUpazilla">
+										#{input 'school.geoDistrict.id' , type:'select', items:geoDistrictList,labelProperty:'name' } 
+											#{option}Any#{/option}
+										#{/input}
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label for="selector1" class="col-sm-2 control-label">Upazilla/Thana</label>
+									<div id="geoUpazilla" class="col-sm-8 geo" url="@{Schools.loadGeoUnion()}"  load-data-container="#geoUnion">
+										#{input 'school.geoUpazilla.id' , type:'select', items:geoUpazillaList,labelProperty:'name' } 
+											#{option}Any#{/option}
+										#{/input}
+									</div>
+								</div>
+								
+								
+								<div class="form-group">
+									<label for="selector1" class="col-sm-2 control-label">Union/Ward</label>
+									<div id="geoUnion" class="col-sm-8 geo"   >
+										#{input 'school.geoUnion.id' , type:'select', items:geoUpazillaList,labelProperty:'name' } 
+											#{option}Any#{/option}
+										#{/input}
+									</div>
+								</div>
+								
+								
+								
+							</div>
+						 </div>
+					   <div class="col-sm-6">
+					   <h4>School Population</h4>
+		               <div class="bor2" style="margin-bottom:20px"></div>
+						<div class="tab-pane active" id="horizontal-form">
+							
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-4 control-label"># of Boy</label>
+									<div class="col-sm-8">
+										<input id="school.maleStruden" name="school.maleStruden" value="${school?.maleStruden}"  type="text" class="form-control1" placeholder="Default Input">
+									</div>
+								</div>
+								</div>
+								<div class="col-sm-6">
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-4 control-label"># of Girls</label>
+									<div class="col-sm-8">
+										<input id="school.femailStudent" name="school.femailStudent" value="${school?.femailStudent}"  type="text" class="form-control1" placeholder="Default Input">
+									</div>
+									</div>
+								</div>
+								<div class="col-sm-6">
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-4 control-label">Total Student</label>
+									<div class="col-sm-8">
+										<input  id="school.totalStudent" name="school.totalStudent" value="${school?.totalStudent}" type="text" class="form-control1"  placeholder="Default Input">
+									</div>
+								</div>	
+								</div>
+								
+							 </div>
+						  </div>
+						<div class="col-sm-6">
+					   <h4>WASH Facilitiese</h4>
+		               <div class="bor2" style="margin-bottom:20px"></div>
+						<div class="tab-pane active" id="horizontal-form">
+							
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-4 control-label"># of Boy’s Toilet</label>
+									<div class="col-sm-8">
+										<input id="school.maleToilets" name="school.maleToilets" value="${school?.maleToilets}" type="text" class="form-control1"  placeholder="Default Input">
+									</div>
+								</div>
+								</div>
+								<div class="col-sm-6">
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-4 control-label"># of Girl’s Toilet</label>
+									<div class="col-sm-8">
+										<input id="school.femailToilets" name="school.femailToilets" value="${school?.femailToilets}" type="text" class="form-control1" placeholder="Default Input">
+									</div>
+									</div>
+								</div>
+								<div class="col-sm-6">
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-4 control-label">Total Toilet</label>
+									<div class="col-sm-8">
+										<input id="school.totalToilets" name="school.totalToilets" value="${school?.totalToilets}" type="text" class="form-control1" placeholder="Default Input">
+									</div>
+								</div>	
+								</div>
+								<div class="col-sm-6">
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-4 control-label">Total Toilet</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder="Default Input">
+									</div>
+								</div>	
+								</div>
+								
+							</div>
+						</div>
+						</div>
+						<div class="row">
+						<div class="col-sm-6">
+					   <h4>Referance</h4>
+		               <div class="bor2" style="margin-bottom:20px"></div>
+						<div class="tab-pane active" id="horizontal-form">
+							
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-4 control-label">Phone Number of Head Teacher</label>
+									<div class="col-sm-6">
+										<input type="text" name="school.headSirPhonNumber" value="${school?.headSirPhonNumber}" class="form-control1" id="school.headSirPhonNumber" placeholder="Default Input">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-4 control-label">Phone Number of Class Teacher</label>
+									<div class="col-sm-6">
+										<input id="school.classTeacherPhoneNumber" name="school.classTeacherPhoneNumber" value="${school?.classTeacherPhoneNumber}" type="text" class="form-control1"  placeholder="Default Input">
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						<div class="col-sm-6">
+					   <h4>Active Student Body</h4>
+		               <div class="bor2" style="margin-bottom:20px"></div>
+						<div class="tab-pane active" id="horizontal-form">
+								<div class="form-group">
+									<div class="col-sm-8">
+										<div class="checkbox-inline1"><label><input name="school.activeStudent" value="NCTF" type="checkbox"> NCTF</label></div>
+										<div class="checkbox-inline1"><label><input name="school.activeStudent" value="School Cabinet" type="checkbox"> School Cabinet</label></div>
+										<div class="checkbox-inline1"><label><input name="school.activeStudent" value="Other" type="checkbox"> Other</label></div>
+									</div>
+								</div>
+								
+							</div>
+					  </div>
+					
+			     </div>
+			</div>
+	    </div>
+	<button class="btn-success btn">Submit Form</button>
+ #{/form}
+
+
+           
+        #{set 'moreScripts'}
+			#{script 'bootstrap-datepicker_latest.js' /}
+	    	#{script 'jquery.mpower.utils.js' /}
+			#{script 'jquery-mpower-date.js' /}
+			#{script 'mpower-geolocation.js' /}
+	
+	#{/set}
+           

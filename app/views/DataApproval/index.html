@@ -1,0 +1,112 @@
+#{extends 'main.html' /}
+#{set title:form?.name /}
+
+<ul class="breadcrumb">
+  <li><a href="@{Forms.list()}"><i class="icon-list"></i> Forms</a> <span class="divider">/</span></li>
+  <li class="active">${form?.name} Data</li>
+</ul>
+
+<div class="page-header top">
+	<h1>${title} ${userRole} Approval DashBoard</h1>
+</div>
+
+
+
+<form action="@{DataApproval.approve()}" method="post">
+
+<input type="hidden" id="selectedCheckBox" name = "selectedCheckBox" value=""/>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Sender</th>
+			<th>Household Id</th>
+			<th>Received</th>
+			<th>Start Time</th>
+			<th>End Time</th>
+			<th>Approve/Reject</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	
+	<tbody id="dataList" class="chk-container">
+	<tr>
+	<td></td><td></td><td></td><td></td><td></td><td></td><td><input type="checkbox" id="selectall"/> Select All </td><td></td>
+	</tr>
+	#{list items:data, as:'row'}
+		<tr>
+			<td>${row.id}</td>
+			<td>${row.sender?.name}</td>
+			<td>${row.householdId}</td>
+			<td>${row.received.since(true)}</td>
+			<td>${row.startTime}</td>
+			<td>*{${row.startTime?.diff(row.endTime)}}*${row.endTime}</td>
+			#{if row.approvalState == 0}
+			<td><input type="checkbox" class="checkbox1" name="checkbox[]" id="checkbox[]" value="${row.id}"></td>
+			#{/if}
+			#{else}
+			<td>Approved/Rejected</td>
+			#{/else}
+			
+			<td class="center buttons"><a class="btn btn-mini primary" href="@{DataApproval.viewData(row.id)}">Details</a></td>
+		</tr>
+		#{/list}
+		#{else}
+		<tr>
+			<td colspan="6">No Pending Data</td>
+		</tr>
+		#{/else}
+	</tbody>
+	
+</table>
+<input type="submit" class="checked" id="accept" name ="accept" value="Accept"> &nbsp; &nbsp; &nbsp; <input type="submit" class="checked" id="reject" name="reject" value="Reject">
+</form>
+
+#{set 'moreScripts'}
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('#selectall').click(function(event) {  //on click
+        if(this.checked) { // check select status
+            $('.checkbox1').each(function() { 
+                $(this).checked = true;
+                $(this).prop('checked', true);
+            });
+        }else{
+            $('.checkbox1').each(function() { //loop through each checkbox
+                $(this).checked = false; //deselect all checkboxes with class "checkbox1" 
+                $(this).removeAttr('checked');
+            });        
+        }
+    });
+    
+    $('.checkbox1').click(function(event) {
+    	if(this.checked) {
+    		$(this).checked = true;
+            $(this).prop('checked', true);
+ //   		alert($(this).val());
+    	}
+    	
+    	else {
+    		$(this).checked = false; 
+            $(this).removeAttr('checked');
+    	}
+    });
+    
+    $('.checked').click(function(event) {  //gather all selected checkbox in text
+    	
+    	var selectedCheckBox = "";
+    	$('.checkbox1').each(function() { 
+           if(this.checked){
+        	   selectedCheckBox += $(this).val() + " ";
+           }
+        });
+ //   	alert(selectedCheckBox);
+    	document.getElementById('selectedCheckBox').value = selectedCheckBox;
+    });
+});
+
+</script>
+#{script 'jquery-1.7.2.min.js' /}
+#{/set}

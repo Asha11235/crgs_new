@@ -1,0 +1,57 @@
+#{extends 'main.html' /}
+#{set title:'Upazilla List' /}
+
+
+#{if flash.success}
+    #{alert flash.success/}
+#{/if}
+
+<div id="wrapper">
+<div id="containt_area">
+<h1>${title}</h1>
+<div class="row"><!-- table -->
+						  <div class="panel panel-default">
+										    <div class="panel-heading">Upazilla List </div>
+											<div class="table-responsive ">
+											<div class="panel-body">
+											<table class="table table-striped">
+
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>&{'geoUpazilla.name'}</th>
+			<th>&{'geoUpazilla.code'}</th>
+			<th>&{'geoUpazilla.geoDistrict.id'}</th>
+			<th>Actions</th>
+		</tr>
+	<thead>
+	<tbody>
+	#{list items:geoUpazillaList, as:'geoUpazilla'}
+		<tr>
+			<td>${geoUpazilla.id}</td>
+			<td>${geoUpazilla.name}</td>
+			<td>${geoUpazilla.code}</td>
+			<td>${geoUpazilla.geoDistrict.name}</td>
+			<td>
+				#{deadbolt.externalizedRestriction externalRestrictions:['Edit Upazilla']}
+            	<a class="btn btn-mini" href="@{Areas.editGeoUpazilla(geoUpazilla?.id)}"><i class="icon-edit"></i> Edit</a>
+				<a class="btn btn-mini btn-danger delete" data-url="@{Areas.deleteGeoUpazilla(geoUpazilla?.id)}" href="#deleteModal"><i class="icon-remove icon-white"></i> Delete</a>
+				#{/deadbolt.externalizedRestriction}
+			</td>
+		</tr>
+	#{/list}
+	#{else}
+		<tr>
+			<td colspan="4">No Form Available</td>
+		</tr>
+	#{/else}
+	<tbody>
+</table>
+
+           </div>
+	       </div>
+	       </div>
+	       </div>
+	       </div>
+	       </div>
+	       

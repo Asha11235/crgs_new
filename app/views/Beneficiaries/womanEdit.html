@@ -1,0 +1,21 @@
+#{extends 'main.html' /}
+
+<div class="page-header top">
+#{if woman?.id}
+    <h1>Edit Woman</h1>
+#{/if}
+#{else}
+    <h1>New Woman</h1>
+#{/else}
+</div>
+
+
+#{form @womanSubmit(), class:'form-horizontal'}
+    #{if woman?.id}
+    <input type="hidden" name="woman.id" value="${woman.id}" />
+    #{/if}
+
+    #{input 'woman.cId' /}
+    #{input 'woman.name' /}
+    #{submit /}
+#{/form}

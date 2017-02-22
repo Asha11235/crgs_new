@@ -1,0 +1,165 @@
+@import url(https://fonts.googleapis.com/css?family=Telex);
+p, label, input, button, select, textarea {
+	font-family: Telex, sans-serif;
+}
+body {
+	font-family: Telex, sans-serif;
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+.sidebar-nav {
+	padding: 9px 0;
+}
+.table-details td:first-child {
+	font-weight: bold;
+}
+
+/* Common */
+.top {
+	margin-top: 0;
+}
+
+.danger {
+	color: #bd362f;
+}
+
+/* Filter */
+.filter .hide {
+	display: none;
+}
+
+/* Nav Bar */
+/*
+.navbar-inner {
+  background-color: #963232;
+  background-image: -moz-linear-gradient(top, #9d3636, #8c2828);
+  background-image: -ms-linear-gradient(top, #9d3636, #8c2828);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#9d3636), to(#8c2828));
+  background-image: -webkit-linear-gradient(top, #9d3636, #8c2828);
+  background-image: -o-linear-gradient(top, #9d3636, #8c2828);
+  background-image: linear-gradient(top, #9d3636, #8c2828);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#9d3636', endColorstr='#8c2828', GradientType=0);
+}
+*/
+
+/* ACL */
+.acl th, .acl td:not(:first-child) {
+	 text-align: center;
+}
+.acl tr > :nth-child(even) {
+	 border-left: 1px solid #ddd;
+	 border-right: 1px solid #ddd;
+}
+.acl td:first-child {
+	font-weight: bold;
+}
+.login {
+	margin: 0 auto;
+	width: 370px;
+}
+.login .fields {
+	margin-left: 30px;
+}
+.login .well {
+	background: #fafafa;
+	padding-bottom: 0;
+}
+
+/* Area */
+.jweeks.row {
+	margin-left: 0;
+}
+.jweeks {
+	padding-top: 18px;
+}
+.jweeks .span2 {
+	width: 30px;
+}
+.jweeks .span {
+	width: 220px;
+}
+.jweeks .btn:first-child {
+	margin-top: 25px;
+}
+.jweeks .btn {
+	margin: 5px 0;
+}
+
+/* Users Controller*/
+.geoAssign.row {
+	margin-left: 0;
+}
+.geoAssign {
+	padding-top: 18px;
+}
+.geoAssign .span2 {
+	width: 30px;
+}
+.geoAssign .span {
+	width: 220px;
+}
+.geoAssign .btn:first-child {
+	margin-top: 25px;
+}
+.geoAssign .btn {
+	margin: 5px 0;
+}
+
+/* Map */
+#map {
+	height: 450px;
+	margin: 20px auto;
+	border: 2px solid #999;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+	overflow: hidden;
+}
+/* Fix for Twitter Bootstrap 2.0 */
+#map label { width: auto; display:inline; }
+#map img { max-width: none; }
+
+/* pagination   */
+
+ul{border:0; margin:0; padding:0;}
+
+#pagination-flickr li{
+border:0; margin:0; padding:0;
+font-size:11px;
+list-style:none;
+}
+#pagination-flickr a{
+border:solid 1px #DDDDDD;
+margin-right:2px;
+}
+#pagination-flickr .previous-off,
+#pagination-flickr .next-off {
+color:#666666;
+display:block;
+float:left;
+font-weight:bold;
+padding:3px 4px;
+}
+#pagination-flickr .next a,
+#pagination-flickr .previous a {
+font-weight:bold;
+border:solid 1px #FFFFFF;
+}
+#pagination-flickr .active{
+color:#A80000;
+font-weight:bold;
+display:block;
+float:left;
+padding:4px 6px;
+}
+#pagination-flickr a:link,
+#pagination-flickr a:visited {
+color:#0063e3;
+display:block;
+float:left;
+padding:3px 6px;
+text-decoration:none;
+}
+#pagination-flickr a:hover{
+border:solid 1px #666666;
+}

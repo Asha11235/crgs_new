@@ -1,0 +1,35 @@
+#{extends 'main.html' /}
+#{set title:'Women' /}
+
+<div class="page-header top">
+	<h1>${title}</h1>
+</div>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>&{'woman.cId'}</th>
+			<th>&{'woman.name'}</th>
+			<th>Actions</th>
+		</tr>
+	<thead>
+	<tbody>
+	#{list items:women, as:'woman'}
+		<tr>
+			<td>${woman.cId}</td>
+			<td>${woman.name}</td>
+			<td>
+				
+				<a class="btn" href="@{Beneficiaries.details(woman.id)}">Details</a>
+				<a class="btn" href="@{Beneficiaries.womanEdit(woman.id)}"><i class="icon-edit"></i> Edit</a>
+				<a class="btn btn-danger delete" data-url="@{Beneficiaries.womanDelete(woman.id)}" href="#deleteModal"><i class="icon-remove icon-white"></i> Delete</a>
+			</td>
+		</tr>
+	#{/list}
+	#{else}
+		<tr>
+			<td colspan="3">No Beneficiary Available</td>
+		</tr>
+	#{/else}
+	<tbody>
+</table>

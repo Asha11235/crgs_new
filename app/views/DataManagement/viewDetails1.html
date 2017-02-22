@@ -1,0 +1,39 @@
+#{extends 'main.html' /}
+#{set title:"School Information" /}
+<div class="page-header top">
+	<h1>${title}</h1>
+</div>
+<strong>Name: </strong> ${schoolInfo.name}<br><br>
+<strong>Address: </strong> ${schoolInfo.address}<br><br>
+<strong>Number of male students: </strong> ${schoolInfo.maleStruden}<br><br>
+<strong>Number of female students: </strong> ${schoolInfo.femailStudent}<br><br>
+<strong>Number of toilets: </strong> ${schoolInfo.totalToilets}<br><br>
+<strong>Number of tubewell: </strong> ${schoolInfo.totalTubewells}<br><br><br>
+
+<h3>School data</h3>
+<table>
+<thead>
+  <tr>
+    <th style="padding-right:70px">id</th>
+    <th style="padding-right:70px">Sender</th>
+    <th style="padding-right:70px">Received date</th>
+    <th style="padding-right:70px">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  #{list items: dataList, as:'row'}
+  <tr>
+    <td>${row.data_id}</td>
+    <td>${row.sender_name}</td>
+    <td>${row.received_date}</td>
+    <td><a href="">View details</a></td>
+  </tr>
+ #{/list}
+ </tbody> 
+</table>
+
+
+
+
+
+

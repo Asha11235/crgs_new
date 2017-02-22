@@ -1,0 +1,215 @@
+# You can specialize this file for each language.
+# For example, for French create a messages.fr file
+#
+
+application.name = Save The children - CRGS
+
+form.cId = ID
+form.name = Name
+form.shortName = Short Name
+form.validity = Validity
+form.type = Type
+form.version = Version
+form.xml = XML
+form.json = JSON
+form.isMedia = Has Media Files 
+form.approvalxml = Approval XML
+
+#Logic
+logic.status.id = Status
+logic.outcome.id =  OLd Outcome
+logic.destinationForm.id = Form
+logic.event.id = Event
+logic.duration = Day(s)
+logic.userRole = Role
+logic.userRole.id = Role
+logic.round = Round
+logic.week = Week
+logic.day = Day
+logic.currentRoundPlus = Round:Current Round+ 
+logic.weekOfRound = Week
+logic.dayOfWeek = Day
+logic.formOutcome.id = Outcome
+logic.currentDatePlus = Current Date Plus
+
+formStatus.cId = ID
+formStatus.name = Name
+
+validation.unique = ID in use
+
+secure.title = Login
+
+MUnion.MUnion=Union
+union.unions = Available
+user.unions = Assigned
+
+#Users
+user.name = Login ID
+user.displayName = Display Name
+user.email = Email
+user.password = Password
+user.confirmPassword = Confirm Password
+user.role.id = Role
+user.sector.id = Assigned Sectors
+user.parentUser.id = Mobilizer
+user.geoDivision.id = Division
+user.geoDistrict.id = District
+user.geoUpazilla.id = Upazilla
+user.school.id = School
+user.ngo.id = NGO
+
+
+
+user.schoolInformation = User School Information
+
+#user.ds.id = DS
+#user.fs.id = FS
+#user.mh.id = M&H
+#user.mc.id = M&C
+#user.dm.id = DM
+#user.ff.id = FF
+
+user.parentUser = Parent User
+user.geoRegionList = Assigned Region
+user.geoDistrictList = Assigned District
+user.geoUnionList = Assigned Union
+user.geoMauzaList = Assigned Mauza
+
+area.area = Area
+tlPin.tlPin = TLPin
+sector.sector = Sector
+
+role.id = #
+role.name = Role Name
+userRole.name = Role Name
+
+mUnion.cId=ID
+mUnion.name =Name
+
+#Union
+geoUnion.geoUnionId = Union ID
+geoUnion.name = Union Name
+
+#Geo
+geoDivision.code = Code
+geoDivision.codeBn = Code Bangla
+geoDivision.name = Name
+geoDivision.nameBn = Name Bangla
+
+geoDistrict.name = Name
+geoDistrict.nameBn = Name Bangla
+geoDistrict.code = Code
+geoDistrict.codeBn = Code Bangla
+geoDistrict.geoDivision.id = Division 
+
+geoUpazilla.name = Name
+geoUpazilla.nameBn = Name Bangla
+geoUpazilla.code = Code
+geoUpazilla.codeBn = Code Bangla
+geoUpazilla.geoDivision.id = Division
+geoUpazilla.geoDistrict.id = District 
+
+geoUnion.name = Name
+geoUnion.nameBn = Name Bangla
+geoUnion.code = Code
+geoUnion.codeBn = Code Bangla
+geoUnion.geoDivision.id = Division
+geoUnion.geoDistrict.id = District
+geoUnion.geoUpazilla.id = Upazilla 
+
+geoExtBlock.geoUnion.id = Union
+geoExtBlock.name = Name
+geoExtBlock.geoExtBlockId = ID
+geoVillage.geoExtBlock.id = Ext Block
+
+geoVillage.id = Village
+geoVillage.code = Code
+geoVillage.codeBn = Code Bangla
+geoVillage.name = Name
+geoVillage.nameBn = Name Bangla
+geoVillage.geoVillageId = ID
+
+
+geoDivision.id = Division
+geoDistrict.id = District
+geoUpazilla.id = Upazilla
+geoUnion.id = Union
+geoMauza.geoUnion.id = Union
+
+
+geoMauza.id = Mauza
+geoMauza.name = Name
+geoMauza.nameBn = Name Bangla
+geoMauza.code = Code
+geoMauza.codeBn = Code Bangla
+geoVillage.geoMauza.id = Mauza
+
+geoEnArea.id = EnArea
+geoEnArea.name = Name
+geoEnArea.nameBn = Name Bangla
+geoEnArea.code = Code
+geoEnArea.codeBn = Code Bangla
+geoEnArea.geoVillage.id = Village
+geoEnArea.geoEnArea = Available Enumerator Area
+user.geoEnAreaList = Assigned Enumerator Area
+
+geoDistrict.geoDistricts = Available Districts
+geoUnion.geoUnions = Available Unions
+geoMauza.geoMauzas = Available Mauzas
+
+#TL Pin
+tlPin.tlPinId = TL Pin ID
+tlPin.acArea.id = AC Area ID
+
+#Sector
+sector.name = Name
+sector.tlPin.id = TL Pin
+sector.sectorId = Sector ID
+
+#Mauza
+mauza.name = Mauza
+mauza.sector.id = Sector ID
+
+#mobile message
+division = Bangle Devision
+
+form_id = Form
+
+#Outcome
+outcome.outcomeName = Name
+outcome.logicOperator =  Operation Type
+condition.logicOperator = Operation Type
+unitcondition.qId = Question
+unitcondition.qType = Type
+unitcondition.answerComparator = Comparator 
+unitcondition.checkAnswerList = Check Answer
+
+data_status.id = Approval Status
+school.name = School Name
+school.schoolType = 
+school.address = Address
+school.geoDivision.id = 
+school.geoDistrict.id = 
+school.geoUpazilla.id = 
+school.geoUnion.id = 
+school.maleStruden = Number of Male Students
+school.femailStudent = Number of Female Students
+school.totalStudent = Total Students
+school.maleToilets = Boy's Toilet
+school.femaleToilets = Girl's Toilet
+school.totalToilets = Total Toilets 
+school.headSirPhonNumber = Head teacher Phone Number
+school.classTeacherPhoneNumber = Class teacher Phone Number 
+
+#Poll Management Start
+poll.title = Poll Title 
+poll.questionType = Question Type
+poll.startDate = Start Date
+poll.endDate = End Date
+poll.optionNumber = Answer Option Number
+
+
+media.entrySearchKey = Entry Key
+media.type  = File Type
+media.description = Description 
+

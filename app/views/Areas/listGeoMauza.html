@@ -1,0 +1,43 @@
+#{extends 'main.html' /}
+#{set title:'Mauza List' /}
+
+<div class="page-header top">
+	<h1>${title}</h1>
+</div>
+
+#{if flash.success}
+    #{alert flash.success/}
+#{/if}
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>&{'geoMauza.name'}</th>
+			<th>&{'geoMauza.code'}</th>
+			<th>&{'geoMauza.geoUnion.id'}</th>
+			<th>Actions</th>
+		</tr>
+	<thead>
+	<tbody>
+	#{list items:geoMauzaList, as:'geoMauza'}
+		<tr>
+			<td>${geoMauza.id}</td>
+			<td>${geoMauza.name}</td>
+			<td>${geoMauza.code}</td>
+			<td>${geoMauza.geoUnion.name}</td>
+			<td>
+				#{deadbolt.externalizedRestriction externalRestrictions:['Edit Mauza']}
+            	<a class="btn btn-mini" href="@{Areas.editGeoMauza(geoMauza?.id)}"><i class="icon-edit"></i> Edit</a>
+				<a class="btn btn-mini btn-danger delete" data-url="@{Areas.deleteGeoMauza(geoMauza?.id)}" href="#deleteModal"><i class="icon-remove icon-white"></i> Delete</a>
+				#{/deadbolt.externalizedRestriction}
+			</td>
+		</tr>
+	#{/list}
+	#{else}
+		<tr>
+			<td colspan="4">No Mauza Available</td>
+		</tr>
+	#{/else}
+	<tbody>
+</table>

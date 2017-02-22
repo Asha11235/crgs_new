@@ -1,0 +1,53 @@
+#{extends 'main.html' /}
+#{set title:'Division List' /}
+
+#{if flash.success}
+    #{alert flash.success/}
+#{/if}
+
+<div id="wrapper">
+<div id="containt_area">
+<h1>${title}</h1>
+<div class="row"><!-- table -->
+						  <div class="panel panel-default">
+										    <div class="panel-heading">Division List </div>
+												<div class="table-responsive ">
+												<div class="panel-body">
+													 <table class="table table-striped">
+
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>&{'geoDivision.name'}</th>
+			<th>&{'geoDivision.code'}</th>
+			<th>Actions</th>
+		</tr>
+	<thead>
+	<tbody>
+	#{list items:geoDivisionList, as:'geoDivision'}
+		<tr>
+			<td>${geoDivision.id}</td>
+			<td>${geoDivision.name}</td>
+			<td>${geoDivision.code}</td>
+			<td>
+				#{deadbolt.externalizedRestriction externalRestrictions:['Edit Division']}
+            	<a class="btn btn-mini" href="@{Areas.editGeoDivision(geoDivision?.id)}"><i class="icon-edit"></i> Edit</a>
+				<a class="btn btn-mini btn-danger delete" data-url="@{Areas.deleteGeoDivision(geoDivision?.id)}" href="#deleteModal"><i class="icon-remove icon-white"></i> Delete</a>
+				#{/deadbolt.externalizedRestriction}
+			</td>
+		</tr>
+	#{/list}
+	#{else}
+		<tr>
+			<td colspan="4">No Form Available</td>
+		</tr>
+	#{/else}
+	<tbody>
+</table>
+
+            </div>
+				               </div>
+				               </div>
+					           </div>
+					           </div>
+					           </div>

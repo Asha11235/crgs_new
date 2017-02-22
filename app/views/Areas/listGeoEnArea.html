@@ -1,0 +1,43 @@
+#{extends 'main.html' /}
+#{set title:'Enumerator Area List' /}
+
+<div class="page-header top">
+	<h1>${title}</h1>
+</div>
+
+#{if flash.success}
+    #{alert flash.success/}
+#{/if}
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>&{'geoEnArea.name'}</th>
+			<th>&{'geoEnArea.code'}</th>
+			<th>&{'geoEnArea.geoVillage.id'}</th>
+			<th>Actions</th>
+		</tr>
+	<thead>
+	<tbody>
+	#{list items:geoEnAreaList, as:'geoEnArea'}
+		<tr>
+			<td>${geoEnArea.id}</td>
+			<td>${geoEnArea.name}</td>
+			<td>${geoEnArea.code}</td>
+			<td>${geoEnArea.geoVillage.name}</td>
+			<td>
+				#{deadbolt.externalizedRestriction externalRestrictions:['Edit Enumerator Area']}
+            	<a class="btn btn-mini" href="@{Areas.editGeoEnArea(geoEnArea?.id)}"><i class="icon-edit"></i> Edit</a>
+				<a class="btn btn-mini btn-danger delete" data-url="@{Areas.deleteGeoEnArea(geoEnArea?.id)}" href="#deleteModal"><i class="icon-remove icon-white"></i> Delete</a>
+				#{/deadbolt.externalizedRestriction}
+			</td>
+		</tr>
+	#{/list}
+	#{else}
+		<tr>
+			<td colspan="4">No Enumerator Area Available</td>
+		</tr>
+	#{/else}
+	<tbody>
+</table>

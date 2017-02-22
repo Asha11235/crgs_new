@@ -1,0 +1,23 @@
+#{extends 'Forms/view.html' /}
+
+<table class="table table-striped table-details">
+    <tbody>
+   
+    <tr>
+        <td>Name</td>
+        <td>${form.name}</td>
+    </tr>
+    <tr>
+        <td>Short Name</td>
+        <td>${form.shortName}</td>
+    </tr>
+    <tr>
+        <td>Validity</td>
+        <td>${form.validity}</td>
+    </tr>
+    <tr>
+        <td>Type</td>
+        <td>${form.type?.getName()}</td>
+    </tr>
+    </tbody>
+</table>

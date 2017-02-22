@@ -1,0 +1,325 @@
+#{extends 'main.html' /}
+#{set title:'How Issue was Informed' /}
+
+<div id="containt_wrapper">
+      <div id="containt_area">
+          <div class="leftmenu">
+          <div class="list-group">
+            <a href="@{Reports.overAllWashStatus()}" class="list-group-item ">Overall Wash Status</a>
+            <a href="@{Reports.waterSourceStatus()}" class="list-group-item">Water Source Status</a>
+            <a href="@{Reports.statusDrinkableWater()}" class="list-group-item">Status of Drinkable Water</a>
+            <a href="@{Reports.inactiveToiletReason()}" class="list-group-item"> Inactive Toilet Reason</a>
+            <a href="@{Reports.toiletAndSanitationInfo()}" class="list-group-item">Toilet Status</a>
+            <a href="@{Reports.reportingProblem()}" class="list-group-item active">Reporting Problem %</a>
+          </div>
+        </div>
+        <!--containt_area-->
+        <div class='container2'>
+           <div class="page-header top">
+	<h1>${title}</h1>
+</div>
+
+*{${json_dataList.raw()}}*
+<div class="graph-table">	
+		<div id="filter" class="pull-left col-md-4">
+		#{select 'select_school', value:'school_id', id:'select_school',  class:'form-control ajax_data'}
+			#{option 'school_id' } School #{/option}
+			#{list info, as:'key' }
+				#{option key.id} ${key.name} #{/option}
+			#{/list}
+		#{/select}
+		
+		<br/>
+		
+		#{select 'select_gender', value:'gender', id:'select_gender',  class:'form-control ajax_data'}
+			#{option 'gender' } Gender #{/option}
+			#{option '1' } Male #{/option}
+			#{option '2' } Female #{/option}
+		#{/select}
+		<br/>
+		
+		#{select 'select_month', value:'quarter', id:'select_quarter',  class:'form-control ajax_data'}
+			#{option 'quarter' } Quarter #{/option}
+			#{option '1' } Quarter 1 #{/option}
+			#{option '2' } Quarter 2 #{/option}
+			#{option '3' } Quarter 3 #{/option}
+			#{option '4' } Quarter 4 #{/option}
+		#{/select}
+		<br/>
+		
+		#{select 'select_year', value:'year', id:'select_year',  class:'form-control ajax_data'}
+			#{option 'year' } Year #{/option}
+			#{list items:2015..2115, as:'i'}
+			    #{option i } ${i} #{/option}
+			#{/list}
+		#{/select}
+		<br/>
+		
+		#{select 'select_complain_type', value:'complain_water', id:'select_complain_type',  class:'form-control ajax_data'}
+			#{option 'complain_type' } Complain Type #{/option}
+			#{option 'complain_water' } Water Problem #{/option}
+			#{option 'complain_sanitation' } Sanitation Problem #{/option}
+			#{option 'complain_hygiene' } Hygiene Problem #{/option}
+		#{/select}
+		<br/>
+		
+		<br/>
+		</div> 
+		
+		<div id="graph" class="col-md-12">
+			<svg class="chart" id='area'></svg>
+			<div id="table-data" ></div>
+			<svg class="chart" id='area2'></svg>
+			<div id="table-data2" ></div>
+		</div>
+		
+	
+</div>
+        </div>
+      </div>
+      <!--//containt_area-->
+    </div>
+  </div>
+
+
+
+*{
+<div class="page-header top">
+	<h1>${title}</h1>
+</div>
+
+${json_problemlist.raw()}<br><br>
+${json_solvelist.raw()}
+${json_datalist.raw()}
+
+
+<div class="graph-table">	
+		<div id="filter" class="pull-left col-md-4">
+		#{select 'select_school', value:'school_id', id:'select_school',  class:'ajax_data'}
+			#{option 'school_id' } School #{/option}
+			#{list info, as:'key' }
+				#{option key.id} ${key.name} #{/option}
+			#{/list}
+		#{/select}
+		
+		<br/>
+		
+		#{select 'select_gender', value:'gender', id:'select_gender',  class:'ajax_data'}
+			#{option 'gender' } Gender #{/option}
+			#{option '1' } Male #{/option}
+			#{option '2' } Female #{/option}
+		#{/select}
+		<br/>
+		
+		#{select 'select_month', value:'quarter', id:'select_quarter',  class:'ajax_data'}
+			#{option 'quarter' } Quarter #{/option}
+			#{option '1' } Quarter 1 #{/option}
+			#{option '2' } Quarter 2 #{/option}
+			#{option '3' } Quarter 3 #{/option}
+			#{option '4' } Quarter 4 #{/option}
+		#{/select}
+		<br/>
+		
+		#{select 'select_year', value:'year', id:'select_year',  class:'ajax_data'}
+			#{option 'year' } Year #{/option}
+			#{list items:2015..2115, as:'i'}
+			    #{option i } ${i} #{/option}
+			#{/list}
+		#{/select}
+		<br/>
+		
+		#{select 'select_complain_type', value:'complain_water', id:'select_complain_type',  class:'ajax_data'}
+			#{option 'complain_type' } Complain Type #{/option}
+			#{option 'complain_water' } Water Problem #{/option}
+			#{option 'complain_sanitation' } Sanitation Problem #{/option}
+			#{option 'complain_hygiene' } Hygiene Problem #{/option}
+		#{/select}
+		<br/>
+		
+		<br/><br/><br/>
+		</div> 
+		
+		<div id="graph" class="col-md-6">
+			<svg class="chart" id='area'></svg>
+			<div id="table-data" ></div>
+			<svg class="chart" id='area2'></svg>
+			<div id="table-data2" ></div>
+		</div>
+		
+	
+</div>
+}*
+
+<script>
+   var data = ${json_datalist.raw()};
+   console.log(data[0]);
+   $(document).ready(function() {
+	   var afterColorRange=["blue","green"];
+	   var colorRange=["steelblue","orange","lightgreen","mediumpurple","coral"];
+	   var obj_stack_area ={w: 880, h:400,element:"#area", xLabel:"  ", yLabel:"   ",color: colorRange, afterColor: afterColorRange, extendHeight: 40};
+	   var obj_stack_area2 ={w: 880, h:400,element:"#area2", xLabel:"  ", yLabel:"   ",color: colorRange, afterColor: afterColorRange, extendHeight: 40};
+	   //generate stack chart
+	   //multi_line(data,obj_line)
+	   //generate table
+	   stack_area(data[0],obj_stack_area);
+	   stack_area(data[1],obj_stack_area2);
+	   generateIssueTable(data[0],"default");
+	   generateIssueTimeTable(data[1],"default");
+	   
+	   document.getElementById("data-table").style.maxWidth =  obj_stack_area["w"]+"px";
+	    $(".ajax_data").on('change', function(){ 
+			var school_id = $("#select_school").attr('value');
+			var gender = $("#select_gender").attr('value');
+			var quarter = $("#select_quarter").attr('value');
+			var year = $("#select_year").attr('value');
+			var complain_type = $("#select_complain_type").attr('value');
+			
+			$.ajax({
+				type : 'GET',
+				url : "@{Reports.reportingProblem}",
+				data: { school_id : school_id, gender : gender, quarter:quarter , year:year,complain_type:complain_type },
+				success: function(data){
+					console.log(data);
+					$("#graph").html("");
+					$("#graph").append('<svg class="chart" id="area"></svg>');
+					$("#graph").append('<div id="table-data" ></div>');
+					$("#graph").append('<svg class="chart" id="area2"></svg>');
+					$("#graph").append('<div id="table-data2" ></div>');
+					
+					
+					
+					//multi_line(JSON.parse(data),obj_line);
+					var data = JSON.parse(data);
+					stack_area(data[0],obj_stack_area);
+					stack_area(data[1],obj_stack_area2);
+					generateIssueTable(data[0],"default");
+					generateIssueTimeTable(data[1],"default");
+				}, // end success
+				error: function (error) {
+	                  alert('error');
+	              }
+			}); // end ajax
+		});
+	});
+
+   function generateIssueTable(data,flag){
+		var content = "<table id=\"data-table\" class=\"table table-striped table-bordered\">";
+	   	content+="<tr><th class='col-md-2'></th>";
+	   	var monthNames = ["January", "February", "March", "April", "May", "June",
+	   	               "July", "August", "September", "October", "November", "December"
+	   	             ];
+	   	//$("#table-data").html("");
+	   	jQuery.each(data, function(i, val) {
+	   		if(flag == "ajax"){
+	   			val.date = "01 " + val.date;
+	   		}
+	   		if(i<3){
+	   			console.log("Data::"+val.date);
+	   			console.log("Formated Data::"+monthNames[new Date(val.date).getMonth()]);
+	   		content += "<th class='col-md-5'>"+monthNames[new Date(val.date).getMonth()] +"</th>";
+	   		}
+	    });
+	   	content+="</tr><tr><td>Others</td>";
+	   	jQuery.each(data, function(i, val) {
+	   		content += "<td>"+ parseFloat(val["Other"]).toFixed(2)+"%" +"</td/>";
+	    });
+	    content+="</tr><tr><td>School Management</td>";
+	    jQuery.each(data, function(i, val) {
+	    	content += "<td>"+ parseFloat(val["School Management"]).toFixed(2)+"%" +"</td>";
+	    });
+	    content+="</tr><tr><td>Class Teacher</td>";
+	    jQuery.each(data, function(i, val) {
+	    	content += "<td>"+ parseFloat(val["Class Teacher"]).toFixed(2)+"%" +"</td>";
+	    });
+	    content+="</tr><tr><td>Head Teacher</td>";
+	    jQuery.each(data, function(i, val) {
+	    	content += "<td>"+ parseFloat(val["Head Teacher"]).toFixed(2)+"%" +"</td>";
+	    });
+	    content+="</tr><tr><td>School Authority</td>";
+	    jQuery.each(data, function(i, val) {
+	    	content += "<td>"+ parseFloat(val["School Authority"]).toFixed(2)+"%" +"</td>";
+	    });
+	    content+="</tr>";
+	    content += "</table>";
+	    $("#table-data").append(content);
+  }
+   
+   function generateIssueTimeTable(data,flag){
+		var content = "<table id=\"data-table\" class=\"table table-striped table-bordered\">";
+	   	content+="<tr><th class='col-md-2'></th>";
+	   	var monthNames = ["January", "February", "March", "April", "May", "June",
+	   	               "July", "August", "September", "October", "November", "December"
+	   	             ];
+	   	//$("#table-data").html("");
+	   	jQuery.each(data, function(i, val) {
+	   		if(flag == "ajax"){
+	   			val.date = "01 " + val.date;
+	   		}
+	   		if(i<3){
+	   			//console.log("Data::"+val.date);
+	   			//console.log("Formated Data::"+monthNames[new Date(val.date).getMonth()]);
+	   		content += "<th class='col-md-5'>"+monthNames[new Date(val.date).getMonth()] +"</th>";
+	   		}
+	    });
+	   	content+="</tr><tr><td>Unknowns</td>";
+	   	jQuery.each(data, function(i, val) {
+	   		content += "<td>"+ parseFloat(val["Unknowns"]).toFixed(2)+"%" +"</td/>";
+	    });
+	    content+="</tr><tr><td>Unsolved</td>";
+	    jQuery.each(data, function(i, val) {
+	    	content += "<td>"+ parseFloat(val["Unsolved"]).toFixed(2)+"%" +"</td>";
+	    });
+	    content+="</tr><tr><td>>30 Days</td>";
+	    jQuery.each(data, function(i, val) {
+	    	content += "<td>"+ parseFloat(val[">30 Days"]).toFixed(2)+"%" +"</td>";
+	    });
+	    content+="</tr><tr><td>8-30 Days</td>";
+	    jQuery.each(data, function(i, val) {
+	    	content += "<td>"+ parseFloat(val["8-30 Days"]).toFixed(2)+"%" +"</td>";
+	    });
+	    content+="</tr><tr><td>4-7 Days</td>";
+	    jQuery.each(data, function(i, val) {
+	    	content += "<td>"+ parseFloat(val["4-7 Days"]).toFixed(2)+"%" +"</td>";
+	    });
+	    content+="</tr><tr><td>2-3 Days</td>";
+	    jQuery.each(data, function(i, val) {
+	    	content += "<td>"+ parseFloat(val["2-3 Days"]).toFixed(2)+"%" +"</td>";
+	    });
+	    content+="</tr><tr><td> <1 Day</td>";
+	    jQuery.each(data, function(i, val) {
+	    	content += "<td>"+ parseFloat(val["<1 Day"]).toFixed(2)+"%" +"</td>";
+	    });
+	    content+="</tr>";
+	    content += "</table>";
+	    $("#table-data2").append(content);
+ }
+</script>
+*{#{stylesheet 'allDesign.css' /}}*
+#{script 'd3.min.js' /}
+#{script 'd3.tip.v0.6.3.js' /}
+#{script 'stack_area.js' /}
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+body { font: 12px Arial;}
+
+path { 
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+.legend {
+    font-size: 16px;
+    font-weight: bold;
+    text-anchor: middle;
+}
+</style>

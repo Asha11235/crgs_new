@@ -1,0 +1,56 @@
+#{extends 'main.html' /}
+#{set title:'Union List' /}
+
+#{if flash.success}
+    #{alert flash.success/}
+#{/if}
+<div id="wrapper">
+<div id="containt_area">
+<h1>${title}</h1>
+<div class="row"><!-- table -->
+						  <div class="panel panel-default">
+										    <div class="panel-heading">Union List </div>
+												<div class="table-responsive ">
+												<div class="panel-body">
+													 <table class="table table-striped">
+
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>&{'geoUnion.name'}</th>
+			<th>&{'geoUnion.code'}</th>
+			<th>&{'geoUnion.geoUpazilla.id'}</th>
+			<th>Actions</th>
+		</tr>
+	<thead>
+	<tbody>
+	#{list items:geoUnionList, as:'geoUnion'}
+		<tr>
+			<td>${geoUnion.id}</td>
+			<td>${geoUnion.name}</td>
+			<td>${geoUnion.code}</td>
+			<td>${geoUnion.geoUpazilla.name}</td>
+			<td>
+				#{deadbolt.externalizedRestriction externalRestrictions:['Edit Union']}
+            	<a class="btn btn-mini" href="@{Areas.editGeoUnion(geoUnion?.id)}"><i class="icon-edit"></i> Edit</a>
+				#{/deadbolt.externalizedRestriction}
+				#{deadbolt.externalizedRestriction externalRestrictions:['Edit Union']}
+				<a class="btn btn-mini btn-danger delete" data-url="@{Areas.deleteGeoUnion(geoUnion.id)}" href="#deleteModal"><i class="icon-remove icon-white"></i> Delete</a>
+				#{/deadbolt.externalizedRestriction}
+			</td>
+		</tr>
+	#{/list}
+	#{else}
+		<tr>
+			<td colspan="4">No Union Available</td>
+		</tr>
+	#{/else}
+	<tbody>
+</table>
+
+           </div>
+	       </div>
+	       </div>
+	       </div>
+	       </div>
+	       </div>

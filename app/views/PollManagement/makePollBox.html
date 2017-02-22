@@ -1,0 +1,17 @@
+
+<h5> ${polldef.title} </h5>
+#{form @submit(), class:'form-horizontal'}
+#{if polldef.questionType == 'Single Select' }
+#{list items:pollOption, as:'poll'}
+<input type="radio" name="group1" value="${poll.id}"> ${poll.options}<br>
+#{/list}
+#{/if}
+#{if polldef.questionType == 'Multipul Select' }
+#{list items:pollOption, as:'poll'}
+<input type="checkbox" name="group1" value="${poll.id}"> ${poll.options}<br>
+#{/list}
+#{/if}
+
+    #{submit /}
+#{/form}
+

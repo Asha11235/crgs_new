@@ -1,0 +1,200 @@
+#{extends 'main.html' /}
+
+#{set title:'Status of Drinkable Water' /}
+
+
+<div id="containt_wrapper">
+      <div id="containt_area">
+          <div class="leftmenu">
+          <div class="list-group">
+            <a href="@{Reports.overAllWashStatus()}" class="list-group-item ">Overall Wash Status</a>
+            <a href="@{Reports.waterSourceStatus()}" class="list-group-item">Water Source Status</a>
+            <a href="@{Reports.statusDrinkableWater()}" class="list-group-item active">Drinking Water Status</a>
+            <a href="@{Reports.inactiveToiletReason()}" class="list-group-item">Sanitation  Status</a>
+            <a href="@{Reports.toiletAndSanitationInfo()}" class="list-group-item">Hygiene Practice Status</a>
+            <a href="@{Reports.reportingProblem()}" class="list-group-item">Reporting and Response</a>
+          </div>
+        </div>
+        <!--containt_area-->
+        <div class='container2'>
+           <div class="page-header top">
+	<h1>${title}</h1>
+</div>
+
+*{${json_dataList.raw()}}*
+<div class="graph-table">
+			   <div class="col-lg-12">	
+					<div id="filter" >
+					#{select 'select_school', value:'school_id', id:'select_school',  class:'form-control2'}
+			#{option 'school_id' } School #{/option}
+			#{list info, as:'key' }
+				#{option key.id} ${key.name} #{/option}
+			#{/list}
+		#{/select}
+		
+		
+		#{select 'select_gender', value:'gender', id:'select_gender',  class:'form-control2 ajax_data'}
+			#{option 'gender' } Gender #{/option}
+			#{option '1' } Male #{/option}
+			#{option '2' } Female #{/option}
+		#{/select}
+		
+		#{select 'select_month', value:'quarter', id:'select_quarter',  class:'form-control2 ajax_data'}
+			#{option 'quarter' } Quarter #{/option}
+			#{option '1' } Quarter 1 #{/option}
+			#{option '2' } Quarter 2 #{/option}
+			#{option '3' } Quarter 3 #{/option}
+			#{option '4' } Quarter 4 #{/option}
+		#{/select}
+		
+		#{select 'select_year', value:'year', id:'select_year',  class:'form-control2 ajax_data'}
+			#{option 'year' } Year #{/option}
+			#{list items:2015..2115, as:'i'}
+			    #{option i } ${i} #{/option}
+			#{/list}
+		#{/select}
+		
+		<br/><br/><br/>
+		</div>
+				</div>
+		<div id="graph" class="col-md-12">
+			<svg class="chart" id='stack'></svg><br><br>
+		</div>
+		<div id="graph-table" class="col-md-6">
+		</div>
+		<div id="pie_chart" class="col-md-12">
+			
+		</div>
+		
+		</div>
+        </div>
+      </div>
+      <!--//containt_area-->
+    </div>
+  </div>
+
+#{script 'd3.min.js' /}
+#{script 'd3.tip.v0.6.3.js' /}
+#{script 'stack_chart.js' /}
+#{script 'pie_chart.js' /}
+#{stylesheet 'allDesign.css' /}
+
+
+<script>
+   var data = ${json_dataList.raw()};
+   $(document).ready(function() {
+	   var afterColorRange=["blue","green"];
+	   var colorRange=["steelblue","lightgreen"];
+	   var obj_stackchart={w: 877, h:400,element:"#stack", xLabel:"  ", yLabel:"   ",color: colorRange,afterColor: afterColorRange};
+		//generate stack chart
+		normalStack_chart(data,obj_stackchart);
+		//stackchart(data);
+	   	//generate table
+	   	generateTable(data);
+	   
+	   	document.getElementById("data-table").style.minWidth =  obj_stackchart["w"]+"px";
+	    $(".ajax_data").on('change', function(){ 
+			var school_id = $("#select_school").attr('value');
+			var gender = $("#select_gender").attr('value');
+			var quarter = $("#select_quarter").attr('value');
+			var year = $("#select_year").attr('value');
+			
+			$.ajax({
+				type : 'GET',
+				url : "@{Reports.statusDrinkableWater}",
+				data: { school_id : school_id, gender : gender, quarter:quarter , year:year },
+				success: function(data){
+					//console.log(data);
+					$("#stack").html("");
+					$("#graph-table").html("");
+					$("#pie_chart").html("");
+					//stackchart(JSON.parse(data));
+					normalStack_chart(JSON.parse(data),obj_stackchart);
+					generateTable(JSON.parse(data));
+				}, // end success
+				error: function (error) {
+	                  alert('error');
+	              }
+			}); // end ajax
+		});
+		
+		
+	    
+   });
+   
+   function generateTable(data){
+	   console.log();
+		var content = "<table id =\"data-table\" class=\"table table-striped table-bordered\">";
+	   	content+="<tr><th class='col-md-2'></th>";
+	   	jQuery.each(data, function(i, val) {
+	    	content += "<th class='col-md-5'>"+val.axis_map +"</th>";
+	    });
+	   	content+="<tr/><tr><td>Safe Water</td>";
+	   	jQuery.each(data, function(i, val) {
+	   		total = parseInt(val.potable)+parseInt(val.nonpotable);
+	   		var percentage = (((val.potable/total)*100) >= 0) ? ((val.potable/total)*100).toFixed(2)+"%" : "0"
+	   		content += "<td>"+ percentage +"</td/>";
+	    });
+	    content+="<tr/><tr><td>Unsafe Water</td>";
+	    jQuery.each(data, function(i, val) {
+	    	total = parseInt(val.potable)+parseInt(val.nonpotable);
+	    	var percentage = (((val.nonpotable/total)*100) >= 0) ? ((val.nonpotable/total)*100).toFixed(2)+"%" : "0"
+	    	content += "<td>"+ percentage +"</td>";
+	    });
+	    content+="<tr/>";
+	    content += "</table>";
+	    $("#graph-table").append(content);
+  }
+   
+  function generatePie(month) {
+	 // console.log("Month Name::" + month);
+	   
+			var school_id = $("#select_school").attr('value');
+			var gender = $("#select_gender").attr('value');
+			var year = $("#select_year").attr('value');
+			
+			$.ajax({
+				type : 'GET',
+				url : "@{Reports.pieAjax}",
+				data: { school_id : school_id, gender : gender, month:month , year:year },
+				success: function(data){
+					//console.log(data);
+					var container = "#pie" ;
+					var total = 0;
+					$(container).html("");
+					data = JSON.parse(data);
+					jQuery.each(data, function(i, val) {
+				   		total += parseInt(val.number);
+				   	});
+					if(total > 0 ){
+						$("#pie_chart").html("");
+						$("#pie_chart").append('<svg class="chart" id="pie"></svg>');
+						
+						var message = "<h1>Causes of Non-potable</h1><br><br><br>";
+						$(container).append(message);
+						//generate pie chart
+						colorRange=["steelblue","orange","lightgreen","purple"];
+						afterColorRange=["blue","darkorange","green","red"];
+						var param_object={w: 877, h:300,element:container, xLabel:"  ", yLabel:"   ",color: colorRange,afterColor: afterColorRange,legend_x:300,legend_y:-120,translate_x:438, rad_denominator:2};
+						// replace data2 with data once ajax returns 'data'
+						pie_chart(data,param_object);
+					}else{
+						$("#pie_chart").html("");
+					}
+				}, // end success
+				error: function (error) {
+	                  alert('error');
+	              }
+			}); // end ajax
+		
+  }
+  
+   
+</script>
+
+	<script>
+	$(document).ready(function() {
+	  	$('#rootwizard').bootstrapWizard({'tabClass': 'nav nav-tabs'});	
+		window.prettyPrint && prettyPrint()
+	});	
+	</script>

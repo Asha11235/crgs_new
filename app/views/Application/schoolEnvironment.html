@@ -1,0 +1,304 @@
+#{extends 'main.html' /}
+
+
+#{if flash.success}
+#{alert flash.success/}
+#{/if}
+<div class="f_align">
+	<div class="row">
+		<div class="col-md-12">
+			<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+			<h3 class="page-title">
+				SCHOOL ENVIRONMENT FORM
+			</h3>
+			<!-- END PAGE TITLE & BREADCRUMB-->
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-12">
+			<!-- BEGIN PORTLET-->
+			<div class="portlet">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="fa fa-reorder"></i>School Environment Form
+					</div>
+				</div>
+				<div class="portlet-body form">
+					#{form @submitionSchoolEnvironment(), class:'form-horizontal form-bordered'}
+					<div class="form-body">
+						
+						<div class="form-group">
+							<label class="control-label col-md-4">মাস</label>
+							<div class="col-md-3">
+								<div class="input-group input-medium date date-picker" data-date="" data-date-format="mm/yyyy" data-date-viewmode="years" data-date-minviewmode="months">
+									<input name="environment.month" type="text" class="form-control" required="true" >
+									<span class="input-group-btn">
+										<button class="btn btn-info" type="button"><i class="fa fa-calendar"></i></button>
+									</span>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div class="form-group">
+							<label class="control-label col-md-4">১। উত্তর দাতার ধরণ</label>
+							<div class="col-md-4">
+								<div class="radio-list">
+									<label class="radio-inline"><input id="res_type" name="environment.res_type" value="1" type="radio" required="true"> ছেলে</label>
+									<label class="radio-inline"><input id="res_type" name="environment.res_type" value="2" type="radio" required="true"> মেয়ে</label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label col-md-4">২। গত একমাসে স্কুলের আঙ্গিনা কি রকম বিরতিতে পরিষ্কার করা হয়েছে?</label>
+							<div class="col-md-4">
+								<div class="radio-list">
+									<label><input id="cleanInterval_SchoolYard_1" name="environment.cleanInterval_SchoolYard" value="1" type="radio" required="true">গত মাসে পরিষ্কার করা হয়নি</label>
+									<label><input id="cleanInterval_SchoolYard_2" name="environment.cleanInterval_SchoolYard" value="2" type="radio" required="true">মাসে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে</label>
+									<label><input id="cleanInterval_SchoolYard_3" name="environment.cleanInterval_SchoolYard" value="3" type="radio" required="true">মাসে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে</label>
+									<label><input id="cleanInterval_SchoolYard_4" name="environment.cleanInterval_SchoolYard" value="4" type="radio" required="true">সপ্তাহে একবার বা তার বেশি বার পরিষ্কার করা হয়েছে </label>
+									<label><input id="cleanInterval_SchoolYard_5" name="environment.cleanInterval_SchoolYard" value="5" type="radio" required="true">প্রতিদিন পরিষ্কার করা হয়েছে </label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label col-md-4">৩। গত একমাসে স্কুলের ক্লাসরুম কি রকম বিরতিতে পরিষ্কার করা হয়েছে?</label>
+							<div class="col-md-4">
+								<div class="radio-list">
+									<label><input id="cleanInterval_ClassRoom_1" name="environment.cleanInterval_ClassRoom" value="1" type="radio" required="true">গত মাসে পরিষ্কার করা হয়নি</label>
+									<label><input id="cleanInterval_ClassRoom_2" name="environment.cleanInterval_ClassRoom" value="2" type="radio" required="true">মাসে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে</label>
+									<label><input id="cleanInterval_ClassRoom_3" name="environment.cleanInterval_ClassRoom" value="3" type="radio" required="true">মাসে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে</label>
+									<label><input id="cleanInterval_ClassRoom_4" name="environment.cleanInterval_ClassRoom" value="4" type="radio" required="true">সপ্তাহে একবার বা তার বেশি বার পরিষ্কার করা হয়েছে </label>
+									<label><input id="cleanInterval_ClassRoom_5" name="environment.cleanInterval_ClassRoom" value="5" type="radio" required="true">প্রতিদিন পরিষ্কার করা হয়েছে </label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label col-md-4">৪। ক্লাস রুমের সকলে শিক্ষকের বক্তব্য পরিষ্কারভাবে শুনতে পায় কি না?</label>
+							<div class="col-md-4">
+								<div class="radio-list">
+									<label><input id="StuHearTeacher_1" name="environment.StuHearTeacher" value="1" type="radio" required="true">একেবারেই পরিষ্কারভাবে শুনতে পায় না</label>
+									<label><input id="StuHearTeacher_2" name="environment.StuHearTeacher" value="2" type="radio" required="true">মাঝে মাঝে পরিষ্কারভাবে শুনতে পায়</label>
+									<label><input id="StuHearTeacher_3" name="environment.StuHearTeacher" value="3" type="radio" required="true">পরিষ্কারভাবে শুনতে পায়</label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label col-md-4">৫। ক্লাস রুমে বসার জন্য পর্যাপ্ত ব্যবস্থা আছে কি না? (বেঞ্চ,টেবিল ইত্যাদি)</label>
+							<div class="col-md-4">
+								<div class="radio-list">
+									<label class="radio-inline"><input id="stuSeatArrange_1" name="environment.stuSeatArrange" value="1" type="radio" required="true">হ্যাঁ</label>
+									<label class="radio-inline"><input id="stuSeatArrange_2" name="environment.stuSeatArrange" value="2" type="radio" required="true">না</label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label col-md-4">৬। ক্লাস রুমে শিক্ষকদের জন্য 'স্টেজ/ডায়াস' আছে ?</label>
+							<div class="col-md-4">
+								<div class="radio-list">
+									<label class="radio-inline"><input id="teacherStage_1" name="environment.teacherStage" value="1" type="radio" required="true">হ্যাঁ</label>
+									<label class="radio-inline"><input id="teacherStage_2" name="environment.teacherStage" value="2" type="radio" required="true">না</label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label col-md-4">৭। গত একমাসে স্কুলের পরিবেশ নিয়ে  কোন সমস্যার কথা স্কুল কর্তৃপক্ষ কে জানানো হয়েছিল কিনা? </label>
+							<div class="col-md-4">
+								<div class="radio-list">
+									<label class="radio-inline"><input id="complained_SchoolEnvironment_1" name="environment.complained_SchoolEnvironment" value="1" type="radio" required="true">হ্যাঁ</label>
+									<label class="radio-inline"><input id="complained_SchoolEnvironment_2" name="environment.complained_SchoolEnvironment" value="0" type="radio" required="true">না</label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group" style="display:none;" id="how_informed_Environment_prob_div">
+							<label class="control-label col-md-4">৮। যদি হ্যাঁ হয় তাহলে, কীভাবে জানানো হয়েছিলো?</label>
+							<div class="col-md-4">
+								<div class="radio-list">
+									<label><input id="how_informed_Environment_prob_1" name="environment.how_informed_Environment_prob" value="1" type="radio">স্কুল কতৃপক্ষ / SMC এর কাছে দরখাস্ত</label>
+									<label><input id="how_informed_Environment_prob_2" name="environment.how_informed_Environment_prob" value="2" type="radio">প্রধান শিক্ষক/ উপ প্রধান শিক্ষক কাছে মৌখিকভাবে</label>
+									<label><input id="how_informed_Environment_prob_3" name="environment.how_informed_Environment_prob" value="3" type="radio">শ্রেণী শিক্ষকের কাছে মৌখিকভাবে</label>
+									<label><input id="how_informed_Environment_prob_4" name="environment.how_informed_Environment_prob" value="4" type="radio">স্কুল ম্যানেজিং কমিটি'র সদস্যের কাছে মৌখিকভাবে</label>
+									<label><input id="how_informed_Environment_prob_5" name="environment.how_informed_Environment_prob" value="5" type="radio">অন্যান্য</label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group" style="display:none;" id="how_informed_Environment_prob_other_div">
+							<label class="control-label col-md-4">৯। অন্যান্য কীভাবে জানানো হয়েছিলো?</label>
+							<div class="col-md-3">
+								<input id="how_informed_Environment_prob_other" name="environment.how_informed_Environment_prob_other" value="" type="text">
+							</div>
+						</div>
+
+
+						<div class="form-group" style="display:none;" id="took_step_Environment_prob_div">
+							<label class="control-label col-md-4">১০। কর্তৃপক্ষ কত দিনের মধ্যে ব্যবস্থা নিয়েছিল?</label>
+							<div class="col-md-4">
+								<div class="radio-list">
+									<label><input id="took_step_Environment_prob_1" name="environment.took_step_Environment_prob" value="1" type="radio">সাথে সাথে /এক দিনের মধ্যে</label>
+									<label><input id="took_step_Environment_prob_2" name="environment.took_step_Environment_prob" value="2" type="radio" >২-৩ দিনের মধ্যে</label>
+									<label><input id="took_step_Environment_prob_3" name="environment.took_step_Environment_prob" value="3" type="radio">৪-৭ দিনের মধ্যে</label>
+									<label><input id="took_step_Environment_prob_4" name="environment.took_step_Environment_prob" value="4" type="radio">৮-৩০ দিনের মধ্যে</label>
+									<label><input id="took_step_Environment_prob_5" name="environment.took_step_Environment_prob" value="5" type="radio">৩০ দিনের থেকে বেশি সময়ে</label>
+									<label><input id="took_step_Environment_prob_6" name="environment.took_step_Environment_prob" value="6" type="radio">এখনও কোন ব্যবস্থা নেন নি</label>
+									<label><input id="took_step_Environment_prob_7" name="environment.took_step_Environment_prob" value="7" type="radio">জানা নেই</label>
+								</div>
+							</div>
+
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label col-md-4">১১। গত এক মাসের স্কুলের সার্বিক পরিবেশ কেমন ছিল? </label>
+							<div class="col-md-4">
+								<div class="radio-list">
+									<label><input id="rank_Environment_1" name="environment.rank_Environment" value="1" type="radio" required="true">খুব খারাপ</label>
+									<label><input id="rank_Environment_2" name="environment.rank_Environment" value="2" type="radio" required="true">খারাপ </label>
+									<label><input id="rank_Environment_3" name="environment.rank_Environment" value="3" type="radio" required="true">মোটামোটি </label>
+									<label><input id="rank_Environment_4" name="environment.rank_Environment" value="4" type="radio" required="true">ভাল</label>
+									<label><input id="rank_Environment_5" name="environment.rank_Environment" value="5" type="radio" required="true">খুব ভাল</label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label col-md-4">১২। গত এক মাসের স্কুলের সার্বিক 'শিক্ষার মান' কেমন ছিল?</label>
+							<div class="col-md-4">
+								<div class="radio-list">
+									<label><input id="rank_Edu_Quality_1" name="environment.rank_Edu_Quality" value="1" type="radio" required="true">খুব খারাপ</label>
+									<label><input id="rank_Edu_Quality_2" name="environment.rank_Edu_Quality" value="2" type="radio" required="true">খারাপ </label>
+									<label><input id="rank_Edu_Quality_3" name="environment.rank_Edu_Quality" value="3" type="radio" required="true">মোটামোটি </label>
+									<label><input id="rank_Edu_Quality_4" name="environment.rank_Edu_Quality" value="4" type="radio" required="true">ভাল</label>
+									<label><input id="rank_Edu_Quality_5" name="environment.rank_Edu_Quality" value="5" type="radio" required="true">খুব ভাল</label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label col-md-4">১৩। স্কুলে যাওয়া আসার-পথে বা স্কুলে শিক্ষার্থীরা নিজেদের নিরাপদ ভাবে কি ?</label>
+							<div class="col-md-4">
+								<div class="radio-list">
+									<label class="radio-inline"><input id="scareSafe_SchoolWay_1" name="environment.scareSafe_SchoolWay" value="1" type="radio" required="true">হ্যাঁ</label>
+									<label class="radio-inline"><input id="scareSafe_SchoolWay_0" name="environment.scareSafe_SchoolWay" value="0" type="radio" required="true">না</label>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group" style="display:none;" id="whyNot_scareSafe_schoolWay">
+							<label class="control-label col-md-4">১৪। যদি না করে কেন করে না ?</label>
+							<div class="col-md-4">
+								<div class="checkbox-list">
+									<label><input id="yhy_not_feel_safe_1" name="environment.yhy_not_feel_safe" value="1" type="checkbox">যৌন হয়রানি জনিত আশংকা</label>
+									<label><input id="yhy_not_feel_safe_1" name="environment.yhy_not_feel_safe" value="2" type="checkbox">সড়ক দূর্ঘটনা</label>
+									<label><input id="yhy_not_feel_safe_1" name="environment.yhy_not_feel_safe" value="3" type="checkbox">স্কুল খুব দূরে অবস্থিত </label>
+									<label><input id="yhy_not_feel_safe_1" name="environment.yhy_not_feel_safe" value="4" type="checkbox">স্কুলে শারীরিক শাস্তির ভয়</label>
+									<label><input id="yhy_not_feel_safe_1" name="environment.yhy_not_feel_safe" value="5" type="checkbox">বহিরাগত / অন্য কারো দ্বারা আক্রান্তের শঙ্কা </label>
+									<label><input id="yhy_not_feel_safe_1" name="environment.yhy_not_feel_safe" value="6" type="checkbox">অন্যান্য</label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label col-md-4">১৫। গত এক মাসে স্কুলে  খাবার ক্যান্টিন ও খবারের মান</label>
+							<div class="col-md-4">
+								<div class="radio-list">
+									<label><input id="schoolCanteen_1" name="environment.schoolCanteen" value="1" type="radio" required="true">কোন কেন্টিন নাই</label>
+									<label><input id="schoolCanteen_2" name="environment.schoolCanteen" value="2" type="radio" required="true">ক্যান্টিন বন্ধ হয়ে গেছে</label>
+									<label><input id="schoolCanteen_3" name="environment.schoolCanteen" value="3" type="radio" required="true">খাবারের মান খারাপ হয়েছে</label>
+									<label><input id="schoolCanteen_4" name="environment.schoolCanteen" value="4" type="radio" required="true">খাবারের মান আগের মতই রয়েছে</label>
+									<label><input id="schoolCanteen_5" name="environment.schoolCanteen" value="5" type="radio" required="true">খাবারের মান ভাল হয়েছে</label>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="form-actions fluid">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="col-md-offset-3 col-md-9">
+									<button type="submit" class="btn btn-success">Submit</button>
+									<button type="button" class="btn btn-success">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					#{/form}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<div class="col_1">
+</div>
+
+<div class="clearfix"> 
+</div>
+
+
+<script type='text/javascript'>
+	jQuery(document).ready(function(){
+		$('input:radio[name="environment.complained_SchoolEnvironment"]').change(function(){
+			if($(this).val() == '1'){
+				
+				$('#how_informed_Environment_prob_div').show();
+				$('#took_step_Environment_prob_div').show();
+				$('input:radio[name="environment.took_step_Environment_prob"]').prop('required',true);
+				$('environment.how_informed_Environment_prob"]').prop('required',true);
+			}
+			else{
+				$('#how_informed_Environment_prob_div').hide();
+				$('#took_step_Environment_prob_div').hide();
+				$('environment.how_informed_Environment_prob"]').prop('required',false);
+				$('input:radio[name="environment.took_step_Environment_prob"]').prop('required',false);
+			}
+		});
+		//how_informed_Environment_prob_other_div
+		
+		$('input:radio[name="environment.scareSafe_SchoolWay"]').change(function(){
+			if($(this).val() == '0'){
+				$('#whyNot_scareSafe_schoolWay').show();
+	    	}else{
+	    		$('#whyNot_scareSafe_schoolWay').hide();
+	    		$('input:checkbox[name="recreation.whyNot_EqualAccess"]').prop('required',false);
+	    	}
+	    });
+		
+		
+		
+		$('input:radio[name="environment.how_informed_Environment_prob"]').change(function(){
+			if($(this).val() == '5'){
+				$('#how_informed_Environment_prob_other_div').show();
+				$('#environment.how_informed_Environment_prob_other').prop('required',true);
+			}else{
+				$('#how_informed_Environment_prob_other_div').hide();
+				$('#environment.how_informed_Environment_prob_other').prop('required',false);
+				$('#environment.how_informed_Environment_prob_other').prop('value','');
+			}
+		});
+		
+	});
+</script>
+
+

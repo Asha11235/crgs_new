@@ -1,0 +1,132 @@
+#{extends 'main.html' /}
+#{set title:'Comparison Between Schools Regarding The Wash Situation' /}
+
+<div id="containt_wrapper">
+<div id="containt_area">
+
+<h1>${title}</h1>
+
+*{
+<div class="col-lg-3">
+		           <label>WASH Reporting Parameter </label>
+		           <div class="input">
+		             <div class="inline-inputs">
+		               <select id="wash-question" class="form-control">
+							<option value = "" >Select</option>
+							#{list xmlQuestions, as:'questn'}
+							<option value = "${questn.key}"> ${questn.value}</option>
+							#{/list} 
+						</select>
+		             </div>
+		           </div>
+			</div>
+			
+			<div class="col-lg-2">
+			 <label>Select Gender</label>
+			#{select 'select_gender', value:'gender', id:'select_gender',  class:'form-control ajax_data'}
+			#{option '0' } Gender #{/option}
+			#{option '1' } Male #{/option}
+			#{option '2' } Female #{/option}
+		#{/select}
+        </div>
+		
+		<div class = "col-lg-2">
+		
+           Start date <input id="start_date" name ="start_date"  value="" class="startDatepicker " type="text"/> 
+            </div>
+           <div class = "col-lg-2">
+           End date <input id="end_date" value="" name="end_date" class="endDatepicker" type="text"/>
+           </div>
+           <div class="col-lg-2" style="padding-top:18px">
+           <input id="datesearch" value="Search" name="Button" type="button"/>
+          </div>
+     
+   }*
+   
+     <div class='container'>
+       <form  class="form-horizontal2">	
+	WASH Reporting Parameter  <select id="wash-question" class="form-control">
+							<option value = "" >Select</option>
+							#{list xmlQuestions, as:'questn'}
+							<option value = "${questn.key}"> ${questn.value}</option>
+							#{/list} 
+						</select>
+		
+		<br>
+		
+	Select Gender #{select 'select_gender', value:'gender', id:'select_gender',  class:'form-control ajax_data'}
+			#{option '0' } Gender #{/option}
+			#{option '1' } Male #{/option}
+			#{option '2' } Female #{/option}
+		#{/select}
+		<br>
+		Start date
+	 <input id="start_date"  name ="start_date"  value=""  class = "startDatepicker form-control hackyhack"  type="text">
+	End date 
+	<input id="end_date"  value="" name = "end_date"  class="endDatepicker form-control hackyhack" type="text"><br>
+	
+	 <input id="datesearch" value="Search" name="Button" type="button" class="btn btn-mini btn-primary"/>	
+	</form>	
+       </div>
+    
+       
+      *{ <div class='container2'>
+       #{form @Forms.exportV2(1), class:'form-horizontal2', method:'get', enctype:'multipart/form-data'}	
+	Choose School #{select 'select_school',  class:'form-control'}
+			#{option } School #{/option}
+			#{list info, as:'key' }
+				#{option key.id} ${key.name} #{/option}
+			#{/list}
+		#{/select}
+		
+		<br>
+		Start date
+	 <input name ="start_date"  value=""  class = "startDatepicker form-control hackyhack"  type="text">
+	End date 
+	<input value="" name = "end_date"  class="endDatepicker form-control hackyhack" type="text"><br>
+	<input type = "submit" value = "Export"  class="btn btn-mini btn-primary">	
+	#{/form}	
+       </div>}*
+		
+		
+		 <div class="ajax_load">
+ 		</div>
+ 		</div> 
+		</div>
+		
+		#{script 'jquery.mpower.utils.js' /} 
+		#{script 'bootstrap-datepicker_latest.js' /}
+		#{stylesheet 'datepicker_latest.css' /}
+		#{stylesheet 'allDesign.css' /}
+
+<script>
+	$("document").ready(function(){
+		$(".startDatepicker" ).datepicker({  
+	  		dateFormat:'yy-mm-dd'  
+	  	});  
+	  	$(".endDatepicker").datepicker({  
+	  	  	dateFormat:'yy-mm-dd'  
+	  });
+  	 $("#datesearch").on('click', function(){
+  	 	    var wash = $("#wash-question").attr('value');
+			var gender = $("#select_gender").attr('value');
+			var startDate = $("#start_date").attr('value');
+			var endDate = $("#end_date").attr('value'); 
+			console.log("wash " + wash + " startDate " + startDate + " endDate " + endDate + " gender " + gender);
+			 $.ajax({
+			 type: 'GET',
+			 url: "@{SchoolStatus.searchWashStatus}",
+			 data: { startDate:startDate,
+			 		 endDate:endDate,
+			 		 gender:gender,
+			 		 wash:wash
+			 		  },
+			 success: function(data){
+				 $(".ajax_load").html(data);
+			 }	 
+		 });
+  	 });
+	  	 
+	  });
+</script>
+

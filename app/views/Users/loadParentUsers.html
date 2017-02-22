@@ -1,0 +1,20 @@
+#{if role?.equals(models.Role.getMCRole())}    
+	#{input 'user.mh.id', type:'select', items:userList, labelProperty:'displayName'}
+		#{option}Any#{/option}
+	#{/input}
+#{/if}
+#{if role?.equals(models.Role.getDMRole())}    
+	#{input 'user.mc.id', type:'select', items:userList, labelProperty:'displayName'}
+		#{option}Any#{/option}
+	#{/input}
+#{/if}
+#{if role?.equals(models.Role.getFFRole())}    
+	#{input 'user.dm.id', type:'select', items:userList, labelProperty:'displayName'}
+		#{option}Any#{/option}
+	#{/input}
+#{/if}
+#{if role?.equals(models.Role.getEnumeratorRole())}
+	#{input 'user.mc.id', type:'select', items:userList, labelProperty:'displayName'}
+		#{option}Any#{/option}
+	#{/input}
+#{/if}

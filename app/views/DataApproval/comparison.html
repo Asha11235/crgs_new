@@ -1,0 +1,45 @@
+#{extends 'main.html' /}
+
+<ul class="breadcrumb">
+</ul>
+
+<div class="page-header top">
+	<h1>${title} M&E Approval DashBoard</h1>
+</div>
+
+<form action="@{DataApproval.singleDataApprove()}" method="post">
+
+<input type="hidden" name="data_id" id = "data_id" value="${compareData.id}"/>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>${form1} Value</th>
+			<th>${form2} Value</th>
+			<th>Result</th>
+		</tr>
+	</thead>
+	
+	<tbody id="dataList" class="chk-container">
+	<tr>
+	</tr>
+	#{list items:comparedValueList, as:'row'}
+		<tr>
+			<td>${row.compTitle}</td>
+			<td>${row.compValue1}</td>
+			<td>${row.compValue2}</td>
+			<td>${row.compResult}</td>
+		</tr>
+		#{/list}
+		#{else}
+		<tr>
+			<td colspan="6">No data found</td>
+		</tr>
+		#{/else}
+	</tbody>
+	
+</table>
+ #{if compareData.approvalStatus == 0}
+<input type="submit" class="checked" id="accept" name ="accept" value="Accept"> &nbsp; &nbsp; &nbsp; <input type="submit" class="checked" id="reject" name="reject" value="Reject">
+#{/if}

@@ -1,0 +1,55 @@
+#{extends 'main.html' /}
+
+
+<div class="page-header top">
+	<h1>${title}</h1>
+</div>
+
+
+#{form @submit() } 
+		<div class="form-group">
+				<label for="focusedinput" class="col-sm-2 control-label">NGO Name</label>
+				<div class="col-sm-10">
+					<input name="ngo.ngoName" type="text" class="form-control1" id="ngo.ngoName" value="${ngo?.ngoName}" placeholder="Default Input">
+				</div>
+			</div>
+			
+		<div class="form-group">
+			<label for="selector1" class="col-sm-2 control-label">Division</label>
+			<div id="geoDivision" class="col-sm-8 geo" url="@{Ngos.loadGeoDistrict()}" load-data-container="#geoDistrict">
+				#{input 'ngo.geoDivision.id' , type:'select', items:geoDivisionList, labelProperty:'name' }
+					#{option}Any#{/option}
+				#{/input}
+			</div>
+		</div>
+		
+		
+		<div class="form-group">
+			<label for="selector1" class="col-sm-2 control-label">District</label>
+			<div id="geoDistrict" class="col-sm-8 geo" url="@{Ngos.loadGeoUpazilla()}"  load-data-container="#geoUpazilla">
+				#{input 'ngo.geoDistrict.id' , type:'select', items:geoDistrictList,labelProperty:'name' } 
+					#{option}Any#{/option}
+				#{/input}
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="selector1" class="col-sm-2 control-label">Upazilla/Thana</label>
+			<div id="geoUpazilla" class="col-sm-8 geo" url="@{Ngos.loadGeoUnion()}"  load-data-container="#geoUnion">
+				#{input 'ngo.geoUpazilla.id' , type:'select', items:geoUpazillaList,labelProperty:'name' } 
+					#{option}Any#{/option}
+				#{/input}
+			</div>
+		</div>
+			
+				#{submit /}
+			
+#{/form}
+			
+#{set 'moreScripts'}
+			#{script 'bootstrap-datepicker_latest.js' /}
+	    	#{script 'jquery.mpower.utils.js' /}
+			#{script 'jquery-mpower-date.js' /}
+			#{script 'mpower-geolocation.js' /}
+	
+#{/set}

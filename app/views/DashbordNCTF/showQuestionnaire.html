@@ -1,0 +1,1344 @@
+#{extends 'mainNCTF.html' /}
+#{set title:Questionnaire /}
+
+<div id="containt_wrapper">
+<div id="containt_area">
+ <ul class="breadcrumb">
+  <li><a href="@{DashbordNCTF.index()}"><i class="icon-list"></i> Go to Dashboard</a></li>
+</ul>
+<div class='col-sm-10 col-md-10'>
+	 <div id = "schoolDiv"> 
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>SL.No</th>
+				<th>Questions (প্রশ্নমালা)</th>
+				<th>Option for answer (উত্তর)</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td></td>
+				<td>Type of Interviewer (উত্তরদাতার ধরণ )</td>
+				<td>Boys/ Girls (ছেলে/মেয়ে)</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>What is the source of drinking water? (খাবার পানির উৎস কি)</td>
+				<td>Tube well. (টিউবওয়েল)</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Tap. (টেপ)</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Filter (ফিল্টার)</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Pitcher (কলসি)</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>How many drinking water tube wells? (খাবার পানির কয়টি টিউবওয়েল আছে)</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>How many drinking water taps?(খাবার পানির কয়টি টেপ আছে)</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>How many drinking water tube wells are functional(খাবার পানির কয়টি টিউবওয়েল সচল আছে)</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>How many drinking water taps are functional(খাবার পানির কয়টি টেপ সচল আছে)</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>Is the main source of drinking water is at reasonable & safe distance from the toilet (খাবার পানির প্রধান উৎস টয়লেট থেকে পর্যাপ্ত/নিরাপদ দুরত্বে কি না)</td>
+				<td>Yes (হ্যাঁ )</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td>No (না)</td>
+			</tr>
+			<tr>
+				<td>7</td>
+				<td>Is the water safe and fit for drinking? (খাবার পানি পানের উপযোগী কিনা?)</td>
+				<td>Yes (হ্যাঁ )</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>No (না)</td>
+					
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>Why not fit for drinking ? (কেন উপযোগী নয়)</td>
+				<td>Foul smell. (দুর্গন্ধ) </td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Iron. (আয়রন)</td>	
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Arsenic/Manganese. (আর্সেনিক/ম্যাঙ্গানিজ)</td>		
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Others. (অন্যান্য)</td>		
+			</tr>
+		
+			<tr>
+				<td>8.1</td>
+				<td>What are the other reasons for not drinkable ? (অন্যান্য কি কারনে উপযোগী নয়)</td>
+				<td></td>
+			</tr>
+			
+			<tr>
+				<td>9</td>
+				<td>Did the water tank cleaned since last one month.(গত একমাসে খাবার পানির ট্যাংকি পরিষ্কার করা হয়েছিল কি)</td>
+				<td>Yes (হ্যাঁ )</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>No (না)</td>
+			</tr>
+			
+			<tr>
+				<td>10</td>
+				<td>Was the school authority informed during the last one month regarding drinking water problem in the school? (গত একমাসে স্কুলের খাবার পানি নিয়ে কোন সমস্যার কথা স্কুল কর্তৃপক্ষ কে জানানো হয়েছিল কিনা)</td>
+				<td>Yes (হ্যাঁ )</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>No (না)</td>
+			</tr>
+
+			<tr>
+				<td>10.1</td>
+				<td>If yes, how it was informed (যদি হ্যাঁ হয় তাহলে, কীভাবে জানানো হয়েছিলো)</td>
+				<td>School authority/ Application to SMC (স্কুল কতৃপক্ষ / SMC এর কাছে দরখাস্ত)</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Verbally Complain to Head master/Asst. Head master (প্রধান শিক্ষক/ উপ প্রধান শিক্ষক কাছে মৌখিকভাবে)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Verbally Complain to the class teacher.(শ্রেণী শিক্ষকের কাছে মৌখিকভাবে)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Verbally Complain to the school management committee (স্কুল ম্যানেজিং কমিটি'র সদস্যের কাছে মৌখিকভাবে)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Others (অন্যান্য)</td>
+			</tr>
+			
+			<tr>
+				<td>10.2</td>
+				<td>What was the other ways to inform School Authority(অন্যান্য কিভাবে জানানো হয়েছিল)</td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td>11</td>
+				<td>School Authority took necessary steps within - (কর্তৃপক্ষ কত দিনের মধ্যে ব্যবস্থা নিয়েছিল)</td>
+				<td>Instantly/within one day (সাথে সাথে /এক দিনের মধ্যে)</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Within 2-3 days. (২-৩ দিনের মধ্যে)</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Within 4-7 days.(৪-৭ দিনের মধ্যে)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Within 8-30 days.(৮-৩০ দিনের মধ্যে)</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>More than 30 days. (৩০ দিনের থেকে বেশি সময়ে)</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>No measure till now. (এখনও কোন ব্যবস্থা নেন নি)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Not known. (জানা নেই)</td>
+			</tr>
+			
+			<tr>
+				<td>12</td>
+				<td>How many toilets are there for students (স্কুলে শিক্ষার্থীদের জন্য কয়টি টয়লেট আছে)?</td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td>13</td>
+				<td>How many toilets are unusable for Boys and Girls (স্কুলে কয়টি টয়লেট ব্যবহারের অনুপযোগী)?</td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td>14</td>
+				<td>Why it's unusable (কি কারনে অনুপযোগী)</td>
+				<td>Tap not functional.(টয়লেটের পানির কল সচল নেই)</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Source of water/water tap not within the reach. (টয়লেটের পানির উৎস বা পানির কল নাগালের মধ্যে নেই)</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>No water in the toilet.(টয়লেটে পানি নেই)</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Toilet lock is not functional.(টয়লেটের ছিটকিনি/লক কাজ করে না)</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Toilet door broken/a whole in the door.(টয়লেটের দরজা ভাঙ্গা/দরজায় ছিদ্র)</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>No mug, Bucket, Bodna in the toilet.(টয়লেটে মগ/বদনা/বালতি নেই</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>overflow of stagnant dirty water in the pan/commode.(কমোডে/প্যানে ময়লা জমে থাকা/পানি উপচে পড়ছে)</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Stagnant water in the toilet.(টয়লেটে পানি জমে আছে)</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>No separate bucket for female for throwing napkin/pad. (মেয়েদের টয়লেটে ন্যপকিন/প্যাড ফেলার আলাদা ঝুড়ি নেই)</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>No Sufficient ventilation and lighting  in the toilet.(টয়লেটে পর্যাপ্ত  আলো-বাতাসে/ বাল্ব এর ব্যবস্থা নেই)</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Insects in the toilet. (পোকা মাকড়ের উপদ্রব)</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Foul smell. (দুর্গন্ধ) </td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Others. (অন্যান্য)</td>
+			</tr>
+
+			<tr>
+				<td>14.1</td>
+				<td>What are the other reasons for non functioning of the toilets (অন্যান্য কি কারনে টয়লেট ব্যাবহারের অনুপযোগী)?</td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td>15</td>
+				<td>Is there regular effort for proper sewerage and drainage (নিয়মিত পয়:নিষ্কাশনের উদ্যোগ গ্রহণ করা হয় কিনা)?</td>
+				<td>Yes (হ্যাঁ )</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>No (না)</td>
+			</tr>
+			
+			<tr>
+				<td>16</td>
+				<td>Are the toilets fit for use by the disable children (স্কুলের টয়লেট প্রতিবন্ধি শিশুদের ব্যবহার উপযোগী  কি না)?</td>
+				<td>Yes (হ্যাঁ )</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>No (না)</td>
+			</tr>
+			
+			<tr>
+				<td>17</td>
+				<td>Were the school authority informed during the last one month regarding the sewerage and drainage problem (গত একমাসে স্কুলের পয়ঃনিষ্কাশন নিয়ে কোন সমস্যার কথা স্কুল কর্তৃপক্ষ কে জানানো হয়েছিল কিনা)?</td>
+				<td>Yes (হ্যাঁ )</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>No (না)</td>
+			</tr>
+			
+			<tr>
+				<td>17.1</td>
+				<td>If yes, how they were informed (যদি হ্যাঁ হয় তাহলে, কীভাবে জানানো হয়েছিলো)?</td>
+				<td>School authority/ Application to SMC. (স্কুল কতৃপক্ষ / SMC এর কাছে দরখাস্ত)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Verbally Complain to Head master/Asst. Head master. ((প্রধান শিক্ষক/ উপ প্রধান শিক্ষক কাছে মৌখিকভাবে))</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Verbally Complain to the class teacher. (শ্রেণী শিক্ষকের কাছে মৌখিকভাবে)</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Verbally Complain to the SMC members.. (স্কুল ম্যানেজিং কমিটি'র সদস্যের কাছে মৌখিকভাবে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Others. (অন্যান্য) <td>
+			</tr>
+			
+			<tr>
+				<td>17.2</td>
+				<td>How others way of  informed (অন্যান্য কিভাবে জানানো হয়েছিল) ?</td>
+				<td> <td>
+			</tr>
+			
+			<tr>
+				<td>18</td>
+				<td>Within how many days the school authority took action (কর্তৃপক্ষ কত দিনের মধ্যে ব্যবস্থা নিয়েছিল) ?</td>
+				<td>Instantly/within one day.(সাথে সাথে /এক দিনের মধ্যে) <td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Within 2-3 days. (২-৩ দিনের মধ্যে) <td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Within 4-7 days. (৪-৭ দিনের মধ্যে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Within 8-30 days. (৮-৩০ দিনের মধ্যে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> More than 30 days. (৩০ দিনের থেকে বেশি সময়ে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> No measure till now. (এখনও কোন ব্যবস্থা নেন নি)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Not known. (জানা নেই)<td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td> td>
+			</tr>
+			
+			
+			<tr>
+				<td></td>
+				<td>  Condition of the following during last one month (নিম্ন লিখিত বিষয়ে গত একমাসের অবস্থা)</td>
+				<td> <td>
+			</tr>
+			
+			<tr>
+				<td>19</td>
+				<td>Presence of jug in all toilet. (সব টয়লেটে বদনা/মগ থাকা)</td>
+				<td> Absent in all of the toilet (কোনো টয়লেটে নেই)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Absent in most of the toilets. (অধিকাংশ টয়লেটে নেই)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Present  in half of the toilets (অর্ধেক সংখ্যক টয়লেটে আছে).<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Present in most of the toilets (অধিকাংশ টয়লেটে আছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Present in all of the Toilet (সব  টয়লেটে আছে)<td>
+			</tr>
+			
+			
+			<tr>
+				<td>19</td>
+				<td>Presence of jug in all toilet. (সব টয়লেটে বদনা/মগ থাকা)</td>
+				<td> Absent in all of the toilet (কোনো টয়লেটে নেই)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Absent in most of the toilets. (অধিকাংশ টয়লেটে নেই)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Present  in half of the toilets (অর্ধেক সংখ্যক টয়লেটে আছে).<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Present in most of the toilets (অধিকাংশ টয়লেটে আছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Present in all of the Toilet (সব  টয়লেটে আছে)<td>
+			</tr>
+			
+			
+			<tr>
+				<td>20</td>
+				<td>Presence of Soap/Hand wash.(সাবান বা হ্যান্ডওয়াশ থাকা)</td>
+				<td> Absent in all of the toilet (কোনো টয়লেটে নেই)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Absent in most of the toilets. (অধিকাংশ টয়লেটে নেই)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Present  in half of the toilets (অর্ধেক সংখ্যক টয়লেটে আছে).<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Present in most of the toilets (অধিকাংশ টয়লেটে আছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Present in all of the Toilet (সব  টয়লেটে আছে)<td>
+			</tr>
+
+
+			<tr>
+				<td>21</td>
+				<td>Presence of tissue paper in the toilet (টয়লেটে টিস্যু থাকা)</td>
+				<td> Absent in all of the toilet (কোনো টয়লেটে নেই)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Absent in most of the toilets. (অধিকাংশ টয়লেটে নেই)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Present  in half of the toilets (অর্ধেক সংখ্যক টয়লেটে আছে).<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Present in most of the toilets (অধিকাংশ টয়লেটে আছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Present in all of the Toilet (সব  টয়লেটে আছে)<td>
+			</tr>
+			
+			
+			<tr>
+				<td>22</td>
+				<td>Presence of Washroom Shoe in the toilet (সব টয়লেটে আলাদা স্যন্ডেল থাকা)</td>
+				<td> Absent in all of the toilet (কোনো টয়লেটে নেই)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Absent in most of the toilets. (অধিকাংশ টয়লেটে নেই)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Present  in half of the toilets (অর্ধেক সংখ্যক টয়লেটে আছে).<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Present in most of the toilets (অধিকাংশ টয়লেটে আছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Present in all of the Toilet (সব  টয়লেটে আছে)<td>
+			</tr>
+			<tr>
+				<td>23</td>
+				<td>Presence of waste  bucket in the toilet (সব টয়লেটে ময়লা ফেলার ঝুড়ি থাকা)</td>
+				<td> Absent in all of the toilet (কোনো টয়লেটে নেই)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Absent in most of the toilets. (অধিকাংশ টয়লেটে নেই)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Present  in half of the toilets (অর্ধেক সংখ্যক টয়লেটে আছে).<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Present in most of the toilets (অধিকাংশ টয়লেটে আছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Present in all of the Toilet (সব  টয়লেটে আছে)<td>
+			</tr>
+			
+			<tr>
+				<td>24</td>
+				<td>Is there any facility for during menstrual period(ঋতুকালীন স্বাস্থ্য পরিচর্যার পর্যাপ্ত ব্যবস্থা আছে কি না)?</td>
+				<td> Absent in all of the toilet (কোনো টয়লেটে নেই)<td>
+			</tr>
+			
+			<tr>
+				<td>25</td>
+				<td>Is there any adequate lightening/air in the Toilet(টয়লেটে প্রয়োজনীয় আলো-বাতাস প্রবেশ করে কিনা বা শুকনো থাকা)</td>
+				<td> Absent in most of the toilets. (অধিকাংশ টয়লেটে নেই)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Present  in half of the toilets (অর্ধেক সংখ্যক টয়লেটে আছে).<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Present in most of the toilets (অধিকাংশ টয়লেটে আছে)<td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Present in all of the Toilet (সব  টয়লেটে আছে)<td>
+			</tr>
+			
+			<tr>
+				<td>26</td>
+				<td>Toilet cleaned daily/Regularly (টয়লেট প্রতিদিন বা নিয়মিত পরিষ্কার করা)</td>
+				<td> Not cleaned in the last month(গত মাসে পরিষ্কার করা হয়নি)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more per month (মাসে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more than once in every 15 days (পনের দিনে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more than once in every 7 days (সপ্তাহে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned Everyday (প্রতিদিন পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			
+			<tr>
+				<td>26</td>
+				<td>Toilet cleaned daily/Regularly (টয়লেট প্রতিদিন বা নিয়মিত পরিষ্কার করা)</td>
+				<td> Not cleaned in the last month(গত মাসে পরিষ্কার করা হয়নি)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more per month (মাসে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more than once in every 15 days (পনের দিনে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more than once in every 7 days (সপ্তাহে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned Everyday (প্রতিদিন পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td>26</td>
+				<td>Toilet cleaned daily/Regularly (টয়লেট প্রতিদিন বা নিয়মিত পরিষ্কার করা)</td>
+				<td> Not cleaned in the last month(গত মাসে পরিষ্কার করা হয়নি)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more per month (মাসে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more than once in every 15 days (পনের দিনে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more than once in every 7 days (সপ্তাহে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned Everyday (প্রতিদিন পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			
+			<tr>
+				<td>26</td>
+				<td>Toilet cleaned daily/Regularly (টয়লেট প্রতিদিন বা নিয়মিত পরিষ্কার করা)</td>
+				<td> Not cleaned in the last month(গত মাসে পরিষ্কার করা হয়নি)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more per month (মাসে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more than once in every 15 days (পনের দিনে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more than once in every 7 days (সপ্তাহে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned Everyday (প্রতিদিন পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			
+			<tr>
+				<td>26</td>
+				<td>Toilet cleaned daily/Regularly (টয়লেট প্রতিদিন বা নিয়মিত পরিষ্কার করা)</td>
+				<td> Not cleaned in the last month(গত মাসে পরিষ্কার করা হয়নি)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more per month (মাসে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more than once in every 15 days (পনের দিনে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more than once in every 7 days (সপ্তাহে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned Everyday (প্রতিদিন পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			
+			<tr>
+				<td>27</td>
+				<td>Did toilet cleaned using following disinfectants(Harpic/phenyl) for cleaning the toilets (টয়লেট পরিষ্কার করার সময় জীবাণুনাশক উপকরণ (যেমনঃ হারপিক, ফিনাইল) ব্যবহার করা)</td>
+				<td>Did not use in any of the Toilet (কোনো টয়লেটে ব্যবহার করা হয় না)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Did not used in most of the Toilet (অধিকাংশ টয়লেটে ব্যবহার করা হয় না)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Used in half of the toilet (অর্ধেক সংখ্যক টয়লেটে ব্যবহার করা হয়)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Used in most of the toilet(অধিকাংশ টয়লেটে ব্যবহার করা হয়)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Used in Every Toilet (সব  টয়লেটে ব্যবহার করা হয়)<td>
+			</tr>
+			
+			
+			<tr>
+				<td>28</td>
+				<td>Daily cleaning of waste bucket in all the toilets (সব টয়লেটের ময়লা ফেলার ঝুড়ি প্রতিদিন পরিষ্কার করা)</td>
+				<td> Cleaned everyday (প্রতিদিন পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more per week (সপ্তাহে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more per 15 days. (পনের দিনে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more per month. (মাসে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Not cleaned in the last month (গত মাসে পরিষ্কার করা হয়নি).<td>
+			</tr>
+			
+			
+			
+			<tr>
+				<td>29</td>
+				<td>Mug/Badna/Pot of the toilet cleaned regularly (টয়লেটের মগ/বদনা নিয়মিত পরিষ্কার করাঃ)</td>
+				<td> Cleaned everyday (প্রতিদিন পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more per week (সপ্তাহে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more per 15 days. (পনের দিনে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more per month. (মাসে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Not cleaned in the last month (গত মাসে পরিষ্কার করা হয়নি).<td>
+			</tr>
+			
+			
+			<tr>
+				<td>30</td>
+				<td>Mug/Badna/Pot of the toilet cleaned regularly (টয়লেটের মগ/বদনা নিয়মিত পরিষ্কার করাঃ)</td>
+				<td> Cleaned everyday (প্রতিদিন পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more per week (সপ্তাহে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more per 15 days. (পনের দিনে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more per month. (মাসে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Not cleaned in the last month (গত মাসে পরিষ্কার করা হয়নি).<td>
+			</tr>
+			<tr>
+				<td>31</td>
+				<td>Regularly cleaning of school premises (স্কুলের আঙ্গিনা নিয়মিত পরিষ্কার করা)</td>
+				<td> Cleaned everyday (প্রতিদিন পরিষ্কার করা হয়েছে)<td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more per week (সপ্তাহে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more per 15 days. (পনের দিনে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Cleaned once or more per month. (মাসে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে)<td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td> Not cleaned in the last month (গত মাসে পরিষ্কার করা হয়নি).<td>
+			</tr>
+			<tr>
+			<td>32</td>
+			<td>Any awareness raising  discussion on cleanliness during last one month (গত এক মাসে পরিষ্কার পরিচ্ছন্নতা সংক্রান্ত সচেতনতা বৃদ্ধিমুলক কোন আলোচনা ক্লাশে হয়েছিল কি না)</td>
+			<td>Yes (হ্যাঁ)</td>
+			</tr>
+			
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>No (না)</td>
+			</tr>
+			
+			<tr>
+				<td>33</td>
+				<td>Were the school authority  informed regarding the cleanliness problems during last month (গত একমাসে স্কুলের পরিস্কার পরিচ্ছন্নতা নিয়ে কোন সমস্যার কথা স্কুল কর্তৃপক্ষ কে জানানো হয়েছিল কিনা)?</td>
+				<td>Yes (হ্যাঁ )</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>No (না)</td>
+			</tr>
+			
+			
+			<tr>
+				<td>34</td>
+				<td>If yes, how they were informed (যদি হ্যাঁ হয় তাহলে, কীভাবে জানানো হয়েছিলো)?</td>
+				<td>School authority/ Application to SMC  (স্কুল কতৃপক্ষ / SMC এর কাছে দরখাস্ত)</td>
+			</tr>
+			
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Verbally Complain to Head master/Asst. Head master (প্রধান শিক্ষক/ উপ প্রধান শিক্ষক কাছে মৌখিকভাবে)</td>
+			</tr>
+			
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Verbally Complain to the class teacher. (শ্রেণী শিক্ষকের কাছে মৌখিকভাবে)</td>
+			</tr>
+			
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Verbally Complain to SMC members. (স্কুল ম্যানেজিং কমিটি'র সদস্যের কাছে মৌখিকভাবে)</td>
+			</tr>
+			
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Others (অন্যান্য)</td>
+			</tr>
+			
+			
+			<tr>
+				<td>35</td>
+				<td>How the other way of informed (অন্যান্য কিভাবে জানানো হয়েছিল) ?</td>
+				<td></td>
+			</tr>
+			
+			
+			<tr>
+				<td>36</td>
+				<td>Within how many days the authority took measures (কর্তৃপক্ষ কত দিনের মধ্যে ব্যবস্থা নিয়েছিল)?</td>
+				<td>Instantly/within one day (সাথে সাথে /এক দিনের মধ্যে)</td>
+			</tr>
+			
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Within 2-3 days. (২-৩ দিনের মধ্যে)</td>
+			</tr>
+			
+			
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Within 4-7 days.(৪-৭ দিনের মধ্যে)</td>
+			</tr>
+			
+			
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Within 8-30 days.(৮-৩০ দিনের মধ্যে)</td>
+			</tr>
+			
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>More than 30 days. (৩০ দিনের থেকে বেশি সময়ে)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>No measure till now. (এখনও কোন ব্যবস্থা নেন নি)</td>
+			</tr>
+			
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Not known. (জানা নেই)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td>Overall qualitative ranking of school WASH situation.</td>
+				<td></td>
+			</tr>
+			
+			<tr>
+				<td>37</td>
+				<td>How was the overall water supply situation of the school during last month -Rank between 1 to 5 (গত এক মাসের স্কুলের সার্বিক খাবার পানির ব্যবস্থা কেমন ছিল - ১ থেকে ৫ এর মধ্যে র
+			্যাঙ্কিং করুন) ?</td>
+				<td>Very poor. (খুব খারাপ)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Poor. (খারাপ)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Average. (মোটামোটি)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Good. (ভাল)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Very good. (খুব ভাল)</td>
+			</tr>
+			<tr>
+				<td>38</td>
+				<td>How was the overall sanitation system  -Rank between 1 to 5 (গত এক মাসের স্কুলের সার্বিক পয়ঃনিষ্কাশন ব্যবস্থা কেমন ছিল - ১ থেকে ৫ এর মধ্যে র
+			্যাঙ্কিং করুন)?</td>
+				<td>Very poor. (খুব খারাপ)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Poor. (খারাপ)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Average. (মোটামোটি)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Good. (ভাল)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Very good. (খুব ভাল)</td>
+			</tr>
+			<tr>
+				<td>39</td>
+				<td>How was the overall hygienic and cleanliness situation of the school during last one month -Rank between 1 to 5 (গত এক মাসের স্কুলের সার্বিক হাইজিন বা পরিস্কার পরিচ্ছন্নতা কেমন ছিল - ১ থেকে ৫ এর মধ্যে র
+			্যাঙ্কিং করুন)</td>
+				<td>Very poor. (খুব খারাপ)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Poor. (খারাপ)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Average. (মোটামোটি)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Good. (ভাল)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Very good. (খুব ভাল)</td>
+			</tr>
+			<tr>
+				<td>40</td>
+				<td>How was the overall response mechanism between Students and Teacher  -Rank between 1 to 5 (সুশাসন (ছাত্র-শিক্ষক response mechanism ) ব্যবস্থা  কেমন ছিল)?</td>
+				<td>Very poor. (খুব খারাপ)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Poor. (খারাপ)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Average. (মোটামোটি)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Good. (ভাল)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Very good. (খুব ভাল)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td>Give Feedback regarding Hygiene and Cleanliness (পানি ও পয়ঃনিষ্কাশন সম্পর্কে  অন্য কোন মন্তব্য লিখুন)</td>
+				<td></td>
+			</tr>
+							
+			<tr>
+				<td>41</td>
+				<td>Is there any formal way of complain regarding any issues to school authority (স্কুলের বিভিন্ন বিষয়ে (চাহিদা, অসুবিধা, অভিযোগ ইত্যাদি) কর্তৃপক্ষকে জানানোর জন্য কোনো প্রাতিষ্ঠানিক/অফিসিয়াল ব্যবস্থা আছে কি না) ?</td>
+				<td>Yes (হ্যাঁ )</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td>No (না)</td>
+			</tr>
+			
+			<tr>
+				<td>41.1</td>
+				<td>If yes, how it was informed (থাকলে কি ব্যবস্থা) ?</td>
+				<td>Particular School Representative (নির্ধারিত শিক্ষক প্রতিনিধি)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Complain Box (অভিযোগ বক্স)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Monthly/Bi - Monthly/ Trisemester Journal (এ সম্পর্কিত কোনো নির্ধারিত মাসিক/দ্বিমাসিক/ত্রৈমাসিক মিটিং) </td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Others (অন্যান্য)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			
+			<tr>
+				<td>42</td>
+				<td>What sort of meeting arranged in the School last one month (গত এক মাসে স্কুলে কি কি মিটিং/সভা অনুষ্ঠিত হয়েছিল) ? </td>
+				<td>No idea. Don't know about such thing (কোনো ধারনা নেই / জানি না)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>No meeting was held (কোনো সভা হয় নি)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>SMC Meeting (এসএমসি মিটিং)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Student Council (স্টুডেন্ট কাউন্সিল)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Special Program -cultural, sporting (বিশেষ সভা -ক্রীড়া/সাংস্কৃতিক প্রতিযোগিতা, বিদায় অনুষ্ঠান ইত্যাদি) </td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Teacher and parents council (শিক্ষার্থী অভিভাবক ও শিক্ষক সমাবেশ)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Monthly/Bi-Monthly/Tri-Monthly Meeting (মাসিক/দ্বিমাসিক/ত্রৈমাসিক মিটিং)</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Others (অন্যান্য)</td>
+			</tr>
+			
+			<tr>
+				<td>43</td>
+				<td>Did Students attend the meeting (গত এক মাসে অনুষ্ঠিত মিটিং/সভায় শিক্ষার্থী প্রতিনিধি অংশগ্রহন করেছে কিনা)? </td>
+				<td> Yes (হ্যাঁ </td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>No (না)</td>
+			
+			</tr>
+			<tr>
+				<td>44</td>
+				<td>Did the student's feedback taken account in the meeting (মিটিং/সভায় শিক্ষার্থীর মতামত গুরুত্বের সহিত নেয়া হয়েছিল কিনা)?</td>
+				<td> Yes (হ্যাঁ </td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td>No (না)</td>
+			
+			</tr>
+			
+			
+			<tr>
+				<td>45</td>
+				<td>Take picture (ছবি তুলুন)</td>
+				<td></td>
+			</tr>
+			
+			<tr>
+				<td>46</td>
+				<td>Track GPS (জিপিএস নিন)</td>
+				<td></td>
+			</tr>									
+									
+		</tbody>
+	</table>
+	</div>
+	<!--  end school div -->
+</div>	 
+	 
+ 
+        
+</div>
+</div>         
+#{script 'forms.js' /}
+#{script 'jquery.dataTables.min.js' /}

@@ -1,0 +1,65 @@
+#{extends 'main.html' /}
+
+<div id="wrapper">
+<div id="containt_area">
+#{if geoUnion?.id}
+    <h1>Edit Union</h1>
+#{/if}
+#{else}
+    <h1>New Union</h1>
+#{/else}
+<div class="row"><!-- table -->
+						  <div class="panel panel-default">
+										    <div class="panel-heading">#{if geoUnion?.id}
+											    <h8>Edit Union</h8>
+												#{/if}
+												#{else}
+												    <h8>New Union</h8>
+												#{/else}</div>
+												<div class="table-responsive ">
+												<div class="panel-body">
+
+#{form @submitGeoUnion(), class:'form-horizontal filter'}
+	#{if geoUnion?.id}
+    <input type="hidden" name="geoUnion.id" value="${geoUnion.id}" />
+    #{/if}
+
+	<!-- geo-location hierarchy -->
+	
+	<div id="geoDivision" class="geo" url="@{Areas.loadGeoDistrict()}" load-data-container="#geoDistrict">
+	#{input 'geoDivision.id' , type:'select', items:geoDivisionList, labelProperty:'name' }
+		#{option}Any#{/option}
+	#{/input}
+	</div>
+	<div id="geoDistrict" class="geo" url="@{Areas.loadGeoUpazilla()}"  load-data-container="#geoUpazilla">
+	#{input 'geoDistrict.id' , type:'select', items:geoDistrictList,labelProperty:'name' } 
+		#{option}Any#{/option}
+	#{/input}
+	</div>	
+	<div id="geoUpazilla" class="geo">
+	#{input 'geoUpazilla.id' , type:'select', items:geoUpazillaList,labelProperty:'name' } 
+		#{option}Any#{/option}
+	#{/input}
+	</div>	
+					
+    #{input 'geoUnion.name' /}
+   
+	#{input 'geoUnion.code' /}
+	
+    #{submit /}
+#{/form}
+        </div>
+							                </div>
+							             </div>
+					           </div>
+					           </div>
+
+
+#{set 'moreScripts'}
+	#{script 'bootstrap-datepicker_latest.js' /}
+    #{script 'jquery.mpower.utils.js' /}
+	#{script 'jquery-mpower-date.js' /}
+	#{script 'mpower-geolocation.js' /}
+	
+#{/set}
+

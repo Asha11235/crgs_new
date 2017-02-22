@@ -1,0 +1,83 @@
+$(function(){
+	$('#data\\/menstrul_facility').on('click',function(){
+  	var div = $("#menstrul_facility");
+	div.html();
+	div.attr('value','');
+	div.attr('name','');
+	var anotherText = "";
+  
+  	$.msgbox({ 
+  	'message'  : 'দয়া করে নির্দিষ্ট প্রশ্নের জন্য নিচের  ৩ টি কারণ নির্বাচন করুন', 
+ 	'type'     : 'prompt', 
+  	'inputs'   : [{'type' : 'checkbox', 'label' : 'প্রয়োজনীয় উপকরন নাই', 'name' : 'Necessary materials are not available', 
+			'value' : 'প্রয়োজনীয় উপকরন নাই' },
+  		      {'type' : 'checkbox', 'label' : 'দায়িত্বপ্রাপ্ত শিক্ষক নাই','name' : 'Absence of responsible teacher','value':'দায়িত্বপ্রাপ্ত শিক্ষক নাই'},
+  		      {'type' : 'checkbox', 'label' : 'বাবস্থাপনা কমিটিকে জানানো হয়েছে, তারা আগ্রহী নন','name' : 
+				'SMC have been informed but they are not interested','value':
+				'বাবস্থাপনা কমিটিকে জানানো হয়েছে, তারা আগ্রহী নন'},
+		      {'type' : 'checkbox', 'label' : 'বিষয়টি সম্পর্কে সঠিক ধারণা নাই','name' : 'Not clear about the issue','value':
+				'বিষয়টি সম্পর্কে সঠিক ধারণা নাই'},
+ 		      {'type' : 'checkbox', 'label' : 'অন্যান্য','name' : 'Others','value':'অন্যান্য'}], 
+  	'buttons'  : [{'type' : 'yes', 'value' : 'OK'}], 
+ 	 'callback' : function(result){
+  				var checkArray = [];
+  				var anotherArray = [];
+  				var outputText = "";
+  				var sendServer = "";
+				var sendName = "";
+  				result.pop();
+  				//result.pop();
+  				checkArray = result;
+				if(checkArray.length > 3){
+					$('#data\\/menstrul_facility' ).trigger( "click");
+				}
+				else{
+  			 	for(var i in result) {
+  			 		if(result[i].name === "Others"){
+					anotherText = 1;
+					div.html();
+					div.attr('value','');
+  					$.msgbox({
+  					'message'  : 'অন্যান্য কারণ সমূহ :', 
+					'type'     : 'prompt',
+					'inputs'   : [{'type' : 'text', 'label' : 'অন্যান্য কারণ','name' :'observation','value' : ''}],
+					'buttons'  : [{'type' : 'yes', 'value' : 'OK'}], 
+					'callback' : function(result) {
+							outputText = "";
+							sendServer = "";
+					        	result.pop();
+  							//result.pop();
+							anotherArray = result;
+							Array.prototype.push.apply(checkArray, anotherArray);
+  			 		 		for(var j in checkArray){
+  			 		 		outputText = outputText + checkArray[j].value +',';
+  			 		 		sendServer = sendServer + checkArray[j].value + "*";
+							sendName = sendName  + checkArray[j].name + "*";
+  			 		 		}
+  			 		 		div.html(outputText);
+  			 		 		div.attr('value',sendServer);
+							div.attr('name',sendName);
+							}
+							});
+							}
+					else{
+						if(anotherText != 1){
+						outputText = outputText + checkArray[i].value +",";
+  			 		 	sendServer = sendServer + checkArray[i].value + "*";
+						sendName = sendName  + checkArray[i].name + "*";
+						}
+					}
+  			 		 //console.log(i +"-i-"+ result[i].name + ':' + result[i].value ); 
+  			 		 }
+					if(anotherText != 1){
+						div.html(outputText);
+	  			 		div.attr('value',sendServer);
+						div.attr('name',sendName);
+					}
+  				} 
+			}
+		}); 
+	});
+
+
+});

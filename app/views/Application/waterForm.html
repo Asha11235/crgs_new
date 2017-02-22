@@ -1,0 +1,307 @@
+#{extends 'main.html' /}
+
+#{if flash.success}
+#{alert flash.success/}
+#{/if}
+<div class="f_align">
+	<div class="row">
+		<div class="col-md-12">
+			<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+			<h3 class="page-title">
+				WATER FORM
+			</h3>
+			<!-- END PAGE TITLE & BREADCRUMB-->
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<!-- BEGIN PORTLET-->
+			<div class="portlet">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="fa fa-reorder"></i>Water
+					</div>
+				</div>
+				<div class="portlet-body form">
+					#{form @submitionWaterForm(), class:'form-horizontal form-bordered'}
+					<div class="form-body">
+						
+						<div class="form-group">
+							<label class="control-label col-md-4">মাস</label>
+							<div class="col-md-3">
+								<div class="input-group input-medium date date-picker" data-date="" data-date-format="mm/yyyy" data-date-viewmode="years" data-date-minviewmode="months">
+									<input name="water.month" type="text" class="form-control" required="true">
+									<span class="input-group-btn">
+										<button class="btn btn-info" type="button"><i class="fa fa-calendar"></i></button>
+									</span>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label col-md-4">১। উত্তর দাতার ধরণ </label>
+							<div class="col-md-3">
+								<div class="radio-list">
+									<label class="radio-inline">
+										<input id="res_type_1" name="water.res_type" value="1" type="radio" required="true"> ছেলে 
+									</label>
+									<label class="radio-inline">
+										<input id="res_type_2" name="water.res_type" value="2" type="radio" required="true"> মেয়ে 
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-4">২। খাবার পানির উৎস কি? </label>
+							<div class="col-md-3">
+								<div class="checkbox-list">
+									<label>
+										<input id="water_source_1" name="water.water_source" value="1" type="checkbox" >টিউবওয়েল
+									</label>
+									<label>
+										<input id="water_source_2" name="water.water_source" value="2" type="checkbox" >টেপ
+									</label>
+									<label>
+										<input id="water_source_3" name="water.water_source" value="3" type="checkbox" >ফিল্টার
+									</label>
+									<label>
+										<input id="water_source_4" name="water.water_source" value="4" type="checkbox" >কলসি 
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-4">৩। খাবার পানির কয়টি উৎস আছে ? </label>
+							<div class="col-md-3">
+								<input id="num_waterSource" name="water.num_waterSource" class="form-control" value="" type="number" required="true">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-4">৪। খাবার পানির কয়টি উৎস সচল আছে ? </label>
+							<div class="col-md-3">
+								<input id="activeWaterSource" name="water.activeWaterSource" class="form-control" value="" type="number" required="true">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-4">৫। খাবার পানি পানের উপযোগী কিনা? </label>
+							<div class="col-md-3">
+								<div class="radio-list">
+									<label class="radio-inline">
+										<input id="is_potable_1" name="water.is_potable" value="1" type="radio" required="true">হ্যাঁ
+									</label>
+									<label class="radio-inline">
+										<input id="is_potable_2" name="water.is_potable" value="0" type="radio" required="true" >না
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group" id="why_not_potable_div" style="display:none;">
+							<label class="control-label col-md-4">৬। কেন উপযোগী নয়?</label>
+							<div class="col-md-3">
+								<div class="checkbox-list">
+									<label>
+										<input id="why_not_potable_1" name="water.why_not_potable" value="1" type="checkbox"> দুর্গন্ধ
+									</label>
+									<label>
+										<input id="why_not_potable_2" name="water.why_not_potable" value="2" type="checkbox">আয়রন
+									</label>
+									<label>
+										<input id="why_not_potable_3" name="water.why_not_potable" value="3" type="checkbox">আর্সেনিক/ম্যাঙ্গানিজ
+									</label>
+									<label> 
+										<input id="why_not_potable_4" name="water.why_not_potable" value="4" type="checkbox">অন্যান্য
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group" id="why_not_potable_other_div" style="display:none;">
+							<label class="control-label col-md-4">৭। অন্যান্য কি কারনে উপযোগী নয়?</label>
+							<div class="col-md-3">
+								<input id="why_not_potable_other" name="water.why_not_potable_other" class="form-control" value="" type="text" >
+							</div>
+						</div>			    
+
+						<div class="form-group" id="is_tank_cleaned_div" >
+							<label class="control-label col-md-4">৮। গত একমাসে খাবার পানির ট্যাংকি পরিষ্কার করা হয়েছিল কি?</label>
+							<div class="col-md-3">
+								<div class="radio-list">
+									<label class="radio-inline">
+										<input id="is_tank_cleaned_1" name="water.is_tank_cleaned" value="1" type="radio" required="true">হ্যাঁ
+									</label>
+									<label class="radio-inline">
+										<input id="is_tank_cleaned_2" name="water.is_tank_cleaned" value="2" type="radio" required="true">না
+									</label>
+									<label class="radio-inline">
+										<input id="is_tank_cleaned_3" name="water.is_tank_cleaned" value="3" type="radio" required="true">প্রযোজ্য নয়
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group" id="is_informed_authority_water_prob_div">
+							<label class="control-label col-md-4">৯। গত একমাসে স্কুলের খাবার পানি নিয়ে কোন সমস্যার কথা স্কুল কর্তৃপক্ষ কে জানানো হয়েছিল কিনা?</label>
+							<div class="col-md-3">
+								<div class="radio-list">
+									<label class="radio-inline">
+										<input id="is_informed_authority_water_prob_1" name="water.is_informed_authority_water_prob" value="1" type="radio"> হ্যাঁ
+									</label>
+									<label class="radio-inline">
+										<input id="is_informed_authority_water_prob_0" name="water.is_informed_authority_water_prob" value="0" type="radio" >না
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group" id="how_informed_water_prob_div" style="display:none;">
+							<label class="control-label col-md-4">১০। যদি হ্যাঁ হয় তাহলে, কীভাবে জানানো হয়েছিলো?</label>
+							<div class="col-md-3">
+								<div class="radio-list">
+									<div class="radio"><label><input id="how_informed_water_prob_1" name="water.how_informed_water_prob" value="1" type="radio">স্কুল কতৃপক্ষ / SMC এর কাছে দরখাস্ </label></div>
+									<div class="radio"><label><input id="how_informed_water_prob_2" name="water.how_informed_water_prob" value="2" type="radio">প্রধান শিক্ষক/ উপ প্রধান শিক্ষক কাছে মৌখিকভাবে</label></div>
+									<div class="radio"><label><input id="how_informed_water_prob_3" name="water.how_informed_water_prob" value="3" type="radio">শ্রেণী শিক্ষকের কাছে মৌখিকভাবে</label></div>
+									<div class="radio"><label><input id="how_informed_water_prob_4" name="water.how_informed_water_prob" value="4" type="radio">স্কুল ম্যানেজিং কমিটি'র সদস্যের কাছে মৌখিকভাবে</label></div>
+									<div class="radio"><label><input id="how_informed_water_prob_5" name="water.how_informed_water_prob" value="5" type="radio"> অন্যান্য </label></div>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group" id="how_informed_water_prob_other_div" style="display:none;">
+							<label class="control-label col-md-4">১১। অন্যান্য কিভাবে জানানো হয়েছিল?</label>
+							<div class="col-md-3">
+								<input id="how_informed_water_prob_other" name="water.how_informed_water_prob_other" value="" type="text">
+							</div>
+						</div>
+
+						<div class="form-group" id="water_prob_solved_authority_div" style="display:none;">
+							<label class="control-label col-md-4">১২। কর্তৃপক্ষ কত দিনের মধ্যে ব্যবস্থা নিয়েছিল?</label>
+							<div class="col-md-3">
+								<div class="radio-list">
+									<div class="radio"><label><input id="water_prob_solved_authority_1" name="water.water_prob_solved_authority" value="1" type="radio"> সাথে সাথে /এক দিনের মধ্যে</label></div>
+									<div class="radio"><label><input id="water_prob_solved_authority_2" name="water.water_prob_solved_authority" value="2" type="radio">২-৩ দিনের মধ্যে</label></div>
+									<div class="radio"><label><input id="water_prob_solved_authority_3" name="water.water_prob_solved_authority" value="3" type="radio">৪-৭ দিনের মধ্যে</label></div>
+									<div class="radio"><label><input id="water_prob_solved_authority_4" name="water.water_prob_solved_authority" value="4" type="radio">৮-৩০ দিনের মধ্যে</label></div>
+									<div class="radio"><label><input id="water_prob_solved_authority_5" name="water_prob_solved_authority" value="5" type="radio">৩০ দিনের থেকে বেশি সময়ে</label></div>
+									<div class="radio"><label><input id="water_prob_solved_authority_6" name="water.water_prob_solved_authority" value="6" type="radio">এখনও কোন ব্যবস্থা নেন নি</label></div>
+									<div class="radio"><label><input id="water_prob_solved_authority_7" name="water.water_prob_solved_authority" value="7" type="radio">জানা নেই </label></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-4">১৩। গত এক মাসের স্কুলের সার্বিক খাবার পানির ব্যবস্থা কেমন ছিল?</label>
+							<div class="col-md-3">
+								<div class="radio-list">
+									<div class="radio"><label><input id="rank_water_1" name="water.rank_water" value="1" type="radio">খুব খারাপ</label></div>
+									<div class="radio"><label><input id="rank_water_2" name="water.rank_water" value="2" type="radio">খারাপ </label></div>
+									<div class="radio"><label><input id="rank_water_3" name="water.rank_water" value="3" type="radio">মোটামোটি </label></div>
+									<div class="radio"><label><input id="rank_water_4" name="water.rank_water" value="4" type="radio">ভাল</label></div>
+									<div class="radio"><label><input id="rank_water_5" name="water.rank_water" value="5" type="radio">খুব ভাল</label></div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-actions fluid">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="col-md-offset-3 col-md-9">
+									<button type="submit" class="btn btn-success">Submit</button>
+									<button type="button" class="btn btn-success">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					#{/form}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<div class="col_1">
+</div>
+
+<div class="clearfix"> 
+</div>
+
+<script type='text/javascript'>
+	jQuery(document).ready(function(){
+		console.log("run");
+		$('input:radio[name="water.is_potable"]').change(function(){
+			if($(this).val() == '0'){
+				$('#why_not_potable_div').show();
+			      //$('input:checkbox[name="water.why_not_potable"]').prop('required',true);
+			  }
+			  else{
+				  
+			  	$('#why_not_potable_div').hide();
+			  	$('input:checkbox[name="water.why_not_potable"]').prop('checked', false);
+			      //$('input:checkbox[name="water.why_not_potable"]').prop('required',false);
+			      //$('input:checkbox[name="water.why_not_potable"]:not(:checked)');;
+			  }
+			});
+
+			/*$('input:checkbox[name="water.why_not_potable"]').change(function(){
+			    if($(this).val() == '4'){
+			      $('#why_not_potable_other_div').show();
+			      $('#why_not_potable_other').prop('required',true);
+			    }
+			    else{
+			      $('#why_not_potable_other_div').hide();
+			      $('#why_not_potable_other').prop('required',false);
+			      //$('#why_not_potable_other').prop('value','');
+			    }
+			    
+			});*/
+			$('#why_not_potable_4').change(function(){
+				if ($(this).prop('checked')){
+					$('#why_not_potable_other_div').show();
+					$('#why_not_potable_other').prop('required',true);
+				}
+				else{
+					$('#why_not_potable_other_div').hide();
+					$('#why_not_potable_other').prop('required',false);
+					$('#why_not_potable_other').prop('value','');
+				}
+			});
+			//water_prob_solved_authority_div
+			$('input:radio[name="water.is_informed_authority_water_prob"]').change(function(){
+				if($(this).val() == '1'){
+					$('#how_informed_water_prob_div').show();
+					$('#water_prob_solved_authority_div').show();
+					$('input:radio[name="water.how_informed_water_prob"]').prop('required',true);
+					$('input:radio[name="water.water_prob_solved_authority_div"]').prop('required',true);
+				}
+				else{
+					$('#how_informed_water_prob_div').hide();
+					$('#water_prob_solved_authority_div').hide();
+					$('input:radio[name="water.how_informed_water_prob"]').prop('required',false);
+					$('input:radio[name="water.water_prob_solved_authority_div"]').prop('required',false);
+				}
+			});
+			
+			$('input:radio[name="water.how_informed_water_prob"]').change(function(){
+				if($(this).val() == '5'){
+					$('#how_informed_water_prob_other_div').show();
+					$('#how_informed_water_prob_other').prop('required',true);
+				}else{
+					$('#how_informed_water_prob_other_div').hide();
+					$('#how_informed_water_prob_other').prop('required',false);
+					$('#how_informed_water_prob_other').prop('value','');
+				}
+			});
+			
+		});
+
+	</script>
+	

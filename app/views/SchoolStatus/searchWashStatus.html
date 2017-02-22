@@ -1,0 +1,57 @@
+
+
+<h3>${heading}</h3>
+
+<table  style="width:100%">
+
+          <tr>
+               <td  class="chart"  id="graph2" width="100%"></td>
+          </tr>
+     </table>
+     
+<div style="margin-left: 28px">
+1 :
+<strong>Very Bad</strong>
+, 2 :
+<strong>Bad</strong>
+, 3 :
+<strong>Moderate</strong>
+, 4 :
+<strong>Good</strong>
+, 5 :
+<strong>Very Good</strong>
+</div>
+
+#{script 'd3.min.js' /}
+#{script 'd3.tip.v0.6.3.js' /}
+#{script 'barChart.js' /}
+#{stylesheet 'datepicker_latest.css' /}
+#{stylesheet 'allDesign.css' /}
+	
+<script>
+	var count = 0;
+	var data=${json_dataList.raw()};
+	//console.log("Data " + data);
+	var afterColorRange=["DarkSlateBlue ","darkorange","green"];
+	var colorRange=["steelblue","orange","lightgreen","skyblue","lightsalmon"];
+	for(var i=0;i<data.length;i++){
+        var obj = data[i];
+        for(var key in obj){
+            var attrName = key;
+            var attrValue = obj[key];
+            if(attrName == 'y_data' && attrValue > 3.50 )
+            {
+            	count = count + 1;
+            }
+        }
+    }
+   // console.log("count " + count);
+	var obj={w: 1300, h:650,element:"#graph2", xLabel:"Schools", yLabel:"  ",color:"orange",afterColor:"darkorange",xTextDegree: 85,barFontSize: 12,diffXDataColor:"orange",diffXStartPoint:count,extendHeight:120};
+	try{
+	bar_chart_single(data,obj);
+	}
+	catch(e)
+	{
+	   console.log("No data/Exception ocuured");
+	}
+</script>

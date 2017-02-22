@@ -1,0 +1,81 @@
+#{extends 'main.html' /}
+
+<div class="page-header top">
+#{if user?.id}
+    <h1>Edit User</h1>
+#{/if}
+#{else}
+    <h1>New User</h1>
+#{/else}
+</div>
+
+#{form @submit(), class:'form-horizontal'}
+	<!-- {user.toString} -->
+	#{if user?.id}
+    <input type="hidden" name="user.id" value="${user.id}" />
+    #{/if}
+    User Name #{input 'user.name' /}
+    User Id #{input 'user.displayName'/}
+    
+    Email #{input 'user.email', class:'required' /}
+    Password #{input 'user.password', type:'password' /}
+    Confirm Password #{input 'user.confirmPassword', type:'password' /}
+
+    #{if currentUser != user}
+    #{input 'user.role.id', type:'select', items:roles, labelProperty:'name' /}
+    #{input 'user.school.id', type:'select', items:schoolList, labelProperty:'name' }
+    	#{option}Any#{/option}
+	#{/input}
+    
+    #{input 'user.ngo.id', type:'select', items:ngoList, labelProperty:'ngoName' }
+    	#{option}Any#{/option}
+	#{/input}
+
+    
+    
+    
+    
+    <div class="form-group">
+	<label for="selector1" class="col-sm-2 control-label">Division</label>
+	<div id="geoDivision" class="col-sm-8 geo" url="@{Users.loadGeoDistrict()}" load-data-container="#geoDistrict">
+		#{input 'user.geoDivision.id' , type:'select', items:geoDivisionList, labelProperty:'name' }
+			#{option}Any#{/option}
+		#{/input}
+			
+	</div>
+	</div>
+	
+	
+	<div class="form-group">
+		<label for="selector1" class="col-sm-2 control-label">District</label>
+		<div id="geoDistrict" class="col-sm-8 geo" url="@{Users.loadGeoUpazilla()}" load-data-container="#geoUpazilla">
+			#{input 'user.geoDistrict.id' , type:'select', items:geoDistrictList,labelProperty:'name' }
+				#{option}Any#{/option}
+			#{/input} 
+				
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label for="selector1" class="col-sm-2 control-label">Upazilla/Thana</label>
+		<div id="geoUpazilla" class="col-sm-8 geo" url="@{Users.loadGeoUnion()}"  load-data-container="#geoUnion">
+			#{input 'user.geoUpazilla.id' , type:'select', items:geoUpazillaList,labelProperty:'name' }
+				#{option}Any#{/option}
+			#{/input} 
+				
+		</div>
+	</div>
+    
+    
+    #{/if}
+    
+    #{submit /}
+#{/form}
+
+ #{set 'moreScripts'}
+			#{script 'bootstrap-datepicker_latest.js' /}
+	    	#{script 'jquery.mpower.utils.js' /}
+			#{script 'jquery-mpower-date.js' /}
+			#{script 'mpower-geolocation.js' /}
+	
+	#{/set}

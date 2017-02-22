@@ -1,0 +1,147 @@
+#{extends 'mainTemplate.html' /}
+<style>
+.chart{
+    
+   border:2px solid #d4d4d4;
+   margin-left: 10px;
+  /*width:700;
+    height:478;*/
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.axis text {
+  font: 14px sans-serif;
+}
+
+.browser text {
+  text-anchor: end;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.tick line{
+    opacity: 0.2;
+  }
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #000;
+  border-radius: 2px;
+  background-color: rgba(230,230,230,1);
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color:  #000;
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+.arc path {
+  stroke: #fff;
+}
+
+</style>
+<div id="containt_wrapper">
+      <div id="containt_area">
+
+		<form  class="form-horizontal">
+		<div id="filter" >
+		#{select 'Poll', value:'', id:'poll',  class:'common_class form-control2'}
+			#{option 'school_id' } Select poll #{/option}
+			#{list poll, as:'key' }
+				#{option key.id} ${key.title} #{/option}
+			#{/list}
+		#{/select}
+		
+		<br><br><br>
+		</div> 
+		</form>
+		<div id = "title" style = "color: green;font-size: 20px;"></div>
+		<div id="graph" class="col-md-12">
+			<!-- <h4>This is the test poll graph title</h4> -->
+			
+		</div>
+</div>
+</div>
+
+#{script 'd3.min.js' /}
+#{script 'd3.tip.v0.6.3.js' /}
+#{script 'InactiveToiletReason.js' /}
+<script type="text/javascript">
+//var data = ${pollJsonArray.raw()};
+/*horizontalBarChart(data);*/
+
+/* HB Chart test*/
+var obj={w: 700, h:330,element:"#graph", xLabel:"  ", yLabel:"   ",color: ["green"],afterColor: ["darkgreen"],xTextDegree:0,barFontSize: 12};
+//horizontalBarChartTest(data,obj);
+/* HB Chart test*/
+
+$('#poll').on('change', function(){
+		var pollId = $("#poll").val();
+		console.log("poll id :"+pollId);
+
+
+		var text = '\n'+document.getElementById('poll').options[document.getElementById('poll').selectedIndex].text+"?";
+
+		console.log(text);
+		
+		 $.ajax({
+			 type: 'GET',
+			 url: "@{PollGraph.getPollData}",
+			 data: { pollId : pollId },
+			 success: function(data){
+				 //var dataJson = ${data.raw()};
+				 console.log(data);
+				 $("#title").html("");
+				 $("#title").html(text);
+				 $("#graph").html("");
+				 
+				 //$("#graph").append('<svg class="chart"></svg>');
+				 var obj={w: 400, h:330,element:"#graph", xLabel:"  ", yLabel:"   ",color: ["green",],afterColor: ["darkgreen"],xTextDegree:0,barFontSize: 12};
+				 //horizontalBarChartTest(JSON.parse(dataJson),obj);
+				 horizontalBarChartTest(JSON.parse(data),obj);
+				 //generateTable(JSON.parse(data));
+			 }
+			 
+		});
+		
+	});
+</script>

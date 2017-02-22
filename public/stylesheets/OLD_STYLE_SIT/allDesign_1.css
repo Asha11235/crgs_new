@@ -1,0 +1,185 @@
+/*
+
+.nav{
+	font: 20px sans-serif;
+	font-weight: bold;
+    border:1px solid #ddd;
+    border-width:10px 0;
+    list-style:none;
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+.nav li{
+    display:inline;
+}
+.nav a{
+    display:inline-block;
+    padding:5px;
+}
+
+*/
+
+body {
+  font: 10px sans-serif;
+}
+
+
+
+.chart{
+    background-color: #fffff4;
+    border:2px solid #d4d4d4;
+}
+
+.header{
+font: 40px sans-serif;
+text-align:center;
+font-weight: bold;
+}
+
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+
+.axis text {
+  font: 14px sans-serif;
+ 
+	/*-ms-transform: rotate(65deg); 
+    -webkit-transform: rotate(65deg); 
+    transform: rotate(30deg);*/
+
+}
+
+.browser text {
+  text-anchor: end;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.tick line{
+    opacity: 0.2;
+  }
+/*
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #000;
+  border-radius: 2px;
+  background-color: rgba(250,250,250,0);
+  font-size: 10px;
+}
+
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+*/
+
+
+
+.d3-tip {
+  line-height: 2;
+  font-size: 12px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #000;
+  border-radius: 5px;
+  background-color: rgba(230,230,230,1);
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+.arc path {
+  stroke-width: 0.5;
+  stroke: #000;
+}
+
+
+// LINE chart
+
+.data-line {
+	stroke: steelblue;
+	stroke-width: 2;
+	fill: none;
+	stroke-dasharray: 0;
+}
+
+path {
+	stroke: #eee;
+	stroke-width: 2;
+	stroke-dasharray: 0;
+	fill: none;
+}
+
+.area {
+  	fill: lightsteelblue;
+}
+
+
+
+line {
+	stroke: #CDCDCD;
+	stroke-width: 0.5;
+	/* stroke-dasharray: 3 3; */
+	fill: none;
+}
+
+.data-point {
+	stroke: steelblue;
+	stroke-width: 2;
+	fill: #FFF;
+}
+

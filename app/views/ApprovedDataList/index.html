@@ -1,0 +1,90 @@
+#{extends 'main.html' /}
+#{set title:form?.name /}
+
+<div class="page-header top">
+	<h1>${title}Approved Data List</h1>
+</div>
+
+
+
+<div id="data_status" class="span3">
+	#{input 'data_status.id', type:'select', labelProperty : 'name', class:'input-medium'}
+		#{option value = "0"}
+			Any
+		#{/option}		
+		#{option value = "1"}		
+			Approved Data			
+		#{/option}
+		#{option value = "-1"}			
+			RejectedData
+		#{/option}
+	#{/input}
+	</div>
+	
+	
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Sender</th>
+			<th>Household Id</th>
+			<th>Received</th>
+			<th>Start Time</th>
+			<th>Approved/Rejected By</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	
+	<tbody id="dataList" class="chk-container">
+	#{list items:history, as:'row'}
+	#{if row.status != -999999}
+		<tr>
+			<td>${row.id}</td>
+			<td>${row.data?.sender?.name}</td>
+			<td>${row.data?.householdId}</td>
+			<td>${row.data?.received.since(true)}</td>
+			<td>${row.data?.startTime}</td>
+			#{if row.status ==-1}
+			<td>Rejected By ${row.changedBy?.name}</td>
+			#{/if}
+			#{if row.status ==1}
+			<td>Approved By ${row.changedBy?.name}</td>
+			#{/if}
+			<td class="center buttons"><a class="btn btn-mini primary" href="@{DataApproval.viewData(row.data?.id)}">Details</a></td>
+		</tr>
+		#{/if}
+		#{/list}
+		#{else}
+		<tr>
+			<td colspan="6">No data found</td>
+		</tr>
+		#{/else}
+	</tbody>
+	
+#{set 'moreScripts'}
+	#{script 'bootstrap-datepicker_latest.js' /}
+    #{script 'jquery.mpower.utils.js' /}
+	#{script 'jquery-mpower-date.js' /}
+	#{script 'mpower-geolocation.js' /}
+#{/set}
+<script type="text/javascript">            
+         
+$(document).ready(function(){
+	$('#data_status').on('change', function() {		  
+		  var dataStatus = $("#data_status\\.id").find(":selected").attr("value");
+		  var request = $.ajax({
+		  url: "@{ApprovedDataList.updateStatus}",
+		  type: "GET",
+		  async: false,
+          data: { dataStatus : dataStatus},		  
+		});
+		
+		request.done(function(ret){			
+	       var value = $("#dataStatus").val(ret);
+	       	$("#dataList").html(ret);	
+		});
+	});
+});
+</script>	
+	
+</table>

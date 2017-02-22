@@ -1,0 +1,25 @@
+#{extends 'main.html' /}
+#{set title:"School List" /}
+<div class="page-header top">
+	<h1>${title}</h1>
+</div>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Address</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+	#{list items:schoolInfoList, as:'row'}
+	<tr>
+			<td>${row.name}</td>
+			<td>${row.address}</td>
+			<td class="center buttons"><a class="btn btn-mini primary" href="@{DataManagement.viewDetails(row.id)}">View details</a></td>		
+		</tr>
+	#{/list}
+	</tbody>
+</table>	
+	

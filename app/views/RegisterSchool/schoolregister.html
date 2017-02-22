@@ -1,0 +1,228 @@
+#{include 'head.html' /}
+
+
+
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="@{Forms.list()}"><img src="/public/images/logo.png" alt="" /></a>
+				<p class="slogan ">NCTF Voice - for better sanitation and hygiene at my school</p>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<!-- <ul class="nav navbar-nav">
+					<li class="active"><a href="./secure/login">Log-in <span class="sr-only">(current)</span></a></li>
+				</ul> -->
+				#{if currentUser}
+				<ul class="nav navbar-nav navbar-right">
+					<li><a >${currentUser?.displayName}</a></li>
+					<li><a href="@@{Secure.logout()}">Logout</a></li>
+				</ul> 
+				#{/if} 
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+
+
+	<div class="container">
+		<div class="f_align">
+			<div class="portlet-body form">
+				#{form @submit(), class:'form-horizontal form-bordered well'} 
+
+				<h3>School Registration </h3>
+					#{if flash.error}
+					    #{alert flash.error /}
+					#{/if}
+					#{if flash.success}
+						#{alert flash.success /}
+					#{/if}
+				<div class="form-body">
+					<div class="form-group">
+						<label for="selector1" class="col-sm-3 control-label">Division</label>
+						<div id="geoDivision" class="col-sm-6 geo" url="@{RegisterSchool.loadGeoDistrict()}" load-data-container="#geoDistrict">
+							#{input 'school.geoDivision.id' , type:'select', items:geoDivisionList, labelProperty:'name' }
+							#{option}Any#{/option}
+							#{/input}
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="selector1" class="col-sm-3 control-label">District</label>
+						<div id="geoDistrict" class="col-sm-6 geo" url="@{RegisterSchool.loadGeoUpazilla()}"  load-data-container="#geoUpazilla">
+							#{input 'school.geoDistrict.id' , type:'select', items:geoDistrictList,labelProperty:'name' } 
+							#{option}Any#{/option}
+							#{/input}
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="selector1" class="col-sm-3 control-label">Upazilla/Thana</label>
+						<div id="geoUpazilla" class="col-sm-6 geo" url="@{RegisterSchool.loadGeoUnion()}"  load-data-container="#geoUnion">
+							#{input 'school.geoUpazilla.id' , type:'select', items:geoUpazillaList,labelProperty:'name' } 
+							#{option}Any#{/option}
+							#{/input}
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="selector1" class="col-sm-3 control-label">Union/Ward</label>
+						<div id="geoUnion" class="col-sm-6 geo"   >
+							#{input 'school.geoUnion.id' , type:'select', items:geoUpazillaList,labelProperty:'name' } 
+							#{option}Any#{/option}
+							#{/input}
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="focusedinput" class="col-sm-3 control-label">School Name</label>
+						<div class="col-sm-6">
+							<input name="school.name" type="text" class="form-control" id="school.name" value="${school?.name}" placeholder="Default Input">
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="focusedinput" class="col-sm-3 control-label">School REG No</label>
+						<div class="col-sm-6">
+							<input name="school.schoolRegNo" type="text" class="form-control" id="school.schoolRegNo" value="${school?.schoolRegNo}" placeholder="Default Input">
+						</div>
+					</div>
+
+
+
+					<div class="form-group">
+						<label for="selector1" class="col-sm-3 control-label">School Type</label>
+						<div class="col-sm-6">
+							#{input 'school.schoolType' , type:'select', items:schoolType } 
+							#{option}Any#{/option}
+							#{/input}
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="focusedinput" class="col-sm-3 control-label">Male Student</label>
+						<div class="col-sm-6">
+							<input name="school.maleStruden" type="number" class="form-control" id="school.maleStruden" value="${school?.maleStruden}" placeholder="Number Input" 
+							onchange="myfun('school.totalStudent', 'school.maleStruden', 'school.femailStudent')">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="focusedinput" class="col-sm-3 control-label">Female Student</label>
+						<div class="col-sm-6">
+							<input name="school.femailStudent" type="number" class="form-control" id="school.femailStudent" value="${school?.femailStudent}" type="number" placeholder="Number Input" 
+							onchange="myfun('school.totalStudent', 'school.maleStruden', 'school.femailStudent')">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="focusedinput" class="col-sm-3 control-label">Total Student</label>
+						<div class="col-sm-6">
+							<input name="school.totalStudent" type="number" class="form-control" id="school.totalStudent" value="0" placeholder="Number Input" disabled>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="focusedinput" class="col-sm-3 control-label">Tubewells</label>
+						<div class="col-sm-6">
+							<input name="school.totalTubewells" type="number" class="form-control" id="school.totalTubewells" value="${school?.totalTubewells}" placeholder="Number Input">
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="focusedinput" class="col-sm-3 control-label">Male Toilets</label>
+						<div class="col-sm-6">
+							<input name="school.maleToilets" type="number" class="form-control" id="school.maleToilets" value="${school?.maleToilets}" placeholder="Number Input"
+							onchange="myfun('school.totalToilets', 'school.maleToilets', 'school.femailToilets')">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="focusedinput" class="col-sm-3 control-label">Female Toilets</label>
+						<div class="col-sm-6">
+							<input name="school.femailToilets" type="number" class="form-control" id="school.femailToilets" value="${school?.femailToilets}" placeholder="Number Input"
+							onchange="myfun('school.totalToilets', 'school.maleToilets', 'school.femailToilets')">
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="focusedinput" class="col-sm-3 control-label">Total number of Toilets</label>
+						<div class="col-sm-6">
+							<input name="school.totalToilets" type="number" class="form-control" id="school.totalToilets" value="0" placeholder="Number Input" disabled>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="selector1" class="col-sm-3 control-label">School Focal Person Mobile Number</label>
+						<div class="col-sm-6">
+							<input type="number" name="school.schoolHeadSirMobileNumber" class="form-control"/> 
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="selector1" class="col-sm-3 control-label">Student Fourm in School</label>
+						<div class="col-sm-6">
+							<div class="checkbox-list">
+								<input type="checkbox" name="school.activeStudent" value="NCTF">NCTF<br>
+								<input type="checkbox" name="school.activeStudent" value="School Cabinet">School Cabinet<br>
+								<input type="checkbox" name="school.activeStudent" value="Other">Other<br>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-actions fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="col-md-offset-3 col-md-9">
+
+								#{submit /}
+							</div>
+						</div>
+					</div>
+				</div>
+
+			<!--<div class="form-actions">
+				<div class="row">
+					<div class="span1">
+						<input type="submit" class="btn btn-primary" id="signin" value="&{'secure.signin'}" />
+					</div>
+					
+				</div>
+			</div>-->
+
+			
+			#{/form}
+			
+		</div>
+	</div>
+</div>
+</div>
+<script type="text/javascript">
+	function myfun(x,y,z){
+		document.getElementById(x).value =	parseInt(document.getElementById(y).value) 
+										+ parseInt(document.getElementById(z).value);
+							
+										
+	}				
+</script>
+
+
+</body>
+
+</html>

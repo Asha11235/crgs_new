@@ -1,0 +1,53 @@
+#{extends 'main.html' /}
+
+<div class="page-header top">
+#{if geoMauza?.id}
+    <h1>Edit Mauza</h1>
+#{/if}
+#{else}
+    <h1>New Mauza</h1>
+#{/else}
+</div>
+
+#{form @submitGeoMauza(), class:'form-horizontal filter'}
+	#{if geoUnion?.id}
+    <input type="hidden" name="geoMauza.id" value="${geoMauza.id}" />
+    #{/if}
+
+	<!-- geo-location hierarchy -->
+	
+	<div id="geoDivision" class="geo" url="@{Areas.loadGeoDistrict}" load-data-container="#geoDistrict">
+	#{input 'geoDivision.id' , type:'select', items:geoDivisionList, labelProperty:'name' }
+		#{option}Any#{/option}
+	#{/input}
+	</div>
+	<div id="geoDistrict" class="geo" url="@{Areas.loadGeoUpazilla}"  load-data-container="#geoUpazilla">
+	#{input 'geoDistrict.id' , type:'select', items:geoDistrictList,labelProperty:'name' } 
+		#{option}Any#{/option}
+	#{/input}
+	</div>	
+	<div id="geoUpazilla" class="geo" url="@{Areas.loadGeoUnion}"  load-data-container="#geoUnion">
+	#{input 'geoUpazilla.id' , type:'select', items:geoUpazillaList,labelProperty:'name' } 
+		#{option}Any#{/option}
+	#{/input}
+	</div>	
+	<div id="geoUnion" class="geo">
+	#{input 'geoUnion.id' , type:'select', items:geoUnionList,labelProperty:'name' } 
+		#{option}Any#{/option}
+	#{/input}
+	</div>
+
+    #{input 'geoMauza.name' /}
+    #{input 'geoMauza.nameBn' /}
+	#{input 'geoMauza.code' /}
+	#{input 'geoMauza.codeBn' /}
+    #{submit /}
+#{/form}
+
+#{set 'moreScripts'}
+	#{script 'bootstrap-datepicker_latest.js' /}
+    #{script 'jquery.mpower.utils.js' /}
+	#{script 'jquery-mpower-date.js' /}
+	#{script 'mpower-geolocation.js' /}
+	
+#{/set}

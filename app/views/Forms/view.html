@@ -1,0 +1,22 @@
+#{extends 'main.html' /}
+
+<ul class="breadcrumb">
+	<li>
+		<a href="@{Application.index()}">Home</a> <span class="divider">/</span>
+	</li>
+	<li>
+		<a href="@{Forms.list()}">Forms</a> <span class="divider">/</span>
+	</li>
+	<li class="active">${form.cId} - ${form.name} (${form.shortName})</li>
+</ul>
+
+<ul class="nav nav-tabs">
+	<li#{if "Forms.details" == request.action} class="active"#{/if}><a href="@{Forms.details(form.id)}">Details</a></li>
+	<li#{if "Forms.statuses" == request.action || "Forms.addStatus" == request.action} class="active"#{/if}><a href="@{Forms.statuses(form.id)}">Statuses</a></li>
+	<li#{if "Forms.outcomes" == request.action || "Forms.addOutcome" == request.action} class="active"#{/if}><a href="@{Forms.outcomes(form.id)}">Outcomes</a></li>
+	<li#{if "Forms.logics" == request.action || "Forms.addLogic" == request.action} class="active"#{/if}><a href="@{Forms.logics(form.id)}">Logics</a></li>
+</ul>
+
+<div class="tab-content">
+	#{doLayout /}
+</div>

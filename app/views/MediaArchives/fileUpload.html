@@ -1,0 +1,68 @@
+#{extends 'main.html' /}
+<div class="page-header top">
+
+
+<div id="wrapper">
+<div id="containt_area">
+
+   
+<h1>Upload new File</h1>
+
+<div class="row"><!-- table -->
+						  <div class="panel panel-default">
+										    <div class="panel-heading">
+											    <h8>Upload new File</h8>
+											  </div>
+												<div class="table-responsive ">
+												<div class="panel-body">
+#{form @submit(), class:'form-horizontal', method:'POST',enctype:'multipart/form-data' }
+
+	#{input 'media.type' , type:'select', items:typeList }
+			#{option}Any#{/option}
+		#{/input}
+		
+		<div class="span4 clearfix">
+           <label>Date<i class="muted">(yyyy-mm-dd)</i></label>
+           <div class="input">
+             <div class="inline-inputs">
+               <input id="fromDate" name="media.uploadDate" data-date-format="yyyy-mm-dd"  data-datepicker="datepicker" class="small date datepick" type="text" value= ${fromDate?fromDate:to} />
+             </div>
+           </div>
+	
+	</div>
+    
+    #{input 'media.entrySearchKey'/}
+    #{input 'media.description'/}	
+    
+   
+				          <label>Choose File</label>
+				          <div class="input">
+				            <div class="inline-inputs">
+				               <input id="InputFile" type="file" name="mediaFile" accept:'media/imageS'>
+				            </div>
+				          </div>
+    
+#{submit/}	
+#{/form}
+
+
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+
+#{script src:'bootstrap-datepicker_latest.js' /}
+#{stylesheet 'datepicker_latest.css' /}
+
+#{script 'jquery-mpower-date.js' /}
+
+<script>
+	$('.datepick').datepicker({  
+		
+		dateFormat: 'yy-mm-dd', 
+	  	 maxDate: "+0d"  ,
+	  		autoclose: true
+	  });
+  </script>

@@ -1,0 +1,56 @@
+#{extends 'main.html' /}
+#{set title:'District List' /}
+
+#{if flash.success}
+    #{alert flash.success/}
+#{/if}
+
+<div id="wrapper">
+<div id="containt_area">
+<h1>${title}</h1>
+<div class="row"><!-- table -->
+						  <div class="panel panel-default">
+										    <div class="panel-heading">District List </div>
+												<div class="table-responsive ">
+												<div class="panel-body">
+													 <table class="table table-striped">
+
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>&{'geoDistrict.name'}</th>
+			<th>&{'geoDistrict.code'}</th>
+			<th>&{'geoDistrict.geoDivision.id'}</th>
+			<th>Actions</th>
+		</tr>
+	<thead>
+	
+	<tbody>
+	#{list items:geoDistrictList, as:'geoDistrict'}
+		<tr>
+			<td>${geoDistrict.id}</td>
+			<td>${geoDistrict.name}</td>
+			<td>${geoDistrict.code}</td>
+			<td>${geoDistrict.geoDivision.name}</td>
+			<td>
+				#{deadbolt.externalizedRestriction externalRestrictions:['Edit District']}
+            	<a class="btn btn-mini" href="@{Areas.editGeoDistrict(geoDistrict?.id)}"><i class="icon-edit"></i> Edit</a>
+				<a class="btn btn-mini btn-danger delete" data-url="@{Areas.deleteGeoDistrict(geoDistrict?.id)}" href="#deleteModal"><i class="icon-remove icon-white"></i> Delete</a>
+				#{/deadbolt.externalizedRestriction}
+			</td>
+		</tr>
+	#{/list}
+	#{else}
+		<tr>
+			<td colspan="4">No Form Available</td>
+		</tr>
+	#{/else}
+	<tbody>
+</table>
+
+           </div>
+	       </div>
+	       </div>
+	       </div>
+	       </div>
+	       </div>

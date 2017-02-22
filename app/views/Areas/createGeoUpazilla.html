@@ -1,0 +1,62 @@
+#{extends 'main.html' /}
+
+
+
+<div id="wrapper">
+<div id="containt_area">
+#{if geoUpazilla?.id}
+    <h1>Edit Upazilla</h1>
+#{/if}
+#{else}
+    <h1>New Upazilla</h1>
+#{/else}
+<div class="row"><!-- table -->
+						  <div class="panel panel-default">
+										    <div class="panel-heading">#{if geoUpazilla?.id}
+												<h8>Edit Upazilla</h8>
+												#{/if}
+												#{else}
+												    <h8>New Upazilla</h8>
+												#{/else} </div>
+												<div class="table-responsive ">
+												<div class="panel-body">
+
+#{form @submitGeoUpazilla(), class:'form-horizontal filter'}
+	
+	#{if geoUpazilla?.id}
+    <input type="hidden" name="geoUpazilla.id" value="${geoUpazilla.id}" />
+    #{/if}
+	
+	<!-- geo-location hierarchy -->
+	
+	<div id="geoDivision" class="geo" url="@{Areas.loadGeoDistrict()}" load-data-container="#geoDistrict">
+	#{input 'geoDivision.id' , type:'select', items:geoDivisionList, labelProperty:'name' }
+		#{option}Any#{/option}
+	#{/input}
+	</div>
+	<div id="geoDistrict" class="geo">
+	#{input 'geoDistrict.id' , type:'select', items:geoDistrictList,labelProperty:'name' } 
+		#{option}Any#{/option}
+	#{/input}
+	</div>	
+	
+	#{input 'geoUpazilla.name' /}
+ 
+	#{input 'geoUpazilla.code' /}
+
+    #{submit /}
+#{/form}
+
+        </div>
+							                </div>
+							             </div>
+					           </div>
+					           </div>
+
+#{set 'moreScripts'}
+	#{script 'bootstrap-datepicker_latest.js' /}
+    #{script 'jquery.mpower.utils.js' /}
+	#{script 'jquery-mpower-date.js' /}
+	#{script 'mpower-geolocation.js' /}
+	
+#{/set}

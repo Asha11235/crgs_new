@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8"/>
+    <title>MySchoolVoice System</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <meta name="MobileOptimized" content="320">
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="/public/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/public/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+    <link href="/public/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" type="text/css"/>
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+    <!-- <link href="/public/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/> -->
+    <!-- END PAGE LEVEL PLUGIN STYLES -->
+
+    <!-- BEGIN THEME STYLES -->
+    <link href="/public/css/style-base.css" rel="stylesheet" type="text/css"/>
+    <link href="/public/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/public/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+    <link href="/public/css/plugins.css" rel="stylesheet" type="text/css"/>
+    <link href="/public/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/public/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
+    
+    <link href="/public/css/pages/tasks.css" rel="stylesheet" type="text/css"/>
+
+    <link href="/public/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+
+    <link href="/public/css/custom.css" rel="stylesheet" type="text/css"/>
+    <!-- END THEME STYLES -->
+    <link rel="shortcut icon" href="favicon.ico"/>
+</head>
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+<body>
+    <!-- BEGIN HEADER -->
+    <div class="header navbar navbar-inverse">
+        <!-- BEGIN TOP NAVIGATION BAR -->
+        <div class="header-inner">
+            <!-- BEGIN LOGO -->
+            <div  class="navbar-brand">
+                <div class="pull-left">
+                    <a href="@{Forms.list()}">
+                        <img src="/public/img/logo1.png" alt="logo" class="img-responsive"/>
+                    </a>
+                </div>
+                <!-- <div class="pull-right">
+                    <small>FOR BETTER SANITATION & HYGIENE</small>
+                    <p style="margin-top: 10px;">AT MY SCHOOL</p>
+                </div> -->
+            </div>
+            <!-- END LOGO -->
+            <!-- START USER LOGIN DROPDOWN -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <img src="/public/img/menu-toggler.png" alt=""/>
+            </a>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <a href="/homedashboard">Home</a>
+                </li>
+                <li>
+                    <a href="/resourcelist">RESOURCES</a>
+                </li>
+                <li>
+                    <a href="/casereport">SUBMIT A CASE</a>
+                </li>
+                <li>
+                    <a href="/registerschool">REGISTER A SCHOOL</a>
+                </li>
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#myModal">LOG-IN</a>
+                </li>
+                <li class="devider">&nbsp;</li>
+                <li>
+                    <a href="#">EN</a>
+                </li>
+                <li>
+                    <a href="#" class="active">BN</a>
+                </li>
+            </ul>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END TOP NAVIGATION BAR -->
+    </div>
+    <!-- END HEADER -->
+    <div class="clearfix"></div>
+
+    <!-- BEGIN Login Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header login-mod-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><strong>LOG-IN</strong></h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="col-md-1 control-label">&nbsp;</label>
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            User ID/Email
+                                        </span>
+                                        <input type="email" class="form-control" placeholder="User ID/Email">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-1 control-label">&nbsp;</label>
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password
+                                        </span>
+                                        <input type="password" class="form-control" placeholder="Password">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-4 col-md-8">
+                                    <button type="submit" class="btn btn-danger">Sign-In</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <div class="col-md-5">
+                                        <a href="sign-up.html">Sign-Up</a> 
+                                    </div>
+                                    <div class="col-md-7">
+                                        Forgot Password?
+                                        <a href="forgot_password.html">Click to Reset</a> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Login Modal -->
+
+
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <!-- BEGIN SIDEBAR -->
+        <div class="page-sidebar-wrapper">
+            <div class="page-sidebar-wrapper">
+                <div class="page-sidebar navbar-collapse collapse">
+                    <!-- BEGIN SIDEBAR MENU -->
+                    <ul class="page-sidebar-menu">
+                        <li class="sidebar-toggler-wrapper">
+                            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                            <div class="sidebar-toggler">
+                            </div>
+                            <div class="clearfix">
+                            </div>
+                            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                        </li>
+                        <li class="start active ">
+                            <a href="dashboard.html">
+                                <i class="fa fa-home"></i>
+                                <span class="title">
+                                    Dashboard
+                                </span>
+                                <span class="selected"></span>
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a href="javascript:;">
+                                <i class="fa fa-list-alt"></i>
+                                <span class="title">
+                                    Forms
+                                </span>
+                                <span class="arrow "></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="water.html">Water</a>
+                                </li>
+                                <li>
+                                    <a href="sanitation.html">Sanitation</a>
+                                </li>
+                                <li>
+                                    <a href="school_environment.html">School Environment</a>
+                                </li>
+                                <li>
+                                    <a href="sports_recreation.html">Sports & Recreation</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="">
+                            <a href="javascript:;">
+                                <i class="fa fa-bar-chart-o"></i>
+                                <span class="title">
+                                    Reports
+                                </span>
+                                <span class="arrow "></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="water_report.html">Water</a>
+                                </li>
+                                <li>
+                                    <a href="sanitation_report.html">Sanitation</a>
+                                </li>
+                                <li>
+                                    <a href="school_environment_report.html">School Environment</a>
+                                </li>
+                                <li>
+                                    <a href="sports_recreation_report.html">Sports & Recreation</a>
+                                </li>
+                                <li>
+                                    <a href="overall_satisfaction_report.html">Overall Satisfaction</a>
+                                </li>
+                                <li>
+                                    <a href="submission_status_report.html">Submission Status</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="">
+                            <a href="data_management.html">
+                                <i class="fa fa-th-large"></i>
+                                <span class="title">
+                                    Data Management
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a href="school_list.html">
+                                <i class="fa fa-list"></i>
+                                <span class="title">
+                                    School List
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a href="case_reporting.html">
+                                <i class="fa fa-keyboard-o"></i>
+                                <span class="title">
+                                    Case Reporting
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a href="resource_management.html">
+                                <i class="fa fa-picture-o"></i>
+                                <span class="title">
+                                    Resource Management
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a href="ngo_registration.html">
+                                <i class="fa fa-file-o"></i>
+                                <span class="title">
+                                    NGO Registration
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a href="poll_management.html">
+                                <i class="fa fa-square-o"></i>
+                                <span class="title">
+                                    Poll Management
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a href="user_management.html">
+                                <i class="fa fa-user"></i>
+                                <span class="title">
+                                    User Management
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a href="access_control.html">
+                                <i class="fa fa-key"></i>
+                                <span class="title">
+                                    Access Control
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="page-sidebar-menu">
+                        <li class="active ">
+                            <a href="landing.html">
+                                <i class="fa fa-power-off"></i>
+                                <span class="title">
+                                    Logout
+                                </span>
+                                <span class="selected"></span>
+                            </a>
+                        </li>
+                        <li>&nbsp;</li>
+                    </ul>
+
+                    <div class="col-md-12">
+                        <div class="landing-poll">
+                            <div class="poll-header">
+                                PARTICIPATE IN POLL 
+                            </div>
+                            <div class="poll-body">
+                                <form role="form">
+                                    <div class="form-body">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label"><strong>Age</strong></label>
+                                            <div class="col-md-9">
+                                                <div class="radio-list">
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"> Below 18
+                                                    </label>
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Above 18
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label"><strong>Gender</strong></label>
+                                            <div class="col-md-9">
+                                                <div class="radio-list">
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"> Male
+                                                    </label>
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Female
+                                                    </label>
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Other
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h4>Do you think...........?</h4>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="radio-list">
+                                                <label><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"> Yes</label>
+                                                <label><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> No</label>
+                                                <label><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Not Known</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-5">
+                                                <button type="submit" class="btn btn-sm black-background">VOTE</button>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <button type="button" class="btn btn-sm black-background">PREVIOUS</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-offset-4 control-label"><strong>Total</strong></label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-offset-3 control-label">
+                                                <button type="button" class="btn btn-default btn-xs">0</button>
+                                                <button type="button" class="btn btn-default btn-xs">0</button>
+                                                <button type="button" class="btn btn-default btn-xs">0</button>
+                                                <button type="button" class="btn btn-default btn-xs">0</button>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="left-bottom-admin">
+                        <div class="col-md-3">
+                            <i class="fa fa-user-circle fa-3x"></i>
+                        </div>
+                        <div class="col-md-9">
+                            <span>Admin 101</span>
+                            <h4>Sadhli Roomy</h4>
+                        </div>
+                    </div>
+                    <!-- END SIDEBAR MENU -->
+                </div>
+            </div>
+        </div>
+        <!-- END SIDEBAR -->
+        
+
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <div class="page-content-wrapper">
+                <div class="page-content">                                        
+                    <!-- BEGIN OVERVIEW STATISTIC BARS-->
+                    <div class="row stats-overview-cont">
+                        <div class="col-md-3 col-sm-4 text-center">
+                            <i class="fa fa-home fa-5x warning" aria-hidden="true"></i>
+                            <div class="details">
+                                <h2>30</h2>
+                                <div class="title">
+                                    Total Schools
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 text-center">
+                            <i class="fa fa-male fa-5x warning" aria-hidden="true"></i>
+                            <div class="details">
+                                <h2>1360</h2>
+                                <div class="title">
+                                    Total Boys
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 text-center">
+                            <i class="fa fa-female fa-5x warning" aria-hidden="true"></i>
+                            <div class="details">
+                                <h2>1360</h2>
+                                <div class="title">
+                                    Total Girls
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 text-center">
+                            <i class="fa fa-trello fa-5x warning" aria-hidden="true"></i>
+                            <div class="details">
+                                <h2>1360</h2>
+                                <div class="title">
+                                    Total Toilets
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row stats-overview-cont">
+                        <div class="col-md-3 col-sm-4 text-center">
+                            <i class="fa fa-renren fa-5x warning" aria-hidden="true"></i>
+                            <div class="details">
+                                <h2>1360</h2>
+                                <div class="title">
+                                    Boy's Toilet Ratio
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 text-center">
+                            <i class="fa fa-stumbleupon fa-5x warning" aria-hidden="true"></i>
+                            <div class="details">
+                                <h2>1360</h2>
+                                <div class="title">
+                                    Girl's Toilet Ratio
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 text-center">
+                            <i class="fa fa-users fa-5x warning" aria-hidden="true"></i>
+                            <div class="details">
+                                <h2>1360</h2>
+                                <div class="title">
+                                    School Forum
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 text-center">
+                            <i class="fa fa-futbol-o fa-5x warning" aria-hidden="true"></i>
+                            <div class="details">
+                                <h2>1360</h2>
+                                <div class="title">
+                                    Organized Annual Sports
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END OVERVIEW STATISTIC BARS-->
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="page-breadcrumb breadcrumb">
+                                <li>
+                                    <h2><strong>Reports</strong></h2>
+                                    <h4>Key Status</h4>
+                                </li>
+                                <li class="pull-right">
+                                    <div id="dashboard-report-range" class="dashboard-date-range tooltips" data-placement="top" data-original-title="Change dashboard date range">
+                                        <i class="fa fa-calendar"></i>
+                                        <span></span>
+                                        <i class="fa fa-angle-down"></i>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                    <!-- BEGIN OVERVIEW STATISTIC BLOCKS-->
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            Case of
+                            <h4>Unsafe<br/>Dingking<br/>Water</h4>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <img src="/public/img/circle.png" alt="logo" class="img-responsive"/>
+                            <h5>W1</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <img src="/public/img/circle.png" alt="logo" class="img-responsive"/>
+                            <h5>W2</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <img src="/public/img/circle.png" alt="logo" class="img-responsive"/>
+                            <h5>W3</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <img src="/public/img/circle.png" alt="logo" class="img-responsive"/>
+                            <h5>W5</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <img src="/public/img/circle.png" alt="logo" class="img-responsive"/>
+                            <h5>W6</h5>
+                        </div>
+                    </div>
+                    <div class="clearfix"><hr style="border-width: 5px;" /></div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            Case of
+                            <h4>Inactive<br/>Toilet</h4>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <img src="/public/img/circle.png" alt="logo" class="img-responsive"/>
+                            <h5>X1</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <img src="/public/img/circle.png" alt="logo" class="img-responsive"/>
+                            <h5>X2</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <img src="/public/img/circle.png" alt="logo" class="img-responsive"/>
+                            <h5>X3</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <img src="/public/img/circle.png" alt="logo" class="img-responsive"/>
+                            <h5>X4</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <img src="/public/img/circle.png" alt="logo" class="img-responsive"/>
+                            <h5>X5</h5>
+                        </div>
+                    </div>
+                    <div class="clearfix"><hr style="border-width: 5px;" /></div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            Case of
+                            <h4>Not Feeling<br/>Safe/Secure</h4>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <img src="/public/img/circle.png" alt="logo" class="img-responsive"/>
+                            <h5>Y1</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <img src="/public/img/circle.png" alt="logo" class="img-responsive"/>
+                            <h5>Y2</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <img src="/public/img/circle.png" alt="logo" class="img-responsive"/>
+                            <h5>Y3</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <img src="/public/img/circle.png" alt="logo" class="img-responsive"/>
+                            <h5>Y4</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <img src="/public/img/circle.png" alt="logo" class="img-responsive"/>
+                            <h5>Y5</h5>
+                        </div>
+                    </div>
+                    <div class="clearfix"><hr style="border-width: 5px;" /></div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            Case of
+                            <h4>Not Having<br/>Equal Access to <br/>Recreational<br/>Instruments</h4>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <img src="/public/img/circle.png" alt="logo" class="img-responsive"/>
+                            <h5>Z1</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <img src="/public/img/circle.png" alt="logo" class="img-responsive"/>
+                            <h5>Z2</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <img src="/public/img/circle.png" alt="logo" class="img-responsive"/>
+                            <h5>Z3</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <img src="/public/img/circle.png" alt="logo" class="img-responsive"/>
+                            <h5>Z4</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <img src="/public/img/circle.png" alt="logo" class="img-responsive"/>
+                            <h5>Z5</h5>
+                        </div>
+                    </div>
+                    <div class="clearfix"><hr style="border-width: 5px;" /></div>
+
+                    <div class="row">
+                        <div class="col-md-3 text-center">
+                            <img src="/public/img/circle_pi.png" alt="logo" class="img-responsive"/>
+                            <h3><strong>Water</strong></h3>
+                            <h4>Issues</h4>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <img src="/public/img/circle_pi_2.png" alt="logo" class="img-responsive"/>
+                            <h3><strong>Sanitation</strong></h3>
+                            <h4>Issues</h4>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <img src="/public/img/circle_pi.png" alt="logo" class="img-responsive"/>
+                            <h3><strong>School Environment</strong></h3>
+                            <h4>Issues</h4>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <img src="/public/img/circle_pi_2.png" alt="logo" class="img-responsive"/>
+                            <h3><strong>Total</strong></h3>
+                            <h4>Issues</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END CONTENT -->
+    </div>
+    <!-- END CONTAINER -->
+    
+    <!-- BEGIN FOOTER -->
+    <div class="footer">
+        <div class="footer-inner">
+            For support, please contact with &nbsp;&nbsp;
+            <a href="mailto:myschoolvoice@gmail.com"> myschoolvoice@gmail.com</a>
+        </div>
+        <div class="pull-right">
+            Powered by mPower Social
+        </div>
+        <!-- <div class="footer-tools">
+                <span class="go-top">
+                <i class="fa fa-angle-up"></i>
+                </span>
+            </div> -->
+        </div>
+        <!-- END FOOTER -->
+
+        <!-- BEGIN Login Modal -->
+        <div id="createRoleModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header login-mod-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><strong>CREATE ROLE</strong></h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Role Name</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" placeholder="Role Name">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-4 col-md-8">
+                                        <button type="submit" class="btn btn-danger">SAVE</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">CANCEL</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Login Modal -->
+
+        <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+        <!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="/public/plugins/respond.min.js"></script>
+<script src="/public/plugins/excanvas.min.js"></script> 
+<![endif]-->
+<script src="/public/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+
+<script src="/public/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+<script src="/public/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+<script src="/public/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/public/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script src="/public/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="/public/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+<script src="/public/plugins/bootstrap-daterangepicker/moment.min.js" type="text/javascript"></script>
+<script src="/public/plugins/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>
+<script src="/public/plugins/flot/jquery.flot.js" type="text/javascript"></script>
+<script src="/public/plugins/flot/jquery.flot.resize.js" type="text/javascript"></script>
+<script src="/public/plugins/jquery-knob/js/jquery.knob.js" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="/public/scripts/app.js" type="text/javascript"></script>
+<script src="/public/scripts/index.js" type="text/javascript"></script>
+<script src="/public/scripts/tasks.js" type="text/javascript"></script>
+<script src="/public/scripts/form-components.js"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+
+<script>
+    jQuery(document).ready(function() {
+        App.init(); // initlayout and core plugins
+        Index.init();
+        Tasks.initDashboardWidget();
+        FormComponents.init();
+    });
+</script>
+<!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

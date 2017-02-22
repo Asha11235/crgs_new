@@ -1,0 +1,22 @@
+#Role
+#
+Role(admin):
+    name:       "Admin"
+Role(nctf):
+    name:       "NCTF"
+Role(schoolPrincipal):
+    name:       "SchoolPrincipal"
+Role(projectStakeholder):
+    name:       "ProjectStakeholder"
+
+
+
+#User
+#
+User(root):
+    displayName:    "Admin"
+    email:          "admin@mpower-social.com"
+    name:           "admin"
+    password:       "admin"
+    role:           [admin]
+

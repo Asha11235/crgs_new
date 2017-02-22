@@ -1,0 +1,71 @@
+#{include 'head.html' /}
+
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="@{Forms.list()}"><img src="/public/images/logo.png" alt="" /></a>
+				<p class="slogan ">NCTF Voice - for better sanitation and hygiene at my school</p>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<!-- <ul class="nav navbar-nav">
+					<li class="active"><a href="./secure/login">Log-in <span class="sr-only">(current)</span></a></li>
+				</ul> -->
+
+				#{if currentUser}
+				<ul class="nav navbar-nav navbar-right">
+					<li><a >${currentUser?.displayName}</a></li>
+					<li><a href="@@{Secure.logout()}">Logout</a></li>
+				</ul> 
+				#{/if} 
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+
+
+	<div class="container">
+		<div class="f_align well">
+			<table class="table table-striped table-bordered table-hover" id="sample_2">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Category</th>
+                                            <th>Description</th>
+                                            <th>Upload Date</th>
+                                            <th>Download</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       #{list items:mediaArchive, as:'media'}
+                                        <tr class="odd gradeX">
+                                            <td>${media.entrySearchKey}</td>
+                                            <td>${media.type}</td>
+                                            <td>${media.description}</td>
+                                            <td class="center">
+                                                ${media.uploadDate}
+                                            </td>
+                                            <td>
+                                                <a href="#" class="label label-sm label-warning">
+                                                    Download
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        #{/list}
+                                    </tbody>
+                                </table>
+	</div>
+</div>
+</div>
+
+
+</body>
+
+</html>

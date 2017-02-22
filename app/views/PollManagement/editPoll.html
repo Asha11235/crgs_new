@@ -1,0 +1,55 @@
+#{extends 'main.html' /}
+
+<div id="wrapper">
+<div id="containt_area">
+#{if poll?.id}
+    <h1>Edit Poll</h1>
+#{/if}
+#{else}
+    <h1>New Poll</h1>
+#{/else}
+<div class="row"><!-- table -->
+						  <div class="panel panel-default">
+										    <div class="panel-heading">#{if school?.id}
+											    <h8>Edit Poll</h8>
+											#{/if}
+											#{else}
+											    <h8>New Poll</h8>
+											#{/else} </div>
+												<div class="table-responsive ">
+												<div class="panel-body">
+	#{form @submit(), class:'form-horizontal'}
+	#{if poll?.id}
+    <input type="hidden" name="poll.id" value="${poll.id}" />
+    #{/if}
+    
+    #{input 'poll.title' /}
+    #{input 'poll.questionType' , type:'select', items:questiontype } 
+		#{option}Any#{/option}
+	#{/input}
+	
+    #{input 'poll.startDate', class:'datepicker'/}	
+	#{input 'poll.endDate', class:'datepicker'/}		
+	
+	#{input 'poll.optionNumber' /}
+	
+    #{submit /}
+#{/form}
+
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           
+ 
+	#{script 'bootstrap-datepicker_latest.js' /}
+    #{stylesheet 'datepicker_latest.css' /}
+
+<script>
+$( ".datepicker").datepicker({  
+  	dateFormat:'yyyy-mm-dd'  
+}); 
+</script>
+           

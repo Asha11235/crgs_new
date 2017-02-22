@@ -1,0 +1,50 @@
+#{extends 'main.html' /}
+<div id="wrapper">
+<div id="containt_area">
+    <h1>Archive List</h1>
+<div class="row"><!-- table -->
+						  <div class="panel panel-default">
+										    <div class="panel-heading">
+											    <h8>Archive List</h8>
+											 </div>
+												<div class="table-responsive ">
+												<div class="panel-body">
+									 <table class="table table-striped">			
+	<thead>
+		<tr>
+			<th>#</th>
+			<th> Name </th>
+			<th>Type</th>
+			<th>Uploaded by</th>
+			<th>Uploaded Date</th>
+			<th>Created By</th>
+			<th>Actions</th>
+		</tr>
+	<thead>
+	<tbody>
+	#{list items:fileList, as:'fil'}
+		<tr>
+			<td>${fil.id}</td>
+			<td>${fil.name}</td>
+			<td>${fil.type}</td>
+			<td>${fil?.uploadedBy?.name}</td>
+			<td>${fil.uploadDate}</td>
+			<td>
+				<a class="btn btn-mini" href="@{MediaArchives.downloadFile(fil?.name)}"><i class="icon-edit"></i> Download </a>
+			</td>
+		</tr>
+	#{/list}
+	#{else}
+		<tr>
+			<td colspan="4">No Form Available</td>
+		</tr>
+	#{/else}
+	<tbody>
+</table>
+
+            </div>
+				               </div>
+				               </div>
+					           </div>
+					           </div>
+					           </div>

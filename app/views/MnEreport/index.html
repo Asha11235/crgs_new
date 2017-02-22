@@ -1,0 +1,104 @@
+#{extends 'main.html' /}
+#{set title:form?.name /}
+
+<ul class="breadcrumb">
+  <li><a href="@{Forms.list()}"><i class="icon-list"></i> Forms</a> <span class="divider">/</span></li>
+  <li class="active">${form?.name} Data</li>
+</ul>
+
+<div class="page-header top">
+	<h1>${title} M & E DashBoard</h1>
+</div>
+
+<input type="hidden" id="selectedCheckBox" name = "selectedCheckBox" value=""/>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Sender</th>
+			<th>Received</th>
+			<th>Start Time</th>
+			<th>End Time</th>
+			<th>Approve/Reject</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	
+	<tbody id="dataList" class="chk-container">
+	#{list items:data, as:'row'}
+		<tr>
+			<td>${row.id}</td>
+			<td>${row.sender?.name}</td>
+			<td>${row.received.since(true)}</td>
+			<td>${row.startTime}</td>
+			<td>*{${row.startTime?.diff(row.endTime)}}*${row.endTime}</td>
+			#{if row.approvalStatus == 0}
+			<td>Approval Pending</td>
+			#{/if}
+			#{elseif row.approvalStatus == 1}
+			<td>Approved By ${row.approvedBy?.name}</td>
+			#{/elseif}
+			#{elseif row.approvalStatus == 2}
+			<td>Rejected By ${row.approvedBy?.name}</td>
+			#{/elseif}
+			
+			<td class="center buttons"><a class="btn btn-mini primary" href="@{DataApproval.viewData(row.id)}">Details</a></td>
+		</tr>
+		#{/list}
+		#{else}
+		<tr>
+			<td colspan="6">No data found</td>
+		</tr>
+		#{/else}
+	</tbody>
+	
+</table>
+
+#{set 'moreScripts'}
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('#selecctall').click(function(event) {  //on click
+        if(this.checked) { // check select status
+            $('.checkbox1').each(function() { 
+                $(this).checked = true;
+                $(this).prop('checked', true);
+            });
+        }else{
+            $('.checkbox1').each(function() { //loop through each checkbox
+                $(this).checked = false; //deselect all checkboxes with class "checkbox1" 
+                $(this).removeAttr('checked');
+            });        
+        }
+    });
+    
+    $('.checkbox1').click(function(event) {
+    	if(this.checked) {
+    		$(this).checked = true;
+            $(this).prop('checked', true);
+ //   		alert($(this).val());
+    	}
+    	
+    	else {
+    		$(this).checked = false; 
+            $(this).removeAttr('checked');
+    	}
+    });
+    
+    $('.checked').click(function(event) {  //gather all selected checkbox in text
+    	
+    	var selectedCheckBox = "";
+    	$('.checkbox1').each(function() { 
+           if(this.checked){
+        	   selectedCheckBox += $(this).val() + " ";
+           }
+        });
+ //   	alert(selectedCheckBox);
+    	document.getElementById('selectedCheckBox').value = selectedCheckBox;
+    });
+});
+
+</script>
+#{/set}
+

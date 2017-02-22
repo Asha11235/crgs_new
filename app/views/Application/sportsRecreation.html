@@ -1,0 +1,205 @@
+#{extends 'main.html' /}
+
+#{if flash.success}
+#{alert flash.success/}
+#{/if}
+
+<div class="f_align">
+	<div class="row">
+		<div class="col-md-12">
+			<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+			<h3 class="page-title">
+				SPORTS & RECREATION FORM
+			</h3>
+			<!-- END PAGE TITLE & BREADCRUMB-->
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<!-- BEGIN PORTLET-->
+			<div class="portlet">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="fa fa-reorder"></i>Sports & Recreation
+					</div>
+				</div>
+				<div class="portlet-body form">
+					#{form @submitionSportsRecreation(), class:'form-horizontal form-bordered'}
+
+					<div class="form-body">
+						
+						<div class="form-group">
+							<label class="control-label col-md-4">মাস</label>
+							<div class="col-md-3">
+								<div class="input-group input-medium date date-picker" data-date="" data-date-format="mm/yyyy" data-date-viewmode="years" data-date-minviewmode="months">
+									<input name="recreation.month" type="text" class="form-control" required="true">
+									<span class="input-group-btn">
+										<button class="btn btn-info" type="button"><i class="fa fa-calendar"></i></button>
+									</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-4">১। উত্তর দাতার ধরণ</label>
+							<div class="col-md-3">
+								<div class="radio-list">
+									<label class="radio-inline"><input id="res_type_1" name="recreation.res_type" value="1" type="radio" required="true"> ছেলে</label>
+									<label class="radio-inline"><input id="res_type_2" name="recreation.res_type" value="2" type="radio" required="true"> মেয়ে</label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label col-md-4">২। শারীরিক ও মানসিক বিকাশের জন্য কি কি ব্যবস্থা আছে ?</label>
+							<div class="col-md-4">
+								<div class="checkbox-list">
+									<label><input id="facilitiesAvailable_1" name="recreation.facilitiesAvailable" value="1" type="checkbox">খেলার মাঠ</label>
+									<label><input id="facilitiesAvailable_2" name="recreation.facilitiesAvailable" value="2" type="checkbox">খেলার উপকরণ</label>
+									<label><input id="facilitiesAvailable_3" name="recreation.facilitiesAvailable" value="3" type="checkbox">বিনোদন উপকরণ (যেমনঃ হারমোনিয়াম,তবলা ইত্যাদি)</label>
+									<label><input id="facilitiesAvailable_4" name="recreation.facilitiesAvailable" value="4" type="checkbox">পাঠাগার</label>
+									<label><input id="facilitiesAvailable_5" name="recreation.facilitiesAvailable" value="5" type="checkbox">বিভিন্ন প্রতিযোগিতা (বিতর্ক, আবৃত্তি, নাটক ইত্যাদি)</label>
+									<label><input id="facilitiesAvailable_6" name="recreation.facilitiesAvailable" value="6" type="checkbox">স্কাউট, গার্লস গাইড, বয়েস গাইড</label>
+									<label><input id="facilitiesAvailable_7" name="recreation.facilitiesAvailable" value="7" type="checkbox">কোন উপকরণ নেই</label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label col-md-4">৩। খেলার ও বিনোদন উপকরণ কি ব্যবহার উপযোগী?</label>
+							<div class="col-md-3">
+								<div class="radio-list">
+									<label class="radio-inline"><input id="instrumentUsable_1" name="recreation.instrumentUsable" value="1" type="radio" required="true">হ্যাঁ</label>
+									<label class="radio-inline"><input id="instrumentUsable_0" name="recreation.instrumentUsable" value="0" type="radio" required="true">না</label>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div class="form-group">
+							<label class="control-label col-md-4">বিদ্যালয়ের ধরণ?</label>
+							<div class="col-md-3">
+								<div class="radio-list">
+									<label><input id="schoolType_1" name="recreation.schoolType" value="1" type="radio" required="true">বালিকা বিদ্যালয়</label>
+									<label><input id="schoolType_2" name="recreation.schoolType" value="2" type="radio" required="true">বালক বিদ্যালয়</label>
+									<label><input id="schoolType_3" name="recreation.schoolType" value="3" type="radio" required="true">যৌথ বিদ্যালয়</label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label col-md-4">৪। ছেলে মেয়ে উভয়ে এই সকল বিনোদন উপকরণ সমানভাবে ব্যবহার করে কি ?</label>
+							<div class="col-md-3">
+								<div class="radio-list">
+									<label class="radio-inline"><input id="instrumentEqualAccess_1" name="recreation.instrumentEqualAccess" value="1" type="radio" required="true">হ্যাঁ</label>
+									<label class="radio-inline"><input id="instrumentEqualAccess_0" name="recreation.instrumentEqualAccess" value="0" type="radio" required="true">না</label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group" style="display:none;" id="whyNot_EqualAccess_div">
+							<label class="control-label col-md-4">৫। যদি না করে কেন করে না ?</label>
+							<div class="col-md-4">
+								<div class="checkbox-list">
+									<label><input id="whyNot_EqualAccess_1" name="recreation.whyNot_EqualAccess" value="1" type="checkbox">এক সাথে খেলার যথেষ্ট জায়গা নেই</label>
+									<label><input id="whyNot_EqualAccess_2" name="recreation.whyNot_EqualAccess" value="2" type="checkbox">ছেলে মেয়ে একসাথে / পাশাপাশি খেলতে চায় না</label>
+									<label><input id="whyNot_EqualAccess_3" name="recreation.whyNot_EqualAccess" value="3" type="checkbox">দায়িত্বপ্রাপ্ত শিক্ষক/ শিক্ষিকার অনাগ্রহ</label>
+									<label><input id="whyNot_EqualAccess_4" name="recreation.whyNot_EqualAccess" value="4" type="checkbox">অভিভাবকের অনাগ্রহ</label>
+									<label><input id="whyNot_EqualAccess_5" name="recreation.whyNot_EqualAccess" value="5" type="checkbox">যথেষ্ট সময়ের অভাব</label>
+									<label><input id="whyNot_EqualAccess_6" name="recreation.whyNot_EqualAccess" value="6" type="checkbox">কমন রুম নেই</label>
+									<label><input id="whyNot_EqualAccess_7" name="recreation.whyNot_EqualAccess" value="7" type="checkbox">মেয়েদের জন্য আলাদা উপকরণ নেই</label>
+									<label><input id="whyNot_EqualAccess_8" name="recreation.whyNot_EqualAccess" value="8" type="checkbox">অন্যান্য</label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label col-md-4">৬।  স্কুলে কি কোন ক্রীড়া শিক্ষক আছে ?</label>
+							<div class="col-md-3">
+								<div class="radio-list">
+									<label class="radio-inline"><input id="sportsTeacher_1" name="recreation.sportsTeacher" value="1" type="radio" required="true">হ্যাঁ</label>
+									<label class="radio-inline"><input id="sportsTeacher_0" name="recreation.sportsTeacher" value="0" type="radio" required="true">না</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-4">৭। গত এক মাসে  নিম্নলিখিত কোন কার্যক্রম অনুষ্ঠিত হয়েছে ?</label>
+							<div class="col-md-4">
+								<div class="checkbox-list">
+									<label><input id="lastMonth_Activity" name="recreation.lastMonth_Activity" value="1" type="checkbox">আন্তঃস্কুল ক্রীড়া প্রতিযোগিতা</label>
+									<label><input id="lastMonth_Activity" name="recreation.lastMonth_Activity" value="2" type="checkbox">আন্তঃস্কুল বিতর্ক প্রতিযোগিতা</label>
+									<label><input id="lastMonth_Activity" name="recreation.lastMonth_Activity" value="3" type="checkbox">আন্তঃক্লাস ক্রীড়া প্রতিযোগিতা </label>
+									<label><input id="lastMonth_Activity" name="recreation.lastMonth_Activity" value="4" type="checkbox">আন্তঃক্লাস বিতর্ক প্রতিযোগিতা</label>
+									<label><input id="lastMonth_Activity" name="recreation.lastMonth_Activity" value="5" type="checkbox">সাংস্কৃতিক উৎসব </label>
+									<label><input id="lastMonth_Activity" name="recreation.lastMonth_Activity" value="6" type="checkbox">শিক্ষা সফর</label>
+									<label><input id="lastMonth_Activity" name="recreation.lastMonth_Activity" value="7" type="checkbox">বার্ষিক ক্রীড়া প্রতিযোগিতা</label>
+									<label><input id="lastMonth_Activity" name="recreation.lastMonth_Activity" value="8" type="checkbox">অন্যান্য</label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label col-md-4">৮। গত এক মাসের স্কুলের সার্বিক ক্রীড়া ও বিনোদন ব্যবস্থা কেমন ছিল?</label>
+							<div class="col-md-3">
+								<div class="radio-list">
+									<label><input id="rank_SportsRecreation_1" name="recreation.rank_SportsRecreation" value="1" type="radio" required="true">খুব খারাপ</label>
+									<label><input id="rank_SportsRecreation_2" name="recreation.rank_SportsRecreation" value="2" type="radio" required="true">খারাপ </label>
+									<label><input id="rank_SportsRecreation_3" name="recreation.rank_SportsRecreation" value="3" type="radio" required="true">মোটামোটি </label>
+									<label><input id="rank_SportsRecreation_4" name="recreation.rank_SportsRecreation" value="4" type="radio" required="true">ভাল</label>
+									<label><input id="rank_SportsRecreation_5" name="recreation.rank_SportsRecreation" value="5" type="radio" required="true">খুব ভাল</label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-actions fluid">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="col-md-offset-3 col-md-9">
+									<button type="submit" class="btn btn-success">Submit</button>
+									<button type="button" class="btn btn-success">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					#{/form}
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="col_1">
+</div>
+
+<div class="clearfix"> 
+</div>
+</div>
+
+
+<script type='text/javascript'>
+	jQuery(document).ready(function(){
+		$('input:radio[name="recreation.instrumentEqualAccess"]').change(function(){
+			if($(this).val() == '0'){
+				$('#whyNot_EqualAccess_div').show();
+	    	//$('input:checkbox[name="recreation.whyNot_EqualAccess"]').prop('required',true);
+	    }
+	    else{
+	    	$('#whyNot_EqualAccess_div').hide();
+	    	$('input:checkbox[name="recreation.whyNot_EqualAccess"]').prop('required',false);
+	    }
+	});
+	});
+</script>
+

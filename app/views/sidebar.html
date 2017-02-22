@@ -1,0 +1,318 @@
+<div class="page-sidebar-wrapper">
+            <div class="page-sidebar-wrapper">
+                <div class="page-sidebar navbar-collapse collapse">
+                    <!-- BEGIN SIDEBAR MENU -->
+                    <ul class="page-sidebar-menu">
+                        <li class="sidebar-toggler-wrapper">
+                            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                            <div class="sidebar-toggler">
+                            </div>
+                            <div class="clearfix">
+                            </div>
+                            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                        </li>
+                        #{deadbolt.externalizedRestriction externalRestrictions:['Dashboard']}
+                        <li#{if 'Application.index' == request.action} class="start active"#{/if}>
+                            <a href="@{Application.index()}">
+                                <i class="fa fa-home"></i>
+                                <span class="title">
+                                    Dashboard
+                                </span>
+                                #{if 'Application.index' == request.action} 
+                                <span class="selected"></span>
+                                #{/if}
+                            </a>
+                        </li>
+                        #{/deadbolt.externalizedRestriction}
+
+                        #{deadbolt.externalizedRestriction externalRestrictions:['View Form', 'Edit Form','Water Form','Sanitation Form','School Environment Form','Sports And Recreation Form']}
+                        <li class="">
+                            <a href="javascript:;">
+                                <i class="fa fa-list-alt"></i>
+                                <span class="title">
+                                    Forms
+                                </span>
+                                <span class="arrow "></span>
+                            </a>
+
+                            <ul class="sub-menu">
+                            	#{deadbolt.externalizedRestriction externalRestrictions:['Water Form']}
+                                <li#{if 'Application' == request.controller && 'waterForm' == request.actionMethod} class="active"#{/if}>
+                                    <a href="@{Application.waterForm()}">Water</a>
+                                </li>
+                                #{/deadbolt.externalizedRestriction}
+
+
+                                #{deadbolt.externalizedRestriction externalRestrictions:['Sanitation Form']}
+                                <li#{if 'Application' == request.controller && 'sanitationForm' == request.actionMethod} class="active"#{/if}>
+                                    <a href="@{Application.sanitationForm()}">Sanitation</a>
+                                </li>
+                                #{/deadbolt.externalizedRestriction}
+
+
+                                #{deadbolt.externalizedRestriction externalRestrictions:['School Environment Form']}
+                                <li#{if 'Application' == request.controller && 'schoolEnvironment' == request.actionMethod} class="active"#{/if}>
+                                    <a href="@{Application.schoolEnvironment()}">School Environment</a>
+                                </li#{if 'Forms' == request.controller && 'create' != request.actionMethod} class="active"#{/if}>
+                                #{/deadbolt.externalizedRestriction}
+
+
+                                #{deadbolt.externalizedRestriction externalRestrictions:['Sports And Recreation Form']}
+                                <li#{if 'Application' == request.controller && 'sportsRecreation' == request.actionMethod} class="active"#{/if}>
+                                    <a href="@{Application.sportsRecreation()}">Sports & Recreation</a>
+                                </li>
+                                #{/deadbolt.externalizedRestriction}
+
+
+                            </ul>
+                        </li>
+                        #{/deadbolt.externalizedRestriction}
+
+
+						#{deadbolt.externalizedRestriction externalRestrictions:['Reports']}
+                        <li class="">
+                            <a href="javascript:;">
+                                <i class="fa fa-bar-chart-o"></i>
+                                <span class="title">
+                                    Reports
+                                </span>
+                                <span class="arrow "></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="@{Reports.waterReport()}">Water</a>
+                                </li>
+                                <li>
+                                    <a href="@{Reports.sanitationReport()}">Sanitation</a>
+                                </li>
+                                <li>
+                                    <a href="@{Reports.schoolEnvironmentReport()}">School Environment</a>
+                                </li>
+                                <li>
+                                    <a href="@{Reports.sportsAndRecreationReport()}">Sports & Recreation</a>
+                                </li>
+                                <li>
+                                    <a href="@{Reports.overallReport()}">Overall Satisfaction</a>
+                                </li>
+                                <li>
+                                    <a href="#">Submission Status</a>
+                                </li>
+                            </ul>
+                        </li>
+                        #{/deadbolt.externalizedRestriction}
+
+
+                        #{deadbolt.externalizedRestriction externalRestrictions:['Data Management']}
+                        <li class="">
+                            <a href="@{DataManagement.viewDetails(currentUser?.id)}">
+                                <i class="fa fa-th-large"></i>
+                                <span class="title">
+                                    Data Management
+                                </span>
+                            </a>
+                        </li>
+                        #{/deadbolt.externalizedRestriction}
+
+                        #{deadbolt.externalizedRestriction externalRestrictions:['School Status']}
+                        <li class="">
+                            <a href="@{Schools.schoolList("1")}">
+                                <i class="fa fa-list"></i>
+                                <span class="title">
+                                    School List
+                                </span>
+                            </a>
+                        </li>
+                        #{/deadbolt.externalizedRestriction}
+
+
+                        <li class="">
+                            <a href="#">
+                                <i class="fa fa-keyboard-o"></i>
+                                <span class="title">
+                                    Case Reporting
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a href="#">
+                                <i class="fa fa-picture-o"></i>
+                                <span class="title">
+                                    Resource Management
+                                </span>
+                            </a>
+                        </li>
+
+                        #{deadbolt.externalizedRestriction externalRestrictions:['View NGO', 'Edit NGO']}
+                        <li class="">
+                            <a href="@{Ngos.create()}">
+                                <i class="fa fa-file-o"></i>
+                                <span class="title">
+                                    NGO Registration
+                                </span>
+                            </a>
+                        </li>
+                        #{/deadbolt.externalizedRestriction}
+
+                        <li class="">
+                            <a href="#">
+                                <i class="fa fa-square-o"></i>
+                                <span class="title">
+                                    Poll Management
+                                </span>
+                            </a>
+                        </li>
+
+
+                        #{deadbolt.externalizedRestriction externalRestrictions:['View User', 'Edit User', 'View Role', 'Edit Role']}
+                        <li class="">
+                            <a href="javascript:;">
+                                <i class="fa fa-user"></i>
+                                <span class="title">
+                                    User Management
+                                </span>
+                                <span class="arrow "></span>
+                            </a>                            
+                            <ul class="sub-menu">
+                                #{deadbolt.externalizedRestriction externalRestrictions:['View User']}
+                                <li#{if 'Users.list' == request.action} class="active"#{/if}><a href="@{Users.list("1")}">
+                                User Information</a></li>
+                                #{/deadbolt.externalizedRestriction}
+
+                                #{deadbolt.externalizedRestriction externalRestrictions:['Edit User']}
+                                <li#{if 'Users.create' == request.action ||
+                                'Users.details' == request.action ||
+                                'Users.edit' == request.action} class="active"#{/if}><a href="@{Users.create()}"> Create User</a></li>
+                                #{/deadbolt.externalizedRestriction}
+
+                                #{deadbolt.externalizedRestriction externalRestrictions:['Edit User']}
+                                #{deadbolt.externalizedRestriction externalRestrictions:['View Role']}
+                                <li#{if 'Users.roleList' == request.action || 'Users.roleEdit' == request.action} class="active"#{/if}><a href="@{Users.roleList()}">View Role</a></li>
+                                #{/deadbolt.externalizedRestriction}
+
+                                #{deadbolt.externalizedRestriction externalRestrictions:['Edit Role']}
+                                <li#{if 'Users.roleCreate' == request.action} class="active"#{/if}>
+                                <a href="@{Users.roleCreate()}">
+                                Create Role</a>
+                                </li>
+                                #{/deadbolt.externalizedRestriction}
+                                #{/deadbolt.externalizedRestriction}
+                            </ul>
+                        </li>
+                        #{/deadbolt.externalizedRestriction}
+
+                        #{deadbolt.externalizedRestriction externalRestrictions:['Settings']}
+                        <li class="">
+                            <a href="@{Users.acl()}">
+                                <i class="fa fa-key"></i>
+                                <span class="title">
+                                    Access Control
+                                </span>
+                            </a>
+                        </li>
+                        #{/deadbolt.externalizedRestriction}
+                    </ul>
+
+                    <ul class="page-sidebar-menu">
+                        <li class="active ">
+                            <a href="@@{Secure.logout()}">
+                                <i class="fa fa-power-off"></i>
+                                <span class="title">
+                                    Logout
+                                </span>
+                                <span class="selected"></span>
+                            </a>
+                        </li>
+                        <li>&nbsp;</li>
+                    </ul>
+
+                    <div class="col-md-12">
+                        <div class="landing-poll">
+                            <div class="poll-header">
+                                PARTICIPATE IN POLL 
+                            </div>
+                            <div class="poll-body">
+                                <form role="form">
+                                    <div class="form-body">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label"><strong>Age</strong></label>
+                                            <div class="col-md-9">
+                                                <div class="radio-list">
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"> Below 18
+                                                    </label>
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Above 18
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label"><strong>Gender</strong></label>
+                                            <div class="col-md-9">
+                                                <div class="radio-list">
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"> Male
+                                                    </label>
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Female
+                                                    </label>
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Other
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h4>Do you think...........?</h4>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="radio-list">
+                                                <label><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"> Yes</label>
+                                                <label><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> No</label>
+                                                <label><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Not Known</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-5">
+                                                <button type="submit" class="btn btn-sm black-background">VOTE</button>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <button type="button" class="btn btn-sm black-background">PREVIOUS</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-offset-4 control-label"><strong>Total</strong></label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-offset-3 control-label">
+                                                <button type="button" class="btn btn-default btn-xs">0</button>
+                                                <button type="button" class="btn btn-default btn-xs">0</button>
+                                                <button type="button" class="btn btn-default btn-xs">0</button>
+                                                <button type="button" class="btn btn-default btn-xs">0</button>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="left-bottom-admin">
+                        <div class="col-md-3">
+                            <i class="fa fa-user-circle fa-3x"></i>
+                        </div>
+                        <div class="col-md-9">
+                            <span>Admin 101</span>
+                            <h4>Sadhli Roomy</h4>
+                        </div>
+                    </div>
+                    <!-- END SIDEBAR MENU -->
+                </div>
+            </div>
+        </div>

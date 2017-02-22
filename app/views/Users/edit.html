@@ -1,0 +1,145 @@
+#{extends 'main.html' /}
+
+
+#{form @submit(), class:'form-horizontal'}
+<div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                        <h3 class="page-title">
+                        </h3>
+                        <!-- END PAGE TITLE & BREADCRUMB-->
+                    </div>
+                </div>
+                <!-- BEGIN PAGE CONTENT-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN PORTLET-->
+                        <div class="portlet">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-reorder"></i>
+                                    #{if user?.id}
+			                        	EDIT USER
+			                        #{/if}
+			                        #{else}
+			                        	CREATE USER
+			                        #{/else}
+                                </div>
+                            </div>
+                            <div class="portlet-body form">
+                                <!-- BEGIN FORM-->
+                                <form action="#" class="form-horizontal form-bordered">
+                                    <div class="form-body">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Username</label>
+                                            <div class="col-md-3">
+                                                #{input 'user.name' /}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">User ID</label>
+                                            <div class="col-md-3">
+                                                #{input 'user.displayName' /}
+                                            </div>
+                                        </div>
+                                        #{if user == null}
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Password</label>
+                                            <div class="col-md-3">
+                                                #{input 'user.password', type:'password'/}
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Confirm Password</label>
+                                            <div class="col-md-3">
+                                                #{input 'user.confirmPassword', type:'password'/}
+                                            </div>
+                                        </div>
+										#{/if}
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Email</label>
+                                            <div class="col-md-3">
+                                                #{input 'user.email', class:'required' /}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">User Role</label>
+                                            <div class="col-md-3">
+                                                #{input 'user.role.id', type:'select', items:roles, labelProperty:'name' /}
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Name of School</label>
+                                            <div class="col-md-3">
+                                                #{input 'user.school.id', type:'select', items:schoolList, labelProperty:'name' }
+											    	#{option}Any#{/option}
+												#{/input}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Name of NGO</label>
+                                            <div class="col-md-3">
+                                                #{input 'user.ngo.id', type:'select', items:ngoList, labelProperty:'ngoName' }
+											    	#{option}Any#{/option}
+												#{/input}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2"><h4>GEO LOCATION</h4></label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Division</label>
+                                            <div id="geoDivision" class="col-md-3" url="@{Users.loadGeoDistrict()}" load-data-container="#geoDistrict">
+                                                #{input 'user.geoDivision.id' , type:'select', items:geoDivisionList, labelProperty:'name' }
+														#{option}Any#{/option}
+												#{/input}
+											 </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">District</label>
+                                            <div id="geoDistrict" class="col-md-3" url="@{Users.loadGeoUpazilla()}" load-data-container="#geoUpazilla">
+                                                #{input 'user.geoDistrict.id' , type:'select', items:geoDistrictList,labelProperty:'name' }
+													#{option}Any#{/option}
+												#{/input} 
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Upazila</label>
+                                            <div id="geoUpazilla" class="col-md-3" url="@{Users.loadGeoUnion()}"  load-data-container="#geoUnion">
+                                                #{input 'user.geoUpazilla.id' , type:'select', items:geoUpazillaList,labelProperty:'name' }
+													#{option}Any#{/option}
+												#{/input} 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-actions fluid">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-offset-1 col-md-9">
+                                                    <button type="submit" class="btn btn-danger">SAVE CHANGES</button>
+                                                    <button type="button" class="col-md-offset-1 btn btn-danger" onclick="cancelEdit()">CANCEL</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    #{/form}
+                    
+                    <script>
+                    	function cancelEdit(){
+                    		window.location = "@{Users.cancelEdit()}";	
+                    	}
+                    </script>

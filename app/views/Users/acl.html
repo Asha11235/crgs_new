@@ -1,0 +1,54 @@
+#{extends 'main.html' /}
+#{set title:'Access Control List' /}
+
+<div class="row">
+	<div class="col-md-12">
+		<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+		<h3 class="page-title">
+			ACCESS CONTROL
+		</h3>
+		<!-- END PAGE TITLE & BREADCRUMB-->
+	</div>
+</div>
+
+<!-- <div class="page-header top">
+	<h1></h1>
+</div> -->
+<div class="row well">
+	<table class="table acl borderless">
+		<thead>
+			<tr>
+				<th><h4 class="text-danger"><strong>Functions</strong></h4></th>
+				#{list items:roles, as:'role'}
+				<th><button class="btn btn-default btn-block">${role.name}</button></th>
+				#{/list}
+			</tr>
+		</thead>
+		<tbody>
+			#{list items:acos, as:'aco'}
+			<tr>
+				<td>${aco.name}</td>
+				#{list items:roles, as:'role'}
+				<td class="text-center">
+					<input data-role="${role.id}" data-aco="${aco.id}" type="checkbox" #{if aco.roles.contains(role)}checked="checked"#{/if} #{if role.id == 1}disabled="disabled"#{/if} >
+				</td>
+				#{/list}
+			</tr>
+			#{/list}
+		</tbody>
+	</table>
+</div>
+<script type="text/javascript">
+	$(function(){
+		$('.acl').on('click', 'input[type=checkbox]', function(e){
+			$.ajax('@@{Users.updatePermission()}', {
+				type: 'POST',
+				data: {
+					acoId: $(this).data('aco'),
+					roleId: $(this).data('role'),
+					state: $(this).is(':checked')
+				}
+			});
+		});
+	});
+</script>

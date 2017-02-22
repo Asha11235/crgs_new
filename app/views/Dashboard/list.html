@@ -1,0 +1,441 @@
+#{extends 'mainTemplate.html' /}
+#{set title:'Forms' /}
+
+*{${statistics.raw()}
+${statistics.totalSchool.raw()}}*
+
+               <!--//Containt_wrapper-->
+         <div id="containt_wrapper">
+             <div id="containt_area"><!--containt_area-->
+					 <div class="row ">
+						<div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-aqua">
+                                <div class="inner">
+                                    <h3>
+                                       ${statistics.totalSchool.getAsString()}
+                                    </h3>
+                                    <p2>
+                                        Total School
+                                    </p2>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-bag"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">
+                                    <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+						<div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-green">
+                                <div class="inner">
+                                    <h3>
+                                        ${statistics.totalToilet.getAsString()}
+                                    </h3>
+                                    <p2>
+                                        Total Toilet
+                                    </p2>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-stats-bars"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">
+                                    <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+						<div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-yellow">
+                                <div class="inner">
+                                    <h3>
+                                        ${statistics.unusableToilet.getAsString()}
+                                    </h3>
+                                    <p2>
+                                        Unusable Toilet
+                                    </p2>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-person-add"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">
+                                   <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+						<div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                         <div class="small-box bg-red">
+                              <div class="inner">
+                                    <h3>
+                                      ${statistics.femaleToiletRatio.getAsString()}
+                                    </h3>
+                                    <p2>
+                                      Female Toilet Ratio
+                                    </p2>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-pie-graph"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">
+                                    <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+						<div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-lgreen">
+                                <div class="inner">
+                                    <h3>
+                                       ${statistics.disabledFriendly.getAsString()}
+                                    </h3>
+                                    <p2>
+                                       Disable Friendly
+                                    </p2>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-pie-graph"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">
+                                    <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                      </div>
+					<div class="row"><!-- chart -->
+					<div  class="col-md-12">
+						<div class="panel panel-default">
+							<div class="panel-heading heading-for-box">Rank of ${statistics.totalSchool.getAsString()} Schools in terms of Water, Hygiene and Sanitation (Ranked between 1 to 5) </div>
+                               <div class="panel-body" >
+                               
+							     <div class="graph-table">
+							   <!-- Chart code Start Here-->
+								    <div id="graph" class="col-md-12">
+										<svg class="chart" id='line'></svg>
+										<div style = "margin-left: 28px">1 : <strong>Very Bad</strong>, 2 : <strong>Bad</strong>, 3 : <strong>Moderate</strong>, 4 : <strong>Good</strong>, 5 : <strong>Very Good</strong></div>
+										<div id="table-data" >
+									</div>
+							    </div>
+							   </div>
+						   </div>
+						</div>
+						</div>
+					</div><!--//chart -->
+				*{<div class="page-header top">
+					<h1>${title}</h1>
+				</div>}*
+				#{if flash.success}
+					#{alert flash.success/}
+				#{/if}
+					           <div class="row"><!-- table -->
+					           <div  class="col-md-12">
+					              <div class="panel panel-default">
+									<div class="panel-heading heading-for-box">School wise detail information</div>
+										<div class="panel-body">
+											 <div class="table-responsive">
+												<table>
+												<tr>
+												<!-- <th>#</th>
+												<th>Name</th> -->
+												<th>Total Submitted</th>
+												<th>Last Received Date</th>
+												<th>Actions</th>
+												</tr>
+											#{list items:forms, as:'form'}
+											<tr>
+												<!-- <td>${form.id}</td>
+												<td>${form.name}</td> -->
+												<td>${form.dataCount}</td>
+												<td>${form.lastReceived}</td>
+												<!-- #{set d:form.lastReceived /}
+												%{Long str = d.getTime();}%
+												<!-- <td>${str}</td> -->
+												<!-- <td>${new Date(str).format('dd/mm/yyyy')}</td> -->
+												<td>
+													<!-- <a class="btn btn-mini btn-info" href="@{Forms.listData(form.id)}"><i class="icon-tasks"></i> Data</a> -->
+													<!-- <a class="btn btn-mini btn-info" href="@{Forms.schoolList()}"><i class="icon-tasks"></i>Data</a> -->
+													<a class="btn btn-mini btn-info" href="@{Forms.showQuestionnaire()}"><i class="icon-tasks"></i>Questionnaire</a>
+													*{<a class="btn btn-mini" href="@{Forms.details(form.id)}">Details</a>}*
+													*{ #{deadbolt.externalizedRestriction externalRestrictions:['Export Data']}
+													<a class="btn btn-mini btn-primary" href="@{Forms.exportV2(form.id)}"><i class="icon-download-alt icon-white"></i> Export </a>
+													#{/deadbolt.externalizedRestriction} }* 
+													*{#{deadbolt.externalizedRestriction externalRestrictions:['Edit Form']}
+													<a class="btn btn-mini btn-warning" href="@{Forms.edit(form.id)}"><i class="icon-edit"></i> Edit</a>
+													#{/deadbolt.externalizedRestriction}
+													#{deadbolt.externalizedRestriction externalRestrictions:['Edit Form']}
+													<a class="btn btn-mini btn-danger delete" data-url="@{Forms.delete(form.id)}" href="#deleteModal"><i class="icon-remove icon-white"></i> Delete</a>
+													#{/deadbolt.externalizedRestriction}}*
+												</td>
+											</tr>
+										#{/list}
+										#{if forms == null}
+											<tr>
+												<td colspan="4">No Form Available</td>
+											</tr>
+										#{/if}
+											</table><!-- table -->
+							                </div>
+										</div>
+									</div>
+								</div>
+								</div>
+								<!-- Newly added graph -->
+								<div class="row"><!-- table -->
+								  <div class="col-md-6">
+					              <div class="panel panel-default">
+					              	<div class="panel-heading heading-for-box">Unsafe Drinking Water Status</div>
+										<div class="panel-body">
+											<div id="pieChartUnsafeWater" class="col-md-6">	</div>
+											
+										</div>	
+										</div>
+								   </div>
+								   <div class="col-md-6">
+								   <div class="panel panel-default">
+					              	<div class="panel-heading heading-for-box">Inactive Toilet Status</div>
+										<div class="panel-body">
+											<div id="pieChartInactiveToiletReason" class="col-md-6">	</div>
+										</div>	
+								   </div>
+								   </div>
+								 </div> 
+								 
+								 <div class="row"><!-- table -->
+								  <div class="col-md-12">
+					              <div class="panel panel-default">
+					              	<div class="panel-heading heading-for-box">  Reporting Status Regarding Sanitation Issue </div>
+										<!--<div class="panel-body">
+											<div id="areaChart1Div" class="col-md-12">	</div>
+										</div>	-->
+										<div  class="col-md-12">
+										<div id="problemgraph">
+										</div>
+										</div>
+										
+									</div>
+								   </div>
+								   </div>
+								   
+								 <div class="row"><!-- chart -->
+								   <div class="col-md-12 spach-two-items">
+								   <div class="panel panel-default">
+					              	<div class="panel-heading heading-for-box">Response Status Regarding Sanitation Issue</div>
+										<!--<div class="panel-body">
+											<div id="areaChart2Div" class="col-md-12">	</div>
+										</div>	-->
+										<div  class="col-md-12 ">
+										<div id="solvegraph">
+										</div>
+										</div>
+								   </div>
+								   </div>
+								 </div> 
+								  
+								<!-- Newly added graph ended -->
+								
+								
+							<div class="row"><!-- table -->
+								   <div class="col-md-12 spach-two-items">
+								<div class="panel panel-default">
+									<div class="panel-heading heading-for-box">Responded<!--Complain by School NCTF &amp; Status of Problems Solved by Authority --></div>
+										<div class="panel-body">
+											<div class="table-responsive">
+												<table class ='table table-striped table-bordered'>
+													<tr>
+														<th>School NCTF Complains regarding Drinking Water</th>
+														<td>${statistics.waterProbCount.getAsString()} schools</td>
+														<th>School Authority Has Solved</th>
+														<td>${statistics.waterProbSolvedCount.getAsString()} schools</td>
+													</tr>
+													
+													<tr>
+														<th>School NCTF Complains regarding Sanitaion</th>
+														<td>${statistics.sanitaionProbCount.getAsString()} schools</td>
+														<th>School Authority Has Solved</th>
+														<td>${statistics.sanitaionProbSolvedCount.getAsString()} schools</td>
+													</tr>
+													
+													<tr>
+														<th>School NCTF Complains regarding Hygiene</th>
+														<td>${statistics.hygieneProbCount.getAsString()} schools</td>
+														<th>School Authority Has Solved</th>
+														<td>${statistics.hygieneProbSolvedCount.getAsString()} schools</td>
+													</tr>
+												</table>
+											</div>
+							            </div>
+								   </div>
+						        </div>	
+						    </div>
+						      </div><!--end of containt_area-->
+						      </div>
+						    
+						    
+<script>
+   var data = ${json_dataList.raw()};
+   //console.log(data);
+   $(document).ready(function() {
+	   var afterColorRange=["blue","green"];
+	   var colorRange=["steelblue","lightgreen"];
+	   var obj_line={w: 1080, h:400,element:"#line", xLabel:"  ", yLabel:"   ",color: colorRange,afterColor: afterColorRange};
+	   //generate stack chart
+	   multi_line(data,obj_line);
+	});  
+</script>
+#{script 'd3.min.js' /}
+#{script 'line_chart.js' /}
+#{script 'pie_chart.js' /}
+#{script 'stack_area.js' /}
+#{script 'd3.tip.v0.6.3.js' /}
+#{script 'GraphBarchartforProblem.js' /}
+#{script 'GroupBarchartForSolve.js' /}
+
+<script>
+$(document).ready(function() {
+	var dataCauseBehindUnWater = ${json_dataListReasonUnWater.raw()};
+	var container = "#pie" ;
+	$(container).html("");
+	var total = 0;
+	console.log(dataCauseBehindUnWater);
+	jQuery.each(dataCauseBehindUnWater, function(i, val) {
+   		total += parseInt(val.number);
+   		//console.log("total pie chart value"+total);
+   	});
+	//console.log("total pie chart value"+total);
+	if(total > 0 ){
+		//$("#pieChart").html("");
+		$("#pieChartUnsafeWater").append('<svg class="chart" id="pie"></svg>');
+		
+		var message = "<h1>Causes of Non-potable</h1>";
+		$(container).append(message);
+		//generate pie chart
+		var colorRange=["steelblue","orange","lightgreen","purple"];
+		var afterColorRange=["blue","darkorange","green","red"];
+		var param_object={w: 600, h:291,element:container, xLabel:"  ", yLabel:"   ",color: colorRange,afterColor: afterColorRange,legend_x:170,legend_y:-100,translate_x:125, rad_denominator:2.2};
+		// replace data2 with data once ajax returns 'data'
+		pie_chart(dataCauseBehindUnWater,param_object);
+	}else{
+		$("#pieChartUnsafeWater").html("");
+	}
+});  	
+	
+</script>
+
+*{#{stylesheet 'allDesign.css' /}}*
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+body { font: 12px Arial;}
+
+path { 
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+.legend {
+    font-size: 16px;
+    font-weight: bold;
+    text-anchor: middle;
+}
+.d3-tip {
+  line-height: 2;
+  font-size: 12px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #000;
+  border-radius: 5px;
+  background-color: rgba(230,230,230,1);
+}
+
+.spach-two-items{
+clear: both;
+}
+
+</style>
+
+<script>
+
+//pie chart for inactive toilet reason
+$(document).ready(function() {
+	var dataInactiveToiletReason = ${inactiveToiletReasonJsonArray.raw()};
+	//console.log(dataInactiveToiletReason);
+	//sort json array
+	function sortByKey(array, key) {
+	return array.sort(function(a, b) {
+	    var x = a[key]; var y = b[key];
+	    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+	});
+	}
+	
+	dataInactiveToiletReason = sortByKey(dataInactiveToiletReason, 'number');
+	dataInactiveToiletReason = dataInactiveToiletReason.reverse();   //reverse array element
+	//console.log(dataInactiveToiletReason);
+	dataInactiveToiletReason = dataInactiveToiletReason.slice(0, 5);   //choose top five elements
+	console.log(dataInactiveToiletReason);
+	var containerInactiveToiletReason = "#pieInactiveToiletReason" ;
+	$(containerInactiveToiletReason).html("");
+	var total = 0;
+	//console.log(dataInactiveToiletReason);
+	jQuery.each(dataInactiveToiletReason, function(i, val) {
+			total += parseInt(val.number);
+			//console.log("total pie chart value"+total);
+		});
+	//console.log("total pie chart value"+total);
+	if(total > 0 ){
+		//$("#pieChart").html("");
+		$("#pieChartInactiveToiletReason").append('<svg class="chart" id="pieInactiveToiletReason"></svg>');
+		
+		var message = "<h1>Causes of Non-potable</h1>";
+		$(containerInactiveToiletReason).append(message);
+		//generate pie chart
+		var colorRange=["steelblue","orange","lightgreen","purple", "red"];
+		var afterColorRange=["blue","darkorange","green","red","lightgreen"];
+		var param_object={w: 450, h:291,element:containerInactiveToiletReason, xLabel:"  ", yLabel:"   ",color: colorRange,afterColor: afterColorRange,legend_x:170,legend_y:-100,translate_x:125, rad_denominator:2.2};
+		// replace data2 with data once ajax returns 'data'
+		pie_chart(dataInactiveToiletReason,param_object);
+	}else{
+		$("#pieChartInactiveToiletReason").html("");
+	}	
+
+});  
+</script>
+
+<script>
+$(document).ready(function() {
+	  //console.log("Here is stack area chart");
+	   var dataAreaChart = ${json_datalist_areaChart.raw()};
+	   //console.log(data);
+	   var data = ${json_problemlist.raw()};
+	   var solve = ${json_solvelist.raw()};
+	   groupedBarChartTest(data);
+	   groupedBarChartTestSolve(solve);
+	   //$("#areaChart1Div").append(groupedBarChartTest(data));
+	   var afterColorRange=["blue","green"];
+	   var colorRange=["steelblue","orange","lightgreen","mediumpurple","coral"];
+	   //var obj_stack_area ={w: 880, h:400,element:"#areaChart1", xLabel:"  ", yLabel:"   ",color: colorRange, afterColor: afterColorRange, extendHeight: 40};
+	   var obj_stack_area2 ={w: 880, h:400,element:"#areaChart2", xLabel:"  ", yLabel:"   ",color: colorRange, afterColor: afterColorRange, extendHeight: 40};
+	
+	   	//$("#areaChart1Div").html("");
+		//$("#areaChart1Div").append('<svg class="chart" id="areaChart1"></svg>');
+		//$("#areaChart1Div").append(groupedBarChartTest(data));
+		//console.log(dataAreaChart[0]);
+		//stack_area(dataAreaChart[0],obj_stack_area);
+		
+		//$("#areaChart2Div").html("");
+		//$("#areaChart2Div").append('<svg class="chart" id="areaChart2"></svg>');
+		//stack_area(dataAreaChart[1],obj_stack_area2);
+	});
+
+</script>

@@ -1,0 +1,85 @@
+#{include 'head.html' /}
+<body>
+
+ <div id="wrapper"><!--wrapper-->
+         <div class="row top-heder"><!--row-->
+             <div id="heder">
+                 <div class="logo">
+                  	<a href="@{Forms.list()}"><img src="/public/images/logo.png" alt="" /></a>
+                 </div>
+                 <div id="heder-right">
+                 #{if currentUser}
+                   <ul>
+                       <li><a href="@{Application.index()}">Dashboard</a></li>
+                    </ul> 
+                 #{/if} 
+                  #{else}
+                   <ul>
+                       <li><a href="@{Application.index()}">Login</a></li>
+                    </ul> 
+                  #{/else}  
+                    <br><br>
+                    <p class="slogan ">NCTF Voice - for better sanitation and hygiene at my school</p>                                          
+                </div>
+              </div>
+         </div><!--//row-->
+
+    
+    <div class="row menu"><!--nav-->
+         <div id="menu-area">
+            <div id="menu">
+          
+            </div>
+             </div>
+              </div>
+
+         
+
+   <div class="container-fluid">
+      <div class="row-fluid">
+        *{<div class="span3">}*
+           *{#{include 'sidebar.html' /}}*
+        *{</div>}*<!--/span-->
+        <div class="span12">
+          #{doLayout /}
+        </div><!--/span-->
+      </div><!--/row-->
+      </div>
+
+
+         <div class="row ">
+             <div class="footer">
+            	 <p>School WASH monitoring information summary <a href="#"> Developer</a></p>
+             </div>
+         </div>
+      
+    	</div>
+    	
+    	   
+
+    <!--/.fluid-container-->
+
+#{if play.mode == "DEV"}
+	#{script 'jquery.fancybox-1.3.4.js' /}
+	#{script 'jquery.easing-1.3.pack.js' /}
+	*{#{script 'jquery.history.js' /}}*
+	#{script src:'bootstrap.js' /}
+    #{script src:'bootbox.js' /}
+    <!-- Uniform -->
+    #{script src:'jquery.uniform.js' /}
+#{/if}
+
+#{else}
+  
+	#{script 'jquery.fancybox-1.3.4.pack.js' /}
+	#{script 'jquery.easing-1.3.pack.js' /}
+	#{script src:'bootstrap.min.js' /} 
+    #{script src:'bootbox.min.js' /}
+    <!-- Uniform -->
+    #{script src:'jquery.uniform.min.js' /}
+#{/else}
+
+    #{get 'moreScripts' /}
+    #{script src:'main.js' /}
+</body>
+</html>

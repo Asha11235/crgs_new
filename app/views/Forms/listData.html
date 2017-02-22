@@ -1,0 +1,108 @@
+#{extends 'main.html' /}
+#{set title:form?.name /}
+
+<ul class="breadcrumb">
+	<li><a href="@{Forms.list()}"><i class="icon-list"></i> Forms</a> <span class="divider">/</span></li>
+	<li class="active">${form?.name} Data</li>
+</ul>
+
+<div class="page-header top">
+	<h1>${title} Data</h1>
+</div>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Sender</th>
+			<!--<th>Received</th>
+			<th>Start Time</th>
+			<th>End Time</th> -->
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		#{list items:data, as:'row'}
+		<tr>
+			<td>${row.id}</td>
+			<td>${row.sender?.name}</td>
+			*{<td>${row.received.since(true)}</td>
+			<td>${row.startTime}</td>
+			<td>${row.startTime?.diff(row.endTime)}${row.endTime}</td>}*
+			<td class="center buttons"><a class="btn btn-mini primary" href="@{Forms.viewData(row.id)}">Details</a></td>
+		</tr>
+		#{/list}
+		<tr>
+			<td colspan="6" align="right">
+				<ul class="pagination">
+					<li class="prev disabled">
+						#{if currentPage != 1}
+						<a id="curpage" href="?id=${form?.name},page=1">« First</a>
+						#{/if}
+						#{else}
+						<a href="#">« First</a>
+						#{/else}
+					</li>
+					<li class="prev disabled">
+						#{if currentPage != 1}
+						<a id="curpage" href="?id=${form?.name}&page=${currentPage-1}">« Previous</a>
+						#{/if}
+						#{else}
+						<a href="#">« Previous</a>
+						#{/else}
+					</li>
+
+					#{if currentPage <= totalPages}
+						#{list items:currentPage..(currentPage-1)+15,as:'i'}
+							#{if currentPage == i}
+							<li class="active">
+								<a href="#">${i}</a>
+							</li>
+							#{/if}
+							#{else}
+								#{if i <= totalPages}
+								<li><a id="curpage" href="?id=${form?.name}&page=${i}">${i}</a></li>
+								#{/if}		   
+							#{/else}
+						#{/list}
+					#{/if}
+
+					#{if currentPage < totalPages }
+					<li class="next">
+						<a id="curpage" href="?id=${form?.name}&page=${currentPage+1}">Next »</a>
+					</li>
+					#{/if}
+					#{else }
+					<li class="next disabled">
+						<a href="#">Next »</a>
+					</li>
+					#{/else}
+
+					#{if currentPage < totalPages }
+					<li class="next">
+						<a id="curpage" href="?id=${form?.name}&page=${totalPages}">Last »</a>
+					</li>
+					#{/if}
+					#{else }
+					<li class="next disabled">
+						<a href="#">Last »</a>
+					</li>
+					#{/else}
+				</ul> 
+
+			</td>
+		</tr>
+		#{else}
+		<tr>
+			<td colspan="6">No data found</td>
+		</tr>
+		#{/else}
+	</tbody>
+</table>
+
+#{set 'moreScripts'}
+#{script 'bootstrap-datepicker_latest.js' /}
+#{script 'jquery.mpower.utils.js' /}
+#{script 'jquery-mpower-date.js' /}
+#{script 'mpower-geolocation.js' /}	
+#{/set}

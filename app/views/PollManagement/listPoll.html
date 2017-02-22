@@ -1,0 +1,61 @@
+#{extends 'main.html' /}
+<div id="wrapper">
+<div id="containt_area">
+    <h1>Poll List</h1>
+<div class="row"><!-- table -->
+						  <div class="panel panel-default">
+										    <div class="panel-heading">
+											    <h8>Poll List</h8>
+											 </div>
+												<div class="table-responsive ">
+												<div class="panel-body">
+									 <table class="table table-striped">			
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Poll Title</th>
+			<th>Polling Start Date</th>
+			<th>Polling End Date</th>
+			<th>Question Type</th>
+			<th>Created By</th>
+			<th>Actions</th>
+		</tr>
+	<thead>
+	<tbody>
+	#{list items:listPoll, as:'poll'}
+		<tr>
+			<td>${poll.id}</td>
+			<td>${poll.title}</td>
+			<td>${poll.startDate}</td>
+			<td>${poll.endDate}</td>
+			<td>${poll.questionType}</td>
+			<td>${poll?.creater?.name}</td>
+			<td>
+				#{deadbolt.externalizedRestriction externalRestrictions:['Edit Poll']}
+				#{if poll.status == '0'}
+				<a class="btn btn-mini" href="@{PollManagement.publishPoll(poll?.id)}"><i class="icon-edit"></i> Publish for Polling </a>
+				#{/if}
+				#{if poll.status == '1'}
+				<a class="btn btn-mini" href="@{PollManagement.removepublishPoll(poll?.id)}"><i class="icon-edit"></i> Remove for Polling </a>
+				#{/if}
+				<a class="btn btn-mini" href="@{PollManagement.detailPoll(poll?.id)}"><i class="icon-edit"></i> Detail</a>
+            	<a class="btn btn-mini" href="@{PollManagement.editPoll(poll?.id)}"><i class="icon-edit"></i> Edit</a>
+				<a class="btn btn-mini btn-danger delete" data-url="@{PollManagement.deletePoll(poll?.id)}" href="#deleteModal"><i class="icon-remove icon-white"></i> Delete</a>
+				#{/deadbolt.externalizedRestriction}
+			</td>
+		</tr>
+	#{/list}
+	#{else}
+		<tr>
+			<td colspan="4">No Form Available</td>
+		</tr>
+	#{/else}
+	<tbody>
+</table>
+
+            </div>
+				               </div>
+				               </div>
+					           </div>
+					           </div>
+					           </div>

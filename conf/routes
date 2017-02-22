@@ -1,0 +1,100 @@
+s# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+#GET     /                               		DashbordNCTF.index
+
+GET     /                               		Application.index
+GET		/parse									Application.parse
+
+#Forms
+GET		/form/list								Forms.list
+GET		/form/new                          		Forms.create
+POST	/form/new								Forms.submit
+GET		/form/edit/{id}							Forms.edit
+POST	/form/edit/{id}							Forms.submit
+GET		/form/view/{id}							Forms.details
+GET		/form/view/{id}/statuses				Forms.statuses
+POST	/form/view/{id}/statuses             	Forms.addStatus
+GET		/form/view/{id}/logics					Forms.logics
+POST	/form/view/{id}/logics					Forms.addLogic
+#GET  	/forms/viewdata/{id}/{schoolId}		    Forms.viewData(id,schoolId)
+GET     /form/listdata                          Forms.listData
+
+
+GET		/approve/list							DataApproval.index
+GET		/approved_data/list						ApprovedDataList.index
+
+GET		/geo/import							    Import.importCSV
+
+GET		/webentry/list							SubmitDataFromWeb.viewMobileDataList
+
+#POST 	/editdata/submitupdateddata/{id}   		EditData.submitUpdatedDataFromFlat
+
+# Users
+GET		/user/list								Users.list
+GET		/user/view/{id}							Users.details
+GET		/user/new								Users.create
+GET		/user/edit/{id}							Users.edit
+POST	/user/edit/{id}							Users.submit
+GET		/role/list								Users.roleList
+GET		/role/new								Users.roleCreate
+POST	/role/edit/{id}							Users.roleSubmit
+GET		/role/edit/{id}							Users.roleEdit
+POST	/ajax/user/tlpin/assign					Users.assignTLPin
+POST	/ajax/permission						Users.updatePermission
+
+# Android Interface XML
+GET     /m/formList/?							Mobile.listAsXml
+*		/m/submission/?							Mobile.submit
+GET     /m/formXml/{<[0-9]+>id}/?				Mobile.viewAsXml
+GET 	/m/getschedule/?						Mobile.schudeleGeneration(format:'json')
+GET 	/m/download 							Mobile.getFileAsBinary 
+
+#APIs
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+#Application Notification
+GET		/m/notification						    Notifications.getNotification(format:'json')
+POST    /s/alert							    Notifications.mPostAlert(format:'json')
+
+
+# Mobile
+GET		/m/login								Users.mLogin
+# Area 
+
+#Report
+GET		 reports/overallReport				Report.overallReport
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+GET     /uploads/                               staticDir:uploads
+
+
+#Data Management
+GET		 /datamanagement/schoollist				DataManagement.schoolList
+GET 	 /datamanagement/viewDetails/{id}		DataManagement.viewDetails
+GET      /searchSchool 							Forms.searchSchoolList
+GET      /searchData								Forms.searchDataList
+GET      /viewDataList							Forms.viewDataList
+GET      /submitforgetpassword						Forgetpassword.submitForgetPassword
+
+POST    /submitvote								Forgetpassword.submit
+GET 	 /home/shakil/WorkspacePerforce/dev_java/crgs/uploads/{fileName}     MediaArchives.downloadFile
+
+
+# new link for external weblink
+GET     /homedashboard 						Dashboard.homedashboard
+GET		/dashboard					    Dashboard.list
+GET		/pollgraph					    PollGraph.index
+
+#School Registeration Router
+
+GET     /registerschool								RegisterSchool.schoolregister();
+GET     /casereport								RegisterSchool.caseReport();
+GET     /resourcelist								RegisterSchool.resourceList();
+GET     /create-poll                                 PollManagement.createPoll
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}

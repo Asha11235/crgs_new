@@ -1,0 +1,120 @@
+#{extends 'main.html' /}
+<div id="wrapper">
+	<div id="containt_area">
+		<h1>School List</h1>
+		<div class="row"><!-- table -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h8><i class="fa fa-reorder"></i> School List</h8>
+				</div>
+				<div class="table-responsive ">
+					<div class="panel-body">
+						<table class="table table-striped">			
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>School Name</th>
+									<th>schoolType</th>
+									<th>Division</th>
+									<th>District</th>
+									<th>Upazilla</th>
+
+									<th>Total Students</th>
+									<th>Total Toilets</th>
+									<th>Actions</th>
+								</tr>
+								<thead>
+									<tbody>
+										#{list items:listSchool, as:'school'}
+										<tr>
+											<td>${school.id}</td>
+											<td>${school.name}</td>
+											<td>${school.schoolType}</td>
+											<td>${school?.geoDivision?.name}</td>
+											<td>${school?.geoDistrict?.name}</td>
+											<td>${school?.geoUpazilla?.name}</td>
+											<td>${school.totalStudent}</td>
+											<td>${school.totalToilets}</td>
+											<td>
+												#{deadbolt.externalizedRestriction externalRestrictions:['Edit School']}
+												*{<a class="btn btn-mini" href="@{Schools.editSchool(school?.id)}"><i class="icon-edit"></i> Edit</a>}*
+												<a class="btn btn-mini" href="@{Schools.details(school?.id)}"><i class="icon-edit"></i> Details </a>
+												<a class="btn btn-mini btn-danger delete" data-url="@{Schools.deleteSchool(school?.id)}" href="#deleteModal"><i class="icon-remove icon-white"></i> Delete</a>
+												#{/deadbolt.externalizedRestriction}
+											</td>
+										</tr>
+										#{/list}
+										<tr>
+											<td colspan="9 align="right">
+												<ul class="pagination">
+													<li class="prev disabled">
+														#{if currentPage != 1}
+														<a id="curpage" href="?id=${form?.name},page=1">« First</a>
+														#{/if}
+														#{else}
+														<a href="#">« First</a>
+														#{/else}
+													</li>
+													<li class="prev disabled">
+														#{if currentPage != 1}
+														<a id="curpage" href="?id=${form?.name}&page=${currentPage-1}">« Previous</a>
+														#{/if}
+														#{else}
+														<a href="#">« Previous</a>
+														#{/else}
+													</li>
+
+													#{if currentPage <= totalPages}
+													#{list items:currentPage..(currentPage-1)+15,as:'i'}
+													#{if currentPage == i}
+													<li class="active">
+														<a href="#">${i}</a>
+													</li>
+													#{/if}
+													#{else}
+													#{if i <= totalPages}
+													<li><a id="curpage" href="?id=${form?.name}&page=${i}">${i}</a></li>
+													#{/if}		   
+													#{/else}
+													#{/list}
+													#{/if}
+
+													#{if currentPage < totalPages }
+													<li class="next">
+														<a id="curpage" href="?id=${form?.name}&page=${currentPage+1}">Next »</a>
+													</li>
+													#{/if}
+													#{else }
+													<li class="next disabled">
+														<a href="#">Next »</a>
+													</li>
+													#{/else}
+
+													#{if currentPage < totalPages }
+													<li class="next">
+														<a id="curpage" href="?id=${form?.name}&page=${totalPages}">Last »</a>
+													</li>
+													#{/if}
+													#{else }
+													<li class="next disabled">
+														<a href="#">Last »</a>
+													</li>
+													#{/else}
+												</ul> 
+
+											</td>
+										</tr>
+										#{else}
+										<tr>
+											<td colspan="4">No Form Available</td>
+										</tr>
+										#{/else}
+										<tbody>
+										</table>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>

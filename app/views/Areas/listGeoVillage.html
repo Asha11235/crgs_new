@@ -1,0 +1,43 @@
+#{extends 'main.html' /}
+#{set title:'Village List' /}
+
+<div class="page-header top">
+	<h1>${title}</h1>
+</div>
+
+#{if flash.success}
+    #{alert flash.success/}
+#{/if}
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>&{'geoVillage.name'}</th>
+			<th>&{'geoVillage.code'}</th>
+			<th>&{'geoVillage.geoMauza.id'}</th>
+			<th>Actions</th>
+		</tr>
+	<thead>
+	<tbody>
+	#{list items:geoVillageList, as:'geoVillage'}
+		<tr>
+			<td>${geoVillage.id}</td>
+			<td>${geoVillage.name}</td>
+			<td>${geoVillage.code}</td>
+			<td>${geoVillage.geoMauza.name}</td>
+			<td>
+				#{deadbolt.externalizedRestriction externalRestrictions:['Edit Village']}
+            	<a class="btn btn-mini" href="@{Areas.editGeoVillage(geoVillage?.id)}"><i class="icon-edit"></i> Edit</a>
+				<a class="btn btn-mini btn-danger delete" data-url="@{Areas.deleteGeoVillage(geoVillage?.id)}" href="#deleteModal"><i class="icon-remove icon-white"></i> Delete</a>
+				#{/deadbolt.externalizedRestriction}
+			</td>
+		</tr>
+	#{/list}
+	#{else}
+		<tr>
+			<td colspan="4">No Village Available</td>
+		</tr>
+	#{/else}
+	<tbody>
+</table>

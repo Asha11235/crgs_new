@@ -1,0 +1,41 @@
+#{extends 'main.html' /}
+
+<div id="wrapper">
+<div id="containt_area">
+#{if geoDistrict?.id}
+    <h1>Edit District</h1>
+#{/if}
+#{else}
+    <h1>New District</h1>
+#{/else}
+<div class="row"><!-- table -->
+						  <div class="panel panel-default">
+										    <div class="panel-heading">#{if geoDistrict?.id}
+											    <h8>Edit District</h8>
+											#{/if}
+											#{else}
+											    <h8>New District</h8>
+											#{/else} </div>
+												<div class="table-responsive ">
+												<div class="panel-body">
+#{form @submitGeoDistrict(), class:'form-horizontal'}
+	#{if geoDistrict?.id}
+    <input type="hidden" name="geoDistrict.id" value="${geoDistrict.id}" />
+    #{/if}
+
+	#{input 'geoDistrict.geoDivision.id' , type:'select', items:geoDivisionList,labelProperty:'name'}
+		#{option} Any#{/option}
+   	#{/input}
+    #{input 'geoDistrict.name' /}
+   
+	#{input 'geoDistrict.code' /}
+	
+    #{submit /}
+#{/form}
+
+					                           </div>
+							                </div>
+							             </div>
+					           </div>
+					           </div>
+					           </div>

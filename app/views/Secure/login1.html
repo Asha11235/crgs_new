@@ -1,0 +1,269 @@
+<html>
+<head>
+	#{stylesheet 'bootstrap.min.css' /}
+	#{stylesheet 'bootstrap-responsive.min.css' /}
+	#{stylesheet 'bootstrap-responsive.css' /}
+	#{stylesheet 'bootstrap-datetimepicker.css' /}
+	#{stylesheet 'bootstrap-datetimepicker.min.css' /}
+	#{stylesheet 'clndr.css' /}
+	#{stylesheet 'custom.css' /}
+	#{stylesheet 'datepicker.css' /}
+	#{stylesheet 'flexslider.css' /}
+	#{stylesheet 'font-awesome.css'/}
+	#{stylesheet 'font-awesome.min.css'/}
+	#{stylesheet 'jqvmap.css'/}
+	#{stylesheet 'lines.css'/}
+	
+	
+	#{script 'jquery.min.js' /}    
+	#{script 'app.js' /}   
+	#{script 'form-components.js' /}    
+	#{script 'metisMenu.min.js' /}
+	#{script 'custom.js' /}   
+	#{script 'bootstrap.min.js' /}  
+
+	#{stylesheet 'style.css' /}
+
+	#{stylesheet 'flexslider.css' /}
+	#{script 'jquery.flexslider.js' /}
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="@{Forms.list()}"><img src="/public/images/logo.png" alt="" /></a>
+				<p class="slogan ">NCTF Voice - for better sanitation and hygiene at my school</p>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="active">
+						<a href="/registerschool">Register School</a>
+					</li>
+					<li class="">
+						<a href="/casereport">Case Report</a>
+					</li>
+					<li class="">
+						<a href="/resourcelist">Resource</a>
+					</li>
+				#{if currentUser}
+					<li><a >${currentUser?.displayName}</a></li>
+					<li><a href="@@{Secure.logout()}">Logout</a></li>
+				#{/if} 
+				#{else}
+					<li>
+	                    <a href="javascript:;" id="login" data-toggle="modal" data-target="#loginModal">LOG-IN</a>
+	                </li>
+				#{/else} 
+				</ul> 
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+
+	<div id="loginModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header login-mod-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><strong>LOG-IN</strong></h4>
+                </div>
+                <div class="modal-body">
+                	#{form @authenticate(), class:'form-horizontal'}
+                    <!-- <form class="form-horizontal" role="form"> -->
+                        <div class="form-body">
+							#{if flash.error}
+								<script type="text/javascript">
+									$('#login').click();
+								</script>
+								<div class="alert alert-error">&{flash.error}</div>
+							#{/if}
+							#{if flash.success}
+								<div class="alert alert-info">&{flash.success}</div>
+							#{/if}
+
+                            <div class="form-group">
+                                <label class="col-md-1 control-label">&nbsp;</label>
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            User ID/Email
+                                        </span>
+                                        <!-- <input type="email" class="form-control" placeholder="User ID/Email"> -->
+                                        <input id="secure_username" type="text" name="username" class="form-control"  value="${flash.username}" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'User Name';}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-1 control-label">&nbsp;</label>
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password
+                                        </span>
+                                        <!-- <input type="password" class="form-control" placeholder="Password"> -->
+                                        <input id="secure_password" name="password" class="form-control" type="password"  value="" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Password';}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-4 col-md-8">
+                                    <button type="submit" class="btn btn-danger">Sign-In</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <div class="col-md-5">
+                                        <a href="sign-up.html">Sign-Up</a> 
+                                    </div>
+                                    <div class="col-md-7">
+                                        Forgot Password?
+                                        <a href="forgot_password.html">Click to Reset</a> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- </form> -->
+                    #{/form}
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<div class="row">
+		<div class="col-md-12 no-padding lib-item" data-category="view">
+			<div class="lib-panel">
+				<div class="row box-shadow">
+					<div class="col-md-8" style="padding:0px">
+						<div id="slider"><!--slider-->
+							<div class="flexslider">
+								<ul class="slides">
+									<li><img src="/public/images/pic-slider1.jpg" alt="slider">
+										<div class="caption">
+											<strong>Current Practices</strong>
+											<span  style="padding-bottom:30px"> <p>The Department of Social Services (DSS) is one of the leading Government Departments of People's Republic of Bangladesh under the Ministry of Social Welfare.The Department of Social Services was estab lished in 1961. </p><p>The mandate of the Department of Social Services is to provide services to the vulnerable groups of society, the poorest of the poor, the marginalized and the disadvantaged   groups. Our service goes further than just bringing services to these groups. </p></span>
+											<strong>About NCTF</strong>
+											<span> <p>NCTF are the central actor of the initiative who are supported by the Village Education Resource Center (VERC), Center for Services in Disability (CSID), Mass-line Media Center (MMC), mPower Social En terprise and with overall coordination from Save the Children. Save the Children is supporting this initiative under ICT & Innovative Partnership project: responding to well-known challenges forchildren in new ways.</p><p>To know more about NCTF click to <a href="www.nctfbd.org"> www.nctfbd.org </a> and for more information about the project (in Bengali) please <a href="#">click here</a></p></span>
+										</div>
+									</li>                      	
+									<li><img src="/public/images/pic-slider2.jpg" alt="slider">
+										<div class="caption">
+											<strong>Current Practices</strong>
+											<span  style="padding-bottom:30px"> <p>The Department of Social Services (DSS) is one of the leading Government Departments of People's Republic of Bangladesh under the Ministry of Social Welfare.The Department of Social Services was estab lished in 1961. </p><p>The mandate of the Department of Social Services is to provide services to the vulnerable groups of society, the poorest of the poor, the marginalized and the disadvantaged   groups. Our service goes further than just bringing services to these groups. </p></span>
+											<strong>About NCTF</strong>
+											<span> <p>NCTF are the central actor of the initiative who are supported by the Village Education Resource Center (VERC), Center for Services in Disability (CSID), Mass-line Media Center (MMC), mPower Social En terprise and with overall coordination from Save the Children. Save the Children is supporting this initiative under ICT & Innovative Partnership project: responding to well-known challenges forchildren in new ways.</p><p>To know more about NCTF click to <a href="www.nctfbd.org"> www.nctfbd.org </a> and for more information about the project (in Bengali) please <a href="#">click here</a></p></span>
+										</div>
+									</li>                           	
+									<li><img src="/public/images/pic-slider3.jpg" alt="slider">
+										<div class="caption">
+											<strong>Current Practices</strong>
+											<span  style="padding-bottom:30px"> <p>The Department of Social Services (DSS) is one of the leading Government Departments of People's Republic of Bangladesh under the Ministry of Social Welfare.The Department of Social Services was estab lished in 1961. </p><p>The mandate of the Department of Social Services is to provide services to the vulnerable groups of society, the poorest of the poor, the marginalized and the disadvantaged   groups. Our service goes further than just bringing services to these groups. </p></span>
+											<strong>About NCTF</strong>
+											<span> <p>NCTF are the central actor of the initiative who are supported by the Village Education Resource Center (VERC), Center for Services in Disability (CSID), Mass-line Media Center (MMC), mPower Social En terprise and with overall coordination from Save the Children. Save the Children is supporting this initiative under ICT & Innovative Partnership project: responding to well-known challenges forchildren in new ways.</p><p>To know more about NCTF click to <a href="www.nctfbd.org"> www.nctfbd.org </a> and for more information about the project (in Bengali) please <a href="#">click here</a></p></span>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div><!--//slider-->
+					</div>
+					<div class="col-md-4">
+						<div class="app-cam">
+							<div class="col-md-12">
+								<div class="login-logo">
+									<a href="index.html"><img src="/public/images/logo.png" alt=""/></a>
+								</div>
+
+
+								*{#{form @authenticate()}
+								<div class="col-xs-12" style="padding-left:0px">
+									#{if flash.error}
+									<div class="alert alert-error">&{flash.error}</div>
+									#{/if} #{if flash.success}
+									<div class="alert alert-info">&{flash.success}</div>
+									#{/if}
+								</div>
+
+								<div class="col-xs-6" style="padding-left:0px">
+
+									<h2 class="form-heading">User Name</h2>
+									<input id="secure_username" type="text" name="username"  class="text"  value="${flash.username}" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'User Name';}">
+								</div>
+								<div class="col-xs-6" style="padding-right:0px">
+									<h2 class="form-heading">Password</h2>
+									<input id="secure_password" name="password" type="password"  value="" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Password';}">
+								</div>
+								<div class="submit"><input type="submit" onClick="myFunction()" value="Login"></div>
+								<ul class="new">
+									<li class="new_left"><p><a href="#"><label>	<input type="checkbox" value="remember-me"> Remember me	</label></a></p></li>
+									<li class="new_right"><p><a href="#">Sign-in</a></p></li>
+									<div class="clearfix"></div>
+								</ul>
+								#{/form} }*
+
+
+							</div>
+						</div>
+						 <!--<div class="col-md-12">
+						   <div class="app-cam">
+						   <h2 class="form-heading">Current Practices</h2>
+						   <p>The Department of Social Services (DSS) is one of the leading Government Departments of People's Republic of Bangladesh under the Ministry of Social Welfare.The Department of Social Services was estab                             lished in 1961. </p><p>The mandate of the Department of Social Services is to provide services to the vulnerable groups of society, the poorest of the poor, the marginalized and the disadvantaged                             groups. Our service goes further than just bringing services to these groups. </p>
+							</div>
+						  </div>
+						  <div class="col-md-12">
+						   <div class="app-cam">
+						   <h2 class="form-heading">About NCTF</h2>
+						   <p>NCTF are the central actor of the initiative who are supported by the Village Education Resource Center (VERC), Center for Services in Disability (CSID), Mass-line Media Center (MMC), mPower Social En                            terprise and with overall coordination from Save the Children. Save the Children is supporting this initiative under ICT & Innovative Partnership project: responding to well-known challenges for                            children in new ways.</p><p>To know more about NCTF click to <a href="www.nctfbd.org"> www.nctfbd.org </a> and for more information about the project (in Bengali) please <a href="#">click here</a></p>
+							</div>
+						</div>-->
+						<div class="col-md-12">
+							<div class="">
+								<h2 class="form-heading">Poll</h2>
+								<div class="app-cam" style="background-color:#FF0000;color:#fff;padding:15px;">
+									#{if polldef?.id}
+									<h8> ${polldef?.title} </h8>
+									#{form @Forgetpassword.submit(), class:'form-horizontal'}
+									<input type="hidden" name="polldef.id" value="${polldef?.id}" />
+
+									#{if polldef?.questionType == 'Single Select' }
+									#{list items:pollOption, as:'poll'}
+									<input type="radio" name="group1" value="${poll.id}"> ${poll.options}<br>
+									#{/list}
+									#{/if}
+									#{if polldef?.questionType == 'Multipul Select' }
+									#{list items:pollOption, as:'poll'}
+									<input type="checkbox" name="group1" value="${poll.id}"> ${poll.options}<br>
+									#{/list}
+									#{/if}
+
+									#{poll /}
+									#{/form}
+									#{/if}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+		jQuery(window).load(function(){
+			jQuery('.flexslider').flexslider({
+				animation: "fade",
+				start: function(slider){
+					jQuery('body').removeClass('loading');
+				}
+			});
+		});
+		</script>
+
+	</body>
+	</html>

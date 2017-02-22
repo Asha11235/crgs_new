@@ -1,0 +1,225 @@
+#{extends 'main.html' /}
+
+#{if flash.success}
+#{alert flash.success/}
+#{/if}
+
+<div class="f_align">
+
+	<div class="row">
+		<div class="col-md-12">
+			<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+			<h3 class="page-title">
+				SANITATION FORM
+			</h3>
+			<!-- END PAGE TITLE & BREADCRUMB-->
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<!-- BEGIN PORTLET-->
+			<div class="portlet">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="fa fa-reorder"></i>Sanitation
+					</div>
+				</div>
+				<div class="portlet-body form">
+					#{form @submitionSanitationForm(), class:'form-horizontal form-bordered'}
+					<div class="form-body">
+
+						<div class="form-group">
+							<label class="control-label col-md-4">মাস</label>
+							<div class="col-md-3">
+								<div class="input-group input-medium date date-picker" data-date="" data-date-format="mm/yyyy" data-date-viewmode="years" data-date-minviewmode="months">
+									<input name="sanitation.month" type="text" class="form-control" required="true" >
+									<span class="input-group-btn">
+										<button class="btn btn-info" type="button"><i class="fa fa-calendar"></i></button>
+									</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-4">১। উত্তর দাতার ধরণ</label>
+							<div class="col-md-3">
+								<div class="radio-list">
+									<label class="radio-inline"><input id="res_type_1" name="sanitation.res_type" value="1" type="radio" required="true"> ছেলে</label>
+									<label class="radio-inline"><input id="res_type_2" name="sanitation.res_type" value="2" type="radio" required="true" > মেয়ে</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-4">২। স্কুলে কয়টি টয়লেট ব্যবহারের অনুপযোগী? (বালক/বালিকা)</label>
+							<div class="col-md-3">				
+								<input id="data/num_toilet_unusable" name="sanitation.num_toilet_unusable" value="" type="text" required="true">
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label col-md-4">৩। কি কারনে অনুপযোগী?</label>
+							<div class="col-md-4">
+								<div class="checkbox-list">
+									<label><input id="why_toilet_unusable_1" name="sanitation.why_toilet_unusable" value="1" type="checkbox">টয়লেটের পানির কল সচল নেই</label>
+									<label><input id="why_toilet_unusable_2" name="sanitation.why_toilet_unusable" value="2" type="checkbox">টয়লেটের পানির উৎস বা পানির কল নাগালের মধ্যে নেই</label>
+									<label><input id="why_toilet_unusable_3" name="sanitation.why_toilet_unusable" value="3" type="checkbox">টয়লেটে পানি নেই</label>
+									<label><input id="why_toilet_unusable_4" name="sanitation.why_toilet_unusable" value="4" type="checkbox"> টয়লেটের ছিটকিনি/লক কাজ করে না </label>
+									<label><input id="why_toilet_unusable_5" name="sanitation.why_toilet_unusable" value="5" type="checkbox">টয়লেটের দরজা ভাঙ্গা/দরজায় ছিদ্র</label>
+									<label><input id="why_toilet_unusable_6" name="sanitation.why_toilet_unusable" value="6" type="checkbox">টয়লেটে মগ/বদনা/বালতি নেই </label>
+									<label><input id="why_toilet_unusable_7" name="sanitation.why_toilet_unusable" value="7" type="checkbox">কমোডে/প্যানে ময়লা জমে থাকা/পানি উপচে পড়ছে</label>
+									<label><input id="why_toilet_unusable_8" name="sanitation.why_toilet_unusable" value="8" type="checkbox">টয়লেটে পানি জমে আছে</label>
+									<label><input id="why_toilet_unusable_9" name="sanitation.why_toilet_unusable" value="9" type="checkbox">মেয়েদের টয়লেটে ন্যপকিন/প্যাড ফেলার আলাদা ঝুড়ি নেই</label>
+									<label><input id="why_toilet_unusable_10" name="sanitation.why_toilet_unusable" value="10" type="checkbox">টয়লেটে পর্যাপ্ত  আলো-বাতাসে/ বাল্ব এর ব্যবস্থা নেই</label>
+									<label><input id="why_toilet_unusable_11" name="sanitation.why_toilet_unusable" value="11" type="checkbox">পোকা মাকড়ের উপদ্রব</label>
+									<label><input id="why_toilet_unusable_12" name="sanitation.why_toilet_unusable" value="12" type="checkbox">দুর্গন্ধ</label>
+									<label><input id="why_toilet_unusable_13" name="sanitation.why_toilet_unusable" value="13" type="checkbox"> অন্যান্য </label>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-4">৪। গত একমাসে স্কুলের টয়লেট কি রকম বিরতিতে পরিষ্কার করা হয়েছে?</label>
+							<div class="col-md-3">
+								<div class="radio-list">
+									<label><input id="how_informed_water_prob_1" name="sanitation.toilet_clean_interval" value="1" type="radio" required="true">গত মাসে পরিষ্কার করা হয়নি </label>
+									<label><input id="how_informed_water_prob_2" name="sanitation.toilet_clean_interval" value="2" type="radio" required="true">মাসে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে</label>
+									<label><input id="how_informed_water_prob_3" name="sanitation.toilet_clean_interval" value="3" type="radio" required="true">মাসে একবার বা তার বেশিবার পরিষ্কার করা হয়েছে</label>
+									<label><input id="how_informed_water_prob_4" name="sanitation.toilet_clean_interval" value="4" type="radio" required="true">সপ্তাহে একবার বা তার বেশি বার পরিষ্কার করা হয়েছে </label>
+									<label><input id="how_informed_water_prob_5" name="sanitation.toilet_clean_interval" value="5" type="radio" required="true">প্রতিদিন পরিষ্কার করা হয়েছে </label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label col-md-4">৫। টয়লেট পরিষ্কার করার সময় জীবাণুনাশক উপকরণ (যেমনঃ হারপিক, ফিনাইল) ব্যবহার করাঃ </label>
+							<div class="col-md-3">
+								<div class="radio-list">
+									<label><input id="harpic_1" name="sanitation.harpic" value="1" type="radio" required="true">কোনো টয়লেটে ব্যবহার করা হয়েছে</label>
+									<label><input id="harpic_2" name="sanitation.harpic" value="2" type="radio" required="true">অধিকাংশ টয়লেটে ব্যবহার করা হয়নি</label>
+									<label><input id="harpic_3" name="sanitation.harpic" value="3" type="radio" required="true">অর্ধেক সংখ্যক টয়লেটে ব্যবহার করা হয়েছে</label>
+									<label><input id="harpic_4" name="sanitation.harpic" value="4" type="radio" required="true">অধিকাংশ টয়লেটে ব্যবহার করা হয়েছে</label>
+									<label><input id="harpic_5" name="sanitation.harpic" value="5" type="radio" required="true">সব  টয়লেটে ব্যবহার করা হয়েছে</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-4">৬। গত একমাসে স্কুলের পয়ঃনিষ্কাশন নিয়ে কোন সমস্যার কথা স্কুল কর্তৃপক্ষ কে জানানো হয়েছিল কিনা?</label>
+							<div class="col-md-3">
+								<div class="radio-list">
+									<label><input id="is_sanitation_prob_informed_1" name="sanitation.is_sanitation_prob_informed" value="1" type="radio" required="true">হ্যাঁ</label>
+									<label><input id="is_sanitation_prob_informed_0" name="sanitation.is_sanitation_prob_informed" value="0" type="radio" required="true">না</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group" style="display:none;" id="how_informed_sanitation_prob_div">
+							<label class="control-label col-md-4">৭। যদি হ্যাঁ হয় তাহলে, কীভাবে জানানো হয়েছিলো?</label>
+							<div class="col-md-3">
+								<div class="radio-list">
+									<label><input id="how_informed_sanitation_prob_1" name="sanitation.how_informed_sanitation_prob" value="1" type="radio">স্কুল কতৃপক্ষ / SMC এর কাছে দরখাস্ত</label>
+									<label><input id="how_informed_sanitation_prob_2" name="sanitation.how_informed_sanitation_prob" value="2" type="radio">প্রধান শিক্ষক/ উপ প্রধান শিক্ষক কাছে মৌখিকভাবে</label>
+									<label><input id="how_informed_sanitation_prob_3" name="sanitation.how_informed_sanitation_prob" value="3" type="radio">শ্রেণী শিক্ষকের কাছে মৌখিকভাবে</label>
+									<label><input id="how_informed_sanitation_prob_4" name="sanitation.how_informed_sanitation_prob" value="4" type="radio">স্কুল ম্যানেজিং কমিটি'র সদস্যের কাছে মৌখিকভাবে</label>
+									<label><input id="how_informed_sanitation_prob_5" name="sanitation.how_informed_sanitation_prob" value="5" type="radio">অন্যান্য</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group" style="display:none;" id="how_informed_sanitation_prob_other_div">
+							<label class="control-label col-md-4">৮। অন্যান্য কিভাবে জানানো হয়েছিল?</label>
+							<div class="col-md-3">
+								<input id="how_informed_sanitation_prob_other" name="sanitation.how_informed_sanitation_prob_other" value="" type="text">
+							</div>
+						</div>
+
+						<div class="form-group" style="display:none;" id="took_step_sanitation_prob_div">
+							<label class="control-label col-md-4">৯। কর্তৃপক্ষ কত দিনের মধ্যে ব্যবস্থা নিয়েছিল?</label>
+							<div class="col-md-3">
+								<div class="radio-list">
+									<label><input id="took_step_sanitation_prob_1" name="sanitation.took_step_sanitation_prob" value="1" type="radio">সাথে সাথে /এক দিনের মধ্যে</label>
+									<label><input id="took_step_sanitation_prob_2" name="sanitation.took_step_sanitation_prob" value="2" type="radio" >২-৩ দিনের মধ্যে</label>
+									<label><input id="took_step_sanitation_prob_3" name="sanitation.took_step_sanitation_prob" value="3" type="radio">৪-৭ দিনের মধ্যে</label>
+									<label><input id="took_step_sanitation_prob_4" name="sanitation.took_step_sanitation_prob" value="4" type="radio">৮-৩০ দিনের মধ্যে</label>
+									<label><input id="took_step_sanitation_prob_5" name="sanitation.took_step_sanitation_prob" value="5" type="radio">৩০ দিনের থেকে বেশি সময়ে</label>
+									<label><input id="took_step_sanitation_prob_6" name="sanitation.took_step_sanitation_prob" value="6" type="radio">এখনও কোন ব্যবস্থা নেন নি</label>
+									<label><input id="took_step_sanitation_prob_7" name="sanitation.took_step_sanitation_prob" value="7" type="radio">জানা নেই</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-4">১০। গত এক মাসের স্কুলের সার্বিক পয়ঃনিষ্কাশন ব্যবস্থা কেমন ছিল?</label>
+							<div class="col-md-3">
+								<div class="radio-list">
+									<label><input id="rank_sanitation_1" name="sanitation.rank_sanitation" value="1" type="radio" required="true">খুব খারাপ</label>
+									<label><input id="rank_sanitation_2" name="sanitation.rank_sanitation" value="2" type="radio" required="true">খারাপ </label>
+									<label><input id="rank_sanitation_3" name="sanitation.rank_sanitation" value="3" type="radio" required="true">মোটামোটি </label>
+									<label><input id="rank_sanitation_4" name="sanitation.rank_sanitation" value="4" type="radio" required="true">ভাল</label>
+									<label><input id="rank_sanitation_5" name="sanitation.rank_sanitation" value="5" type="radio" required="true">খুব ভাল</label>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="form-actions fluid">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="col-md-offset-3 col-md-9">
+									<button type="submit" class="btn btn-success">Submit</button>
+									<button type="button" class="btn btn-success">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					#{/form}
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="col_1">
+</div>
+
+<div class="clearfix"> 
+</div>
+
+<script type='text/javascript'>
+	jQuery(document).ready(function(){
+		$('input:radio[name="sanitation.is_sanitation_prob_informed"]').change(function(){
+			if($(this).val() == '1'){
+				$('#how_informed_sanitation_prob_div').show();
+				$('#took_step_sanitation_prob_div').show();
+				$('input:radio[name="water.how_informed_sanitation_prob"]').prop('required',true);
+				$('input:radio[name="water.took_step_sanitation_prob_div"]').prop('required',true);
+			}
+			else{
+				$('#how_informed_sanitation_prob_div').hide();
+				$('#took_step_sanitation_prob_div').hide();
+				$('input:radio[name="water.how_informed_sanitation_prob"]').prop('required',false);
+				$('input:radio[name="water.took_step_sanitation_prob"]').prop('required',false);
+			}
+		});
+
+		$('input:radio[name="sanitation.how_informed_sanitation_prob"]').change(function(){
+			if($(this).val() == '5'){
+				$('#how_informed_sanitation_prob_other_div').show();
+				$('#how_informed_sanitation_prob_other').prop('required',true);
+			}
+			else{
+				$('#how_informed_sanitation_prob_other_div').hide();
+				$('#how_informed_sanitation_prob_other').prop('required',false);
+				$('#how_informed_sanitation_prob_other').prop('value','');
+			}
+		});
+	});
+
+</script>
+

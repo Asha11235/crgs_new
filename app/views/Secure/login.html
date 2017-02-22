@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8"/>
+    <title>MySchoolVoice System</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <meta name="MobileOptimized" content="320">
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="/public/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/public/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/public/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+    <link href="/public/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" type="text/css"/>
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+    <!-- <link href="/public/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/> -->
+    <!-- END PAGE LEVEL PLUGIN STYLES -->
+
+    <!-- BEGIN THEME STYLES -->
+    <link href="/public/css/style-base.css" rel="stylesheet" type="text/css"/>
+    <link href="/public/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/public/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+    <link href="/public/css/plugins.css" rel="stylesheet" type="text/css"/>
+
+    <link href="/public/css/pages/tasks.css" rel="stylesheet" type="text/css"/>
+
+    <link href="/public/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+
+    <link href="/public/css/custom.css" rel="stylesheet" type="text/css"/>
+    <!-- END THEME STYLES -->
+    <link rel="shortcut icon" href="favicon.ico"/>
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body>
+    <!-- BEGIN HEADER -->
+    <div class="header navbar navbar-inverse">
+        <!-- BEGIN TOP NAVIGATION BAR -->
+        <div class="header-inner">
+            <!-- BEGIN LOGO -->
+            <div class="navbar-brand">
+                <div class="pull-left">
+                    <a href="@{Forms.list()}">
+                        <img src="/public/img/logo1.png" alt="logo" class="img-responsive"/>
+                    </a>
+                </div>
+                <div class="pull-right collapse">
+                    <small>FOR BETTER SANITATION & HYGIENE</small>
+                    <p style="margin-top: 10px;">AT MY SCHOOL</p>
+                </div>
+            </div>
+            <!-- END LOGO -->
+            <!-- START USER LOGIN DROPDOWN -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-nav">
+                <img src="/public/img/menu-toggler.png" alt=""/>
+            </a>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <ul class="nav navbar-nav collapse pull-right">
+                <li>
+                    <a href="/homedashboard">Home</a>
+                </li>
+                <li>
+                    <a href="/resourcelist">RESOURCES</a>
+                </li>
+                <li>
+                    <a href="/casereport">SUBMIT A CASE</a>
+                </li>
+                <li>
+                    <a href="/registerschool">REGISTER A SCHOOL</a>
+                </li>
+                #{if currentUser}
+					<li><a >${currentUser?.displayName}</a></li>
+					<li><a href="@@{Secure.logout()}">Logout</a></li>
+				#{/if} 
+				#{else}
+					<li>
+	                    <a href="javascript:;" id="login" data-toggle="modal" data-target="#loginModal">LOG-IN</a>
+	                </li>
+				#{/else} 
+				</ul> 
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+
+	<div id="loginModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header login-mod-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><strong>LOG-IN</strong></h4>
+                </div>
+                <div class="modal-body">
+                	#{form @authenticate(), class:'form-horizontal'}
+                    <!-- <form class="form-horizontal" role="form"> -->
+                        <div class="form-body">
+							#{if flash.error}
+								<script type="text/javascript">
+									$('#login').click();
+								</script>
+								<div class="alert alert-error">&{flash.error}</div>
+							#{/if}
+							#{if flash.success}
+								<div class="alert alert-info">&{flash.success}</div>
+							#{/if}
+
+                            <div class="form-group">
+                                <label class="col-md-1 control-label">&nbsp;</label>
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            User ID/Email
+                                        </span>
+                                        <!-- <input type="email" class="form-control" placeholder="User ID/Email"> -->
+                                        <input id="secure_username" type="text" name="username" class="form-control"  value="${flash.username}" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'User Name';}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-1 control-label">&nbsp;</label>
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password
+                                        </span>
+                                        <!-- <input type="password" class="form-control" placeholder="Password"> -->
+                                        <input id="secure_password" name="password" class="form-control" type="password"  value="" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Password';}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-4 col-md-8">
+                                    <button type="submit" class="btn btn-danger">Sign-In</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <div class="col-md-5">
+                                        <a href="sign-up.html">Sign-Up</a> 
+                                    </div>
+                                    <div class="col-md-7">
+                                        Forgot Password?
+                                        <a href="forgot_password.html">Click to Reset</a> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- </form> -->
+                    #{/form}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Login Modal -->
+
+    <!-- BEGIN CONTAINER -->
+    <div class="page-full-width">
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <div class="page-content-wrapper">
+                    <div class="page-content">
+                        <!-- BEGIN PAGE HEADER-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                                <h3 class="page-title">
+                                    ABOUT <br/> <small>For reporting faulty WASH facilities to school authorities</small>
+                                </h3>
+                                <!-- END PAGE TITLE & BREADCRUMB-->
+                            </div>
+                        </div>
+                        <!-- BEGIN PAGE CONTENT-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>‘NCTF VOICE for Better Sanitation & Hygiene in my School’, is an experimental initiative to test how ICT could be potentially used by the children to monitor the services that affected their life. Initially, children will be monitoring water, sanitation and hygiene situation in 30 secondary schools from Savar Upazilla of Dhaka districk through an android application for the improvement of their WASH situation. Using the application, each school NCTF are sending 4 types of information on a regular basis - the drinking water situation, toilet situation, hygiene practice & behavior, and accountability structure. The application sends these data to a system where it is processed and produces simple reports fro the use of school authorities; resulting in the generation of actionable information for improving school WASH situation. The generated information will also be used by children and youth organizations to campaign and negotiate space for establishing or strengthening accountability structure in schools nationally. The National Children Task Force (NCTF) is  the central player of the initiative who are supported by the Village Education Resource Center (VERC), Center for Services in Disability (CSID), Mass-line Media Center (MMC), mPower Social Enterprises Ltd. and with overall coordination from Save the Children. Save the Children is supporting this initiative under ICT & Innovative Partnership project, responding to well-known challenges for children in new ways.</p>
+                            </div>
+                            <div class="col-md-12">
+                                To know more about NCTF, visit <a href="http://nctfbd.org">www.nctfbd.org</a> and for more information about the project (in Bengali), please <a href="http://nctfbd.org">click here</a>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-9">
+                                    <img src="/public/img/landing_graph.png" alt="" class="img-responsive"/>
+
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="landing-poll">
+                                        <div class="poll-header">
+                                            PARTICIPATE IN POLL 
+                                        </div>
+                                        <div class="poll-body">
+                                            <form role="form">
+                                                <div class="form-body">
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label"><strong>Age</strong></label>
+                                                        <div class="col-md-9">
+                                                            <div class="radio-list">
+                                                                <label>
+                                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"> Below 18
+                                                                </label>
+                                                                <label>
+                                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Above 18
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label"><strong>Gender</strong></label>
+                                                        <div class="col-md-9">
+                                                            <div class="radio-list">
+                                                                <label>
+                                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"> Male
+                                                                </label>
+                                                                <label>
+                                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Female
+                                                                </label>
+                                                                <label>
+                                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Other
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <h3>Do you think...........?</h3>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="radio-list">
+                                                            <label><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"> Yes</label>
+                                                            <label><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> No</label>
+                                                            <label><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Not Known</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-md-offset-2 control-label">
+                                                            <button type="submit" class="btn black-background">VOTE</button>
+                                                        </label>
+                                                        <label class="col-md-offset-2">
+                                                            <button type="button" class="btn black-background">PREVIOUS</button>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-md-offset-4 control-label"><strong>Total</strong></label>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-md-offset-3 control-label">
+                                                            <button type="button" class="btn btn-default btn-xs">0</button>
+                                                            <button type="button" class="btn btn-default btn-xs">0</button>
+                                                            <button type="button" class="btn btn-default btn-xs">0</button>
+                                                            <button type="button" class="btn btn-default btn-xs">0</button>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT-->
+                        <!-- END PAGE HEADER-->
+                    </div>
+                </div>
+            </div>
+            <!-- END CONTENT -->
+        </div>
+    </div>
+    <!-- END CONTAINER -->
+    <!-- BEGIN FOOTER -->
+    <div class="footer">
+        <div class="footer-inner">
+            For support, please contact with &nbsp;&nbsp;
+            <a href="mailto:myschoolvoice@gmail.com"> myschoolvoice@gmail.com</a>
+        </div>
+        <div class="pull-right">
+            Powered by mPower Social
+        </div>
+    </div>
+    <!-- END FOOTER -->
+
+    <!-- BEGIN Login Modal -->
+    <div id="createRoleModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header login-mod-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><strong>CREATE ROLE</strong></h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Role Name</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" placeholder="Role Name">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-4 col-md-8">
+                                    <button type="submit" class="btn btn-danger">SAVE</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">CANCEL</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Login Modal -->
+
+    <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    <!-- BEGIN CORE PLUGINS -->
+    <!--[if lt IE 9]>
+    <script src="/public/plugins/respond.min.js"></script>
+    <script src="/public/plugins/excanvas.min.js"></script> 
+    <![endif]-->
+    <script src="/public/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+
+    <script src="/public/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+    <script src="/public/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="/public/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/public/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="/public/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="/public/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="/public/scripts/app.js" type="text/javascript"></script>
+    <script src="/public/scripts/index.js" type="text/javascript"></script>
+    <script src="/public/scripts/tasks.js" type="text/javascript"></script>
+    <script src="/public/scripts/form-components.js"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+
+    <script>
+        jQuery(document).ready(function() {
+            App.init(); // initlayout and core plugins
+            Index.init();
+            Tasks.initDashboardWidget();
+            FormComponents.init();
+        });
+    </script>
+    <!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

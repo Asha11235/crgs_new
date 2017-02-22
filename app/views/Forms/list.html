@@ -1,0 +1,44 @@
+#{extends 'main.html' /}
+#{set title:'Forms' /}
+
+<div class="page-header top">
+	<h1>${title}</h1>
+</div>
+
+#{if flash.success}
+    #{alert flash.success/}
+#{/if}
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Name</th>
+			<th>Short Name</th>
+			<th>Actions</th>
+		</tr>
+	<thead>
+	<tbody>
+	#{list items:forms, as:'form'}
+		<tr>
+			
+			<td>${form.name}</td>
+			<td>${form.shortName}</td>
+			<td>
+				<a class="btn btn-mini" href="@{Forms.listData(form.id,1)}"><i class="icon-tasks"></i> Data</a>
+				<a class="btn btn-mini" href="@{Forms.details(form.id)}">Details</a>
+				#{deadbolt.externalizedRestriction externalRestrictions:['Edit Form']}
+            	*{<a class="btn btn-mini" href="@{Forms.edit(form.id)}"><i class="icon-edit"></i> Edit</a>}*
+            	<a class="btn btn-mini btn-primary" href="@{Forms.exportCSV(form.id)}"><i class="icon-download icon-white"></i> Export</a>
+				<a class="btn btn-mini btn-danger delete" data-url="@{Forms.delete(form.id)}" href="#deleteModal"><i class="icon-remove icon-white"></i> Delete</a>
+				#{/deadbolt.externalizedRestriction}
+			</td>
+		</tr>
+	#{/list}
+	#{else}
+		<tr>
+			<td colspan="4">No Form Available</td>
+		</tr>
+	#{/else}
+	<tbody>
+</table>

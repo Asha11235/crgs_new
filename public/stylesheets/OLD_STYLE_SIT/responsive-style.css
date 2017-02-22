@@ -1,0 +1,202 @@
+@media (max-width:1135px) {
+#menu-area,
+#heder {
+	padding:0 10px;
+}
+#slider {
+	padding:0px 0 34px 0;
+	margin:0 10px;
+	clear:both;
+}
+.progress { 
+    width:100%;
+}
+.containt_left {
+	padding-left:10px;
+}
+#containt_wrapper {
+	margin:25px 10px 0 10px;
+	overflow:hidden;
+}
+}
+
+@media (max-width:1090px) {
+.containt_right{
+	max-width:97%;
+	float:none;
+	margin:0 auto;
+}	
+.containt_left {
+	max-width:97%;
+	float:none;
+	margin:0 auto;
+}
+}
+
+@media (max-width:960px) {
+#pdf {
+    float: none;
+    padding-top:3px;
+    width: 150px;
+	margin:0 auto;
+}
+#menu {
+	float:none;
+	margin:0 auto;
+}
+#containt_area {
+	padding:0 10px;
+}
+}
+
+@media (max-width:985px) {
+.logo {
+	width:136px;
+}
+.containt_wrapper {
+	width:100%;
+}
+#containt_area {
+	padding:0 10px;
+}
+.containt_left {
+    max-width:100%;
+	float:none;
+}
+.containt_right {
+    max-width:100%;
+	float:none;
+}
+.english_part {
+	float: none;
+	width: 100% !important;
+    
+}
+.bangla_part {
+    float: none;
+    width: 100% !important;
+}
+}
+
+@media (max-width:820px) {
+#heder-right {
+	float:right;
+	padding:20px 0px;
+	overflow:hidden;
+}
+.form-horizontal {
+	max-width:100%;
+}
+
+#containt_area {
+	padding:0 0;
+}
+}
+@media (max-width:745px) {
+#heder-right {
+	float:right;
+	padding:20px 0px;
+	overflow:hidden;
+}
+.form-horizontal {
+	max-width:100%;
+}
+
+.container {
+	width:100% !important;
+	margin:0 auto !important;
+}
+
+
+.input, textarea, .uneditable-input {
+	width:314px !important;
+}
+
+}
+
+@media (max-width:630px) {
+.logo {
+	float:left;
+	width:136px;
+}
+
+#heder-right {
+	margin:0 auto;
+}
+.logo img,
+#logo img {
+	max-width:60%;
+}
+.controls {
+	max-width:20px;
+}
+
+.leftmenu {
+	float:none;
+	width:100%;
+}
+.input, button, select, textarea {
+	margin-top:10px;
+}
+	
+.form-horizontal .controls {
+	margin:0;
+}
+}
+@media (max-width:630px) {
+.form-horizontal .form-actions {
+	padding-left:0;
+}
+	}
+@media (max-width:440px) {
+
+#menu {
+	float:none;
+	margin:0 auto;
+}
+.bangla_part {
+	float:none;
+}
+.part_one .btn-success {
+	margin:0! !important;
+}
+
+.logo {
+	float:left;
+}
+
+.input-xlarge {
+	width:215px;
+}
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+    min-width:215px;
+}
+select {
+	width:215px;
+}
+}
+@media (max-width: 360px) {
+.tabs-left > .nav-tabs {
+    border-right: 1px solid #ddd;
+    float: none;
+    margin-right: 19px;
+}
+ }
+@media (max-width: 320px) {
+.part_one .control-group input {
+    margin:0 0 20px 0 !important;
+	min-width: inherit;
+	width: 262px;
+}
+.logo {
+	float:left;
+}
+
+.button {
+	width:294px;
+}
+

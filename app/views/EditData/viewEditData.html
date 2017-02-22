@@ -1,0 +1,63 @@
+#{extends 'main.html' /}
+#{set title:'Data' /}
+%{tmpGroup=0;}%
+
+<ul class="breadcrumb">
+  <li><a href="@{Forms.list()}"><i class="icon-list"></i> Forms</a> <span class="divider">/</span></li>
+  <li><a href="@{Forms.listData(data.form.id)}">${data?.form?.name} Data</a> <span class="divider">/</span></li>
+  <li class="active">Details</li>
+</ul>
+
+
+<form action="@{EditData.submitUpdatedData(data.id)}" method="post">
+<table class="table table-striped">
+	<tr>
+		<th>Question</th>
+		<th>Answer</th>
+	</tr>
+#{set tmp:0 /}
+#{list items:list, as:'item'}
+	#{if item.value }
+	<tr>
+		<td>
+			#{if tmpGroup>0}
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8226;
+						%{tmpGroup = tmpGroup-1;}%
+			#{/if}
+			<strong>${item.title?.capFirst()}</strong></td>
+		<td>
+		#{if item.type=="select"}
+            #{list items:optionsList, as:'option'}
+                #{if option.formResource == item.formResource}
+	                %{optionsValueArr = item.valueVar.tokenize(',');}%                            
+	                <input type="checkbox" name="${item.id}" id="${item.id}" value="${option.value}" #{list optionsValueArr, as:'optionVal'}
+	            #{if option.valueVar == optionVal }checked=true #{/if}
+                #{/list}>${option.value}<br>
+                #{/if}
+            #{/list}            
+        #{/if}
+		
+		#{elseif item.type == "select1"}
+			#{list items:optionsList, as:'option'}
+				#{if option.formResource == item.formResource}
+				<input type="radio" name="${item.id}" value="${option.value}" #{if option.valueVar == item.valueVar}checked=true #{/if}>${option.value}<br>
+				#{/if}
+			#{/list}
+		#{/elseif}
+		
+		#{else}
+		<input type="text" name="${item.id}" id="${item.id}" value="${item.value}"/>
+		<!-- <input type="hidden" name="${item.id}var" id="${item.id}var" value="${item.valueVar}"/> -->
+		#{/else}
+		</td>
+	</tr>
+	#{/if}
+#{/list}
+</table>
+
+<input class="btn btn-primary" type="submit" value="Update">
+</form>
+
+#{set 'moreScripts'}
+	#{script 'jquery-1.7.2.min.js' /}
+#{/set}

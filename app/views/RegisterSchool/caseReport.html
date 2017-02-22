@@ -1,0 +1,263 @@
+#{include 'head.html' /}
+
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="@{Forms.list()}"><img src="/public/images/logo.png" alt="" /></a>
+				<p class="slogan ">NCTF Voice - for better sanitation and hygiene at my school</p>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<!-- <ul class="nav navbar-nav">
+					<li class="active"><a href="./secure/login">Log-in <span class="sr-only">(current)</span></a></li>
+				</ul> -->
+
+				#{if currentUser}
+				<ul class="nav navbar-nav navbar-right">
+					<li><a >${currentUser?.displayName}</a></li>
+					<li><a href="@@{Secure.logout()}">Logout</a></li>
+				</ul> 
+				#{/if} 
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+
+
+	<div class="container">
+		<div class="f_align">
+			<div class="portlet-body form">
+				#{form @saveCaseReport(), class:'form-horizontal form-bordered well'} 
+
+				<h3>Case Reproting </h3>
+				
+                                    <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="col-md-8">
+                                                <h3 class="form-section">INFORMER'S INFORMATION</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">Informer Name </label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" name="school.informerName" id="informerName">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">Contact No. </label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" name="school.mobNumber" id="mobNumber">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-8">
+                                                    <h3 class="form-section">CASE DETAILS</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">Victim Name </label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" name="school.victimName" id="victimName">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">Victim's Approxmiate Age</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" name="school.victimAge" id="victimAge">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">Victim's Sex </label>
+                                                    <div class="col-md-4">
+                                                        #{input 'school.victimSex' , type:'select', items:gender, labelProperty:'name' }
+														#{option}Any#{/option}
+														#{/input}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-8">
+                                                    <h3 class="form-section">ADDRESS</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+												<label for="selector1" class="col-sm-3 control-label">Division</label>
+												<div id="geoDivision" class="col-sm-6 geo" url="@{RegisterSchool.loadGeoDistrict()}" load-data-container="#geoDistrict">
+													#{input 'school.geoDivision.id' , type:'select', items:geoDivisionList, labelProperty:'name' }
+													#{option}Any#{/option}
+													#{/input}
+												</div>
+											</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+												<label for="selector1" class="col-sm-3 control-label">District</label>
+												<div id="geoDistrict" class="col-sm-6 geo" url="@{RegisterSchool.loadGeoUpazilla()}"  load-data-container="#geoUpazilla">
+													#{input 'school.geoDistrict.id' , type:'select', items:geoDistrictList,labelProperty:'name' } 
+													#{option}Any#{/option}
+													#{/input}
+												</div>
+											</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+												<label for="selector1" class="col-sm-3 control-label">Upazilla/Thana</label>
+												<div id="geoUpazilla" class="col-sm-6 geo" url="@{RegisterSchool.loadGeoUnion()}"  load-data-container="#geoUnion">
+													#{input 'school.geoUpazilla.id' , type:'select', items:geoUpazillaList,labelProperty:'name' } 
+													#{option}Any#{/option}
+													#{/input}
+												</div>
+											</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+												<label for="selector1" class="col-sm-3 control-label">Union/Ward</label>
+												<div id="geoUnion" class="col-sm-6 geo"   >
+													#{input 'school.geoUnion.id' , type:'select', items:geoUpazillaList,labelProperty:'name' } 
+													#{option}Any#{/option}
+													#{/input}
+												</div>
+											</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">Address </label>
+                                                    <div class="col-md-8">
+                                                        <textarea class="form-control" name="" id=""></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">Description of Incident </label>
+                                                    <div class="col-md-8">
+                                                        <textarea class="form-control" name="school.description" id="description"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">Type of Incident </label>
+                                                    <div class="col-md-4">
+                                                        <select class="form-control" name="" id="">
+                                                            <option value=""></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">Associated School </label>
+                                                    <div class="col-md-4">
+                                                        #{input 'school.associateSchool.id' , type:'select', items:schoolList, labelProperty:'name' }
+														#{option}Any#{/option}
+														#{/input}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">Current Status </label>
+                                                    <div class="col-md-4">
+                                                         #{input 'school.currentStatus' , type:'select', items:status, labelProperty:'name' }
+														#{option}Any#{/option}
+														#{/input}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--<div class="col-md-4">
+                                                <div class="form-group">
+                                                    <div class="col-md-10">
+                                                        <button type="submit" class="btn btn-danger">SUBMIT</button>
+                                                        <br clear="all" />
+                                                        <br clear="all" />
+                                                        <button type="button" class="btn btn-danger">CANCEL</button>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                            <div class="form-actions fluid">
+					
+							<div class="col-md-12">
+							<div class="col-md-offset-3 col-md-9">
+								#{submit /}
+							</div>
+						</div>
+					
+			#{/form}
+			
+		</div>
+	</div>
+</div>
+</div>
+
+
+</body>
+
+</html>

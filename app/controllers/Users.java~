@@ -1,0 +1,565 @@
+package controllers;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+
+import models.Aco;
+import models.GeoDistrict;
+import models.GeoDivision;
+import models.GeoRegion;
+import models.GeoUnion;
+import models.GeoUpazilla;
+import models.Role;
+import models.SchoolInformation;
+import models.User;
+import play.Logger;
+import play.data.validation.Valid;
+import play.mvc.With;
+import responses.LoginResponse;
+import utils.UserUtils.UserRole;
+import annotations.Mobile;
+import controllers.deadbolt.Deadbolt;
+import controllers.deadbolt.ExternalRestrictions;
+import controllers.deadbolt.Unrestricted;
+
+@With(Deadbolt.class)
+public class Users extends Controller {
+	
+	@ExternalRestrictions("View User")
+    public static void list() {
+		List<User> users = User.find("name <> 'admin'").fetch();
+		List<Role> rolesList = Role.find("id <> 1").fetch();
+		
+		List<Role> roles = Role.findAll();
+		 int headSelector = 2;
+        render(users,roles,rolesList,headSelector);
+    }
+
+	@ExternalRestrictions("View User")
+    public static void details(Long id) {
+		User user = User.findById(id);
+		notFoundIfNull(user, "user not found");
+
+		List<GeoDivision> geoDivisionList = GeoDivision.findAll();
+		List<GeoDistrict> geoDistrictList = GeoDistrict.findAll();
+		List<GeoUpazilla> geoUpazillaList = GeoUpazilla.findAll();
+		List<GeoUnion> geoUnionList = GeoUnion.findAll();
+//		List<GeoPSU> geoPSUs = User.getAssignableGeoPSU();
+		
+		String fieldName = "geoUpazilla.geoDistrict";
+		render(user,geoDivisionList,geoDistrictList,geoUpazillaList,geoUnionList, fieldName);
+    }
+	
+	public static void detailsUser(Long id){
+		User user = User.findById(id);
+		notFoundIfNull(user, "user not found");
+		
+		List<SchoolInformation> schoolList = SchoolInformation.findAll();
+		
+		
+		render(user,schoolList);
+	}
+	
+	/**Customized Details*/
+	
+	@ExternalRestrictions("View User")
+    public static void detailsOfDS(Long id) {
+		User user = User.findById(id);
+		notFoundIfNull(user, "user not found");
+		
+/*		if(!user.isDS()) {
+			error("Not a Valid User");
+		}*/
+		List<GeoDistrict> geoDistrictList = new ArrayList<GeoDistrict>();
+		
+		geoDistrictList = GeoDistrict.getAssignableGeoDistrictList(user.role, null);
+		
+		render(user, geoDistrictList);
+    }
+	@ExternalRestrictions("View User")
+    public static void detailsOfFS(Long id) {
+		User user = User.findById(id);
+		notFoundIfNull(user, "user not found");
+		
+/*		if(!user.isFS()) {
+			error("Not a Valid User");
+		}*/
+		List<GeoUnion> geoUnionList = new ArrayList<GeoUnion>();
+		
+		User parentUser = user.getParentUser();
+		List<GeoUnion> parentGeoUnions = GeoUnion.listGeoUnionChildOf(new ArrayList<GeoDistrict>(parentUser.geoDistrictList));;
+		
+		//geoUnionList = GeoUnion.getAssignableGeoUnionList(user.role, new TreeSet<GeoUnion>(parentGeoUnions));
+		geoUnionList = parentGeoUnions;
+		render(user, geoUnionList);
+    }
+	
+	public static void detailsOfMH(Long id) {
+		User user = User.findById(id);
+		notFoundIfNull(user, "user not found");
+		
+/*		if(!user.isMH()) {
+			error("Not a Valid User");
+		}*/
+		/*List<GeoDistrict> geoDistrictList = new ArrayList<GeoDistrict>();
+		
+		geoDistrictList = GeoDistrict.getAssignableGeoDistrictList(user.role, null);
+		*/
+		render(user);
+    }
+	
+	public static void detailsOfMC(Long id) {
+		User user = User.findById(id);
+		notFoundIfNull(user, "user not found");
+		
+/*		if(!user.isMC()) {
+			error("Not a Valid User");
+		}*/
+		List<GeoRegion> geoRegionList = new ArrayList<GeoRegion>();
+		
+		geoRegionList = GeoRegion.getAssignableGeoRegionList(user.role, null);
+		
+		render(user, geoRegionList);
+    }
+	
+	public static void detailsOfDM(Long id) {
+		User user = User.findById(id);
+		notFoundIfNull(user, "user not found");
+		
+/*		if(!user.isDM()) {
+			error("Not a Valid User");
+		}*/	
+		
+		List<GeoDistrict> geoDistrictList = new ArrayList<GeoDistrict>();
+		
+		User parentUser = user.getParentUser();
+		List<GeoDistrict> parentGeoDistricts = GeoDistrict.listGeoDistrictChildOf(new ArrayList<GeoRegion>(parentUser.geoRegionList));;
+		
+		geoDistrictList = parentGeoDistricts;
+		render(user, geoDistrictList);    
+    }
+	
+	public static void detailsOfFF(Long id) {
+		User user = User.findById(id);
+		notFoundIfNull(user, "user not found");
+		
+/*		if(!user.isFF()) {
+			error("Not a Valid User");
+		}*/	
+		
+		List<GeoUnion> geoUnionList = new ArrayList<GeoUnion>();
+		
+		User parentUser = user.getParentUser();
+		List<GeoUnion> parentGeoUnions = GeoUnion.listGeoUnionChildOf(new ArrayList<GeoDistrict>(parentUser.geoDistrictList));;
+		
+		geoUnionList = parentGeoUnions;
+		render(user, geoUnionList);    
+    }
+	
+	
+	public static void detailsOfRM(Long id) {
+		User user = User.findById(id);
+		notFoundIfNull(user, "user not found");
+		
+/*		if(!user.isRM()) {
+			error("Not a Valid User");
+		}*/
+		List<GeoRegion> geoRegionList = new ArrayList<GeoRegion>();
+		
+		geoRegionList = GeoRegion.getAssignableGeoRegionList(user.role, null);
+		
+		render(user, geoRegionList);    
+		}
+	
+
+	public static void detailsOfDO(Long id) {
+		User user = User.findById(id);
+		notFoundIfNull(user, "user not found");
+		
+/*		if(!user.isDO()) {
+			error("Not a Valid User");
+		}*/
+		List<GeoRegion> geoRegionList = new ArrayList<GeoRegion>();
+		
+		geoRegionList = GeoRegion.getAssignableGeoRegionList(user.role, null);
+		
+		render(user, geoRegionList);    
+		}
+
+	/**
+	 * Assign or Remove GeoRegion to M&C
+	 * */
+	@ExternalRestrictions("Edit User")
+	public static void assignGeoRegion(Long userId, Long[] geoRegions, Boolean remove) {
+		
+		Logger.info("User get the Hit" + userId);
+		
+		notFoundIfNull(userId, "No userId provided");
+		
+		
+		
+		if(geoRegions.length > 0) {
+			
+			for(int i =0 ;i< geoRegions.length;i++){
+				Logger.info("Schoole Id" + geoRegions[i]);
+			}
+			
+			User user = User.findById(userId);
+			notFoundIfNull(user, "user not found");
+		
+		
+			for(Long geoRegionId : geoRegions) {
+				SchoolInformation school = SchoolInformation.findById(geoRegionId);		
+				notFoundIfNull(school);
+				
+				if(remove) {
+					if (school.isRemovable(user)) {
+						school.removeFrom(user);
+					}
+				}
+				else {
+					if (school.isAssignable(user)) {
+						school.assignTo(user);	
+					}	
+				}
+			}
+			user.save();
+		}
+		ok();
+    }
+	
+	public static void assignSchool(Long userId, Long[] schools, Boolean remove){
+			if(schools.length > 0) {
+				User user = User.findById(userId);
+				notFoundIfNull(user, "user not found");
+				for(Long school : schools){
+					SchoolInformation aSchool = SchoolInformation.findById(school);
+					notFoundIfNull(aSchool);
+					if(remove){
+						
+					}
+					
+				}
+			}
+		
+	}
+	
+	
+	
+	/**
+	 * Assign or Remove GeoDistrict to DS
+	 * */
+	@ExternalRestrictions("Edit User")
+	public static void assignGeoDistrict(Long userId, Long[] geoDistricts, Boolean remove) {
+		notFoundIfNull(userId, "No userId provided");
+		if(geoDistricts.length > 0) {			
+			User user = User.findById(userId);
+			notFoundIfNull(user, "user not found");
+						
+/*			if (!user.isDM()) {
+				Logger.info("(Users.java) Invalid User Role, Role = " + user.role.name);
+				error("Invalid User Role");
+			}*/
+			
+			for(Long geoDistrictId : geoDistricts) {
+				Logger.info("(Users.java) district id = " + geoDistrictId);
+				GeoDistrict geoDistrict = GeoDistrict.findById(geoDistrictId);
+				notFoundIfNull(geoDistrict);
+				
+				if(remove) {
+					if (geoDistrict.isRemovable(user)) {
+						geoDistrict.removeFrom(user);
+					}
+				}
+				else {
+					if (geoDistrict.isAssignable(user)) {
+						Logger.info("(Users.java) assigning district id = " + geoDistrict.id);
+						geoDistrict.assignTo(user);	
+					}	
+				}
+			}
+			user.save();
+		}
+		ok();
+    }
+	
+	/**
+	 * Assign or Remove GeoUnion to FS
+	 * */
+	@ExternalRestrictions("Edit User")
+	public static void assignGeoUnion(Long userId, Long[] geoUnions, Boolean remove) {
+		notFoundIfNull(userId, "No userId provided");
+		if(geoUnions.length > 0) {
+			User user = User.findById(userId);
+			notFoundIfNull(user, "user not found");
+			
+/*			if (!user.isFF()) {
+				error("Invalid User Role");
+			}*/
+			
+			for(Long geoUnionId : geoUnions) {
+				GeoUnion geoUnion = GeoUnion.findById(geoUnionId);
+				notFoundIfNull(geoUnion);
+				
+				if(remove) {
+					if (geoUnion.isRemovable(user)) {
+						geoUnion.removeFrom(user);
+					}
+				}
+				else {
+					if (geoUnion.isAssignable(user)) {
+						
+						Logger.info("assignable");
+						geoUnion.assignTo(user);
+					}
+				}
+			}
+			user.save();
+		}
+		ok();
+    }
+	
+    @ExternalRestrictions("Edit User")
+    public static void create() {
+    	List<Role> roles = Role.findAll();
+    	render("@list", roles);
+    }
+
+	@ExternalRestrictions("Edit User")
+    public static void edit(Long id) {
+    	User user = User.findById(id);
+    	notFoundIfNull(user, "user not found");
+    	user.password = null;
+    	List<Role> roles = Role.findAll();
+    	
+    	Logger.info(""+roles.size());
+    	
+     	render(user, roles);
+    }
+
+    @ExternalRestrictions("Edit User")
+    public static void submit( User user) {
+    	//user hierarchy validation segment
+    	    	
+/*    	UserRole userRole = UserRole.getRole(user.role.name);    	
+    	switch (userRole) {
+		case MC:
+			validation.required(user.mh).key("user.mh.id");
+			break;
+		case DM:
+			validation.required(user.mc).key("user.mc.id");
+			break;
+		case FF:
+			validation.required(user.dm).key("user.dm.id");
+			break;
+		case ENUMERATOR:			
+			validation.required(user.mc).key("user.mc.id");
+			break;
+		default:
+			break;
+		}   */ 	
+
+    	validation.valid(user);
+    	Logger.info("validation  " + validation.hasErrors());
+    	
+    	if(validation.hasErrors()) {
+    		List<Role> roles = Role.findAll();
+        	render("@edit", user, roles);    
+        }
+    	
+    	user.save();
+        list();
+        flash.success("Record saved successfully.");
+    }
+    
+    @ExternalRestrictions("Edit User")
+    public static void loadMobilizerList(User user) {
+       	List<Role> roles = Role.findAll();
+       	render("@edit",user, roles);
+    }
+
+    /*@ExternalRestrictions("Edit User")
+    public static void delete(Long id) {
+    	if(request.isAjax()) {
+	    	notFoundIfNull(id, "id not provided");
+	    	User user = User.findById(id);
+	    	notFoundIfNull(user, "user not found");
+	    	user.delete();
+	    	ok();
+    	}
+    }*/
+    
+    @ExternalRestrictions("Edit User")
+    public static int delete() {
+    	int confirm = 0;
+    	if(request.isAjax()) {
+    		Long id = Long.valueOf(request.params.get("userId"));
+    		Logger.info("User id:"+id);
+	    	User user = User.findById(id);
+	    	notFoundIfNull(user, "user not found");
+	    	//List<Data> ff = Data.find("sender = ? ",user).fetch();
+	    	Set<SchoolInformation> schools = user.schoolInformation;
+	      	
+	  		List<SchoolInformation> list = new ArrayList<SchoolInformation>(schools);
+	  		if(list.size() > 0){
+	    		confirm = 0;
+	    	}
+	    	else{
+		    	user.delete();
+		    	confirm = 1;
+	    	}
+	    	
+    	}
+    	return confirm;
+    }
+
+
+    /* Roles */
+	@ExternalRestrictions("Edit User")
+    public static void roleList() {
+		List<Role> roles = Role.find("id <> 1").fetch();
+        render(roles);
+    }
+
+    @ExternalRestrictions("Edit User")
+    public static void roleCreate() {
+    	render("@roleEdit");
+    }
+
+	@ExternalRestrictions("Edit User")
+    public static void roleEdit(Long id) {
+    	Role role = Role.findById(id);
+    	notFoundIfNull(role, "user not found");
+    	render(role);
+    }
+
+    @ExternalRestrictions("Edit User")
+    public static void roleSubmit(@Valid Role role) {
+        if(validation.hasErrors()) {
+        	render("@roleEdit", role);
+        }
+        role.save();
+        flash.success("Record saved successfully.");
+        list();
+    }
+
+   /* @ExternalRestrictions("Edit User")
+    public static void roleDelete(Long id) {
+    	if(request.isAjax()) {
+	    	notFoundIfNull(id, "id not provided");
+	    	Role role = Role.findById(id);
+	    	notFoundIfNull(role, "role not found");
+	    	role.delete();
+	    	ok();
+    	}
+    }*/
+	@ExternalRestrictions("Edit User")
+    public static int roleDelete() {
+		int confirm = 0;
+    	if(request.isAjax()) {
+    		Long id = Long.valueOf(request.params.get("roleId"));
+    		Logger.info("Role id:"+id);
+	    	notFoundIfNull(id, "id not provided");
+	    	Role role = Role.findById(id);
+	    	notFoundIfNull(role, "role not found");
+	    	List<User>listUser = User.find("role = ?",role).fetch();
+	    	Logger.info("listUser size is::"+listUser.size());
+	    	if(listUser.size() > 0){
+	    		confirm = 0;
+	    	}
+	    	else{
+	    		role.delete();
+		    	confirm = 1;
+	    	} 	
+	    	
+    	}
+    	return confirm;
+	}
+
+    
+	/* Access Control List */
+    @ExternalRestrictions("ACL")
+    public static void acl() {
+    	List<Role> roles = Role.findAll();
+    	List<Aco> acos = Aco.find("name <> 'ACL'").fetch();
+    	int headSelector = 3;
+    	render(roles, acos,headSelector);
+    }
+
+    @ExternalRestrictions("ACL")
+    public static void updatePermission(long acoId, long roleId, boolean state) {
+    	notFoundIfNull(acoId);
+    	notFoundIfNull(roleId);
+    	notFoundIfNull(state);
+    	Aco aco = Aco.findById(acoId);
+    	Role role = Role.findById(roleId);
+		if(role.id == 1) {
+			ok();
+		}
+    	notFoundIfNull(aco);
+    	notFoundIfNull(role);
+    	if(state) {
+    		aco.roles.add(role);
+    	} else {
+    		aco.roles.remove(role);
+    	}
+    	aco.save();
+    	ok();
+    }
+
+    /*
+     * All mobile API end points are prefixed with the letter 'm'
+     */
+    
+    @Unrestricted
+    @Mobile
+    public static void mLogin() {
+		if(!session.contains("apiUser")) {
+			error(424, "Session expired");
+		}
+		User user = User.find("byName", session.get("apiUser")).first();
+		renderJSON(new LoginResponse(user));
+    }
+    
+	public static void loadGeoDistrict(Long id){
+		if(request.isAjax()) {
+			GeoDivision division = GeoDivision.findById(id);
+			List<GeoDistrict> district = GeoDistrict.find("geoDivision = ?", division).fetch();
+			Logger.info("district size " +district.size());
+			render(district);
+		}
+	}
+	
+	public static void loadGeoUpazilla(Long id){
+		if(request.isAjax()) {
+			GeoDistrict district = GeoDistrict.findById(id);
+			List<GeoUpazilla> upazilla = GeoUpazilla.find("geoDistrict = ?", district).fetch();
+			render(upazilla);
+		}
+	}
+    
+	public static void loadGeoUnion(Long id){
+		if(request.isAjax()) {
+			GeoUpazilla upazilla = GeoUpazilla.findById(id);
+			List<GeoUnion> union = GeoUnion.find("geoUpazilla = ?", upazilla).fetch();
+			render(union);
+		}
+	}
+	
+    //AJAX response to load parent Users
+    @ExternalRestrictions("View User")
+    public static void loadParentUsers(Long id) {
+    	notFoundIfNull(id);
+    	Role role = Role.findById(id);
+    	notFoundIfNull(role);
+    	
+    	Role parentRole = Role.getParent(role);
+    	
+    	List<User> userList = User.getRoleUser(parentRole);
+    	Logger.info("(Users.java) parentUserName = " + userList.get(0).name);
+    	
+    	render(role, userList);
+    }    
+   }

@@ -1,0 +1,135 @@
+#{extends 'main.html' /}
+#{set title:'Users' /}
+
+<div class="page-header top">
+	<h1>${title}</h1>
+</div>
+
+#{if flash.success}
+    #{alert flash.success/}
+#{/if}
+<div id = "delete_msg"></div>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>&{'user.name'}</th>
+			<th>&{'user.displayName'}</th>
+			<th>&{'user.role.id'}</th>
+			<th>Actions</th>
+		</tr>
+	<thead>
+	<tbody>
+	#{list items:users, as:'user'}
+		<tr id = "${user.id}">
+			<td>${user.name}</td>
+			<td>${user.displayName}</td>
+			<td>${user.role.name}</td>
+			<td>	
+				#{deadbolt.externalizedRestriction externalRestrictions:['Edit User']}
+            	<a class="btn btn-mini" href="@{Users.details(user.id)}">Details</a>
+				<a class="btn btn-mini" href="@{Users.edit(user.id)}"><i class="icon-edit"></i> Edit</a>
+				<a class="btn btn-mini btn-danger delete_user" id = "${user.id}" ><i class="icon-remove icon-white"></i> Delete</a>
+				#{/deadbolt.externalizedRestriction}
+			</td>
+		</tr>
+	#{/list}
+	<tr>
+		<td colspan="4" align="right">
+			<ul class="pagination">
+				<li class="prev disabled">
+					#{if currentPage != 1}
+					<a id="curpage" href="?id=${form?.name},page=1">« First</a>
+					#{/if}
+					#{else}
+					<a href="#">« First</a>
+					#{/else}
+				</li>
+				<li class="prev disabled">
+					#{if currentPage != 1}
+					<a id="curpage" href="?id=${form?.name}&page=${currentPage-1}">« Previous</a>
+					#{/if}
+					#{else}
+					<a href="#">« Previous</a>
+					#{/else}
+				</li>
+
+				#{if currentPage <= totalPages}
+					#{list items:currentPage..(currentPage-1)+15,as:'i'}
+						#{if currentPage == i}
+						<li class="active">
+							<a href="#">${i}</a>
+						</li>
+						#{/if}
+						#{else}
+							#{if i <= totalPages}
+							<li><a id="curpage" href="?id=${form?.name}&page=${i}">${i}</a></li>
+							#{/if}		   
+						#{/else}
+					#{/list}
+				#{/if}
+
+				#{if currentPage < totalPages }
+				<li class="next">
+					<a id="curpage" href="?id=${form?.name}&page=${currentPage+1}">Next »</a>
+				</li>
+				#{/if}
+				#{else }
+				<li class="next disabled">
+					<a href="#">Next »</a>
+				</li>
+				#{/else}
+
+				#{if currentPage < totalPages }
+				<li class="next">
+					<a id="curpage" href="?id=${form?.name}&page=${totalPages}">Last »</a>
+				</li>
+				#{/if}
+				#{else }
+				<li class="next disabled">
+					<a href="#">Last »</a>
+				</li>
+				#{/else}
+			</ul> 
+
+		</td>
+	</tr>
+	#{else}
+		<tr>
+			<td colspan="8">No User Available</td>
+		</tr>
+	#{/else}
+	<tbody>
+</table>
+
+<script>
+	    //$('.delete_user').("click", function(){
+	    $(".delete_user").click(function(){  
+			var userId = $(this).attr("id");
+			console.log("userId:"+userId);
+	        if(confirm("Are you sure to delete this user?"))
+	        {
+	            $.ajax({
+	                type: "GET",
+	              	url:  "@{Users.delete}",
+	                data: {
+	                	userId: userId
+	                },
+	                success: function(data) {
+
+	                    if(data == 1){
+	                    	$('#delete_msg').html("<h3 style="+"color:green"+">User deleted successfully.</h3>");
+	                    	$("#"+userId).remove(); //row remove when deleted 
+	                     
+	                    }
+	                    else{
+	                    	$('#delete_msg').html("<h3 style="+"color:red"+">User cannot be deleted.</h3>");
+	                    }
+	                }
+
+
+	            });
+	        }
+	        return false;
+	         
+	    });
+</script>

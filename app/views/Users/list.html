@@ -1,0 +1,136 @@
+#{extends 'main.html' /}
+#{set title:'Users' /}
+
+<div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                        <h3 class="page-title">
+                            User Information
+                        </h3>
+                        <!-- END PAGE TITLE & BREADCRUMB-->
+                    </div>
+                </div>
+                <!-- BEGIN PAGE CONTENT-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN PORTLET-->
+                        <div class="portlet">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-reorder"></i>User Information
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <select class="form-control">
+                                                <option value="">Division</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <select class="form-control">
+                                                <option value="">District</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <select class="form-control">
+                                                <option value="">Upazila</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <select class="form-control">
+                                                <option value="">School</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <select class="form-control">
+                                                <option value="">Roles</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">&nbsp;</div>
+                                    <!--/span-->
+                                </div>
+                                <!-- BEGIN FORM-->
+                                <table class="table table-striped table-bordered table-hover" id="sample_2">
+                                    <thead>
+                                        <tr>
+                                            <th>User ID</th>
+                                            <th>User Name</th>
+                                            <th>Role</th>
+                                            <th>Division</th>
+                                            <th>District</th>
+                                            <th>Upazilla</th>
+                                            <th>Institution</th>
+                                            <th>&nbsp;</th>
+                                            <th>&nbsp;</th>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        #{list items:users, as:'user'}
+											<tr id = "${user.id}">
+												<td>${user.id}</td>
+												<td>${user.displayName}</td>
+												<td>${user.role.name}</td>
+												<td>${user.geoDivision.name}</td>
+												<td>${user.geoDistrict.name}</td>
+												<td>${user.geoUpazilla.name}</td>
+												<td>${user.school.name}</td>
+													
+												#{deadbolt.externalizedRestriction externalRestrictions:['Edit User']}
+									           	<td><a class="btn btn-mini" href="@{Users.details(user.id)}">Details</a></td>
+												<td><a class="btn btn-mini" href="@{Users.edit(user.id)}"><i class="icon-edit"></i> Edit</a></td>
+												<td><a class="btn btn-mini btn-danger delete_user" id = "${user.id}"><i class="icon-remove icon-white"></i> Delete</a></td>
+												#{/deadbolt.externalizedRestriction}
+												</td>
+											</tr>
+										#{/list}                              
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<script>
+	    //$('.delete_user').("click", function(){
+	    $(".delete_user").click(function(){  
+			var userId = $(this).attr("id");
+	        if(confirm("Are you sure to delete this user?"))
+	        {
+	            $.ajax({
+	                type: "GET",
+	              	url:  "@{Users.delete}",
+	                data: {
+	                	id: userId
+	                },
+	                success: function(data) {
+						console.log(data);
+	                    if(data == 1){
+	                    	$('#delete_msg').html("<h3 style="+"color:green"+">User deleted successfully.</h3>");
+	                    	$("#"+userId).remove(); //row remove when deleted 
+	                     	
+	                    }
+	                    else{
+	                    	$('#delete_msg').html("<h3 style="+"color:red"+">User cannot be deleted.</h3>");
+	                    }
+	                }
+
+
+	            });
+	           
+	        }
+	        return false;
+	         
+	    });
+</script>

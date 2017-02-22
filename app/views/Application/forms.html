@@ -1,0 +1,39 @@
+#{extends 'main.html' /}
+
+
+ <div class="f_align">
+     	<h1>FORMS</h1>
+	   <div class="bor"></div>
+	   <div class="col-md-2"></div>
+	   #{deadbolt.externalizedRestriction externalRestrictions:['View School']}
+		   <div class="col-md-3">
+			<div class="active2">
+              <a href="@{Schools.createSchool()}"><img src="/public/images/forrm_1.png" class="imgs" alt="image"> </a>
+				  <h3 style="padding:30px 0 30px 0; color:#FFFFFF">School Registration Form</h3>
+                </div>
+			</div>
+		#{/deadbolt.externalizedRestriction}
+		 #{deadbolt.externalizedRestriction externalRestrictions:['View School']}
+			<div class="col-md-3">
+			<div class="box_form active">
+              <a href="#"><img src="/public/images/forrm_2.png" class="imgs" alt="image"> </a>
+				  <h3 style="padding:30px 0 30px 0; color:#FFFFFF">Case Reporting Form</h3>
+                </div>
+			</div>
+		#{/deadbolt.externalizedRestriction}
+		 #{deadbolt.externalizedRestriction externalRestrictions:['View School']}
+			<div class="col-md-3">
+			<div class="box_form active">
+              <a href="#"><img src="/public/images/forrm_3.png" class="imgs" alt="image"> </a>
+				  <h3 style="padding:30px 0 30px 0; color:#FFFFFF">School Polling Form</h3>
+                </div>
+			</div>
+			#{/deadbolt.externalizedRestriction}
+	   
+
+      <div class="col_1">
+	  </div>
+
+       <div class="clearfix"> 
+    </div>
+	</div>

@@ -1,0 +1,7 @@
+<forms>
+	#{list items:forms, as:'form'}
+	<!-- <form url="@@{Mobile.viewAsXml(form.id)}" isCSV="true" csvURLs="@@{Mobile.getFormCSV(form.id)}">${form.name}</form>
+	 -->
+	 <form url="@@{Mobile.viewAsXml(form.id)}" formType="${form.type}" isMedia="${form.isMedia}" mediaURLs="${form.getMediaURLs()}">${form.name}</form> 
+	#{/list}
+</forms>

@@ -1,0 +1,274 @@
+#{extends 'main.html' /}
+
+#{if flash.get("userId")}
+	<script type="text/javascript">
+		$(document).ready(function openEditModal(){
+			#{if flash.get("details")}
+				document.getElementById("editModalHead").innerHTML = "Details";
+				$("#editSave").hide();
+				$("#editCancel").hide();
+				$("select").prop("disabled", true);
+				$("input").prop("disabled", true);
+			#{/if}
+			$("#EditNGOModal").modal();
+		});
+	</script>
+#{/if}
+
+
+<div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                        <h3 class="page-title">
+                            NGO Registration<br/>
+                            <small>NGO List</small>
+                        </h3>
+                        <!-- END PAGE TITLE & BREADCRUMB-->
+                    </div>
+                </div>
+                <!-- BEGIN PAGE CONTENT-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN PORTLET-->
+                        <div class="portlet">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-reorder"></i>NGO Registration
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div class="row">
+                                    
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                         <div id="geoDivision" class="col-sm-8 SEARCH" url="@{Ngos.loadGeoDistrict()}" load-data-container-SEARCH="#geoDistrict">
+											#{select 'ngo.geoDivision.id' , value:0, items:geoDivisionList, labelProperty:'name', class:'form-control'}
+												#{option}Division#{/option}
+											#{/select}
+										</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div id="geoDistrict" class="col-sm-8 SEARCH" url="@{Ngos.loadGeoUpazilla()}"  load-data-container-SEARCH="#geoUpazilla">
+												#{select 'ngo.geoDistrict.id' , value:0, items:geoDistrictList,labelProperty:'name', class:'form-control'} 
+													#{option}District#{/option}
+												#{/select}
+											</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                           <div id="geoUpazilla" class="col-sm-8 SEARCH" url="@{Ngos.loadGeoUnion()}"  load-data-container-SEARCH="#geoUnion">
+												#{select 'ngo.geoUpazilla.id' , value:0, items:geoUpazillaList,labelProperty:'name', class:'form-control'} 
+													#{option}Upazilla#{/option}
+												#{/select}
+											</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-3">
+                                        <a href="javascript:;" class="btn btn-danger pull-right" 
+                                        data-toggle="modal" data-target="#CreateNGOModal">ADD NGO</a>
+                                    </div>
+                                </div>
+                                <!-- BEGIN FORM-->
+
+                                <!-- BEGIN NGO Modal -->
+                                <div id="CreateNGOModal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header login-mod-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title" id="modalHead"><strong>ADD NEW NGO</strong></h4>
+                                            </div>
+                                            <div class="modal-body">
+                                            
+                                                #{form @submit(), class:"form-horizontal"}
+                                                    <div class="form-body">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">NGO Name</label>
+                                                            <div class="col-md-6">
+                                                                <input name="ngo.ngoName" type="text" class="form-control1" id="ngo.ngoName" value="" placeholder="Default Input">
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="form-group">
+															<label for="selector1" class="control-label col-md-3">Division</label>
+															<div id="geoDivisionADD" class="col-sm-8 ADD" url="@{Ngos.loadGeoDistrict()}" load-data-container-ADD="#geoDistrictADD">
+																#{select 'ngo.geoDivision.id' , value:0, items:geoDivisionList, labelProperty:'name', class:'form-control'}
+																	#{option}Any#{/option}
+																#{/select}
+															</div>
+														</div>
+                                                        
+                                                        <div class="form-group">
+															<label for="selector1" class="control-label col-md-3">District</label>
+															<div id="geoDistrictADD" class="col-sm-8 ADD" url="@{Ngos.loadGeoUpazilla()}"  load-data-container-ADD="#geoUpazillaADD">
+																#{select 'ngo.geoDistrict.id' , value:0, items:geoDistrictList,labelProperty:'name', class:'form-control'} 
+																	#{option}Any#{/option}
+																#{/select}
+															</div>
+														</div>
+                                                        
+                                                        <div class="form-group">
+															<label for="selector1" class="control-label col-md-3">Upazilla</label>
+															<div id="geoUpazillaADD" class="col-sm-8 ADD" url="@{Ngos.loadGeoUnion()}"  load-data-container-ADD="#geoUnion">
+																#{select 'ngo.geoUpazilla.id' , value:0, items:geoUpazillaList,labelProperty:'name', class:'form-control'} 
+																	#{option}Any#{/option}
+																#{/select}
+															</div>
+														</div>
+
+                                                        <div class="form-group">
+                                                            <div class="col-md-offset-2 col-md-8">
+                                                                <button type="submit" class="btn btn-danger">SAVE</button>
+                                                                <button type="button" class="btn btn-danger" data-dismiss="modal">CANCEL</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                #{/form}                                         
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End NGO Modal -->
+                                
+                                
+                                <!-- Begin Edit NGO Modal -->
+                                <div id="EditNGOModal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header login-mod-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title" id="editModalHead"><strong>Edit Ngo</strong></h4>
+                                            </div>
+                                            <div class="modal-body">
+                                            
+                                                  #{form @editSubmit(), class:"form-horizontal"}
+                                                 
+                                                    <div class="form-body">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">NGO Name</label>
+                                                            <div class="col-md-6">
+                                                                <input name="editNgo.ngoName" type="text" class="form-control1" id="editNgo.ngoName" value="${ngo?.ngoName}" placeholder="Default Input">
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="form-group">
+															<label for="selector1" class="control-label col-md-3">Division</label>
+															<div id="geoDivisionEDIT" class="col-sm-8 EDIT" url="@{Ngos.loadGeoDistrict()}" load-data-container-EDIT="#geoDistrictEDIT">
+																#{input 'ngo.geoDivision.id' , type:'select', items:geoDivisionList, labelProperty:'name' }
+																	#{option}Any#{/option}
+																#{/input}
+															</div>
+														</div>
+                                                        
+                                                        <div class="form-group">
+															<label for="selector1" class="control-label col-md-3">District</label>
+															<div id="geoDistrictEDIT" class="col-sm-8 EDIT" url="@{Ngos.loadGeoUpazilla()}"  load-data-container-EDIT="#geoUpazillaEDIT">
+																#{input 'ngo.geoDistrict.id' , type:'select', items:geoDistrictList,labelProperty:'name' } 
+																	#{option}Any#{/option}
+																#{/input}
+															</div>
+														</div>
+                                                        
+                                                        <div class="form-group">
+															<label for="selector1" class="control-label col-md-3">Upazilla</label>
+															<div id="geoUpazillaEDIT" class="col-sm-8 EDIT" url="@{Ngos.loadGeoUnion()}"  load-data-container-EDIT="#geoUnion">
+																#{input 'ngo.geoUpazilla.id' , type:'select', items:geoUpazillaList,labelProperty:'name' } 
+																	#{option}Any#{/option}
+																#{/input}
+															</div>
+														</div>
+
+                                                        <div class="form-group">
+                                                            <div class="col-md-offset-2 col-md-8">
+                                                                <button type="submit" class="btn btn-danger" id = "editSave">SAVE</button>
+                                                                <button type="button" class="btn btn-danger" data-dismiss="modal" id = "editCancel" >CANCEL</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                #{/form}                                         
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Edit Ngo Modal -->
+                                
+                                
+                                
+
+                                <table class="table table-striped table-bordered table-hover" id="sample_2">
+                                    <thead>
+                                        <tr>
+                                            <th>NGO Name</th>
+                                            <th>Division</th>
+                                            <th>District</th>
+                                            <th>Upazilla</th>
+                                            <th>&nbsp;</th>
+                                            <th>&nbsp;</th>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    	#{list items:ngoList, as:'ngo'}
+										<tr id = "${ngo.id}">
+												<td>${ngo.ngoName}</td>
+												<td>${ngo.geoDivision?.name}</td>
+												<td>${ngo.geoDistrict?.name}</td>
+												<td>${ngo.geoUpazilla?.name}</td>
+			
+												#{deadbolt.externalizedRestriction externalRestrictions:['Edit NGO']}
+									            <td><a class="label label-sm label-warning" href="@{Ngos.details(ngo.id)}"> Details</a></td>
+												<td><a href="@{Ngos.initEdit(ngo.id)}" class="label label-sm label-warning"> Edit</a></td>
+												<td><a class="label label-sm label-warning delete_ngo" id="${ngo.id}"> Delete</a></td>
+												#{/deadbolt.externalizedRestriction}
+												
+											</tr>
+										#{/list}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <script>
+	    //$('.delete_user').("click", function(){
+	    $(".delete_ngo").click(function(){  
+			var ngoId = $(this).attr("id");
+	        if(confirm("Are you sure to delete this user?"))
+	        {
+	            $.ajax({
+	                type: "GET",
+	              	url:  "@{Ngos.delete}",
+	                data: {
+	                	id: ngoId
+	                },
+	                success: function(data) {
+						console.log(data);
+	                    if(data == 1){
+	                    	$('#delete_msg').html("<h3 style="+"color:green"+">User deleted successfully.</h3>");
+	                    	$("#"+ngoId).remove(); //row remove when deleted 
+	                     	
+	                    }
+	                    else{
+	                    	$('#delete_msg').html("<h3 style="+"color:red"+">User cannot be deleted.</h3>");
+	                    }
+	                }
+
+
+	            });
+	           
+	        }
+	        return false;
+	         
+	    });
+</script>
+

@@ -1,0 +1,981 @@
+package controllers;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+import controllers.deadbolt.Deadbolt;
+import controllers.deadbolt.ExternalRestrictions;
+import models.Data;
+import models.SchoolInformation;
+import models.User;
+import play.Logger;
+import play.mvc.With;
+
+@With(Deadbolt.class)
+
+public class Reports extends Controller{
+	
+	@ExternalRestrictions("Inactive Toilet Reason")
+	public static String inactiveToiletReason(){
+		
+		int headSelector = 4;
+		boolean ajaxFlag = false;
+		String schoolIdAjax = request.params.get("school");
+		//Logger.info(schoolIdAjax+"school--id");
+		String genderAjax = request.params.get("gender");
+		String monthAjax = request.params.get("month");
+		String yearAjax = request.params.get("year");
+		String ajax_query = "";
+		if(schoolIdAjax!=null){
+			ajaxFlag = true;
+		}
+		if(genderAjax != null && !(genderAjax.equals("gender")) ) {
+			ajaxFlag = true;
+			ajax_query += " AND res_type__1 ='"+genderAjax+"' "; 
+		}
+		if(monthAjax != null && !(monthAjax.equals("month"))){
+			ajaxFlag = true;
+			ajax_query += " AND MONTH(received) ='"+monthAjax+"' ";
+		}
+		if(yearAjax !=null && !(yearAjax.equals("year"))){
+			ajaxFlag = true;
+			ajax_query += " AND YEAR(received) ='"+yearAjax+"' ";
+		}
+		
+		ArrayList<Long> school = getSchools(schoolIdAjax);
+		String dataIdCond = getDataIdCondition(school);
+		//dataIdCond.replace("AND",""); //not working
+		String dataIdCondNew = null;
+		dataIdCondNew = dataIdCond.replace("AND","");
+		ArrayList<schoolInfo> info = getSchoolsInfo();
+		String search_query = "";
+		search_query = "SELECT "+
+		"count(why_toilet_unusable_1__1) as WaterTabBroken,"+ 
+		"count(why_toilet_unusable_2__1) as WaterSourcesFarAway,"+
+		"count(why_toilet_unusable_3__1) as NoWater,"+
+		"count(why_toilet_unusable_4__1) as NoLock,"+
+		"count(why_toilet_unusable_5__1) as BrokenDoor,"+
+		"count(why_toilet_unusable_6__1) as NoWaterContainer,"+
+		"count(why_toilet_unusable_7__1) as OverflowWater,"+
+		"count(why_toilet_unusable_8__1) as WaterClogging,"+
+		"count(why_toilet_unusable_9__1) as NoDustbin,"+
+		"count(why_toilet_unusable_10__1) as NoLight,"+
+		"count(why_toilet_unusable_11__1) as Insects,"+
+		"count(why_toilet_unusable_12__1) as BadSmell,"+
+		"count(why_toilet_unusable_13__1) as Other "+
+		"FROM crgs.tblFlat "+
+		//"where res_type__1 = '' "+
+		"where "+
+		""+dataIdCondNew+""+
+		""+ajax_query+"";
+		//Logger.info(search_query);
+		JsonArray inactiveToiletReasonJsonArray =new JsonArray();
+		Connection conn = play.db.DB.getConnection();
+		ResultSet rs = null;
+		Statement stmt = null;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(search_query);
+			rs.next();
+				JsonObject inactiveToiletReasonJson = new JsonObject();
+				inactiveToiletReasonJson.addProperty("title", "Water Tap is Broken");
+				inactiveToiletReasonJson.addProperty("number", rs.getInt("WaterTabBroken"));
+				inactiveToiletReasonJsonArray.add(inactiveToiletReasonJson);
+		
+				JsonObject inactiveToiletReasonJson1 = new JsonObject();
+				inactiveToiletReasonJson1.addProperty("title", "Water Sources is FarAway");
+				inactiveToiletReasonJson1.addProperty("number", rs.getInt("WaterSourcesFarAway"));
+				inactiveToiletReasonJsonArray.add(inactiveToiletReasonJson1);
+				
+				JsonObject inactiveToiletReasonJson2 = new JsonObject();
+				inactiveToiletReasonJson2.addProperty("title", "No Water");
+				inactiveToiletReasonJson2.addProperty("number", rs.getInt("NoWater"));
+				inactiveToiletReasonJsonArray.add(inactiveToiletReasonJson2);
+				
+				JsonObject inactiveToiletReasonJson3 = new JsonObject();
+				inactiveToiletReasonJson3.addProperty("title", "No Lock");
+				inactiveToiletReasonJson3.addProperty("number", rs.getInt("NoLock"));
+				inactiveToiletReasonJsonArray.add(inactiveToiletReasonJson3);
+				
+				JsonObject inactiveToiletReasonJson4 = new JsonObject();
+				inactiveToiletReasonJson4.addProperty("title", "Broken Door");
+				inactiveToiletReasonJson4.addProperty("number", rs.getInt("BrokenDoor"));
+				inactiveToiletReasonJsonArray.add(inactiveToiletReasonJson4);
+				
+				JsonObject inactiveToiletReasonJson5 = new JsonObject();
+				inactiveToiletReasonJson5.addProperty("title", "No Water Container");
+				inactiveToiletReasonJson5.addProperty("number", rs.getInt("NoWaterContainer"));
+				inactiveToiletReasonJsonArray.add(inactiveToiletReasonJson5);
+				
+				JsonObject inactiveToiletReasonJson6 = new JsonObject();
+				inactiveToiletReasonJson6.addProperty("title", "Overflow Water");
+				inactiveToiletReasonJson6.addProperty("number", rs.getInt("OverflowWater"));
+				inactiveToiletReasonJsonArray.add(inactiveToiletReasonJson6);
+				
+				JsonObject inactiveToiletReasonJson7 = new JsonObject();
+				inactiveToiletReasonJson7.addProperty("title", "Water logged");
+				inactiveToiletReasonJson7.addProperty("number", rs.getInt("WaterClogging"));
+				inactiveToiletReasonJsonArray.add(inactiveToiletReasonJson7);
+				
+				JsonObject inactiveToiletReasonJson8 = new JsonObject();
+				inactiveToiletReasonJson8.addProperty("title", "No Dustbin");
+				inactiveToiletReasonJson8.addProperty("number", rs.getInt("NoDustbin"));
+				inactiveToiletReasonJsonArray.add(inactiveToiletReasonJson8);
+				
+				JsonObject inactiveToiletReasonJson9 = new JsonObject();
+				inactiveToiletReasonJson9.addProperty("title", "No Light");
+				inactiveToiletReasonJson9.addProperty("number", rs.getInt("NoLight"));
+				inactiveToiletReasonJsonArray.add(inactiveToiletReasonJson9);
+				
+				JsonObject inactiveToiletReasonJson10 = new JsonObject();
+				inactiveToiletReasonJson10.addProperty("title", "Insects");
+				inactiveToiletReasonJson10.addProperty("number", rs.getInt("Insects"));
+				inactiveToiletReasonJsonArray.add(inactiveToiletReasonJson10);
+				
+				JsonObject inactiveToiletReasonJson11 = new JsonObject();
+				inactiveToiletReasonJson11.addProperty("title", "Bad Smell");
+				inactiveToiletReasonJson11.addProperty("number", rs.getInt("BadSmell"));
+				inactiveToiletReasonJsonArray.add(inactiveToiletReasonJson11);
+				
+				JsonObject inactiveToiletReasonJson12 = new JsonObject();
+				inactiveToiletReasonJson12.addProperty("title", "Other");
+				inactiveToiletReasonJson12.addProperty("number", rs.getInt("Other"));
+				inactiveToiletReasonJsonArray.add(inactiveToiletReasonJson12);
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if(ajaxFlag){
+			return inactiveToiletReasonJsonArray.toString();
+		}
+		render(inactiveToiletReasonJsonArray,info,headSelector);
+		return inactiveToiletReasonJsonArray.toString();
+		
+	}
+	 
+	@ExternalRestrictions("Overall WASH Status")  
+	public static String overAllWashStatus() {
+		int headSelector = 4;
+		boolean ajaxFlag = false ;
+		String ajaxSchoolId = request.params.get("school_id");
+		String ajaxGender = request.params.get("gender");
+		String ajaxQuarter = request.params.get("quarter");
+		String ajaxYear = request.params.get("year");
+		
+		String ajaxQuery = "";
+		if(ajaxSchoolId != null){
+			ajaxFlag = true;
+		}
+		
+		if(ajaxGender != null && !(ajaxGender.equals("gender")) ) {
+			ajaxFlag = true;
+			ajaxQuery += " AND res_type__1 ='"+ajaxGender+"' "; 
+		}
+		
+		int quarter = 1 ;
+		if(ajaxQuarter != null && !(ajaxQuarter.equals("quarter")) ){
+			ajaxFlag = true;
+			quarter = Integer.parseInt(ajaxQuarter);
+		}else{
+			quarter = getQuarter();
+		}
+		
+		int monthStart = quarter * 3 -2 ;
+		
+		if(ajaxYear != null && !(ajaxYear.equals("year")) ){
+			ajaxFlag = true;
+			ajaxQuery += " AND YEAR(received)='"+ajaxYear+"' ";
+		}
+
+		ArrayList<Long> school = getSchools(ajaxSchoolId);
+		String dataIdCond = getDataIdCondition(school);
+		ArrayList<schoolInfo> info = getSchoolsInfo();
+		Connection conn = play.db.DB.getConnection();
+		ResultSet rs = null;
+		Statement stmt = null;
+		JsonArray jsonHygeneArray =new JsonArray();
+		JsonArray jsonSanitaitonArray  =new JsonArray();
+		JsonArray jsonWaterArray  =new JsonArray();
+		JsonArray json_dataList =new JsonArray();
+		
+		String [] month_names = {"Jan 2015","Feb 2015","Mar 2015","Apr 2015","May 2015","Jun 2015",
+				"Jul 2015","Aug 2015","Sep 2015","Oct 2015","Nov 2015","Dec 2015"};
+		for(int i = 0 ; i < 3 ; i++){
+			//SELECT round(avg(rank_hygiene__1),1) as safe_water ,round(avg(rank_sanitation__1),1) as sanitation, round(avg(rank_water__1),1) as hygene FROM crgs.tblFlat;
+			String search_query1 = "SELECT round(avg(rank_hygiene__1),1) as hygene ,round(avg(rank_sanitation__1),1) as sanitation, round(avg(rank_water__1),1) as safe_water FROM crgs.tblFlat"
+					+ " WHERE MONTH(received)='"+(i+monthStart)+"' "+dataIdCond+ajaxQuery;
+			String safewater = null ;
+			String hygene = null ;
+			String sanitation = null ;
+			//System.out.println(search_query1);
+			try {
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(search_query1);
+				while(rs.next()){
+					safewater = rs.getString("safe_water");
+					hygene = rs.getString("hygene");
+					sanitation = rs.getString("sanitation");
+				
+				}
+				if(safewater == null) {
+					safewater ="0";
+				}
+				if(hygene == null) {
+					hygene ="0";
+				}
+				if(sanitation == null) {
+					sanitation ="0";
+				}
+				JsonObject hygeneJson = new JsonObject();
+				hygeneJson.addProperty("symbol", "Hygene");
+				hygeneJson.addProperty("date", month_names[i+monthStart-1]);
+				hygeneJson.addProperty("y_value", hygene);
+				jsonHygeneArray.add(hygeneJson);
+				
+				JsonObject sanitationJson = new JsonObject();
+				sanitationJson.addProperty("symbol", "Sanitation");
+				sanitationJson.addProperty("date", month_names[i+monthStart-1]);
+				sanitationJson.addProperty("y_value", sanitation);
+				jsonSanitaitonArray.add(sanitationJson);
+				
+				JsonObject waterJson = new JsonObject();
+				waterJson.addProperty("symbol", "Safe Water");
+				waterJson.addProperty("date", month_names[i+monthStart-1]);
+				waterJson.addProperty("y_value", safewater);
+				jsonWaterArray.add(waterJson);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		for(JsonElement water: jsonWaterArray){
+			json_dataList.add(water);
+		}
+		
+		for(JsonElement sanitaion : jsonSanitaitonArray){
+			json_dataList.add(sanitaion);
+		}
+		
+		for(JsonElement hygene : jsonHygeneArray){
+			json_dataList.add(hygene);
+		}
+		
+		if(ajaxFlag){
+			////System.out.println(json_dataList.toString());
+			return json_dataList.toString();
+		}
+		
+		render(json_dataList,info,headSelector);
+		return json_dataList.toString();
+	}
+	
+	@ExternalRestrictions("Water Source Status")
+	public static String waterSourceStatus() {
+		int headSelector = 4;
+		boolean ajaxFlag = false ;
+		String ajaxSchoolId = request.params.get("school_id");
+		String ajaxGender = request.params.get("gender");
+		String ajaxMonth = request.params.get("month");
+		String ajaxYear = request.params.get("year");
+		
+		String ajaxQuery = "";
+		if(ajaxSchoolId != null){
+			ajaxFlag = true;
+		}
+		
+		if(ajaxGender != null && !(ajaxGender.equals("gender")) ) {
+			ajaxFlag = true;
+			ajaxQuery += " AND res_type__1 ='"+ajaxGender+"' "; 
+		}
+		
+		if(ajaxMonth != null && !(ajaxMonth.equals("month")) ){
+			ajaxFlag = true;
+			ajaxQuery += " AND MONTH(received)='"+ajaxMonth+"' ";
+		}
+		
+		if(ajaxYear != null && !(ajaxYear.equals("year")) ){
+			ajaxFlag = true;
+			ajaxQuery += " AND YEAR(received)='"+ajaxYear+"' ";
+		}
+		
+		ArrayList<Long> school = getSchools(ajaxSchoolId);
+		String dataIdCond = getDataIdCondition(school);
+		ArrayList<schoolInfo> info = getSchoolsInfo();
+		
+		Connection conn = play.db.DB.getConnection();
+		ResultSet rs = null;
+		Statement stmt = null;
+		
+		String schoolIdList = "";
+        String schoolInformationIdCondition = "";
+        if(!school.isEmpty()){
+            for (Long d : school)
+            {
+                schoolIdList += "'"+d+"',";
+            }
+            schoolIdList = schoolIdList.substring(0,schoolIdList.length()-1); ///data id String for query
+            schoolInformationIdCondition = "( schoolInformation_id IN ("+schoolIdList+"))";
+        }else{
+            schoolInformationIdCondition = "( schoolInformation_id IN ('-1'))"; // in case school id returns an emply list
+        }
+       
+        String newQuery = " select sum(num_tubewell__1) total_tubewell,sum(num_tape__1) total_tape,"
+                + " sum(num_active_tubewell__1) total_active_tubewell,sum(num_active_tape__1) total_active_tape,"
+                + "sum(num_inactive_tubewell__1) total_inactive_tubewell, "+
+                " sum(num_inactive_tape__1) total_inactive_tape from crgs.vwRptWaterSourceStatus "+
+                " WHERE " + schoolInformationIdCondition + ajaxQuery;
+		
+//		System.out.println(newQuery);
+//		String search_query1 = "SELECT SUM(num_tubewell__1) AS 'total_tubewell' FROM crgs.tblFlat WHERE num_tubewell__1 IS NOT NULL "+dataIdCond+ajaxQuery;
+//		String search_query2 = "SELECT SUM(num_active_tubewell__1) AS 'active' FROM crgs.tblFlat WHERE num_active_tubewell__1 IS NOT NULL "+dataIdCond+ajaxQuery;
+//		String search_query3 = "SELECT SUM(num_tape__1) AS 'total_tape' FROM crgs.tblFlat WHERE num_tape__1 IS NOT NULL "+dataIdCond+ajaxQuery;
+//		String search_query4 = "SELECT SUM(num_active_tape__1) AS 'active' FROM crgs.tblFlat WHERE num_active_tape__1 IS NOT NULL "+dataIdCond+ajaxQuery;
+		String totalTubewell = null ;
+		String activeTubewell = null ;
+		String inactiveTubewell = null ;
+		String totalTape  = null ;
+		String activeTape = null ;
+		String inactiveTape = null ;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(newQuery);
+			rs.next();
+			totalTubewell = rs.getString("total_tubewell");
+			System.out.println("Total Tubewell:"+ totalTubewell);
+//			rs = stmt.executeQuery(search_query2);
+//			rs.next();
+			activeTubewell = rs.getString("total_active_tubewell");
+			//System.out.println("Active Tubewell:"+ activeTubewell);
+
+			if(totalTubewell != null && activeTubewell != null){
+				inactiveTubewell = String.valueOf(Integer.parseInt(totalTubewell) - Integer.parseInt(activeTubewell)) ;
+			}else{
+				totalTubewell ="0";
+				activeTubewell ="0";
+				inactiveTubewell ="0";
+			}
+				
+			//System.out.println("Inactive Tubewell:"+ inactiveTubewell);
+
+//			rs = stmt.executeQuery(search_query3);
+//			rs.next();
+			totalTape = rs.getString("total_tape");
+			//System.out.println("Total Tape:"+ totalTape);
+//			rs = stmt.executeQuery(search_query4);
+//			rs.next();
+			activeTape = rs.getString("total_active_tape");
+			
+			if(totalTape!= null && activeTape!= null){
+				inactiveTape= String.valueOf(Integer.parseInt(totalTape) - Integer.parseInt(activeTape)) ;
+			}else{
+				totalTape="0";
+				activeTape="0";
+				inactiveTape="0";
+			}
+			System.out.println("Total Tubewell:"+ totalTubewell + " Active Tubewell:"+ activeTubewell+ " Inactive Tubewell:"+ inactiveTubewell);
+			System.out.println("Total Tape:"+ totalTape + " Active Tape:"+ activeTape+ " Inactive Tape:"+ inactiveTape);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		JsonObject tubeWellJson = new JsonObject();
+		tubeWellJson.addProperty("axis_map", "Tubewell");
+		tubeWellJson.addProperty("active", activeTubewell);
+		tubeWellJson.addProperty("inactive", inactiveTubewell);
+		
+		JsonObject tapeJson = new JsonObject();
+		tapeJson.addProperty("axis_map", "Tape");
+		tapeJson.addProperty("active", activeTape);
+		tapeJson.addProperty("inactive", inactiveTape);
+		
+		JsonArray json_dataList =new JsonArray();
+		json_dataList.add(tubeWellJson);
+		json_dataList.add(tapeJson);
+		
+		if(ajaxFlag){
+			////System.out.println(json_dataList.toString());
+			return json_dataList.toString();
+		}
+		render(json_dataList,info,headSelector);
+		return json_dataList.toString();
+	}
+	
+	@ExternalRestrictions("Toilet and Sanitation Info")
+	public static String toiletAndSanitationInfo() {
+		int headSelector = 4;
+		boolean ajaxFlag = false ;
+		String ajaxSchoolId = request.params.get("school_id");
+		String ajaxGender = request.params.get("gender");
+		String ajaxQuarter = request.params.get("quarter");
+		String ajaxYear = request.params.get("year");
+		
+		String ajaxQuery = "";
+		if(ajaxSchoolId != null){
+			ajaxFlag = true;
+		}
+		
+		if(ajaxGender != null && !(ajaxGender.equals("gender")) ) {
+			ajaxFlag = true;
+			ajaxQuery += " AND res_type__1 ='"+ajaxGender+"' "; 
+		}
+		
+		int quarter = 1 ;
+		if(ajaxQuarter != null && !(ajaxQuarter.equals("quarter")) ){
+			ajaxFlag = true;
+			quarter = Integer.parseInt(ajaxQuarter);
+		}else{
+			quarter = getQuarter();
+		}
+		
+		int monthStart = quarter * 3 -2 ;
+		
+		if(ajaxYear != null && !(ajaxYear.equals("year")) ){
+			ajaxFlag = true;
+			ajaxQuery += " AND YEAR(received)='"+ajaxYear+"' ";
+		}
+
+		ArrayList<Long> school = getSchools(ajaxSchoolId);
+		String dataIdCond = getDataIdCondition(school);
+		ArrayList<schoolInfo> info = getSchoolsInfo();
+		
+		Connection conn = play.db.DB.getConnection();
+		ResultSet rs = null;
+		Statement stmt = null;
+		JsonArray json_dataList =new JsonArray();
+		String [] month_names = {"January","February","March","April","May","June",
+				"July","August","September","October","November","December"};
+		for(int i = 0 ; i < 3 ; i++){
+			String search_query1 = "SELECT num_toilet__1 as total_toilet,num_toilet_unusable__1 as unusable_toilet,"
+					+ " (num_toilet__1 - num_toilet_unusable__1) as usable_toilet FROM crgs.tblFlat "
+					+ "where (num_toilet__1 is not null) AND "
+					+ "(num_toilet_unusable__1 is not null)  AND MONTH(received)='"+(i+monthStart)+"' "+dataIdCond+ajaxQuery;
+			String activeToilet = null ;
+			String inactiveToilet = null ;
+			
+			try {
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(search_query1);
+				while(rs.next()){
+				inactiveToilet = rs.getString("unusable_toilet");
+				activeToilet = rs.getString("usable_toilet");
+				}
+				if(activeToilet == null || inactiveToilet == null){
+					activeToilet ="0";
+					inactiveToilet ="0";
+				}
+				JsonObject dataJson = new JsonObject();
+				dataJson.addProperty("axis_map", month_names[i+monthStart-1]);
+				dataJson.addProperty("active", activeToilet);
+				dataJson.addProperty("inactive", inactiveToilet);
+				json_dataList.add(dataJson);
+				////System.out.println(" Active Tape:"+ activeToilet+ " Inactive Tape:"+ inactiveToilet);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if(ajaxFlag){
+			////System.out.println(json_dataList.toString());
+			return json_dataList.toString();
+		}
+		render(json_dataList,info,headSelector);
+		return json_dataList.toString();
+	}
+	
+	@ExternalRestrictions("Status of Drinkable Water")
+	public static String statusDrinkableWater() {
+		int headSelector = 4;
+		boolean ajaxFlag = false ;
+		String ajaxSchoolId = request.params.get("school_id");
+		String ajaxGender = request.params.get("gender");
+		String ajaxQuarter = request.params.get("quarter");
+		String ajaxYear = request.params.get("year");
+		
+		String ajaxQuery = "";
+		if(ajaxSchoolId != null){
+			ajaxFlag = true;
+		}
+		
+		if(ajaxGender != null && !(ajaxGender.equals("gender")) ) {
+			ajaxFlag = true;
+			ajaxQuery += " AND res_type__1 ='"+ajaxGender+"' "; 
+		}
+		
+		int quarter = 1 ;
+		if(ajaxQuarter != null && !(ajaxQuarter.equals("quarter")) ){
+			ajaxFlag = true;
+			quarter = Integer.parseInt(ajaxQuarter);
+		}else{
+			quarter = getQuarter();
+		}
+		
+		int monthStart = quarter * 3 -2 ;
+		
+		if(ajaxYear != null && !(ajaxYear.equals("year")) ){
+			ajaxFlag = true;
+			ajaxQuery += " AND YEAR(received)='"+ajaxYear+"' ";
+		}
+		ArrayList<Long> school = getSchools(ajaxSchoolId);
+		String dataIdCond = getDataIdCondition(school);
+		ArrayList<schoolInfo> info = getSchoolsInfo();
+
+		Connection conn = play.db.DB.getConnection();
+		ResultSet rs = null;
+		Statement stmt = null;
+		JsonArray json_dataList =new JsonArray();
+		String [] month_names = {"January","February","March","April","May","June",
+				"July","August","September","October","November","December"};
+		for(int i = 0 ; i < 3 ; i++){
+			String search_query1 = "Select (select count(is_potable__1) from crgs.tblFlat where is_potable__1 = '1' AND MONTH(received)='"+(i+monthStart)+"' "+ dataIdCond+ajaxQuery +")"
+					+ " as potable, (select count(is_potable__1) from crgs.tblFlat where is_potable__1 = '0'  AND MONTH(received)='"+(i+monthStart)+"' "+ dataIdCond+ajaxQuery +") as non_potable";
+				
+			////System.out.println(search_query1);
+			String potable = null ;
+			String nonPotable = null ;
+			
+			try {
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(search_query1);
+				while(rs.next()){
+				potable = rs.getString("potable");
+				nonPotable = rs.getString("non_potable");
+				}
+				if(potable == null || nonPotable == null){
+					potable ="0";
+					nonPotable ="0";
+				}
+				JsonObject dataJson = new JsonObject();
+				dataJson.addProperty("axis_map", month_names[i+monthStart-1]);
+				dataJson.addProperty("Safe Water", potable);
+				dataJson.addProperty("Unsafe Water", nonPotable);
+				json_dataList.add(dataJson);
+				////System.out.println(" Potable:"+ potable + " Non-potable:"+ nonPotable );
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if(ajaxFlag){
+			////System.out.println(json_dataList.toString());
+			return json_dataList.toString();
+		}
+		render(json_dataList,info,headSelector);
+		return json_dataList.toString();
+	}
+	
+	public static String pieAjax() {
+		boolean ajaxFlag = false;
+		String ajaxSchoolId = request.params.get("school_id");
+		String ajaxGender = request.params.get("gender");
+		String ajaxMonth = request.params.get("month");
+		String ajaxYear = request.params.get("year");
+		
+		String ajaxQuery = "";
+		if(ajaxSchoolId != null){
+			ajaxFlag = true;
+		}
+		
+		if(ajaxGender != null && !(ajaxGender.equals("gender")) ) {
+			ajaxFlag = true;
+			ajaxQuery += " AND res_type__1 ='"+ajaxGender+"' "; 
+		}
+		
+		if(ajaxMonth != null && !(ajaxMonth.equals("month")) ){
+			ajaxFlag = true;
+			int month = 1 ;
+			try {
+				Date date = new SimpleDateFormat("MMMM").parse(ajaxMonth);
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(date);
+				month = cal.get(Calendar.MONTH)+1;
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
+			ajaxQuery += " AND MONTH(received)='"+month+"' ";
+		}
+		
+		if(ajaxYear != null && !(ajaxYear.equals("year")) ){
+			ajaxFlag = true;
+			ajaxQuery += " AND YEAR(received)='"+ajaxYear+"' ";
+		}
+		
+		ArrayList<Long> school = getSchools(ajaxSchoolId);
+		String dataIdCond = getDataIdCondition(school);
+		
+		Connection conn = play.db.DB.getConnection();
+		ResultSet rs = null;
+		Statement stmt = null;
+		//get 4 params
+		dataIdCond = dataIdCond.replace("AND", "");
+		String search_query1 = "SELECT count(why_not_potable_1__1) as badOdor,"
+				+ "count(why_not_potable_2__1) as iron,count(why_not_potable_3__1) as mnOrAs,"
+				+ "count(why_not_potable_4__1) as other FROM crgs.tblFlat WHERE "+dataIdCond+ajaxQuery;
+		////System.out.println(search_query1);
+		JsonArray json_dataList =new JsonArray();
+		String badOdor = null ;
+		String iron = null ;
+		String manganeseOrArsenic= null ;
+		String other  = null ;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(search_query1);
+			rs.next();
+			badOdor = rs.getString("badOdor");
+			iron = rs.getString("iron");
+			manganeseOrArsenic = rs.getString("mnOrAs");
+			other = rs.getString("other");
+			////System.out.println("Bad Odor:"+ badOdor);
+			////System.out.println("Iron:"+ iron);
+			////System.out.println("Mn or As:"+ manganeseOrArsenic);
+			////System.out.println("Other:"+ other);
+			if(badOdor != null){
+				JsonObject dataJson = new JsonObject();
+				dataJson.addProperty("tag", "Bad Odor");
+				dataJson.addProperty("number", badOdor);
+				json_dataList.add(dataJson);
+			}
+			if(iron != null){
+				JsonObject dataJson = new JsonObject();
+				dataJson.addProperty("tag", "Iron");
+				dataJson.addProperty("number", iron);
+				json_dataList.add(dataJson);
+			}
+			if(manganeseOrArsenic != null){
+				JsonObject dataJson = new JsonObject();
+				dataJson.addProperty("tag", "Arsenic & Manganese");
+				dataJson.addProperty("number", manganeseOrArsenic);
+				json_dataList.add(dataJson);
+			}
+			if(other != null){
+				JsonObject dataJson = new JsonObject();
+				dataJson.addProperty("tag", "Other");
+				dataJson.addProperty("number", other);
+				json_dataList.add(dataJson);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		if(ajaxFlag){
+			////System.out.println(json_dataList.toString());
+			return json_dataList.toString();
+		}
+		render(json_dataList,school);
+		return null;
+	}
+	
+	public static int getQuarter() {
+		int quarter = 1;
+		Date date = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		int month = cal.get(Calendar.MONTH);
+		if(month >=1 && month <=3){
+			quarter = 1 ;
+		}else if(month >=4 && month <=6){
+			quarter = 2 ;	
+		}else if(month >=7 && month <=9){
+			quarter = 3 ;
+		}else if(month >=10 && month <=12){
+			quarter = 4 ;
+		}
+		return quarter;
+	}
+	
+	public static ArrayList<Long> getSchools( String ajaxSchoolId) {
+		User webUser = User.findByName(session.get("username"));
+		Set<SchoolInformation> schools = webUser.schoolInformation;
+		List<SchoolInformation> listSchool = new ArrayList<SchoolInformation>(schools);
+		//Set<User> allUser = webUser.schoolInformation
+
+		if((webUser.role.id == 1) || (webUser.role.id == 4)){
+			listSchool = SchoolInformation.findAll();
+		}
+		ArrayList<Long>school = new ArrayList<Long>();
+
+		
+		if(ajaxSchoolId != null && !(ajaxSchoolId.equals("school_id")) ){
+			school.add(Long.parseLong(ajaxSchoolId, 10) );
+		}else{
+			for (SchoolInformation schoolInformation : listSchool) {
+			Long school_id = schoolInformation.id;
+				school.add(school_id);
+				Reports reports = new Reports();
+			}
+		}
+		return school;
+	} 
+	
+	public static String getDataIdCondition( ArrayList<Long> school) {
+		String dataIdString = "";
+		ArrayList<Long>dataIdList = new ArrayList<Long>();
+		List<Data> dataId = Data.find("schools_id in (:school)")
+		.setParameter("school", school).fetch(); 
+		for (Data datas : dataId) {
+		Long data_id = datas.id;
+		dataIdList.add(data_id);
+		}
+		///data id list converted to String
+		String dataIdCond = "";
+		if(!dataIdList.isEmpty()){
+			for (Long d : dataIdList)
+			{
+				dataIdString += "'"+d+"',";
+			}
+			dataIdString = dataIdString.substring(0,dataIdString.length()-1); ///data id String for query
+			dataIdCond = "AND ( data_id IN ("+dataIdString+"))";
+		}else{
+			dataIdCond = "AND ( data_id IN ('-1'))"; // in case school id returns an emply list
+		}
+		return dataIdCond;
+	}
+	
+	public static ArrayList<schoolInfo> getSchoolsInfo() {
+		ArrayList<schoolInfo> info = new ArrayList<schoolInfo>();
+		User webUser = User.findByName(session.get("username"));
+		Set<SchoolInformation> schools = webUser.schoolInformation;
+		List<SchoolInformation> listSchool = new ArrayList<SchoolInformation>(schools);
+
+		if((webUser.role.id == 1) || (webUser.role.id == 4)){
+			listSchool = SchoolInformation.findAll();
+		}
+		ArrayList<Long>school = new ArrayList<Long>();
+		for (SchoolInformation schoolInformation : listSchool) {
+			Long school_id = schoolInformation.id;
+				school.add(school_id);
+				Reports reports = new Reports();
+				info.add(reports.new schoolInfo(school_id,schoolInformation.name));
+			}
+		
+		return info;
+	}
+	
+	class schoolInfo{
+		Long id;
+		String name;
+		schoolInfo(Long id,String name){
+			this.id = id;
+			this.name = name;
+		}
+	}
+	
+	@ExternalRestrictions("Reporting Problem")
+	public static String reportingProblem() {
+		boolean ajaxFlag = false ;
+		String ajaxSchoolId = request.params.get("school_id");
+		String ajaxGender = request.params.get("gender");
+		String ajaxQuarter = request.params.get("quarter");
+		String ajaxYear = request.params.get("year");
+		String ajaxComplain = request.params.get("complain_type");
+//		////System.out.println(" ajaxSchoolId:" + ajaxSchoolId + " ajaxGender:" + ajaxGender+ " ajaxQuarter:" + ajaxQuarter+ " ajaxYear:" + ajaxYear+ " ajaxComplain:" + ajaxComplain);
+		String ajaxQuery = "";
+		if(ajaxSchoolId != null){
+			ajaxFlag = true;
+		}
+		
+		if(ajaxGender != null && !(ajaxGender.equals("gender")) ) {
+			ajaxFlag = true;
+			ajaxQuery += " AND res_type__1 ='"+ajaxGender+"' "; 
+		}
+		
+		int quarter = 1 ;
+		if(ajaxQuarter != null && !(ajaxQuarter.equals("quarter")) ){
+			ajaxFlag = true;
+			quarter = Integer.parseInt(ajaxQuarter);
+		}else{
+			quarter = getQuarter();
+		}
+		
+		int monthStart = quarter * 3 -2 ;
+		
+		if(ajaxYear != null && !(ajaxYear.equals("year")) ){
+			ajaxFlag = true;
+			ajaxQuery += " AND YEAR(received)='"+ajaxYear+"' ";
+		}
+		
+		String probType = " how_informed_water_prob__1 ";
+		String timeType = " water_prob_solved_authority__1 ";
+		if(ajaxComplain!= null && !(ajaxComplain.equals("complain_type")) ){
+			ajaxFlag = true;
+			//complain_type complain_water complain_sanitation complain_hygiene
+			if(ajaxComplain.equals("complain_water")) {
+				probType = " how_informed_water_prob__1 ";
+				timeType = " water_prob_solved_authority__1 ";
+			}else if(ajaxComplain.equals("complain_sanitation")) {
+				probType = " how_informed_sanitation_prob__1 ";
+				timeType = " took_step_sanitation_prob__1 ";
+			}else if(ajaxComplain.equals("complain_hygiene")) {
+				probType = " how_informed_hygiene__1 ";
+				timeType = " authority_solve_hygiene_prob__1 ";
+			}
+//			ajaxQuery += " AND YEAR(received)='"+ajaxYear+"' ";
+		}
+		
+		ArrayList<Long> school = getSchools(ajaxSchoolId);
+		String dataIdCond = getDataIdCondition(school);
+		ArrayList<schoolInfo> info = getSchoolsInfo();
+
+		Connection conn = play.db.DB.getConnection();
+		ResultSet rs = null;
+		Statement stmt = null;
+		JsonArray json_datalist =new JsonArray();
+		JsonArray json_problemlist =new JsonArray();
+		JsonArray json_solvelist =new JsonArray();
+		String [] month_names = {"Jan 2015","Feb 2015","Mar 2015","Apr 2015","May 2015","Jun 2015",
+				"Jul 2015","Aug 2015","Sep 2015","Oct 2015","Nov 2015","Dec 2015"};
+		for(int i = 0 ; i < 3 ; i++){
+//			String search_query1 = "Select (select count(is_potable__1) from crgs.tblFlat where is_potable__1 = '1' AND MONTH(received)='"+(i+monthStart)+"' "+ dataIdCond+ajaxQuery +")"
+//					+ " as potable, (select count(is_potable__1) from crgs.tblFlat where is_potable__1 = '0'  AND MONTH(received)='"+(i+monthStart)+"' "+ dataIdCond+ajaxQuery +") as non_potable";
+
+			String queryWaterIssue = "SELECT (SELECT count("+probType+") FROM crgs.tblFlat where "+probType+" = '1' AND MONTH(received)='"+(i+monthStart)+"' "+ dataIdCond+ajaxQuery +")  as school_authority," +
+									"(SELECT count("+probType+") FROM crgs.tblFlat where "+probType+" = '2' AND MONTH(received)='"+(i+monthStart)+"' "+ dataIdCond+ajaxQuery +") as head_teacher,"+
+									"(SELECT count("+probType+") FROM crgs.tblFlat where "+probType+" = '3' AND MONTH(received)='"+(i+monthStart)+"' "+ dataIdCond+ajaxQuery +") as class_teacher,"+ 
+									"(SELECT count("+probType+") FROM crgs.tblFlat where "+probType+" = '4' AND MONTH(received)='"+(i+monthStart)+"' "+ dataIdCond+ajaxQuery +") as school_mgt,"+
+									"(SELECT count("+probType+") FROM crgs.tblFlat where "+probType+" = '5' AND MONTH(received)='"+(i+monthStart)+"' "+ dataIdCond+ajaxQuery +")  as others";	
+			
+			String queryWaterSolve = "SELECT (SELECT count("+timeType+") FROM crgs.tblFlat where "+timeType+" = '1' AND MONTH(received)='"+(i+monthStart)+"' "+ dataIdCond+ajaxQuery +")  as less_than_one, "+
+									"(SELECT count("+timeType+") FROM crgs.tblFlat where "+timeType+" = '2' AND MONTH(received)='"+(i+monthStart)+"' "+ dataIdCond+ajaxQuery +") as two_to_three, " + 
+									"(SELECT count("+timeType+") FROM crgs.tblFlat where "+timeType+" = '3' AND MONTH(received)='"+(i+monthStart)+"' "+ dataIdCond+ajaxQuery +") as four_to_seven," +  
+									"(SELECT count("+timeType+") FROM crgs.tblFlat where "+timeType+" = '4' AND MONTH(received)='"+(i+monthStart)+"' "+ dataIdCond+ajaxQuery +") as eight_to_thirty, "+
+									"(SELECT count("+timeType+") FROM crgs.tblFlat where "+timeType+" = '5' AND MONTH(received)='"+(i+monthStart)+"' "+ dataIdCond+ajaxQuery +")  as more_than_thirty ,"+
+									"(SELECT count("+timeType+") FROM crgs.tblFlat where "+timeType+" = '6' AND MONTH(received)='"+(i+monthStart)+"' "+ dataIdCond+ajaxQuery +")  as unsolved, "+
+									"(SELECT count("+timeType+") FROM crgs.tblFlat where "+timeType+" = '7' AND MONTH(received)='"+(i+monthStart)+"' "+ dataIdCond+ajaxQuery +")  as unknowns";
+
+			String schoolAuthority = null, headTecher = null, classTeacher = null, schoolManagement = null, other = null;
+			Double dSchoolAuthority = 0.0, dHeadTecher = 0.0, dClassTeacher = 0.0, dSchoolManagement = 0.0, dOther = 0.0;
+			String unknown = null, unresolved = null, lessThanOne = null, twoToThree = null, fourToSeven = null, eightToThirty = null, moreThanThirty = null;
+			Double dUnknown = null, dUnresolved = 0.0, dLessThanOne = 0.0, dTwoToThree = 0.0, dFourToSeven = 0.0, dEightToThirty = 0.0, dMoreThanThirty = 0.0;
+			double total = 0 ; 
+			try {
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(queryWaterIssue);
+				while(rs.next()){
+				schoolAuthority = rs.getString("school_authority");
+				headTecher = rs.getString("head_teacher");
+				classTeacher = rs.getString("class_teacher");
+				schoolManagement = rs.getString("school_mgt");
+				other = rs.getString("others");
+				}
+				if(schoolAuthority == null){
+					schoolAuthority ="0";
+				}
+				if(headTecher == null){
+					headTecher ="0";
+				}
+				if(classTeacher == null){
+					classTeacher ="0";
+				}
+				if(schoolManagement == null){
+					schoolManagement ="0";
+				}
+				if(other == null){
+					other ="0";
+				}
+				dSchoolAuthority = Double.parseDouble(schoolAuthority);
+				dHeadTecher = Double.parseDouble(headTecher);
+				dClassTeacher = Double.parseDouble(classTeacher);
+				dSchoolManagement = Double.parseDouble(schoolManagement);
+				dOther = Double.parseDouble(other);
+				total =  dSchoolAuthority + dHeadTecher + dClassTeacher + dSchoolManagement + dOther;
+				schoolAuthority = (total > 0.0) ? String.valueOf((dSchoolAuthority / total)*100) : "0";
+				headTecher = (total > 0.0) ? String.valueOf((dHeadTecher/ total)*100) : "0";
+				classTeacher = (total > 0.0) ? String.valueOf((dClassTeacher / total)*100) : "0";
+				schoolManagement = (total > 0.0) ? String.valueOf((dSchoolManagement/ total)*100) : "0";
+				other = (total > 0.0) ? String.valueOf((dOther / total)*100) : "0";
+				
+				JsonObject dataJson = new JsonObject();
+				dataJson.addProperty("date", month_names[i+monthStart-1]);
+				dataJson.addProperty("School Authority", schoolAuthority);
+				dataJson.addProperty("Head Teacher", headTecher);
+				dataJson.addProperty("Class Teacher", classTeacher);
+				dataJson.addProperty("School Management", schoolManagement);
+				dataJson.addProperty("Other", other);
+				json_problemlist.add(dataJson);
+				
+				rs = stmt.executeQuery(queryWaterSolve);
+				while(rs.next()){
+				unknown = rs.getString("unknowns");
+				unresolved = rs.getString("unsolved");
+				lessThanOne = rs.getString("less_than_one");
+				twoToThree = rs.getString("two_to_three");
+				fourToSeven = rs.getString("four_to_seven");
+				eightToThirty = rs.getString("eight_to_thirty");
+				moreThanThirty = rs.getString("more_than_thirty");
+				}
+				if(unknown == null){
+					unknown ="0";
+				}
+				if(unresolved == null){
+					unresolved ="0";
+				}
+				if(lessThanOne == null){
+					lessThanOne ="0";
+				}
+				if(twoToThree == null){
+					twoToThree ="0";
+				}
+				if(fourToSeven == null){
+					fourToSeven ="0";
+				}
+				if(eightToThirty == null){
+					eightToThirty ="0";
+				}
+				if(moreThanThirty == null){
+					moreThanThirty ="0";
+				}
+				total = 0.0;
+				dUnknown = Double.parseDouble(schoolAuthority);
+				dUnresolved= Double.parseDouble(headTecher);
+				dLessThanOne= Double.parseDouble(classTeacher);
+				dTwoToThree= Double.parseDouble(schoolManagement);
+				dFourToSeven = Double.parseDouble(fourToSeven);
+				dEightToThirty= Double.parseDouble(eightToThirty);
+				dMoreThanThirty= Double.parseDouble(moreThanThirty);
+				total =  dUnknown + dUnresolved + dLessThanOne + dTwoToThree + dFourToSeven + dEightToThirty + dMoreThanThirty;
+				unknown = (total > 0.0) ? String.valueOf((dUnknown / total)*100) : "0";
+				unresolved = (total > 0.0) ? String.valueOf((dUnresolved/ total)*100) : "0";
+				lessThanOne = (total > 0.0) ? String.valueOf((dLessThanOne / total)*100) : "0";
+				twoToThree = (total > 0.0) ? String.valueOf((dTwoToThree/ total)*100) : "0";
+				fourToSeven = (total > 0.0) ? String.valueOf((dFourToSeven / total)*100) : "0";
+				eightToThirty = (total > 0.0) ? String.valueOf((dEightToThirty/ total)*100) : "0";
+				moreThanThirty = (total > 0.0) ? String.valueOf((dMoreThanThirty/ total)*100) : "0";
+				
+				JsonObject solutionJson = new JsonObject();
+				solutionJson.addProperty("date", month_names[i+monthStart-1]);
+				solutionJson.addProperty("Unknowns", unknown);
+				solutionJson.addProperty("Unsolved", unresolved);
+				solutionJson.addProperty("<1 Day", lessThanOne);
+				solutionJson.addProperty("2-3 Days", twoToThree);
+				solutionJson.addProperty("4-7 Days", fourToSeven);
+				solutionJson.addProperty("8-30 Days", eightToThirty);
+				solutionJson.addProperty(">30 Days", moreThanThirty);
+				json_solvelist.add(solutionJson);
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}//end for
+		json_datalist.add(json_problemlist);
+		json_datalist.add(json_solvelist);
+		if(ajaxFlag){
+			return json_datalist.toString();
+		}
+		
+		int headSelector = 4;
+		render(json_datalist,info,headSelector);
+		return json_problemlist.toString();
+	}
+}

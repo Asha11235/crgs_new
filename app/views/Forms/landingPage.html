@@ -1,0 +1,242 @@
+#{extends 'main.html' /}
+
+
+        <!-- BEGIN CONTENT -->                                      
+                    <!-- BEGIN OVERVIEW STATISTIC BARS-->
+                    <div class="row stats-overview-cont">
+                        <div class="col-md-3 col-sm-4 text-center">
+                            <i class="fa fa-home fa-5x warning" aria-hidden="true"></i>
+                            <div class="details">
+                                <h2 id = "total_school">30</h2>
+                                <div class="title">
+                                    Total Schools
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 text-center">
+                            <i class="fa fa-male fa-5x warning" aria-hidden="true"></i>
+                            <div class="details">
+                                <h2 id = "total_boys">1360</h2>
+                                <div class="title">
+                                    Total Boys
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 text-center">
+                            <i class="fa fa-female fa-5x warning" aria-hidden="true"></i>
+                            <div class="details">
+                                <h2 id = "total_girls">1360</h2>
+                                <div class="title">
+                                    Total Girls
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 text-center">
+                            <i class="fa fa-trello fa-5x warning" aria-hidden="true"></i>
+                            <div class="details">
+                                <h2 id = "total_Toilets">1360</h2>
+                                <div class="title">
+                                    Total Toilets
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row stats-overview-cont">
+                        <div class="col-md-3 col-sm-4 text-center">
+                            <i class="fa fa-renren fa-5x warning" aria-hidden="true"></i>
+                            <div class="details">
+                                <h2 id = "boys_toilet_ratio">1360</h2>
+                                <div class="title">
+                                    Boy's Toilet Ratio
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 text-center">
+                            <i class="fa fa-stumbleupon fa-5x warning" aria-hidden="true"></i>
+                            <div class="details">
+                                <h2 id = "girls_toilet_ratio">1360</h2>
+                                <div class="title">
+                                    Girl's Toilet Ratio
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 text-center">
+                            <i class="fa fa-users fa-5x warning" aria-hidden="true"></i>
+                            <div class="details">
+                                <h2 id = "school_forum">1360</h2>
+                                <div class="title">
+                                    School Forum
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 text-center">
+                            <i class="fa fa-futbol-o fa-5x warning" aria-hidden="true"></i>
+                            <div class="details">
+                                <h2 id = "organized_annual_sports">1360</h2>
+                                <div class="title">
+                                    Organized Annual Sports
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END OVERVIEW STATISTIC BARS-->
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="page-breadcrumb breadcrumb">
+                                <li>
+                                    <h2><strong>Reports</strong></h2>
+                                    <h4>Key Status</h4>
+                                </li>
+                                <li class="pull-right">
+                                    <div id="dashboard-report-range" class="dashboard-date-range tooltips" data-placement="top" data-original-title="Change dashboard date range">
+                                        <i class="fa fa-calendar"></i>
+                                        <span></span>
+                                        <i class="fa fa-angle-down"></i>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                    <!-- BEGIN OVERVIEW STATISTIC BLOCKS-->
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            Case of
+                            <h4>Unsafe<br/>Dingking<br/>Water</h4>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <div id = "waterCause1"></div>
+                            <h5 style = 'width : 1px text-align : center' id = "waterCauseLabel1">Bad odor</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <div id = "waterCause2"></div>
+                            <h5 style = 'width : 1px text-align : center' id = "waterCauseLabel2">Iron</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <div id = "waterCause3"></div>
+                            <h5 style = 'width : 1px text-align : center' id = "waterCauseLabel3">Arsenic / Manganese</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                             <div id = "waterCause4"></div>
+                            <h5 style = 'width : 1px text-align : center' id = "waterCauseLabel4">Other</h5>
+                        </div>
+
+                    </div>
+                    <div class="clearfix"><hr style="border-width: 5px;" /></div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            Case of
+                            <h4>Inactive<br/>Toilet</h4>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <div id = "sanitationCause1"></div>
+                            <h5 style = 'width : 1px text-align : center' id = "sanitationCauseLabel1">Bad odor</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <div id = "sanitationCause2"></div>
+                            <h5 style = 'width : 1px text-align : center' id = "sanitationCauseLabel2">Bad odor</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <div id = "sanitationCause3"></div>
+                           <h5 style = 'width : 1px text-align : center' id = "sanitationCauseLabel3">Bad odor</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <div id = "sanitationCause4"></div>
+                            <h5 style = 'width : 1px text-align : center' id = "sanitationCauseLabel4">Bad odor</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <div id = "sanitationCause5"></div>
+                            <h5 style = 'width : 1px text-align : center' id = "sanitationCauseLabel5">Bad odor</h5>
+                        </div>
+                    </div>
+                    <div class="clearfix"><hr style="border-width: 5px;" /></div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            Case of
+                            <h4>Not Feeling<br/>Safe/Secure</h4>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <div id = "schoolEnvironmentCause1"></div>
+                            <h5 style = 'width : 1px text-align : center' id = "schoolEnvironmentCauseLabel1">Bad odor</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <div id = "schoolEnvironmentCause2"></div>
+                            <h5 style = 'width : 1px text-align : center' id = "schoolEnvironmentCauseLabel2">Bad odor</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <div id = "schoolEnvironmentCause3"></div>
+                            <h5 style = 'width : 1px text-align : center' id = "schoolEnvironmentCauseLabel3">Bad odor</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <div id = "schoolEnvironmentCause4"></div>
+                            <h5 style = 'width : 1px text-align : center' id = "schoolEnvironmentCauseLabel4">Bad odor</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <div id = "schoolEnvironmentCause5"></div>
+                            <h5 style = 'width : 1px text-align : center' id = "schoolEnvironmentCauseLabel5">Bad odor</h5>
+                        </div>
+                    </div>
+                    <div class="clearfix"><hr style="border-width: 5px;" /></div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            Case of
+                            <h4>Not Having<br/>Equal Access to <br/>Recreational<br/>Instruments</h4>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <div id = "sportsAndRecreation1"></div>
+                            <h5 style = 'width : 1px text-align : center' id = "sportsAndRecreationCauseLabel1">Bad odor</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <div id = "sportsAndRecreation2"></div>
+                            <h5 style = 'width : 1px text-align : center' id = "sportsAndRecreationCauseLabel2">Bad odor</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <div id = "sportsAndRecreation3"></div>
+                            <h5 style = 'width : 1px text-align : center' id = "sportsAndRecreationCauseLabel3">Bad odor</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <div id = "sportsAndRecreation4"></div>
+                            <h5 style = 'width : 1px text-align : center' id = "sportsAndRecreationCauseLabel4">Bad odor</h5>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <div id = "sportsAndRecreation5"></div>
+                            <h5 style = 'width : 1px text-align : center' id = "sportsAndRecreationCauseLabel5">Bad odor</h5>
+                        </div>
+                    </div>
+                    <div class="clearfix"><hr style="border-width: 5px;" /></div>
+
+                    <div class="row">
+                        <div class="col-md-3 text-center">
+                            <div id = "waterPie"></div>
+                            <h3><strong>Water</strong></h3>
+                            <h4>Issues</h4>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div id = "sanitationPie"></div>
+                            <h3><strong>Sanitation</strong></h3>
+                            <h4>Issues</h4>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div id = "schoolEnvironmentPie"></div>
+                            <h3><strong>School Environment</strong></h3>
+                            <h4>Issues</h4>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div id = "totalPie"></div>
+                            <h3><strong>Total</strong></h3>
+                            <h4>Issues</h4>
+                        </div>
+                    </div>
+
+        <!-- END CONTENT -->
+        
+#{script 'mpower-landing-page.js' /}
+        

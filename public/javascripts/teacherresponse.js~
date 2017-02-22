@@ -1,0 +1,68 @@
+$(function(){
+	$('#data\\/is_tank_cleaned').on('click',function(){
+  	var div = $("#is_tank_cleaned");
+	div.html();
+	div.attr('value','');
+	var anotherText = "";
+  
+  	$.msgbox({ 
+  	'message'  : 'Another Answer is Given below ', 
+ 	'type'     : 'prompt', 
+  	'inputs'   : [{'type' : 'checkbox', 'label' : 'Insert your Name:', 'name' : 'name', 'value' : "1" },
+  		      {'type' : 'checkbox', 'label' : 'Insert your Age','name' : 'age','value':'2'},
+  		      {'type' : 'checkbox', 'label' : 'Insert your Occupation','name' : 'occupation','value':'3'},
+		      {'type' : 'checkbox', 'label' : 'Insert your Company','name' : 'company','value':'4'},
+ 		      {'type' : 'checkbox', 'label' : 'Insert your Designation','name' : 'designation','value':'5'}], 
+  	'buttons'  : [{'type' : 'yes', 'value' : 'OK'},{'type' : 'close', 'value' : 'Exit'}], 
+ 	 'callback' : function(result){
+  				var checkArray = [];
+  				var anotherArray = [];
+  				var outputText = "";
+  				var sendServer = "";
+  				result.pop();
+  				result.pop();
+  				checkArray = result;
+  			 	for(var i in result) {
+  			 		if(result[i].value === "5"){
+					anotherText = 1;
+					div.html();
+					div.attr('value','');
+  					$.msgbox({
+  					'message'  : 'Insert your name below: ', 
+					'type'     : 'prompt',
+					'inputs'   : [{'type' : 'text', 'label' : 'Insert your 					    								anotherobservation','name' :'observation','value' : "" }],
+					'buttons'  : [{'type' : 'yes', 'value' : 'OK'},{'type' : 'close', 'value' : 'Exit'}], 
+					'callback' : function(result) {
+							outputText = "";
+							sendServer = "";
+					        	result.pop();
+  							result.pop();
+							anotherArray = result;
+							Array.prototype.push.apply(checkArray, anotherArray);
+  			 		 		for(var j in checkArray){
+  			 		 		outputText = outputText + checkArray[j].value + " " + checkArray[j].name + "\n";
+  			 		 		sendServer = sendServer + checkArray[j].value + "#";
+  			 		 		}
+  			 		 		div.html(outputText);
+  			 		 		div.attr('value',sendServer);
+							}
+							});
+							}
+					else{
+						if(anotherText != 1){
+						outputText = outputText + result[i].value + " " + result[i].name + "\n";
+  			 		 	sendServer = sendServer + result[i].value + "#";
+						}
+					}
+  			 		 console.log(i +"-i-"+ result[i].name + ':' + result[i].value ); 
+  			 		 }
+					if(anotherText != 1){
+						div.html(outputText);
+	  			 		div.attr('value',sendServer);
+					}
+  				} 
+		}); 
+	});
+
+
+});

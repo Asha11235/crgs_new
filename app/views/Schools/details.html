@@ -1,0 +1,70 @@
+#{extends 'main.html' /}
+#{set title:'School Details' /}
+<div id="wrapper">
+<div id="containt_area">
+
+
+<div class="page-header">
+	<h1>${title}</h1>
+</div>
+
+<table class="table table-striped table-details">
+    <tbody>
+	    <tr>
+	        <td>SI No.</td>
+	        <td>${school.id}</td>
+	    </tr>
+	    <tr>
+	        <td>Name</td>
+	        <td>${school.name}</td>
+	    </tr>
+	    
+	    <tr>
+	        <td>School REG No </td>
+	        <td>${school.schoolRegNo}</td>
+	    </tr>
+	    
+	    <tr>
+	        <td>School Type</td>
+	        <td>${school.schoolType}</td>
+	    </tr>
+	    <tr>
+	        <td>Registration Date </td>
+	        <td>${school?.registrationDate}</td>
+	    </tr>
+	    	<tr>
+	        <td>Division</td>
+	        <td>${school?.geoDivision?.name}</td>
+	    </tr>
+	   	<tr>
+	        <td>District</td>
+	        <td>${school?.geoDistrict?.name}</td>
+	    </tr>
+	    	<tr>
+	        <td>Upazilla</td>
+	        <td>${school?.geoUpazilla?.name}</td>
+	    </tr>
+	    
+	    
+    </tbody>
+</table>
+
+	#{if school.approavedStatus != 'Approved'}
+		<div cass="col-sm-12">
+		<div cass="col-sm-6">
+		 <a href="@{Schools.approved(school.id)}">
+	     <input class="btn-success btn"  type="button" value="Approve" />
+	     </a>
+	     </div>
+	     <div></div>
+		<div cass="col-sm-6">
+		<a href="@{Schools.reject(school.id)}">
+	     <input class="btn-success btn"  type="button" value="Rejected" />
+	     </a>
+		</div>
+		
+		</div>
+	#{/if}
+
+   </div>
+   </div>
