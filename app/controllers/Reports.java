@@ -176,8 +176,6 @@ public class Reports extends Controller {
 		mp = OverallReport.secondChartInOverallReport(divisionId, districtId, upazillaId, schoolId, 
 				studentType, startDate, endDate, formId, divisionFilter, districtFilter, upazillaFilter, schoolFilter);
 			
-		
-
 		Gson gson = new Gson();
 
 		return gson.toJson(mp);

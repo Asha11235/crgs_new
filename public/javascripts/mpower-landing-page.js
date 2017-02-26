@@ -115,7 +115,7 @@ $("document").ready(function(){
 				
 				var json = JSON.parse(data);
 				//console.log(json);
-				$("#total_School").html(json.total_School);
+				$("#total_school").html(json.total_school);
 				$("#total_boys").html(json.total_boys);
 				$("#total_girls").html(json.total_girls);
 				$("#total_Toilets").html(json.total_Toilets);

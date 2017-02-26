@@ -26,7 +26,7 @@ public class DashboardReport {
 
 	public static Map<String, Long> getDashboardData() throws SQLException {
 		Logger.info("DasBoardReport");
-		long total_School = 0, total_boys = 0, total_girls = 0, total_Toilets = 0, male_toilet = 0, female_toilet = 0,
+		long total_school = 0, total_boys = 0, total_girls = 0, total_Toilets = 0, male_toilet = 0, female_toilet = 0,
 				boys_toilet_ratio = 0, girls_toilet_ratio = 0, school_forum = 0, organized_annual_sports = 0;
 		
 		String table_name = "SchoolInformation";
@@ -45,7 +45,7 @@ public class DashboardReport {
 		try {
 			rs = queryForExecution.executeQuery();
 			while(rs.next()){
-				total_School = rs.getInt("totalSchool");
+				total_school = rs.getInt("totalSchool");
 				total_boys = rs.getInt("maleStudent");
 				total_girls = rs.getInt("femaleStudent");
 				male_toilet = rs.getInt("maleToilet");
@@ -56,7 +56,7 @@ public class DashboardReport {
 		}
 		total_Toilets = male_toilet	+ female_toilet;
 		Logger.info("----------------------------------------------------");
-		Logger.info("male toilet : " + male_toilet + " female toilet : " + female_toilet + " total toilet : " + total_Toilets);
+		Logger.info("total_School : " + total_school + " male toilet : " + male_toilet + " female toilet : " + female_toilet + " total toilet : " + total_Toilets);
 		Logger.info("----------------------------------------------------");
 		if(total_boys != 0L)
 			boys_toilet_ratio = (male_toilet * 100) / total_boys;
@@ -66,7 +66,7 @@ public class DashboardReport {
 		
 		
 		
-		mp.put("total_School", total_School);
+		mp.put("total_school", total_school);
 		mp.put("total_boys", total_boys);
 		mp.put("total_girls", total_girls);
 		mp.put("total_Toilets", total_Toilets);

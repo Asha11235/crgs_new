@@ -68,7 +68,7 @@ public class Forms extends Controller {
 	
 	public static String getDashBoardData() throws SQLException {
 		Map<String, Long> mp = new HashMap<String, Long>();
-		//mp.put("json", 55L);
+		
 		mp = DashboardReport.getDashboardData();
 		Gson gson= new Gson();
 		return gson.toJson(mp);
