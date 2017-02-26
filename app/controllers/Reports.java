@@ -35,6 +35,7 @@ import com.sun.org.apache.xpath.internal.operations.And;
 
 import controllers.deadbolt.Deadbolt;
 import controllers.deadbolt.ExternalRestrictions;
+import models.CaseReport;
 import models.Data;
 import models.GeoDistrict;
 import models.GeoDivision;
@@ -108,6 +109,14 @@ public class Reports extends Controller {
 
 		render();
 	}
+	
+	public static void caseReport() {
+		List<GeoDivision> geoDivisionList = GeoDivision.findAll();	
+		renderArgs.put("geoDivisionList", geoDivisionList);
+
+		List<CaseReport> caseList = CaseReport.findAll();
+		render(caseList);
+	}
 
 	public static String loadReport(Long formId, Long divisionId,Long districtId, Long upazillaId, Long schoolId, 
 			Long studentType, Date startDate, Date endDate) throws SQLException {
@@ -132,6 +141,7 @@ public class Reports extends Controller {
 		case 4:
 			mp = SportsRecreation.getSportsRecreationData(divisionId, districtId, upazillaId, schoolId, studentType, startDate, endDate);
 			break;
+			
 		default:
 			break;
 		}
@@ -168,6 +178,17 @@ public class Reports extends Controller {
 			
 		
 
+		Gson gson = new Gson();
+
+		return gson.toJson(mp);
+	}
+	
+	public static String LoadCaseReport(Long divisionId, Long districtId, Long upazillaId, Long unionId) throws SQLException, ParseException {
+
+		Map<String, String> mp = new HashMap<String, String>();
+		
+		mp = CaseReport.getReport(divisionId, districtId, upazillaId, unionId);
+			
 		Gson gson = new Gson();
 
 		return gson.toJson(mp);

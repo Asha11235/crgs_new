@@ -72,7 +72,7 @@ $("document").ready(function(){
 		reset();
 		var json = JSON.parse(data);
 		
-		
+		console.log(json)
 		
 		$("#boys").html(json.boys);$("#girls").html(json.girls);$("#boys_Plus_girls").html(json.boys + json.girls);
 		

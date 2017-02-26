@@ -83,6 +83,7 @@ public class OverallReport {
 				mp.put("" + k++, monthName[i]);       mp.put("" + k++, datas.get(i) + "");
 			}
 			if(divisionFilter != false){
+				Logger.info("division active");
 				datas = getData("Water", "rank_water", dates, divisionId, 
 						null, null, null, null, startDate, endDate);
 				for(int i = 0; i < datas.size(); i++){
@@ -90,6 +91,7 @@ public class OverallReport {
 				}
 			}
 			if(districtFilter != false){
+				Logger.info("district active");
 				datas = getData("Water", "rank_water", dates, null, 
 						districtId, null, null, null, startDate, endDate);
 				for(int i = 0; i < datas.size(); i++){
@@ -97,6 +99,7 @@ public class OverallReport {
 				}
 			}
 			if(upazillaFilter != false){
+				Logger.info("upazilla active");
 				datas = getData("Water", "rank_water", dates, null, 
 						null, upazillaId, null, null, startDate, endDate);
 				for(int i = 0; i < datas.size(); i++){
@@ -119,6 +122,31 @@ public class OverallReport {
 			for(int i = 0; i < datas.size(); i++){
 				mp.put("" + k++, monthName[i]);       mp.put("" + k++, datas.get(i) + "");
 			}
+			
+			if(divisionFilter != false){
+				Logger.info("division active");
+				datas = getData("Sanitation", "rank_sanitation", dates, divisionId, 
+						null, null, null, null, startDate, endDate);
+				for(int i = 0; i < datas.size(); i++){
+					mp.put("" + k++, monthName[i]);       mp.put("" + k++, datas.get(i) + "");
+				}
+			}
+			if(districtFilter != false){
+				Logger.info("district active");
+				datas = getData("Sanitation", "rank_sanitation", dates, null, 
+						districtId, null, null, null, startDate, endDate);
+				for(int i = 0; i < datas.size(); i++){
+					mp.put("" + k++, monthName[i]);       mp.put("" + k++, datas.get(i) + "");
+				}
+			}
+			if(upazillaFilter != false){
+				Logger.info("upazilla active");
+				datas = getData("Sanitation", "rank_sanitation", dates, null, 
+						null, upazillaId, null, null, startDate, endDate);
+				for(int i = 0; i < datas.size(); i++){
+					mp.put("" + k++, monthName[i]);       mp.put("" + k++, datas.get(i) + "");
+				}
+			}
 		}
 		
 		if(formId == 3L){
@@ -127,6 +155,32 @@ public class OverallReport {
 			for(int i = 0; i < datas.size(); i++){
 				mp.put("" + k++, monthName[i]);       mp.put("" + k++, datas.get(i) + "");
 			}
+			
+			if(divisionFilter != false){
+				Logger.info("division active");
+				datas = getData("SchoolEnvironment", "rank_Environment", dates, divisionId, 
+						null, null, null, null, startDate, endDate);
+				for(int i = 0; i < datas.size(); i++){
+					mp.put("" + k++, monthName[i]);       mp.put("" + k++, datas.get(i) + "");
+				}
+			}
+			if(districtFilter != false){
+				Logger.info("district active");
+				datas = getData("SchoolEnvironment", "rank_Environment", dates, null, 
+						districtId, null, null, null, startDate, endDate);
+				for(int i = 0; i < datas.size(); i++){
+					mp.put("" + k++, monthName[i]);       mp.put("" + k++, datas.get(i) + "");
+				}
+			}
+			if(upazillaFilter != false){
+				Logger.info("upazilla active");
+				datas = getData("SchoolEnvironment", "rank_Environment", dates, null, 
+						null, upazillaId, null, null, startDate, endDate);
+				for(int i = 0; i < datas.size(); i++){
+					mp.put("" + k++, monthName[i]);       mp.put("" + k++, datas.get(i) + "");
+				}
+			}
+			
 		}
 		
 		if(formId == 4L){
@@ -135,9 +189,35 @@ public class OverallReport {
 			for(int i = 0; i < datas.size(); i++){
 				mp.put("" + k++, monthName[i]);       mp.put("" + k++, datas.get(i) + "");
 			}
+			
+			if(divisionFilter != false){
+				Logger.info("division active");
+				datas = getData("SportsRecreation", "rank_SportsRecreation", dates, divisionId, 
+						null, null, null, null, startDate, endDate);
+				for(int i = 0; i < datas.size(); i++){
+					mp.put("" + k++, monthName[i]);       mp.put("" + k++, datas.get(i) + "");
+				}
+			}
+			if(districtFilter != false){
+				Logger.info("district active");
+				datas = getData("SportsRecreation", "rank_SportsRecreation", dates, null, 
+						districtId, null, null, null, startDate, endDate);
+				for(int i = 0; i < datas.size(); i++){
+					mp.put("" + k++, monthName[i]);       mp.put("" + k++, datas.get(i) + "");
+				}
+			}
+			if(upazillaFilter != false){
+				Logger.info("upazilla active");
+				datas = getData("SportsRecreation", "rank_SportsRecreation", dates, null, 
+						null, upazillaId, null, null, startDate, endDate);
+				for(int i = 0; i < datas.size(); i++){
+					mp.put("" + k++, monthName[i]);       mp.put("" + k++, datas.get(i) + "");
+				}
+			}
 		}
 		return mp;
 	}
+	
 	
 	
 	public static List<Date> getDates() throws ParseException{

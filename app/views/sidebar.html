@@ -124,16 +124,17 @@
                         </li>
                         #{/deadbolt.externalizedRestriction}
 
-
+						#{deadbolt.externalizedRestriction externalRestrictions:['Case Report']}
                         <li class="">
-                            <a href="#">
+                            <a href="@{Reports.caseReport()}">
                                 <i class="fa fa-keyboard-o"></i>
                                 <span class="title">
                                     Case Reporting
                                 </span>
                             </a>
                         </li>
-
+						#{/deadbolt.externalizedRestriction}
+						
                         <li class="">
                             <a href="#">
                                 <i class="fa fa-picture-o"></i>

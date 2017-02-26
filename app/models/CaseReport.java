@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Map;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -45,8 +47,11 @@ public class CaseReport extends Model {
 	public SchoolInformation associateSchool;
 	
 	public String currentStatus;
-	
-	
-	
+
+	public static Map<String, String> getReport(Long divisionId,Long districtId, Long upazillaId, Long unionId) {
+		
+		return null;
+	}
+
 
 }

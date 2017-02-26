@@ -4,7 +4,7 @@ var xScale, yScale, canvas, indicator = 1;
   function initLineChart(id,width,height,xLabel){
 		var margin = {left : 80, right : 300, top : 10, bottom : 70};
 		if(id == "#container2"){margin.right = 30}
-		console.log("width : " + width + " height : " + height);
+		
 	    canvas = d3.select(id).append("svg")
 	                   .attr("width", width)
 	                   .attr("height", height)
@@ -77,7 +77,7 @@ $("document").ready(function(){
 	
 	
 	firstChartInOverallReport(null, null, null, null, null, null, null);
-	secondChartInOverallReport(null, null, null, null, null, null, null, 1, false, false, false, false);
+	//secondChartInOverallReport(null, null, null, null, null, null, null, 1, false, false, false, false);
 	
 	
 	$(".SEARCH").on("change", function() {
@@ -153,13 +153,10 @@ $("document").ready(function(){
 					  
 					  $("#container1").empty();
 					  initLineChart("#container1",1100,350,[lineData1[0].x, lineData1[1].x,lineData1[2].x,lineData1[3].x,lineData1[4].x,lineData1[5].x])
-					  console.log(lineData1);
+					  
 					  lineChart(lineData1,"green")
-					  console.log(lineData2);
 					  lineChart(lineData2, "red")
-					  console.log(lineData3);
 					  lineChart(lineData3,"yellow")
-					  console.log(lineData4);
 					  lineChart(lineData4,"blue")
 						  
 					  drawLegend(150, "green", "Water")
@@ -175,7 +172,7 @@ $("document").ready(function(){
 	}
 	
 	$("button").click(function(){
-		
+		console.log("click")
 		$(".btn-danger").addClass("btn-default");
 		$(".btn-danger").removeClass("btn-danger");
 		$(this).addClass("btn-danger");
@@ -255,7 +252,7 @@ $("document").ready(function(){
 					                   {x: "april'16",y: 1}, {x: "may'16",y: 4}, {x: "jun'16",y: 3}];
 					  
 					  var index1 = 0, index2 = 0, index3 = 0, index4 = 0;
-					  console.log("i am in 1" + json)
+					  //console.log("i am in 1" + json)
 					  $.each(json, function( key, value ) {
 						  if (key < 12){
 							  if(key % 2 == 0){lineData1[index1].x = value;}
@@ -272,29 +269,114 @@ $("document").ready(function(){
 						  }
 						  
 					  });
-					  console.log(divisionFilter + " " + districtFilter + " " + upazillaFilter + " " + schoolFilter)
+					  
+					  //console.log(divisionFilter + " " + districtFilter + " " + upazillaFilter + " " + schoolFilter)
 					  if(divisionFilter == false && districtFilter == false && upazillaFilter == false && schoolFilter == false){
 						  $("#container2").empty();
 						  initLineChart("#container2",780,350,[lineData1[0].x, lineData1[1].x,lineData1[2].x,lineData1[3].x,lineData1[4].x,lineData1[5].x])
 					  }
 					  
-				
-					  
+					  console.log("--------------------------------")
+					  console.log(lineData1)
+					  console.log(lineData2)
+					  console.log(lineData3)
+					  console.log(lineData4)
 					  if(formId == 1){
+						  $("#container2").empty();
+						  initLineChart("#container2",780,350,[lineData1[0].x, lineData1[1].x,lineData1[2].x,lineData1[3].x,lineData1[4].x,lineData1[5].x])
 						  lineChart(lineData1,"green")
+						  if(divisionFilter){
+							  lineChart(lineData2,"red")
+						  }
+						  if(districtFilter){
+							  if(!divisionFilter) {
+								  lineData3 = lineData2;
+							  }
+							  lineChart(lineData3,"yellow")
+						  }
+						  if(upazillaFilter){
+							  if(!districtFilter){
+								  lineData4 = lineData3;
+							  }
+							  if(!divisionFilter && !districtFilter){
+								  lineData4 = lineData2;
+							  }
+							  lineChart(lineData4,"blue")
+						  }
 					  }
 					  if(formId == 2){
-						  lineChart(lineData1, "red")
+						  $("#container2").empty();
+						  initLineChart("#container2",780,350,[lineData1[0].x, lineData1[1].x,lineData1[2].x,lineData1[3].x,lineData1[4].x,lineData1[5].x])
+						  lineChart(lineData1,"green")
+						  if(divisionFilter){
+							  lineChart(lineData2,"red")
+						  }
+						  if(districtFilter){
+							  if(!divisionFilter) {
+								  lineData3 = lineData2;
+							  }
+							  lineChart(lineData3,"yellow")
+						  }
+						  if(upazillaFilter){
+							  if(!districtFilter){
+								  lineData4 = lineData3;
+							  }
+							  if(!divisionFilter && !districtFilter){
+								  lineData4 = lineData2;
+							  }
+							  lineChart(lineData4,"blue")
+						  }
 					  }
 					  
 					  if(formId == 3){
-						  lineChart(lineData1,"yellow")
+						  $("#container2").empty();
+						  initLineChart("#container2",780,350,[lineData1[0].x, lineData1[1].x,lineData1[2].x,lineData1[3].x,lineData1[4].x,lineData1[5].x])
+						  lineChart(lineData1,"green")
+						  if(divisionFilter){
+							  lineChart(lineData2,"red")
+						  }
+						  if(districtFilter){
+							  if(!divisionFilter) {
+								  lineData3 = lineData2;
+							  }
+							  lineChart(lineData3,"yellow")
+						  }
+						  if(upazillaFilter){
+							  if(!districtFilter){
+								  lineData4 = lineData3;
+							  }
+							  if(!divisionFilter && !districtFilter){
+								  lineData4 = lineData2;
+							  }
+							  lineChart(lineData4,"blue")
+						  }
 					  }
 
 					  if(formId == 4){
-						  lineChart(lineData1,"blue")
+						  $("#container2").empty();
+						  initLineChart("#container2",780,350,[lineData1[0].x, lineData1[1].x,lineData1[2].x,lineData1[3].x,lineData1[4].x,lineData1[5].x])
+						  lineChart(lineData1,"green")
+						  if(divisionFilter){
+							  lineChart(lineData2,"red")
+						  }
+						  if(districtFilter){
+							  if(!divisionFilter) {
+								  lineData3 = lineData2;
+							  }
+							  lineChart(lineData3,"yellow")
+						  }
+						  if(upazillaFilter){
+							  if(!districtFilter){
+								  lineData4 = lineData3;
+							  }
+							  if(!divisionFilter && !districtFilter){
+								  lineData4 = lineData2;
+							  }
+							  lineChart(lineData4,"blue")
+						  }
 					  }
-						  
+					  
+					  
 					  
 				}
 			

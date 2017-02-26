@@ -118,7 +118,7 @@ public class Water extends Model{
 		
 		qString += whereClause + "  and Water.res_type = ?";
 		
-		Logger.info("query1 string is : " + qString);
+		//Logger.info("query1 string is : " + qString);
 		
 		PreparedStatement queryForExecution = conn.prepareStatement(qString);
 		queryForExecution.setString(1, firstDateOfPreviousMonth);
@@ -151,7 +151,7 @@ public class Water extends Model{
 			}
 		}
 		
-		if(studentType == null || studentType == 1L){
+		if(studentType == null || studentType == 2L){
 			queryForExecution.setString(3, "2");
 			try {
 				rs = queryForExecution.executeQuery();
@@ -175,7 +175,7 @@ public class Water extends Model{
 		qString = "select count(Water.why_not_potable) as cause from " + table_name;
 		qString += whereClause + " and Water.why_not_potable like ? ";
 		
-		Logger.info("query2 string is : " + qString);
+		//Logger.info("query2 string is : " + qString);
 		
 		queryForExecution = conn.prepareStatement(qString);	
 		queryForExecution.setString(1, firstDateOfPreviousMonth);
@@ -226,7 +226,7 @@ public class Water extends Model{
 			causeThree = (causeThree * 100) / totalCause; causeFour = (causeFour * 100)/ totalCause;
 		}
 		
-		Logger.info("causeOne : " + causeOne + " causeTwo : " + causeTwo + " causeThree : " + causeThree + " causeFour : " + causeFour);
+		//Logger.info("causeOne : " + causeOne + " causeTwo : " + causeTwo + " causeThree : " + causeThree + " causeFour : " + causeFour);
 
 		//Cause of Unsafe Dingking Water -------------------------------------------end
 		
@@ -237,7 +237,7 @@ public class Water extends Model{
 				qString = "select count(Water.how_informed_water_prob) as issue from " + table_name;
 				qString += whereClause + " and Water.how_informed_water_prob like ?";
 				
-				Logger.info("query3 string is : " + qString);
+				//Logger.info("query3 string is : " + qString);
 				
 				queryForExecution = conn.prepareStatement(qString);	
 				queryForExecution.setString(1, firstDateOfPreviousMonth);
@@ -298,7 +298,7 @@ public class Water extends Model{
 					issueThree = (issueThree * 100) / totalIssue; issueFour = (issueFour * 100)/ totalIssue;
 					issueFive = (issueFive * 100) / totalIssue;
 				}
-				Logger.info("issueOne : " + issueOne + " issueTwo : " + issueTwo + " issueThree : " + issueThree + " issueFour : " + issueFour + " issueFive : " + issueFive);
+				//Logger.info("issueOne : " + issueOne + " issueTwo : " + issueTwo + " issueThree : " + issueThree + " issueFour : " + issueFour + " issueFive : " + issueFive);
 
 				//ISSUE RAISING MEDIUM / MECHANISM -------------------------------------------end
 				
@@ -394,10 +394,10 @@ public class Water extends Model{
 					instantly_Within_1_day = (instantly_Within_1_day * 100) / totalResponse;
 					not_known = (not_known * 100) / totalResponse;
 				}
-				Logger.info("solved_within_4_7_days : " + solved_within_4_7_days + " solved_within_2_3_days : " + solved_within_2_3_days 
-						+ " solved_within_8_30_days : " + solved_within_8_30_days + " more_than_30_days : " + more_than_30_days + 
-						" no_measure_till_now : " + no_measure_till_now + "instantly_Within_1_day : " + instantly_Within_1_day +
-						"not_known : " + not_known);
+				//Logger.info("solved_within_4_7_days : " + solved_within_4_7_days + " solved_within_2_3_days : " + solved_within_2_3_days 
+					//	+ " solved_within_8_30_days : " + solved_within_8_30_days + " more_than_30_days : " + more_than_30_days + 
+						//" no_measure_till_now : " + no_measure_till_now + "instantly_Within_1_day : " + instantly_Within_1_day +
+						//"not_known : " + not_known);
 
 				//SCHOOL AUTHORITY RESPONSE STATUS & TIME -------------------------------------------end
 				

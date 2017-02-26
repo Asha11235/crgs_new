@@ -103,7 +103,7 @@ public class RegisterSchool extends play.mvc.Controller{
 	    	}
 	    }
 	    
-	    public static void caseReport(){
+	    public static void submitCase(){
 	    	List<GeoDivision> geoDivisionList = GeoDivision.findAll();
 			List<GeoDistrict> geoDistrictList = GeoDistrict.findAll();
 			List<GeoUpazilla> geoUpazillaList = GeoUpazilla.findAll();
