@@ -92,7 +92,7 @@ GET		/pollgraph					    PollGraph.index
 #School Registeration Router
 
 GET     /registerschool								RegisterSchool.schoolregister();
-GET     /casereport								RegisterSchool.caseReport();
+GET     /casereport								    RegisterSchool.caseReport();
 GET     /resourcelist								RegisterSchool.resourceList();
 GET     /create-poll                                 PollManagement.createPoll
 
