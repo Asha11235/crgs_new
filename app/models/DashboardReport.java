@@ -673,10 +673,11 @@ public class DashboardReport {
 		Logger.info("**********************************************************");
 		Logger.info("sanitationIssueResolved : " + sanitationIssueResolved + " sanitationIssueUnresolved : " + sanitationIssueUnresolved);
 		Logger.info("**********************************************************");
-		
+		if((sanitationIssueResolved + sanitationIssueUnresolved)!=0){
 		sanitationIssueResolved = (sanitationIssueResolved * 100) / (sanitationIssueResolved + sanitationIssueUnresolved);
 		Logger.info("tessttttttttt : " + sanitationIssueResolved);
 		mp.put("sanitationIssueResolved", sanitationIssueResolved);
+		}
 	}
 	
 	public static void schoolEnvironmentIssue() throws SQLException{
@@ -722,9 +723,11 @@ public class DashboardReport {
 		Logger.info("schoolEnvironmentIssueResolved : " + schoolEnvironmentIssueResolved + " schoolEnvironmentIssueUnresolved : " + schoolEnvironmentIssueUnresolved);
 		Logger.info("**********************************************************");
 		
+		if((schoolEnvironmentIssueResolved + schoolEnvironmentIssueUnresolved)!=0){
 		schoolEnvironmentIssueResolved = (schoolEnvironmentIssueResolved * 100) / (schoolEnvironmentIssueResolved + schoolEnvironmentIssueUnresolved);
 		Logger.info("tessttttttttt : " + schoolEnvironmentIssueResolved);
 		mp.put("schoolEnvironmentIssueResolved", schoolEnvironmentIssueResolved);
+		}
 	}
 	public static void TotalIssue(){}
 	
