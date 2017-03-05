@@ -22,44 +22,58 @@
                             </div>
                             <div class="portlet-body">
                                 <div class="row">
+                                  <div class="col-md-2">
+			<div class="form-group">
+			<div id="geoDivision" class="col-md-12 SEARCH" url="@{Ngos.loadGeoDistrict()}" load-data-container-SEARCH="#geoDistrict">
+				#{select 'division', value:0, items:geoDivisionList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'division'}
+					#{option}Division#{/option}
+				#{/select}
+			</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="form-group">
+				<div id="geoDistrict" class="col-md-12 SEARCH" url="@{Ngos.loadGeoUpazilla()}"  load-data-container-SEARCH="#geoUpazilla">
+					#{select 'district', value:0, items:geoDistrictList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'ngo.geoDistrict.id'}
+						#{option}District#{/option}
+					#{/select}
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="form-group">
+				<div id="geoUpazilla" class="col-md-12 SEARCH" url="@{Ngos.loadGeoSchool()}"  load-data-container-SEARCH="#geoSchool">
+					#{select 'upazilla', value:0, items:geoUpazillaList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'ngo.geoUpazilla.id'}
+						#{option}Upazilla#{/option}
+					#{/select}
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="form-group">
+				<div id="geoSchool" class="col-md-12 SEARCH"  url="@{Ngos.loadGeoSchool()}"  load-data-container-SEARCH="#geoUnion">
+					#{select 'school', value:0, items:schoolList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'school'}
+						#{option}School#{/option}
+					#{/select}
+				</div>
+			</div>	
+		</div>
                                     <div class="col-md-2">
-                                        <div class="form-group">
-                                            <select class="form-control">
-                                                <option value="">Division</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <select class="form-control">
-                                                <option value="">District</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <select class="form-control">
-                                                <option value="">Upazila</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <select class="form-control">
-                                                <option value="">School</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <select class="form-control">
-                                                <option value="">Roles</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">&nbsp;</div>
+			<div class="form-group">
+				<div id="role" class="col-md-12 SEARCH" >
+					#{select 'role', value:0, items:roleList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'roleId'}
+						#{option}Role#{/option}
+					#{/select}
+				</div>
+			</div>	
+			
+		</div>
+		
+		<div class="col-md-2">&nbsp;&nbsp;&nbsp;</div>
                                     <!--/span-->
-                                </div>
+                                </div>   
+                                 </div>
+                                 </div>
                                 <!-- BEGIN FORM-->
                                 <table class="table table-striped table-bordered table-hover" id="sample_2">
                                     <thead>
@@ -76,7 +90,7 @@
                                             <th>&nbsp;</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="userInf"> 
                                         #{list items:users, as:'user'}
 											<tr id = "${user.id}">
 												<td>${user.id}</td>
@@ -90,7 +104,12 @@
 												#{deadbolt.externalizedRestriction externalRestrictions:['Edit User']}
 									           	<td><a class="btn btn-mini" href="@{Users.details(user.id)}">Details</a></td>
 												<td><a class="btn btn-mini" href="@{Users.edit(user.id)}"><i class="icon-edit"></i> Edit</a></td>
-												<td><a class="btn btn-mini btn-danger delete_user" id = "${user.id}"><i class="icon-remove icon-white"></i> Delete</a></td>
+												<td>
+												<a class="btn btn-mini btn-danger delete_user" id = "${user.id}">
+												<i class="icon-remove icon-white"></i> 
+												Delete
+												</a>
+												</td>
 												#{/deadbolt.externalizedRestriction}
 												</td>
 											</tr>
@@ -103,7 +122,7 @@
                 </div>
 
 <script>
-	    //$('.delete_user').("click", function(){
+	    /*//$('.delete_user').("click", function(){
 	    $(".delete_user").click(function(){  
 			var userId = $(this).attr("id");
 	        if(confirm("Are you sure to delete this user?"))
@@ -132,5 +151,107 @@
 	        }
 	        return false;
 	         
-	    });
+	    });*/
+	    
+	    $("document").ready(function(){
+	
+	
+	$(".SEARCH").on("change", function() {
+		
+		if(typeof $(this).find(":selected").attr("value") == "undefined"){
+			return;
+		}
+		var divisionId = $('#division').find(":selected").attr("value");
+		
+		var districtId = $('#ngo\\.geoDistrict\\.id').find(":selected").attr("value");
+		
+		var upazillaId = $('#ngo\\.geoUpazilla\\.id').find(":selected").attr("value");
+		
+		var schoolId = $('#school').find(":selected").attr("value");
+		
+		var roleId = $('#roleId').find(":selected").attr("value");
+		
+		
+		console.log("divisionId : "+ divisionId + " districtId : " + districtId + " UpazillaId : "+ upazillaId
+				+ " schoolId : "+ schoolId + " roleId : " + roleId);
+		loadData(divisionId,districtId,upazillaId,schoolId, roleId, null, null);
+	});
+	
+	
+
+	function loadData(divisionId,districtId,upazillaId,schoolId, roleId, startDate, endDate) {
+		var formId = $("#formId").val();
+		//var tbl = "<table class="table table-striped table-bordered table-hover" id="userTable">";
+		var tbl = "" ;
+        var thead =  "<table class='table table-striped table-bordered table-hover' id='userTable'>"+
+                                    "<thead>"+
+                                        "<tr>"+
+                                            "<th>User ID</th>"+
+                                            "<th>User Name</th>"+
+                                            "<th>Role</th>"+
+                                            "<th>Division</th>"+
+                                            "<th>District</th>"+
+                                            "<th>Upazilla</th>"+
+                                            "<th>Institution</th>"+
+                                            "<th>&nbsp;</th>"+
+                                            "<th>&nbsp;</th>"+
+                                            "<th>&nbsp;</th>"+
+                                        "</tr>"+
+                                    "</thead>";           
+		return $.ajax({
+				type: "GET",
+              	url:  "/users/loadUser",
+				data : {
+					divisionId : divisionId,
+					districtId : districtId,
+					upazillaId : upazillaId,
+					schoolId : schoolId,
+					roleId : roleId,
+					startDate : startDate,
+					endDate : endDate
+				},
+				
+				success: function(data) {
+					var json = JSON.parse(data);
+					var userInfo = data.split(';');
+					 console.log(json);
+					 var row = "";
+		             //var tbl = "";
+					 for (var i = 1; i < userInfo.length; i = i + 7) {
+                                var schoolid = userInfo[i];
+                                var username = userInfo[i+1];
+                                var rolename = userInfo[i+2];
+                                var divisionname = userInfo[i+3];
+                                var districtname = userInfo[i+4];
+                                var upazillaname = userInfo[i + 5];
+                                var schoolname = userInfo[i + 6];
+                                
+                           row = row + "<tr><td>" + schoolid + "</td><td>" + username + "</td><td>" + rolename + 
+                           "</td><td>" + divisionname + "</td><td>" + districtname + "</td><td>" + upazillaname + 
+                           "</td><td>" + schoolname + "</td>"+
+                           "#{deadbolt.externalizedRestriction externalRestrictions:['Edit User']}"+
+						   "<td><a class='btn btn-mini' href='@{Users.details(user.id)}'>Details</a></td>"+
+				           "<td><a class='btn btn-mini' href='@{Users.edit(user.id)}'><i class='icon-edit'></i> Edit</a></td>"+
+						   "<td>"+
+						   "<a class='btn btn-mini btn-danger delete_user' id = 'username'>"+
+						   "<i class='icon-remove icon-white'></i>"+ 
+						   "Delete"+
+						   "</a>"+
+						   "</td>"+
+						   "#{/deadbolt.externalizedRestriction}"+
+						   "</td></tr>";
+                           
+                           
+                     }
+                            tbl =thead+ tbl+"<tbody>" + row + "</tbody>";
+                            $("#sample_2").html("");
+                            $("#sample_2").html(tbl);
+                           
+                                
+                }
+			
+			});
+	}
+	});
+	
 </script>

@@ -1,6 +1,12 @@
 package controllers;
 
+import java.sql.SQLException;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.Set;
 
 import models.Aco;
@@ -25,6 +31,8 @@ import controllers.deadbolt.ExternalRestrictions;
 import controllers.deadbolt.Unrestricted;
 
 import javax.persistence.Query;
+
+import com.google.gson.Gson;
 
 @With(Deadbolt.class)
 public class Users extends Controller {
@@ -53,7 +61,18 @@ public class Users extends Controller {
         totalPages = (int) Math.ceil(rowNumber * 1.0 / recordsPerPage);
 
 		List<User> users = User.find("name <> 'admin' order by id desc").fetch();
+		
+		List<GeoDivision> geoDivisionList = GeoDivision.findAll();
+		//List<GeoDistrict> geoDistrictList = GeoDistrict.findAll();
+		//List<GeoUpazilla> geoUpazillaList = GeoUpazilla.findAll();
+		List<Role> roleList = Role.findAll();
+		
+		renderArgs.put("geoDivisionList", geoDivisionList);
+		//renderArgs.put("geoDistrictList", geoDistrictList);
+		//renderArgs.put("geoDistrictList", geoUpazillaList);
+		renderArgs.put("roleList", roleList);
         render(users,rowNumber,currentPage,totalPages);
+		
     }
  
 	@ExternalRestrictions("View User")
@@ -212,14 +231,32 @@ public class Users extends Controller {
     	render(role);
     }
 
+	
+	
     @ExternalRestrictions("Edit User")
     public static void roleSubmit(@Valid Role role) {
         if(validation.hasErrors()) {
         	render("@roleEdit", role);
         }
-        role.save();
-        flash.success("Record saved successfully.");
-        roleList();
+        
+        String name = role.name;
+        
+        Pattern p = Pattern.compile("[^A-Za-z0-9]");
+        Matcher m = p.matcher(name);
+       
+        boolean b = m.find();
+        if (b == false){
+        	
+        	role.save();
+            flash.success("Record saved successfully.");
+            roleList();
+        }
+           
+        else if ( b== true){
+        	 flash.success("Role can not get any special character.");
+        	 render("@roleEdit", role);
+        } 
+        
     }
 
     @ExternalRestrictions("Edit User")
@@ -231,7 +268,7 @@ public class Users extends Controller {
 	    	notFoundIfNull(role, "role not found");
 	    	
 	    	role.delete();
-	    	Logger.info("deletling roles : " + id);
+	    	Logger.info("deletling roles : " + id +" " + role.name);
 	    	return 1;
     	}
     	return 0;
@@ -305,7 +342,15 @@ public class Users extends Controller {
 	}
     
     
-    
-    
-    
+    public static String loadUser(Long divisionId,Long districtId, Long upazillaId, Long schoolId, 
+			Long roleId, Date startDate, Date endDate) throws SQLException {
+    	
+    	String msg="";
+    	
+    	msg= User.getUserData(divisionId, districtId, upazillaId, schoolId, roleId, startDate, endDate);
+    	
+    	Gson gson = new Gson();
+
+		return gson.toJson(msg);
+    }
 }

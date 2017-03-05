@@ -90,6 +90,7 @@ public class Water extends Model{
 		
 		String qString = null;
 		String whereClause = " Where Water.created_at between cast( ? as DateTime) and cast( ?  as DateTime)";
+		Logger.info("whereClause444444444444444444444444444444444444444 : " + whereClause);
 		String table_name = "Water";
 		
 		if(divisionId != null || districtId != null && upazillaId != null && schoolId != null && studentType != null){

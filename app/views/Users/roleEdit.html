@@ -1,6 +1,9 @@
 #{extends 'main.html' /}
 
 <div class="page-header top">
+#{if flash.success}
+    #{alert flash.success/}
+ #{/if}
 #{if role?.id}
     <h1>Edit Role</h1>
 #{/if}

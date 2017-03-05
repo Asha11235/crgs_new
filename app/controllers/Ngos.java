@@ -145,5 +145,12 @@ public class Ngos extends Controller{
 			
 			render(schoolList);
 		}
+	    
+	    public static void loadRole(Long id) {
+			Role role = Role.findById(id);
+			notFoundIfNull(role);
+			List<Role> roleList = role.find("role = ? ", role).fetch();
+			render(roleList);
+		}
 	
 }

@@ -1,5 +1,6 @@
 #{include 'head.html' /}
 
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
 
 <body>
@@ -83,17 +84,17 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group ">
 						<label for="focusedinput" class="col-sm-3 control-label">School Name</label>
-						<div class="col-sm-6">
-							<input name="school.name" type="text" class="form-control" id="school.name" value="${school?.name}" placeholder="Default Input">
+						<div class="col-sm-6 ">
+							<input name="school.name" type="text" class="form-control" id="school.name" value="${school?.name}" placeholder="Default Input" >
 						</div>
 					</div>
 
 
-					<div class="form-group">
+					<div class="form-group ">
 						<label for="focusedinput" class="col-sm-3 control-label">School REG No</label>
-						<div class="col-sm-6">
+						<div class="col-sm-6" >
 							<input name="school.schoolRegNo" type="text" class="form-control" id="school.schoolRegNo" value="${school?.schoolRegNo}" placeholder="Default Input">
 						</div>
 					</div>
@@ -103,7 +104,7 @@
 					<div class="form-group">
 						<label for="selector1" class="col-sm-3 control-label">School Type</label>
 						<div class="col-sm-6">
-							#{input 'school.schoolType' , type:'select', items:schoolType } 
+							#{input 'school.schoolType' , type:'select', items:schoolType  , onchange:'test()'} 
 							#{option}Any#{/option}
 							#{/input}
 						</div>
@@ -112,7 +113,7 @@
 					<div class="form-group">
 						<label for="focusedinput" class="col-sm-3 control-label">Male Student</label>
 						<div class="col-sm-6">
-							<input name="school.maleStruden" type="number" class="form-control" id="school.maleStruden" value="${school?.maleStruden}" placeholder="Number Input" 
+							<input name="school.maleStruden" type="number" min="0" value="0" step="1" class="form-control" id="school.maleStruden" value="${school?.maleStruden}" placeholder="Number Input" 
 							onchange="myfun('school.totalStudent', 'school.maleStruden', 'school.femailStudent')">
 						</div>
 					</div>
@@ -120,7 +121,7 @@
 					<div class="form-group">
 						<label for="focusedinput" class="col-sm-3 control-label">Female Student</label>
 						<div class="col-sm-6">
-							<input name="school.femailStudent" type="number" class="form-control" id="school.femailStudent" value="${school?.femailStudent}" type="number" placeholder="Number Input" 
+							<input name="school.femailStudent" type="number" min="0" value="0" step="1" class="form-control" id="school.femailStudent" value="${school?.femailStudent}" type="number" placeholder="Number Input" 
 							onchange="myfun('school.totalStudent', 'school.maleStruden', 'school.femailStudent')">
 						</div>
 					</div>
@@ -128,7 +129,7 @@
 					<div class="form-group">
 						<label for="focusedinput" class="col-sm-3 control-label">Total Student</label>
 						<div class="col-sm-6">
-							<input name="school.totalStudent" type="number" class="form-control" id="school.totalStudent" value="0" placeholder="Number Input" disabled>
+							<input name="school.totalStudent" type="number" min="0" value="0" step="1" class="form-control" id="school.totalStudent" value="0" placeholder="Number Input" disabled>
 						</div>
 					</div>
 
@@ -136,7 +137,7 @@
 					<div class="form-group">
 						<label for="focusedinput" class="col-sm-3 control-label">Tubewells</label>
 						<div class="col-sm-6">
-							<input name="school.totalTubewells" type="number" class="form-control" id="school.totalTubewells" value="${school?.totalTubewells}" placeholder="Number Input">
+							<input name="school.totalTubewells" type="number" min="0" value="0" step="1" class="form-control" id="school.totalTubewells" value="${school?.totalTubewells}" placeholder="Number Input">
 						</div>
 					</div>
 
@@ -144,7 +145,7 @@
 					<div class="form-group">
 						<label for="focusedinput" class="col-sm-3 control-label">Male Toilets</label>
 						<div class="col-sm-6">
-							<input name="school.maleToilets" type="number" class="form-control" id="school.maleToilets" value="${school?.maleToilets}" placeholder="Number Input"
+							<input name="school.maleToilets" type="number" min="0" value="0" step="1" class="form-control" id="school.maleToilets" value="${school?.maleToilets}" placeholder="Number Input"
 							onchange="myfun('school.totalToilets', 'school.maleToilets', 'school.femailToilets')">
 						</div>
 					</div>
@@ -152,7 +153,7 @@
 					<div class="form-group">
 						<label for="focusedinput" class="col-sm-3 control-label">Female Toilets</label>
 						<div class="col-sm-6">
-							<input name="school.femailToilets" type="number" class="form-control" id="school.femailToilets" value="${school?.femailToilets}" placeholder="Number Input"
+							<input name="school.femailToilets" type="number" min="0" value="0" step="1" class="form-control" id="school.femailToilets" value="${school?.femailToilets}" placeholder="Number Input"
 							onchange="myfun('school.totalToilets', 'school.maleToilets', 'school.femailToilets')">
 						</div>
 					</div>
@@ -161,7 +162,7 @@
 					<div class="form-group">
 						<label for="focusedinput" class="col-sm-3 control-label">Total number of Toilets</label>
 						<div class="col-sm-6">
-							<input name="school.totalToilets" type="number" class="form-control" id="school.totalToilets" value="0" placeholder="Number Input" disabled>
+							<input name="school.totalToilets" type="number" min="0" value="0" step="1" class="form-control" id="school.totalToilets" value="0" placeholder="Number Input" disabled>
 						</div>
 					</div>
 
@@ -169,7 +170,7 @@
 					<div class="form-group">
 						<label for="selector1" class="col-sm-3 control-label">School Focal Person Mobile Number</label>
 						<div class="col-sm-6">
-							<input type="number" name="school.schoolHeadSirMobileNumber" class="form-control"/> 
+							<input type="number" name="school.schoolHeadSirMobileNumber" style="-moz-appearance: textfield" class="form-control"/> 
 						</div>
 					</div>
 
@@ -213,15 +214,15 @@
 	</div>
 </div>
 </div>
-<script type="text/javascript">
-	function myfun(x,y,z){
-		document.getElementById(x).value =	parseInt(document.getElementById(y).value) 
-										+ parseInt(document.getElementById(z).value);
-							
-										
-	}				
-</script>
 
+#{script 'mpower-register-school.js' /}
+
+<script type='text/javascript'>
+	    $( document ).ready(function() {
+	        console.log( "document loaded  register school" );
+	    });
+	    
+</script>
 
 </body>
 
