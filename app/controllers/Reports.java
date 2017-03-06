@@ -119,14 +119,28 @@ public class Reports extends Controller {
 	}
 
 	public static String loadReport(Long formId, Long divisionId,Long districtId, Long upazillaId, Long schoolId, 
-			Long studentType, Date startDate, Date endDate) throws SQLException {
+			Long studentType, String startDate1, String endDate1) throws SQLException {
 
 		Map<String, Long> mp = new HashMap<String, Long>();
+		
+		Date startDate = null;
+		Date endDate = null;
+		
+		if(startDate1 != null && endDate1 != null){
+			try {
+				startDate = new SimpleDateFormat("dd/MM/yyyy").parse(startDate1);
+				endDate = new SimpleDateFormat("dd/MM/yyyy").parse(endDate1);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 		switch (Integer.parseInt("" + formId)) {
 
 		case 1:
-			Logger.info("divisionId : " + divisionId + " districtId : " + districtId + " upazillaId : " + upazillaId
-					+ " schoolId : " + schoolId);
+			Logger.info("rrrrrrrrrrrrrrrrrrrrrr: "+"divisionId : " + divisionId + " districtId : " + districtId + " upazillaId : " + upazillaId
+					+ " schoolId : " + schoolId  + " startDate: " + startDate + " endDate: " + endDate);
 			mp = Water.getWaterData(divisionId, districtId, upazillaId, schoolId, studentType, startDate, endDate);
 			break;
 

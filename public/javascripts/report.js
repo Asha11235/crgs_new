@@ -1,26 +1,54 @@
 $("document").ready(function(){
 	
+	var frommdate;
+	var todate;
+	var divisionId;
+	var districtId;
+	var upazillaId;
+	var studentType;
+	var schoolId;
+	var schoolId;
+	
+	
+	$(".dateSEARCH").on("change",function(){
+	    
+	    fromdate = $('#fromDate').val();
+		
+		todate = $('#toDate').val();
+
+		loadData(divisionId,districtId,upazillaId,schoolId, studentType , fromdate , todate);
+	});
+	
+	
+
 	loadData(null, null, null, null, null, null, null);
 	
 	$(".SEARCH").on("change", function() {
-		
+	
 		if(typeof $(this).find(":selected").attr("value") == "undefined"){
 			return;
 		}
-		var divisionId = $('#division').find(":selected").attr("value");
 		
-		var districtId = $('#ngo\\.geoDistrict\\.id').find(":selected").attr("value");
+		divisionId = $('#division').find(":selected").attr("value");
 		
-		var upazillaId = $('#ngo\\.geoUpazilla\\.id').find(":selected").attr("value");
+		districtId = $('#ngo\\.geoDistrict\\.id').find(":selected").attr("value");
 		
-		var schoolId = $('#school').find(":selected").attr("value");
+		upazillaId = $('#ngo\\.geoUpazilla\\.id').find(":selected").attr("value");
 		
-		var studentType = $('#schoolType').find(":selected").attr("value");
+		schoolId = $('#school').find(":selected").attr("value");
+		
+        studentType = $('#schoolType').find(":selected").attr("value");
+		
+	    fromdate = $('#fromDate').val();
+		
+	    todate = $('#toDate').val();
 		
 		
-		console.log("divisionId : "+ divisionId + " districtId : " + districtId + " UpazillaId : "+ upazillaId
-				+ " schoolId : "+ schoolId + " schoolType : " + schoolType);
-		loadData(divisionId,districtId,upazillaId,schoolId, studentType, null, null);
+		loadData(divisionId,districtId,upazillaId,schoolId, studentType , fromdate , todate);
+		
+		
+		
+		
 	});
 	
 	
@@ -28,7 +56,12 @@ $("document").ready(function(){
 	 * return data from successful AJAX request 
 	 * */
 	function loadData(divisionId,districtId,upazillaId,schoolId, studentType, startDate, endDate) {
+	
+		startDate = "" + startDate;
+		endDate = "" + endDate;
 		var formId = $("#formId").val();
+	    console.log("divisionId : "+ divisionId + " districtId : " + districtId + " UpazillaId : "+ upazillaId
+				+ " schoolId : "+ schoolId + " studentType : " + studentType + " startDate : " + startDate + " endDate : " + endDate );
 		return $.ajax({
 				type: "GET",
               	url:  "/reports/loadReport",
@@ -39,12 +72,15 @@ $("document").ready(function(){
 					upazillaId : upazillaId,
 					schoolId : schoolId,
 					studentType : studentType,
-					startDate : startDate,
-					endDate : endDate
+					startDate1 : startDate,
+					endDate1 : endDate
 				},
 				
 				success: function(data) {
+				
 					var json = JSON.parse(data);
+					console.log ( json ) ;
+					
 					if(formId == 1){
 						console.log("Water form");
 						setWaterData(data);
@@ -72,7 +108,7 @@ $("document").ready(function(){
 		reset();
 		var json = JSON.parse(data);
 		
-		console.log(json)
+		//console.log(json)
 		
 		$("#boys").html(json.boys);$("#girls").html(json.girls);$("#boys_Plus_girls").html(json.boys + json.girls);
 		

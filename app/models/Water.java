@@ -62,8 +62,9 @@ public class Water extends Model{
 	public static Map<String, Long> getWaterData(Long divisionId,Long districtId, Long upazillaId, Long schoolId, Long studentType, Date startDate, Date endDate) throws SQLException{
 		
 		
-		Logger.info("StudentType : " + studentType);
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Logger.info("wwwwwwwwwww: "+"divisionId : " + divisionId + " districtId : " + districtId + " upazillaId : " + upazillaId
+				+ " schoolId : " + schoolId  + " startDate: " + startDate + " endDate: " + endDate);
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		String firstDateOfPreviousMonth = null;
 		String lastDateOfPreviousMonth = null;
 
@@ -71,6 +72,7 @@ public class Water extends Model{
 		calendar.add(Calendar.MONTH, -1);
 
 		calendar.set(Calendar.DATE, 1);
+		
 		if(startDate == null)
 			startDate = calendar.getTime();
 		calendar.set(Calendar.DATE,calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
@@ -89,8 +91,8 @@ public class Water extends Model{
 		ResultSet rs = null;
 		
 		String qString = null;
-		String whereClause = " Where Water.created_at between cast( ? as DateTime) and cast( ?  as DateTime)";
-		Logger.info("whereClause444444444444444444444444444444444444444 : " + whereClause);
+		String whereClause = " Where Water.created_at between cast( ?'" + startDate + "' as DateTime) and cast( ?'" + endDate + "'  as DateTime)";
+		
 		String table_name = "Water";
 		
 		if(divisionId != null || districtId != null && upazillaId != null && schoolId != null && studentType != null){
@@ -119,13 +121,11 @@ public class Water extends Model{
 		
 		qString += whereClause + "  and Water.res_type = ?";
 		
-		//Logger.info("query1 string is : " + qString);
+		Logger.info("query string is : " + qString);
 		
 		PreparedStatement queryForExecution = conn.prepareStatement(qString);
 		queryForExecution.setString(1, firstDateOfPreviousMonth);
 		queryForExecution.setString(2, lastDateOfPreviousMonth);
-		
-		
 		
 		long boys = 0, girls = 0,
 			boys_school = 0, girls_school = 0,
@@ -134,7 +134,7 @@ public class Water extends Model{
 			total_potable_water_boys = 0, total_potable_water_girls = 0,
 			is_informed_authority_water_prob_boys = 0, is_informed_authority_water_prob_girls = 0;
 		
-		if(studentType == null || studentType == 1L){
+		if(studentType == null || studentType == 1){
 			queryForExecution.setString(3, "1");
 			try {
 				rs = queryForExecution.executeQuery();
@@ -152,7 +152,7 @@ public class Water extends Model{
 			}
 		}
 		
-		if(studentType == null || studentType == 2L){
+		if(studentType == null || studentType == 2){
 			queryForExecution.setString(3, "2");
 			try {
 				rs = queryForExecution.executeQuery();

@@ -163,7 +163,7 @@ public class Application extends Controller {
 			water.school=sender.school;
 			water.date=new Date();
 			water.save();
-			flash.success("Recoed saved successfully");
+			flash.success("Recored saved successfully");
 			
 			//render("@waterForm");
 			index();
