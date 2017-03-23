@@ -15,6 +15,7 @@ import models.GeoUpazilla;
 import models.Role;
 import models.SchoolInformation;
 import models.User;
+//import models.User;
 import play.Logger;
 import play.data.validation.Valid;
 import play.mvc.With;
@@ -47,34 +48,61 @@ public class Schools extends Controller{
 		validation.valid(school);
     	Logger.info("validation  " + validation.hasErrors());
     	
-    	if(validation.hasErrors()) {
-    		List<GeoDivision> geoDivisionList = GeoDivision.findAll();
-    		List<GeoDistrict> geoDistrictList = GeoDistrict.findAll();
-    		List<GeoUpazilla> geoUpazillaList = GeoUpazilla.findAll();
-    		List<String> schoolType = new ArrayList<String>();
-    		schoolType.add(0, "Girls school");
-    		schoolType.add(1, "Boys School");
-    		schoolType.add(2, "Combined School");
-        	render("@editSchool", geoDivisionList, geoDistrictList, geoUpazillaList, schoolType);    
+    	if(validation.hasErrors() && flash.get("school") == null) {
+    		List<Role> roles = Role.findAll();
+    		Logger.info("hasError");
+    		
+        	render("@edit", school, roles);
         }
+    	if(flash.get("school") != null){
+    		
+    		SchoolInformation preschool = SchoolInformation.findById(Long.parseLong(flash.get("school")));
+    		
+    		preschool.activeSchoolStudent = school.activeSchoolStudent;
+    		preschool.activeStudent = school.activeStudent;
+    		preschool.classTeacherPhoneNumber = school.classTeacherPhoneNumber;
+    		preschool.femailStudent = school.femailStudent ;
+    		preschool.femailToilets = school.femailToilets ;
+    		preschool.geoDistrict = school.geoDistrict ;
+    		preschool.geoDivision = school.geoDivision ;
+    		preschool.geoUpazilla = school.geoUpazilla ;
+    		preschool.headSirPhonNumber = school.headSirPhonNumber ;
+    		preschool.maleStruden = school.maleStruden ;
+    		preschool.maleToilets = school.maleToilets ;
+    		preschool.name = school.name ;
+    		preschool.registrationDate = school.registrationDate ;
+    		preschool.schoolHeadSirMobileNumber = school.schoolHeadSirMobileNumber ;
+    		preschool.schoolRegNo = school.schoolRegNo ;
+    		preschool.approavedStatus = school.schoolRegNo; 
+    		preschool.save();
+    		
+    		
+    	}
+    	else{
+    		school.save();
+    		render("@schoolList");
+    		
+    	}
     	
-    	school.save();
-    	//schoolList();
-    	Application.forms();
-        //flash.success("Record saved successfully.");
+    	//Application.forms();
+        flash.success("Record saved successfully.");
+      
+        schoolList("0");
 	}
 	@ExternalRestrictions("Edit School")
 	public static void editSchool(Long id){
 		SchoolInformation school = SchoolInformation.findById(id);
+		flash("school", "" + school.id);
 		List<GeoDivision> geoDivisionList = GeoDivision.findAll();
 		List<GeoDistrict> geoDistrictList = GeoDistrict.findAll();
 		List<GeoUpazilla> geoUpazillaList = GeoUpazilla.findAll();
+		List<GeoUnion> geoUnionList = GeoUnion.findAll();
 		List<String> schoolType = new ArrayList<String>();
 		schoolType.add(0, "Girls school");
 		schoolType.add(1, "Boys School");
 		schoolType.add(2, "Combined School");
 		//render("@createSchool",school);
-		render(geoDivisionList,geoDistrictList,geoUpazillaList,schoolType,school);
+		render(geoDivisionList,geoDistrictList,geoUpazillaList,geoUnionList ,schoolType,school);
 	}
 	
 	@ExternalRestrictions("Edit School")
@@ -83,38 +111,27 @@ public class Schools extends Controller{
 		notFoundIfNull(school);
 		school.delete();
 		ok();*/
-		
+		Logger.info("delete method");
 		int confirm = 1;
     	if(request.isAjax()) {
-    		//Long id = Long.valueOf(request.params.get("userId"));
+    		
     		SchoolInformation school = SchoolInformation.findById(id);
         	
 	    	notFoundIfNull(id, "id not provided");
 	    	notFoundIfNull(school, "school not found");
-	    	
+	    	/*
 	    	JPAQuery q = Data.find("sender = ?",school);
 	    	List<Data> d = q.fetch();
-	    	
+	    	*/
 	    	try {
 	    		school.delete();
+	    		render("@schoolList");
+	    		
 			} catch (Exception e) {
 				confirm = 0;
 			}
         	
-        	
-	    	
-	    	//Set<GeoPSU> geoPSUAssign = user.geoPSUs;
-	        /*Logger.info("geoPSUAssign:"+geoPSUAssign.size());
-	    	
-	    	if((d.size() <= 0) && (geoPSUAssign.size() <= 0)){
-	    		user.delete();
-		    	confirm = 1;
-	    	}
-	    	else{
-		    	//forbidden(); 
-	    		confirm = 0;
-	    	}*/
-        	
+        	render("@schoolList");
     	}
     	
     	return confirm;
@@ -136,7 +153,7 @@ public class Schools extends Controller{
 
         Query query = null;
         
-        String countRow = "select count(*) from User";
+        String countRow = "select count(*) from SchoolInformation";
         
         query = JPA.em().createQuery(countRow);
         int rowNumber = ( (Number)query.getSingleResult()).intValue();
@@ -186,5 +203,7 @@ public class Schools extends Controller{
 			
 			render(geoUnionList);
 		}
+	    
+	   
 	
 }

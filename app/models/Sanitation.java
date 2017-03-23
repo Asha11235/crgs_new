@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -23,15 +24,16 @@ import play.db.jpa.Model;
 public class Sanitation extends Model{
 	public Date date;
 	
-	@ManyToOne
+	
+	@ManyToOne()
 	public Data data;
-	@ManyToOne
+	@ManyToOne()
 	public Form form;
 	
-	@ManyToOne
+	@ManyToOne()
 	public User sender;
 	
-	@ManyToOne
+	@ManyToOne()
 	public SchoolInformation school;
 	
 	public String month = "";

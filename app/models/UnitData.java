@@ -13,7 +13,7 @@ import java.util.*;
 public class UnitData extends Model {
 
 	@Required
-	@ManyToOne
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	public Data data;
 
 	@ManyToOne
@@ -29,7 +29,7 @@ public class UnitData extends Model {
 	public String extraValue;
 	
 	@Required
-	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	@ManyToOne
 	public FormResource formResource;
 	
 

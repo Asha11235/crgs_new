@@ -113,7 +113,7 @@
                         </li>
                         #{/deadbolt.externalizedRestriction}
 
-                        #{deadbolt.externalizedRestriction externalRestrictions:['School Status']}
+                        #{deadbolt.externalizedRestriction externalRestrictions:['View School']}
                         <li class="">
                             <a href="@{Schools.schoolList("1")}">
                                 <i class="fa fa-list"></i>
@@ -124,7 +124,7 @@
                         </li>
                         #{/deadbolt.externalizedRestriction}
 
-						#{deadbolt.externalizedRestriction externalRestrictions:['Case Report']}
+						#{deadbolt.externalizedRestriction externalRestrictions:['View Case']}
                         <li class="">
                             <a href="@{Reports.caseReport()}">
                                 <i class="fa fa-keyboard-o"></i>
@@ -155,15 +155,29 @@
                         </li>
                         #{/deadbolt.externalizedRestriction}
 
-                        <li class="">
-                            <a href="#">
-                                <i class="fa fa-square-o"></i>
+                         #{deadbolt.externalizedRestriction externalRestrictions:['View Poll', 'Edit Poll']}
+                       
+                            <li class="">
+                            <a href="javascript:;">
+                                <i class="fa fa-bar-chart-o"></i>
                                 <span class="title">
                                     Poll Management
                                 </span>
+                                <span class="arrow "></span>
                             </a>
+                            <ul class="sub-menu">
+                             
+                                <li>
+                                    <a href="@{PollManagement.createPoll}">Create Poll</a>
+                                </li>
+                               
+                                <li>
+                                    <a href="@{PollManagement.listPoll}">Poll List</a>
+                                </li>
+                                
+                            </ul>
                         </li>
-
+                          #{/deadbolt.externalizedRestriction}
 
                         #{deadbolt.externalizedRestriction externalRestrictions:['View User', 'Edit User', 'View Role', 'Edit Role']}
                         <li class="">

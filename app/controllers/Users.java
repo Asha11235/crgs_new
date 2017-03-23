@@ -30,6 +30,7 @@ import controllers.deadbolt.Deadbolt;
 import controllers.deadbolt.ExternalRestrictions;
 import controllers.deadbolt.Unrestricted;
 
+import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import com.google.gson.Gson;
@@ -103,7 +104,8 @@ public class Users extends Controller {
     }
 
 	@ExternalRestrictions("Edit User")
-    public static void edit(Long id) {
+   public static void edit(Long id) {
+		
     	User user = User.findById(id);
     	flash("user", "" + user.id);
     	notFoundIfNull(user, "user not found");
@@ -111,11 +113,13 @@ public class Users extends Controller {
     	List<Role> roles = Role.findAll();
     	List<SchoolInformation> schoolList = SchoolInformation.find("approavedStatus = ? ", "Approved").fetch();
     	List<Ngo> ngoList = Ngo.findAll();
+    	
     	List<GeoDivision> geoDivisionList = GeoDivision.findAll();
 		List<GeoDistrict> geoDistrictList = GeoDistrict.findAll();
 		List<GeoUpazilla> geoUpazillaList = GeoUpazilla.findAll();
     	render(user,schoolList,ngoList, roles,geoDivisionList,geoDistrictList,geoUpazillaList);
     }
+	
 	
 	public static void cancelEdit(){
 		Logger.info("flashUserId in CancelEdit: " + flash.get("user"));
@@ -123,35 +127,52 @@ public class Users extends Controller {
 	}
 
     @ExternalRestrictions("Edit User")
-    public static void submit(User user) {
-    	Logger.info("flashUserId in Submit: " + flash.get("user"));
+   public static void submit(@Valid models.User user) {
+    	
+    	
+    	Logger.info("flashUserId in Submit: " + flash.get("user") + " and user id is : " + user.id);
     	validation.valid(user);
     	if(validation.hasErrors() && flash.get("user") == null) {
     		List<Role> roles = Role.findAll();
-    		Logger.info("hasError");
+    		//Logger.info("hasError");
+    		
         	render("@edit", user, roles);
         }
+    	  
+	    //Logger.info ("id: "+ user.geoUpazilla.id);   
     	if(flash.get("user") != null){
+    		 
     		User editedUser = User.findById(Long.parseLong(flash.get("user")));
+    		
     		editedUser.name = user.name;
-    		Logger.info("updated username : " + user.name);
     		editedUser.displayName = user.displayName;
     		editedUser.email = user.email;
-    		editedUser.role.id = user.role.id;
-    		editedUser.school.id = user.school.id;
-    		editedUser.ngo.id = user.ngo.id;
-    		editedUser.geoDivision.id = user.geoDivision.id;
-    		editedUser.geoDistrict.id = user.geoDistrict.id;
-    		editedUser.geoUpazilla.id = user.geoUpazilla.id;
+    		editedUser.role = user.role;
+    		editedUser.school= user.school;
+    		editedUser.ngo = user.ngo;
+    		editedUser.geoDivision = user.geoDivision;
+    		editedUser.geoDistrict = user.geoDistrict;
+    		editedUser.geoUpazilla = user.geoUpazilla;
+    		
+    		//Logger.info("id : " + editedUser.id + " name: " + editedUser.name + " displayname: " + editedUser.displayName + " email: " + editedUser.email + " role: " + editedUser.role.id + " ngoId: " + editedUser.ngo.id + " geoDivisionId: " 
+    		//+ editedUser.geoDivision.id + " geoDistrictId: "+ editedUser.geoDistrict.id + " geoUpazilaId: "+ editedUser.geoUpazilla.id);
+    		
     		editedUser.save();
+    	    
+    		
     	}
     	else {
     		user.save();
+    		create();
+    		
+    		
 		}
         
         flash.success("Record saved successfully.");
         list("0");
     }
+    
+
     
     @ExternalRestrictions("Edit User")
     public static void loadMobilizerList(User user) {
@@ -191,21 +212,9 @@ public class Users extends Controller {
 	    		user.delete();
 			} catch (Exception e) {
 				confirm = 0;
+				e.printStackTrace();
+				Logger.info("error in delete" + e);
 			}
-        	
-        	
-	    	
-	    	//Set<GeoPSU> geoPSUAssign = user.geoPSUs;
-	        /*Logger.info("geoPSUAssign:"+geoPSUAssign.size());
-	    	
-	    	if((d.size() <= 0) && (geoPSUAssign.size() <= 0)){
-	    		user.delete();
-		    	confirm = 1;
-	    	}
-	    	else{
-		    	//forbidden(); 
-	    		confirm = 0;
-	    	}*/
         	
     	}
     	
@@ -218,12 +227,12 @@ public class Users extends Controller {
         render(roles);
     }
 
-    @ExternalRestrictions("Edit User")
+    @ExternalRestrictions("Edit Role")
     public static void roleCreate() {
     	render("@roleEdit");
     }
 
-	@ExternalRestrictions("Edit User")
+	@ExternalRestrictions("Edit Role")
     public static void roleEdit(Long id) {
 		Logger.info("Edit role");
     	Role role = Role.findById(id);
@@ -259,19 +268,28 @@ public class Users extends Controller {
         
     }
 
-    @ExternalRestrictions("Edit User")
+    @ExternalRestrictions("Edit Role")
     public static int roleDelete(Long id) {
     	
-    	if(request.isAjax()) {
-	    	notFoundIfNull(id, "id not provided");
-	    	Role role = Role.findById(id);
-	    	notFoundIfNull(role, "role not found");
+    	
+    	 int confirm = 0;
+	    	if(request.isAjax()) {
+	    		notFoundIfNull(id, "id not provided");
+		    	Role role = Role.findById(id);
+		    	notFoundIfNull(role, "role not found");
+		    	try {
+		    		role.delete();
+		    		render();
+		    		confirm = 1;
+				} catch (Exception e) {
+					// TODO: handle exception
+					
+				}
+		    	
+	        	
+	    	}
 	    	
-	    	role.delete();
-	    	Logger.info("deletling roles : " + id +" " + role.name);
-	    	return 1;
-    	}
-    	return 0;
+    	return confirm;
     }
 
     
@@ -340,8 +358,7 @@ public class Users extends Controller {
 		
 		render(geoUnionList);
 	}
-    
-    
+  
     public static String loadUser(Long divisionId,Long districtId, Long upazillaId, Long schoolId, 
 			Long roleId, Date startDate, Date endDate) throws SQLException {
     	

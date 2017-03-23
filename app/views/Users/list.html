@@ -1,6 +1,11 @@
 #{extends 'main.html' /}
 #{set title:'Users' /}
 
+<title>User Information</title>
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
 <div class="row">
                     <div class="col-md-12">
                         <!-- BEGIN PAGE TITLE & BREADCRUMB-->
@@ -58,7 +63,7 @@
 				</div>
 			</div>	
 		</div>
-                                    <div class="col-md-2">
+        <div class="col-md-2">
 			<div class="form-group">
 				<div id="role" class="col-md-12 SEARCH" >
 					#{select 'role', value:0, items:roleList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'roleId'}
@@ -66,7 +71,6 @@
 					#{/select}
 				</div>
 			</div>	
-			
 		</div>
 		
 		<div class="col-md-2">&nbsp;&nbsp;&nbsp;</div>
@@ -105,10 +109,7 @@
 									           	<td><a class="btn btn-mini" href="@{Users.details(user.id)}">Details</a></td>
 												<td><a class="btn btn-mini" href="@{Users.edit(user.id)}"><i class="icon-edit"></i> Edit</a></td>
 												<td>
-												<a class="btn btn-mini btn-danger delete_user" id = "${user.id}">
-												<i class="icon-remove icon-white"></i> 
-												Delete
-												</a>
+											   <a class="btn btn-mini btn-danger delete_user" id = "${user.id}" ><i class="icon-remove icon-white"></i> Delete</a>
 												</td>
 												#{/deadbolt.externalizedRestriction}
 												</td>
@@ -122,7 +123,8 @@
                 </div>
 
 <script>
-	    /*//$('.delete_user').("click", function(){
+
+    //$('.delete_user').("click", function(){
 	    $(".delete_user").click(function(){  
 			var userId = $(this).attr("id");
 	        if(confirm("Are you sure to delete this user?"))
@@ -147,14 +149,22 @@
 
 
 	            });
+	            
+	             $(document).ajaxStop(function(){
+         window.location.reload();
+       });
 	           
 	        }
+	        
+	       
 	        return false;
 	         
-	    });*/
+	    });
 	    
+	     
 	    $("document").ready(function(){
-	
+	    
+	   $('#sample_2').DataTable();
 	
 	$(".SEARCH").on("change", function() {
 		
@@ -233,7 +243,7 @@
 						   "<td><a class='btn btn-mini' href='@{Users.details(user.id)}'>Details</a></td>"+
 				           "<td><a class='btn btn-mini' href='@{Users.edit(user.id)}'><i class='icon-edit'></i> Edit</a></td>"+
 						   "<td>"+
-						   "<a class='btn btn-mini btn-danger delete_user' id = 'username'>"+
+						   "<a class='btn btn-mini btn-danger delete_user' id = '${user.id}' onClick='deleteFunction()' ><i class='icon-remove icon-white'></i> Delete</a>"+
 						   "<i class='icon-remove icon-white'></i>"+ 
 						   "Delete"+
 						   "</a>"+
@@ -245,13 +255,13 @@
                      }
                             tbl =thead+ tbl+"<tbody>" + row + "</tbody>";
                             $("#sample_2").html("");
-                            $("#sample_2").html(tbl);
-                           
+                            $("#sample_2").html(tbl);         
                                 
                 }
 			
 			});
 	}
 	});
-	
+
+  
 </script>

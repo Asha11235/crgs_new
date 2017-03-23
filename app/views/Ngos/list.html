@@ -1,5 +1,7 @@
 #{extends 'main.html' /}
 
+<title>List of NGO</title>
+
 #{set title:'List Of NGO' /}
 
 <div class="page-header top">
@@ -23,7 +25,7 @@
 	#{list items:ngoList, as:'ngo'}
 		<tr id = "${ngo.id}">
 			<td>${ngo.ngoName}</td>
-			<td>${ngo.geoDivision?.name}</td>
+			<td>${ngo.geoDivision?.name , id:'geDivisionName'}</td>
 			<td>${ngo.geoDistrict?.name}</td>
 			<td>${ngo.geoUpazilla?.name}</td>
 			<td>	
@@ -42,3 +44,5 @@
 	#{/else}
 	<tbody>
 </table>
+
+#{script 'ngo-list.js' /}

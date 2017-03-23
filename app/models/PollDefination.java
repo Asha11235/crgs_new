@@ -39,5 +39,5 @@ public class PollDefination extends Model{
 	public String status = "0";
 	
 	public String resultStatus;
-
+	
 }

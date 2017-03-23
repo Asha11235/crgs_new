@@ -19,9 +19,11 @@
                                 <div class="caption">
                                     <i class="fa fa-reorder"></i>
                                     #{if user?.id}
+                                    <title>Edit User</title>
 			                        	EDIT USER
 			                        #{/if}
 			                        #{else}
+			                        <title>Create User</title>
 			                        	CREATE USER
 			                        #{/else}
                                 </div>
@@ -61,21 +63,21 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-2">Email</label>
                                             <div class="col-md-3">
-                                                #{input 'user.email', class:'required' /}
+                                                #{input 'user.email', class:'required' , valueProperty:'id' , id:'email'/}
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="control-label col-md-2">User Role</label>
                                             <div class="col-md-3">
-                                                #{input 'user.role.id', type:'select', items:roles, labelProperty:'name' /}
+                                                #{input 'user.role.id', type:'select', items:roles, labelProperty:'name' , valueProperty:'id' , id:'role'/}
                                             </div>
                                         </div>
                                         
                                         <div class="form-group">
                                             <label class="control-label col-md-2">Name of School</label>
                                             <div class="col-md-3">
-                                                #{input 'user.school.id', type:'select', items:schoolList, labelProperty:'name' }
+                                                #{input 'user.school.id', type:'select', items:schoolList, labelProperty:'name' , valueProperty:'id' , id:'school'}
 											    	#{option}Any#{/option}
 												#{/input}
                                             </div>
@@ -84,7 +86,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-2">Name of NGO</label>
                                             <div class="col-md-3">
-                                                #{input 'user.ngo.id', type:'select', items:ngoList, labelProperty:'ngoName' }
+                                                #{input 'user.ngo.id', type:'select', items:ngoList, labelProperty:'ngoName' , valueProperty:'id' , id:'ngo'}
 											    	#{option}Any#{/option}
 												#{/input}
                                             </div>
@@ -97,7 +99,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-2">Division</label>
                                             <div id="geoDivision" class="col-md-3" url="@{Users.loadGeoDistrict()}" load-data-container="#geoDistrict">
-                                                #{input 'user.geoDivision.id' , type:'select', items:geoDivisionList, labelProperty:'name' }
+                                                #{input 'user.geoDivision.id' , type:'select', items:geoDivisionList, labelProperty:'name', valueProperty:'id' , id:'division'}
 														#{option}Any#{/option}
 												#{/input}
 											 </div>
@@ -106,7 +108,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-2">District</label>
                                             <div id="geoDistrict" class="col-md-3" url="@{Users.loadGeoUpazilla()}" load-data-container="#geoUpazilla">
-                                                #{input 'user.geoDistrict.id' , type:'select', items:geoDistrictList,labelProperty:'name' }
+                                                #{input 'user.geoDistrict.id' , type:'select', items:geoDistrictList,labelProperty:'name', valueProperty:'id' , id:'district'}
 													#{option}Any#{/option}
 												#{/input} 
                                             </div>
@@ -115,7 +117,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-2">Upazila</label>
                                             <div id="geoUpazilla" class="col-md-3" url="@{Users.loadGeoUnion()}"  load-data-container="#geoUnion">
-                                                #{input 'user.geoUpazilla.id' , type:'select', items:geoUpazillaList,labelProperty:'name' }
+                                                #{input 'user.geoUpazilla.id' , type:'select', items:geoUpazillaList,labelProperty:'name' , valueProperty:'id' , id:'upazilla'}
 													#{option}Any#{/option}
 												#{/input} 
                                             </div>
@@ -126,7 +128,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="col-md-offset-1 col-md-9">
-                                                    <button type="submit" class="btn btn-danger">SAVE CHANGES</button>
+                                                    <button type="submit" id="btnSubmit" class="btn btn-danger">SAVE CHANGES</button>
                                                     <button type="button" class="col-md-offset-1 btn btn-danger" onclick="cancelEdit()">CANCEL</button>
                                                 </div>
                                             </div>
@@ -140,6 +142,14 @@
                     
                     <script>
                     	function cancelEdit(){
-                    		window.location = "@{Users.cancelEdit()}";	
+                    		window.location = "@{Users.cancelEdit()}";
+                    		 window.location.reload();	
+                    		 
                     	}
+                    	
+                    	 $("document").ready(function(){
+                    	 
+                    	    
+                       
+                       });
                     </script>

@@ -166,14 +166,72 @@
 						</div>
 					</div>
 
+                    <div class="form-group">
+                                            <label class="control-label col-md-4">Does your school organize 'annual sports competition'        regularly?</label>
+                                            <div class="col-md-3">
+                                                <div class="radio-list" id="school.annualSports">
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="optionsRadios2" id="" value="1"> Yes 
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="optionsRadios2" id="" value="2"> No
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
 
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Name of school focal person /Primary contact person:</label>
+                                            <div class="col-md-6">
+                                                <input name="school.nameOfFocalPerson" type="text" class="form-control" id="school.nameOfFocalPerson" value="${school?.nameOfFocalPerson}" placeholder="Default Input">
+                                            </div>
+                                        </div>
+                    
 					<div class="form-group">
 						<label for="selector1" class="col-sm-3 control-label">School Focal Person Mobile Number</label>
 						<div class="col-sm-6">
 							<input type="number" name="school.schoolHeadSirMobileNumber" style="-moz-appearance: textfield" class="form-control"/> 
 						</div>
 					</div>
+					
+					    <div class="form-group">
+                                            <label class="control-label col-md-3">School focal person's email id:</label>
+                                            <div class="col-md-6">
+                                                <input name="school.emailOfFocalPerson" type="text" class="form-control" id="school.emailOfFocalPerson" value="${school?.emailOfFocalPerson}" placeholder="Default Input">
+                                            </div>
+                                        </div>
 
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Secondary contact person identity:</label>
+                                            <div class="col-md-6">
+                                                <select class="form-control" name="" id="contactIdentity">
+                                                    <option value="1">Head teacher</option>
+                                                    <option value="2">Other teacher</option>
+                                                    <option value="3">SMC President</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Name of secondary contact person: </label>
+                                            <div class="col-md-6">
+                                                <input name="school.nameOfSecondaryContactPerson" type="text" class="form-control" id="school.nameOfSecondaryContactPerson" value="${school?.nameOfSecondaryContactPerson}" placeholder="Default Input">
+                                            </div>
+                                        </div>
+					
+                      <div class="form-group">
+                                            <label class="control-label col-md-3">Secondary contact person's Mobile No.: </label>
+                                            <div class="col-md-6">
+                                               <input type="number" name="school.schoolSecContactMobileNumber" style="-moz-appearance: textfield" class="form-control"/> 
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">School authority's email id: </label>
+                                            <div class="col-md-6">
+                                                <input name="school.emailOfSchoolAuthority" type="text" class="form-control" id="school.emailOfSchoolAuthority" value="${school?.emailOfSchoolAuthority}" placeholder="Default Input">
+                                            </div>
+                                        </div>
 
 					<div class="form-group">
 						<label for="selector1" class="col-sm-3 control-label">Student Fourm in School</label>

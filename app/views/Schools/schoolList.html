@@ -1,5 +1,11 @@
 #{extends 'main.html' /}
+
+<title>School List </title>
 <div class="row">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
                     <div class="col-md-12">
                         <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                         <h3 class="page-title">
@@ -52,7 +58,7 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href = "@{Schools.editSchool(school?.id)}" class="label label-sm label-warning">
+                                                <a href = "@{Schools.editSchool(school.id)}" class="label label-sm label-warning">
                                                     Edit
                                                 </a>
                                             </td>
@@ -72,10 +78,10 @@
                 </div>
                 
 <script>
-	    //$('.delete_user').("click", function(){
+	    
 	    $(".delete_school").click(function(){  
 			var schoolId = $(this).attr("id");
-	        if(confirm("Are you sure to delete this user?"))
+	        if(confirm("Are you sure to delete this school?"))
 	        {
 	            $.ajax({
 	                type: "GET",
@@ -86,8 +92,10 @@
 	                success: function(data) {
 						console.log(data);
 	                    if(data == 1){
+	                       console.log("delete success");
 	                    	$('#delete_msg').html("<h3 style="+"color:green"+">School deleted successfully.</h3>");
 	                    	$("#"+schoolId).remove(); //row remove when deleted 
+	                    	           location.reload();
 	                     	
 	                    }
 	                    else{
@@ -102,4 +110,14 @@
 	        return false;
 	         
 	    });
+	    
+	    $(document).ajaxStop(function(){
+         window.location.reload();
+       });
+	    
+	     $("document").ready(function(){
+	    
+	   			$('#sample_2').DataTable();
+	  
+	     });
 </script>

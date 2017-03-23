@@ -46,14 +46,13 @@
                                         </div>
                                     </div>
                                     <h3 class="form-section">QUESTION</h3>
-                                     
-                                     
+
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-2 control-label">Question Type</label>
                                         <div class="col-md-4">
-                                            	  #{input 'poll.questionType' , type:'select', items:questionType} 
-												#{option}Any#{/option}
-										        #{/input}
+                                            	#{input 'poll.questionType' , type:'select', items:questionType } 
+							                   #{option}Any#{/option}
+							                    #{/input}
                                         </div>
                                          
                                         <div class="col-md-4">
@@ -61,30 +60,31 @@
                                            <input name="poll.optionNumber" type="hidden" class="form-control output" id="poll.optionNumber" value="${poll.optionNumber}" placeholder="Default Input" >
                                         </div>
                                     </div>
-                           
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">Options</label>
+                                        <div class="col-md-10">
+                                            <button type="button" class="btn btn-danger" id="addButton">ADD OPTION</button>
+                                        </div>
+                                    </div>
+                                    
                                    
-                                  <div class="form-group"  id="optiondiv">
-								  
-								    <label for="inputEmail3" class="col-sm-2 control-label">Options</label>
-								    <div class="col-md-10">
+                                  <div class="form-group">
+								  <div class="addField">
+								    <label for="inputEmail3" class="col-sm-1 control-label">1</label>
+								    <div class="col-md-5">
 								      <div class="input-group">
-								      
 								        <input name="pollQuestionOption.options" type="text" class="form-control" id="pollQuestionOption.options" value="${pollQuestionOption.options}" placeholder="Option">
-								        
+								         <span class="input-group-btn">
+								             <button href="#" class="removeOption">
+								              <i class="fa fa-times fa-2x text-danger" style="font-size: 18px" aria-hidden="true"></i>
+								             </button>
+								        </span>
 								      </div>
 								    </div>
 								  </div>
-								
-								
-								
-								 <div class="form-group">
-								  <div class="addField">
-								   
-								    <div class="col-md-5">
-								     
-								    </div>
-								  </div>
-								</div>                                   
+								</div>
+								                                    
                                    
 
                                     <div class="form-actions fluid">
@@ -99,6 +99,35 @@
                                     </div>
                                 </div>
 
+                                <div class="col-md-6">
+                                    <h3 class="form-section">POLL LIST</h3>
+
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Time Period</th>
+                                                <th>Poll</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                         #{list items:pollList, as:'pollList'}
+                                            <tr id = "${pollList.id}">
+                                                <td>${pollList.startDate} - ${pollList.endDate}</td>
+                                                <td>${pollList.title}</td>
+                                                <td>
+                                                    <a href="#" class="text-danger"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+
+                                                    <a href="#" class="text-danger"><i class="fa fa-bar-chart" aria-hidden="true"></i></a>
+
+                                                    <a href="#" class="text-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                </td>
+                                            </tr>
+                                           #{/list} 
+                                        </tbody>
+                                    </table>
+                                </div>
+                            #{submit /}
                             #{/form}
                         </div>
                     </div>
@@ -109,34 +138,33 @@
         <!-- END CONTENT -->            
     </div>
     
-       <script>
+    <script>
     
    $(document).ready(function() {
    
    
   $(".output").val(1) ;
-   
   var wrapper = $(".addField"); //Fields wrapper
   var add_button = $("#addButton"); //Add button ID
 
   var x = 1; //initlal text box count
   $(add_button).click(function(e) { //on add input button click
     e.preventDefault();
-    $("#pollQuestionOption.options").val('');
+
     x++;
-    $(wrapper).append(
-      '<div class="input-group" class=remove>' +
+    $(wrapper).append('<label for="inputEmail3" class="col-sm-1 control-label">' +
+      x + '</label>' +
+      '<div class="col-md-5">' +
+      '<div class="input-group">' +
       '<input name="pollQuestionOption.options" type="text" class="form-control" id="pollQuestionOption.options" value="${pollQuestionOption.options}" placeholder="Option">' +
       '<span class="input-group-btn">' +
       '&nbsp;&nbsp;' +
-      '<button href="#" class="removeOption" type="button">' +
+      '<button href="#" class="removeOption">' +
       '<i class="fa fa-times fa-2x text-danger" style="font-size: 18px" aria-hidden="true"></i>' +
       '</button>' +
       '</span>' +
+      '</div>' +
       '</div>');
-      
-      
-   
       
           var currentVal = parseInt($(".output").val());
         if (!isNaN(currentVal)) {
@@ -147,11 +175,11 @@
 
   });
 
-  $(wrapper).on("click", ".removeOption", function(e) { 
+  $(wrapper).on("click", ".removeOption", function(e) { //user click on remove text
     e.preventDefault();
-   
-     $(this).closest("div").remove();
-      $(this).remove();
+    $(this).closest('div.col-md-5').prev().remove();
+    $(this).closest('div.col-md-5').remove();
+ 
     x--;
     
     var currentVal = parseInt($(".output").val());
@@ -162,18 +190,8 @@
   
   });
 
-
-    $(".removeOption1").on("click", function(e){
-    
-    e.preventDefault();
-     $(this).closest('div.col-md-5').prev().remove();
-    $(this).closest('div.col-md-5').remove();
-     $(this).remove();
-    });
-  
 });
 
 
+
     </script>
-    
-  

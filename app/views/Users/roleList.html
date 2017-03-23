@@ -1,6 +1,7 @@
 #{extends 'main.html' /}
 #{set title:'Roles' /}
 
+<title>Role List </title>
 #{if flash.success}
     #{alert flash.success/}
 #{/if}
@@ -69,11 +70,14 @@
 	                    if(data == 1){
 	                    	$('#delete_msg').html("<h3 style="+"color:green"+">User deleted successfully.</h3>");
 	                    	$("#"+userId).remove(); //row remove when deleted 
+	                       	
 	                     	
 	                    }
 	                    else{
 	                    	$('#delete_msg').html("<h3 style="+"color:red"+">User cannot be deleted.</h3>");
 	                    }
+	                    
+	                     
 	                }
 
 
@@ -83,4 +87,8 @@
 	        return false;
 	         
 	    });
+	    
+	     $(document).ajaxStop(function(){
+         window.location.reload();
+       });
 </script>

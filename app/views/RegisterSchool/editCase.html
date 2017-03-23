@@ -14,29 +14,18 @@
 				<a href="@{Forms.list()}"><img src="/public/images/logo.png" alt="" /></a>
 				<p class="slogan ">NCTF Voice - for better sanitation and hygiene at my school</p>
 			</div>
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<!-- <ul class="nav navbar-nav">
-					<li class="active"><a href="./secure/login">Log-in <span class="sr-only">(current)</span></a></li>
-				</ul> -->
-
-				#{if currentUser}
-				<ul class="nav navbar-nav navbar-right">
-					<li><a >${currentUser?.displayName}</a></li>
-					<li><a href="@@{Secure.logout()}">Logout</a></li>
-				</ul> 
-				#{/if} 
-			</div><!-- /.navbar-collapse -->
-		</div><!-- /.container-fluid -->
+			
+			</div>
+		</div>
 	</nav>
 
 
 	<div class="container">
 		<div class="f_align">
 			<div class="portlet-body form">
-				#{form @saveCaseReport(), class:'form-horizontal form-bordered well'} 
+				#{form @submitEditCase(), class:'form-horizontal form-bordered well'} 
 
-				<h3>Case Reproting </h3>
+				<h3>Edit Case</h3>
 				
                                     <div class="form-body">
                                     <div class="row">
@@ -52,7 +41,7 @@
                                                 <div class="form-group">
                                                     <label class="control-label col-md-4">Informer Name </label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" name="caseReport.informerName" id="informerName">
+                                                        #{input 'caseReport.informerName' /}
                                                     </div>
                                                 </div>
                                             </div>
@@ -63,7 +52,7 @@
                                                 <div class="form-group">
                                                     <label class="control-label col-md-4">Contact No. </label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" name="caseReport.mobNumber" id="mobNumber">
+                                                        #{input 'caseReport.mobNumber' /}
                                                     </div>
                                                 </div>
                                             </div>
@@ -82,7 +71,7 @@
                                                 <div class="form-group">
                                                     <label class="control-label col-md-4">Victim Name </label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" name="caseReport.victimName" id="victimName">
+                                                         #{input 'caseReport.victimName' /}
                                                     </div>
                                                 </div>
                                             </div>
@@ -93,7 +82,7 @@
                                                 <div class="form-group">
                                                     <label class="control-label col-md-4">Victim's Approxmiate Age</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" name="caseReport.victimAge" id="victimAge">
+                                                       #{input 'caseReport.victimAge' /}
                                                     </div>
                                                 </div>
                                             </div>
@@ -104,9 +93,8 @@
                                                 <div class="form-group">
                                                     <label class="control-label col-md-4">Victim's Sex </label>
                                                     <div class="col-md-4">
-                                                        #{input 'caseReport.victimSex' , type:'select', items:gender, labelProperty:'name' }
-														#{option}Any#{/option}
-														#{/input}
+                                                        
+														 #{input 'caseReport.victimSex', type:'select', items:gender, labelProperty:'name' , valueProperty:'id' , id:'gender'/}
                                                     </div>
                                                 </div>
                                             </div>
@@ -125,9 +113,9 @@
                                                 <div class="form-group">
 												<label for="selector1" class="col-sm-3 control-label">Division</label>
 												<div id="geoDivision" class="col-sm-6 geo" url="@{RegisterSchool.loadGeoDistrict()}" load-data-container="#geoDistrict">
-													#{input 'caseReport.geoDivision.id' , type:'select', items:geoDivisionList, labelProperty:'name' }
-													#{option}Any#{/option}
-													#{/input}
+													 #{input 'caseReport.geoDivision.id' , type:'select', items:geoDivisionList, labelProperty:'name', valueProperty:'id' , id:'division'}
+														#{option}Any#{/option}
+												       #{/input}
 												</div>
 											</div>
                                             </div>
@@ -138,9 +126,9 @@
                                                 <div class="form-group">
 												<label for="selector1" class="col-sm-3 control-label">District</label>
 												<div id="geoDistrict" class="col-sm-6 geo" url="@{RegisterSchool.loadGeoUpazilla()}"  load-data-container="#geoUpazilla">
-													#{input 'caseReport.geoDistrict.id' , type:'select', items:geoDistrictList,labelProperty:'name' } 
-													#{option}Any#{/option}
-													#{/input}
+													 #{input 'caseReport.geoDistrict.id' , type:'select', items:geoDistrictList,labelProperty:'name', valueProperty:'id' , id:'district'}
+													 #{option}Any#{/option}
+												     #{/input}
 												</div>
 											</div>
                                             </div>
@@ -151,9 +139,9 @@
                                                 <div class="form-group">
 												<label for="selector1" class="col-sm-3 control-label">Upazilla/Thana</label>
 												<div id="geoUpazilla" class="col-sm-6 geo" url="@{RegisterSchool.loadGeoUnion()}"  load-data-container="#geoUnion">
-													#{input 'caseReport.geoUpazilla.id' , type:'select', items:geoUpazillaList,labelProperty:'name' } 
+													  #{input 'caseReport.geoUpazilla.id' , type:'select', items:geoUpazillaList,labelProperty:'name' , valueProperty:'id' , id:'upazilla'}
 													#{option}Any#{/option}
-													#{/input}
+												    #{/input} 
 												</div>
 											</div>
                                             </div>
@@ -172,7 +160,7 @@
                                             </div>
                                         </div>
                                         
-                                            <div class="row">
+                                          <div class="row">
                                             <div class="col-md-8">
                                                 <div class="form-group">
                                                     <label class="control-label col-md-4">Case Type </label>
@@ -187,12 +175,24 @@
 
                                        
                                         
+
+                                        <!-- <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">Address </label>
+                                                    <div class="col-md-8">
+                                                        <textarea class="form-control" name="" id=""></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        
                                         <div class="row">
                                             <div class="col-md-8">
                                                 <div class="form-group">
                                                     <label class="control-label col-md-4">Description of Incident </label>
                                                     <div class="col-md-8">
-                                                        <textarea class="form-control" name="caseReport.description" id="description"></textarea>
+                                                         #{input 'caseReport.description' /}
                                                     </div>
                                                 </div>
                                             </div>
@@ -246,14 +246,18 @@
                                                     </div>
                                                 </div>
                                             </div> -->
-                                            <div class="form-actions fluid">
+                                            
 					
-							<div class="col-md-12">
-							<div class="col-md-offset-3 col-md-9">
-								#{submit /}
-							</div>
-						</div>
-					
+							 <div class="form-actions fluid">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-offset-1 col-md-9">
+                                                    <button type="submit" id="btnSubmit" class="btn btn-danger">SAVE CHANGES</button>
+                                                    <button type="button" class="col-md-offset-1 btn btn-danger" onclick="cancelEdit()">CANCEL</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 			#{/form}
 			
 		</div>

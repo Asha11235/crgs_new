@@ -1,6 +1,6 @@
 #{extends 'main.html' /}
 #{set title:'User Details' /}
-
+<title>User Details</title>
 <ul class="breadcrumb">
 	<li>
 		<a href="@{Application.index()}">Home</a> <span class="divider">/</span>
@@ -22,11 +22,11 @@
 	        <td>${user.id}</td>
 	    </tr>
 	    <tr>
-	        <td>Name</td>
+	        <td>Username</td>
 	        <td>${user.name}</td>
 	    </tr>
 	    <tr>
-	        <td>Display Name</td>
+	        <td>User ID</td>
 	        <td>${user.displayName}</td>
 	    </tr>
 	    <tr>

@@ -16,6 +16,14 @@ public class School {
 	public String totalToilets;
 	public String totalTubewells;
 	
+	public int annualSports;
+	public String nameOfFocalPerson;
+	public long schoolHeadSirMobileNumber;
+	public String emailOfFocalPerson;
+	public int contactIdentity;
+	public String nameOfSecondaryContactPerson;
+	public String schoolSecContactMobileNumber;
+	public String emailOfSchoolAuthority;
 	
 	
 	

@@ -32,6 +32,7 @@ GET		/webentry/list							SubmitDataFromWeb.viewMobileDataList
 
 #POST 	/editdata/submitupdateddata/{id}   		EditData.submitUpdatedDataFromFlat
 
+
 # Users
 GET		/user/list								Users.list
 GET		/user/view/{id}							Users.details
@@ -93,7 +94,7 @@ GET		/pollgraph					    PollGraph.index
 GET     /registerschool								RegisterSchool.schoolregister();
 GET     /submitCase							        RegisterSchool.submitCase();
 GET     /resourcelist								RegisterSchool.resourceList();
-GET     /create-poll                                 PollManagement.createPoll
+GET     /createPoll                                 PollManagement.createPoll
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}

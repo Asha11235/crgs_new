@@ -27,7 +27,12 @@ import play.libs.Crypto;
 import play.libs.Crypto.HashType;
 import interfaces.Assignable;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Transient;
 
 import models.deadbolt.RoleHolder;
 
@@ -83,28 +88,31 @@ public class User extends Model implements RoleHolder {
 	public Role role;
 
 	@Required
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	public SchoolInformation school;
 
 	@Required
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	public Ngo ngo;
 
 	/* GEO-location Hierarchy */
-	@ManyToOne
+	@ManyToOne (fetch=FetchType.LAZY)
 	public GeoDivision geoDivision;
-	@ManyToOne
+	
+	@ManyToOne(fetch=FetchType.LAZY)
 	public GeoDistrict geoDistrict;
-	@ManyToOne
+	
+	@ManyToOne(fetch=FetchType.LAZY)
 	public GeoUpazilla geoUpazilla;
 
 	/**
 	 * @param email
 	 * @param password
 	 */
-	public User(String email, String password) {
+	public User(String email, String password ) {
 		this.email = email;
 		this.password = password;
+		
 		/* this.geoPSUs = new TreeSet<GeoPSU>(); */
 	}
 
@@ -225,15 +233,14 @@ public class User extends Model implements RoleHolder {
 		}
 		return enumList;
 	}
+	
+	
 
 	public static String getUserData(Long divisionId, Long districtId, Long upazillaId,
 			Long schoolId, Long roleId, Date startDate, Date endDate) throws SQLException {
 
 		Logger.info("getUserData");
-		String qString = new String("ladjfladsjfkladsj");
-		
-		
-		Logger.info("test : " + qString);
+		String qString = null;
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String firstDateOfPreviousMonth = null;
@@ -308,7 +315,7 @@ public class User extends Model implements RoleHolder {
 		PreparedStatement queryForExecution = conn.prepareStatement(qString);
 		rs = queryForExecution.executeQuery();
  
-		Map<String, String> mp = new HashMap<String,String>();
+		//Map<String, String> mp = new HashMap<String,String>();
 		
 		String schoolid=null;
 		String username=null;
@@ -319,25 +326,11 @@ public class User extends Model implements RoleHolder {
 		String schoolname=null;
 		String msg="";
 		
-		/*List<String> schoolid = new ArrayList<String>();
-		List<String> username = new ArrayList<String>();
-		List<String> rolename = new ArrayList<String>();
-		List<String> divisioname = new ArrayList<String>();
-		List<String> districtname = new ArrayList<String>();
-		List<String> upazillaname = new ArrayList<String>();
-		List<String> schoolname = new ArrayList<String>();*/
 		int count = 0;
 		try {
 
 			while (rs.next()) {
 
-				/*schoolid.add(count, rs.getString("id"));
-				username.add(count, rs.getString("displayName"));
-				rolename.add(count, rs.getString("role_name"));
-				divisioname.add(count, rs.getString("geodivision_name"));
-				districtname.add(count, rs.getString("geodistrict_name"));
-				upazillaname.add(count, rs.getString("geoupazilla_name"));
-				schoolname.add(count, rs.getString("school_name"));*/
 				schoolid = rs.getString("id");
 				username = rs.getString("displayName");
 				rolename = rs.getString("role_name") ;
@@ -354,16 +347,7 @@ public class User extends Model implements RoleHolder {
 			e1.printStackTrace();
 		}
 
-		//Map<String, List<String>> mp = new HashMap<String, List<String>>();
-
-		/*mp.put("schoolid", schoolid);
-		mp.put("username", username);
-		mp.put("rolename", rolename);
-		mp.put("divisioname", divisioname);
-		mp.put("districtname", districtname);
-		mp.put("upazillaname", upazillaname);
-		mp.put("schoolname", schoolname);*/
-
+		
 		return msg;
 	}
 

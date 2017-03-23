@@ -1,0 +1,38 @@
+#{extends 'main.html' /}
+#{set title:'Case Details' /}
+<title>User Details</title>
+
+
+<div class="page-header">
+	<h1>${title}</h1>
+</div>
+
+<table class="table table-striped table-details">
+    <tbody>
+	    <tr>
+	        <td>Case Id</td>
+	        <td>${caseReport.id}</td>
+	    </tr>
+	    <tr>
+	        <td>Informer Name</td>
+	        <td>${caseReport.informerName}</td>
+	    </tr>
+	    <tr>
+	        <td>Mobile Number</td>
+	        <td>${caseReport.mobNumber}</td>
+	    </tr>
+	     <tr>
+	        <td>Victim's Name</td>
+	        <td>${caseReport.victimName}</td>
+	    </tr>
+	    <tr>
+	        <td>Associate School</td>
+	        <td>${caseReport.associateSchool.name}</td>
+	    </tr>
+	    <tr>
+	        <td>Current Status</td>
+	        <td>${caseReport.currentStatus}</td>
+	    </tr>
+	    
+    </tbody>
+</table>

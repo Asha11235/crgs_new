@@ -1,7 +1,11 @@
 package controllers;
 
 
+import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
+
+import com.google.gson.Gson;
 
 import models.Data;
 import models.GeoDistrict;
@@ -65,6 +69,7 @@ public class Ngos extends Controller{
 		    		confirm = 1;
 				} catch (Exception e) {
 					// TODO: handle exception
+					
 				}
 		    	
 	        	
@@ -96,6 +101,9 @@ public class Ngos extends Controller{
 	    	pre_ngo.geoDivision = ngo.geoDivision;
 	    	pre_ngo.geoDistrict = ngo.geoDistrict;
 	    	pre_ngo.geoUpazilla = ngo.geoUpazilla;
+	    	
+	    	Logger.info("ngoid : " + pre_ngo.id + " ngoName : " + pre_ngo.ngoName + " ngoDivision : " + pre_ngo.geoDivision
+	    			+ " ngoDistrict : " + pre_ngo.geoDistrict + " ngoUpazilla : " + pre_ngo.geoUpazilla);
 	    	pre_ngo.save();
 	    	session.remove("userId");
 	    	create();
@@ -137,6 +145,8 @@ public class Ngos extends Controller{
 			render(geoUnionList);
 		}
 	    
+	    
+	    
 	    public static void loadGeoSchool(Long id) {
 	    	
 			GeoUpazilla geoUpazilla = GeoUpazilla.findById(id);
@@ -146,11 +156,24 @@ public class Ngos extends Controller{
 			render(schoolList);
 		}
 	    
+
+	    
 	    public static void loadRole(Long id) {
 			Role role = Role.findById(id);
 			notFoundIfNull(role);
 			List<Role> roleList = role.find("role = ? ", role).fetch();
 			render(roleList);
 		}
+	    
+	    public static String loadNgo(Long divisionId,Long districtId, Long upazillaId ) throws SQLException {
+	    	
+	    	String msg="";
+	    	
+	    	msg= Ngo.getNgoData(divisionId, districtId, upazillaId);
+	    	
+	    	Gson gson = new Gson();
+
+			return gson.toJson(msg);
+	    }
 	
 }

@@ -1,179 +1,282 @@
-#{extends 'main.html' /} #{set title:'Water Report' /}
+#{extends 'main.html' /}
+#{set title:'Users' /}
+
+<title>Case Report</title>
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
 <div class="row">
-	<div class="col-md-12">
-		<!-- BEGIN PAGE TITLE & BREADCRUMB-->
-		<h3 class="page-title">Case Reporting</h3>
-		<!-- END PAGE TITLE & BREADCRUMB-->
-	</div>
-</div>
-<!-- BEGIN PAGE CONTENT-->
-<div class="row">
-	<div class="col-md-12">
-		<!-- BEGIN PORTLET-->
-		<div class="portlet">
-			<div class="portlet-title">
-				<div class="caption">
-					<i class="fa fa-reorder"></i>Case Reporting
-				</div>
+                    <div class="col-md-12">
+                        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                        <h3 class="page-title">
+                            Case Reporting
+                        </h3>
+                        <!-- END PAGE TITLE & BREADCRUMB-->
+                    </div>
+                </div>
+                <!-- BEGIN PAGE CONTENT-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN PORTLET-->
+                        <div class="portlet">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-reorder"></i>Case Reporting
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div class="row">
+                                  <div class="col-md-2">
+			<div class="form-group">
+			<div id="geoDivision" class="col-md-12 SEARCH" url="@{Ngos.loadGeoDistrict()}" load-data-container-SEARCH="#geoDistrict">
+				#{select 'division', value:0, items:geoDivisionList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'division'}
+					#{option}Division#{/option}
+				#{/select}
 			</div>
-			<div class="portlet-body">
-
-				<div class="row">
-					<div class="col-md-2">
-						<div class="form-group">
-							#{select 'school.geoDivision.id' ,value:0,items:geoDivisionList, labelProperty:'name',class:'form-control'} 
-								#{option}Division#{/option} 
-							#{/select}
-						</div>
-					</div>
-					<div class="col-md-2">
-						<div class="form-group">
-							#{select 'school.geoDistrict.id' , value:0,items:geoDistrictList, labelProperty:'name', class:'form-control'} 
-									#{option}District#{/option}
-							#{/select}
-						</div>
-					</div>
-					<div class="col-md-2">
-						<div class="form-group">
-							#{select 'school.geogeoUpazilla.id' , value:0,items:geoUpazillaList, labelProperty:'name', class:'form-control'} 
-								#{option}Upazila#{/option}
-							#{/select}
-						</div>
-					</div>
-					<div class="col-md-2">
-						<div class="form-group">
-							#{select 'school.geoUnion.id' , value:0,items:geoDistrictList, labelProperty:'name', class:'form-control'} 
-									#{option}Union#{/option}
-							#{/select}
-						</div>
-					</div>
-					<div class="col-md-2">
-						<div class="form-group">
-							<select class="form-control">
-								<option value="">Case Type</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-2">
-						<div class="form-group">
-							<a href="javascript:;" class="btn btn-danger">Export</a>
-						</div>
-					</div>
-					<!--/span-->
-				</div>
-				<!-- BEGIN FORM-->
-				<table class="table table-striped table-bordered table-hover"
-					id="sample_2">
-					<thead>
-						<tr>
-							<th>Informer Name</th>
-							<th>Informer Contact</th>
-							<th>Case Type</th>
-							<th>Division</th>
-							<th>District</th>
-							<th>Upazilla</th>
-							<th>Union</th>
-							<th>Status</th>
-							<th>&nbsp;</th>
-							<th>&nbsp;</th>
-							<th>&nbsp;</th>
-						</tr>
-					</thead>
-					<tbody>
-						#{list items:caseList, as:'CaseReport'}
-						<tr class="odd gradeX">
-							<td>${CaseReport?.informerName}</td>
-							<td>${CaseReport?.mobNumber}</td>
-							<td>${CaseReport?.victimSex}</td>
-							<td>${CaseReport?.geoDivision?.name}</td>
-							<td>${CaseReport?.geoDistrict?.name}</td>
-							<td>${CaseReport?.geoUpazilla?.name}</td>
-							<td>${CaseReport?.geoUnion?.name}</td>
-							<td></td>
-							<td><a class="label label-sm label-warning"> Details </a></td>
-							<td><a class="label label-sm label-warning"> Edit </a></td>
-							<td><a class="label label-sm label-warning"> Delete </a></td>
-						</tr>
-						#{/list}
-					</tbody>
-				</table>
 			</div>
 		</div>
-	</div>
-</div>
+		<div class="col-md-2">
+			<div class="form-group">
+				<div id="geoDistrict" class="col-md-12 SEARCH" url="@{Ngos.loadGeoUpazilla()}"  load-data-container-SEARCH="#geoUpazilla">
+					#{select 'district', value:0, items:geoDistrictList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'ngo.geoDistrict.id'}
+						#{option}District#{/option}
+					#{/select}
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="form-group">
+				<div id="geoUpazilla" class="col-md-12 SEARCH" url="@{Ngos.loadGeoUnion()}"  load-data-container-SEARCH="#geoUnion">
+					#{select 'upazilla', value:0, items:geoUpazillaList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'ngo.geoUpazilla.id'}
+						#{option}Upazilla#{/option}
+					#{/select}
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="form-group">
+				<div id="geoUnion" class="col-md-12 SEARCH">
+					#{select 'union', value:0, items:geoUnionList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'union'}
+						#{option}Union#{/option}
+					#{/select}
+				</div>
+			</div>	
+		</div>
+		<div class="col-md-2">
+			<div class="form-group">
+				<select class="form-control SEARCH" id = "casetypelist">
+				                                            <option value="20">Case Type</option> 
+                                                            <option value="0">Rape</option>
+                                                            <option value="1">Mental Torture</option>
+                                                            <option value="2">Physical Assault</option>
+                                                            <option value="3">Sexual Assault</option>
+                                                            <option value="4">Forced Prostitution</option>
+                                                            <option value="5">Influenced Suicide</option>
+                                                            <option value="6">Abduction</option>
+                                                            <option value="7">Forced/Underaged Marriage</option>
+                                                            <option value="8">Threat</option>
+                                                            <option value="9">Acid Violence</option>
+                                                            <option value="10">Domestic Violence</option>
+                                                            <option value="11">Physical/Corporal & Mental Punishment</option>
+                                                            <option value="12">Other</option>
+                                                        </select>
+                                                    
+                                                </div>
+                                            </div>
+                                       
+		<div class="col-md-2">&nbsp;&nbsp;&nbsp;</div>
+                                    <!--/span-->
+                                </div>   
+                                 </div>
+                                 </div>
+                                <!-- BEGIN FORM-->
+                                <table class="table table-striped table-bordered table-hover" id="sample_2">
+                                    <thead>
+                                        <tr>
+                                            <th>Informer Name</th>
+											<th>Informer Contact</th>
+											<th>Victim's Sex</th>
+											<th>Case Type</th>
+											<th>Division</th>
+											<th>District</th>
+											<th>Upazilla</th>
+											<th>Union</th>
+											<th>Status</th>
+											<th>&nbsp;</th>
+											<th>&nbsp;</th>
+											<th>&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="userInf"> 
+                                       #{list items:caseList, as:'CaseReport'}
+											    <td>${CaseReport?.informerName}</td>
+												<td>${CaseReport?.mobNumber}</td>
+												<td>${CaseReport?.victimSex}</td>
+												<td>${CaseReport?.caseType}</td>
+												<td>${CaseReport?.geoDivision?.name}</td>
+												<td>${CaseReport?.geoDistrict?.name}</td>
+												<td>${CaseReport?.geoUpazilla?.name}</td>
+												<td>${CaseReport?.geoUnion?.name}</td>
+												<td>${CaseReport?.currentStatus}</td>
+												#{deadbolt.externalizedRestriction externalRestrictions:['Edit Case']}
+												<td><a href = "@{RegisterSchool.details(CaseReport.id)}" class="label label-sm label-warning"> Details </a></td>
+												<td><a href = "@{RegisterSchool.editCase(CaseReport.id)}" class="label label-sm label-warning"> Edit </a></td>
+												<td><a class="btn btn-mini btn-danger delete_case" id="${CaseReport.id}"> Delete </a></td>
+												 #{/deadbolt.externalizedRestriction}
+						</tr>
+						#{/list}                 
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-
-
-
-
-<script src="/public/plugins/jquery-1.10.2.min.js"
-	type="text/javascript"></script>
-<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-<script src="/public/plugins/bootstrap/js/bootstrap.min.js"
-	type="text/javascript"></script>
-<script src="/public/plugins/jquery-migrate-1.2.1.min.js"
-	type="text/javascript"></script>
-<script src="/public/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js"
-	type="text/javascript"></script>
-<script
-	src="/public/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js"
-	type="text/javascript"></script>
-<script src="/public/plugins/jquery-slimscroll/jquery.slimscroll.min.js"
-	type="text/javascript"></script>
-<script src="/public/plugins/jquery.blockui.min.js"
-	type="text/javascript"></script>
-<script src="/public/plugins/jquery.cokie.min.js" type="text/javascript"></script>
-<script src="/public/plugins/uniform/jquery.uniform.min.js"
-	type="text/javascript"></script>
-<!-- END CORE PLUGINS -->
-<!-- BEGIN PAGE LEVEL PLUGINS -->
-<script src="/public/plugins/jquery.peity.min.js" type="text/javascript"></script>
-<script src="/public/plugins/jquery.pulsate.min.js"
-	type="text/javascript"></script>
-<script src="/public/plugins/jquery-knob/js/jquery.knob.js"
-	type="text/javascript"></script>
-<script src="/public/plugins/flot/jquery.flot.js" type="text/javascript"></script>
-<script src="/public/plugins/flot/jquery.flot.resize.js"
-	type="text/javascript"></script>
-<script src="/public/plugins/bootstrap-daterangepicker/moment.min.js"
-	type="text/javascript"></script>
-<script
-	src="/public/plugins/bootstrap-daterangepicker/daterangepicker.js"
-	type="text/javascript"></script>
-<script src="/public/plugins/gritter/js/jquery.gritter.js"
-	type="text/javascript"></script>
-<script
-	src="/public/plugins/fullcalendar/fullcalendar/fullcalendar.min.js"
-	type="text/javascript"></script>
-<script
-	src="/public/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js"
-	type="text/javascript"></script>
-<script src="/public/plugins/jquery.sparkline.min.js"
-	type="text/javascript"></script>
-<!-- END PAGE LEVEL PLUGINS -->
-<!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="/public/scripts/app.js" type="text/javascript"></script>
-<script src="/public/scripts/index.js" type="text/javascript"></script>
-<script src="/public/scripts/tasks.js" type="text/javascript"></script>
-
-<script type="text/javascript"
-	src="/public/plugins/data-tables/jquery.dataTables.js"></script>
-<script type="text/javascript"
-	src="/public/plugins/data-tables/DT_bootstrap.js"></script>
-<script src="/public/scripts/table-managed.js"></script>
-<!-- END PAGE LEVEL SCRIPTS -->
 <script>
-	jQuery(document).ready(function() {
-		App.init(); // initlayout and core plugins
-		Index.init();
-		Index.initCalendar(); // init index page's custom scripts
 
-		Index.initPeityElements();
-		Index.initKnowElements();
-		Index.initDashboardDaterange();
-		Tasks.initDashboardWidget();
+	    $(".delete_case").click(function(){  
+			var caseId = $(this).attr("id");
+	        if(confirm("Are you sure to delete this user?"))
+	        {
+	            $.ajax({
+	                type: "GET",
+	              	url:  "@{RegisterSchool.deleteCase}",
+	                data: {
+	                	id: caseId
+	                },
+	                success: function(data) {
+						console.log(data);
+	                    if(data == 1){
+	                    	$('#delete_msg').html("<h3 style="+"color:green"+">Case deleted successfully.</h3>");
+	                    	$("#"+caseId).remove(); //row remove when deleted 
+	                     	
+	                    }
+	                    else{
+	                    	$('#delete_msg').html("<h3 style="+"color:red"+">Case cannot be deleted.</h3>");
+	                                  }
+	                }
 
-		TableManaged.init();
+
+	            });
+	            
+	             $(document).ajaxStop(function(){
+         window.location.reload();
+       });
+	           
+	        }
+	        
+	       
+	        return false;
+	         
+	    });
+	    
+	    $("document").ready(function(){
+	    
+	  $('#sample_2').DataTable();
+	
+	$(".SEARCH").on("change", function() {
+		
+		if(typeof $(this).find(":selected").attr("value") == "undefined"){
+			return;
+		}
+		var divisionId = $('#division').find(":selected").attr("value");
+		
+		var districtId = $('#ngo\\.geoDistrict\\.id').find(":selected").attr("value");
+		
+		var upazillaId = $('#ngo\\.geoUpazilla\\.id').find(":selected").attr("value");
+		
+		var unionId = $('#ngo\\.geoUnion\\.id').find(":selected").attr("value");
+		
+		var casee= $('#casetypelist').find(":selected").attr("value");
+		
+		
+		//console.log("divisionId : "+ divisionId + " districtId : " + districtId + " UpazillaId : "+ upazillaId
+			//	+ " unionId : "+ unionId  + " casee: " + casee);
+		loadData(divisionId,districtId,upazillaId,unionId,casee, null, null);
 	});
+	
+	
+
+	function loadData(divisionId,districtId,upazillaId,unionId,caseType,startDate, endDate) {
+		//var formId = $("#formId").val();
+		//var tbl = "<table class="table table-striped table-bordered table-hover" id="userTable">";
+		var tbl = "" ;
+        var thead =  "<table class='table table-striped table-bordered table-hover' id='userTable'>"+
+                                    "<thead>"+
+                                        "<tr>"+
+                                              "<th>Informer Name</th>"+
+											"<th>Informer Contact</th>"+
+											"<th>Victim's Sex</th>"+
+											"<th> Case Type</th>"+
+											"<th>Division</th>"+
+											"<th>District</th>"+
+											"<th>Upazilla</th>"+
+											"<th>Union</th>"+
+											"<th>Status</th>"+
+											"<th>&nbsp;</th>"+
+											"<th>&nbsp;</th>"+
+											"<th>&nbsp;</th>"+
+                                        "</tr>"+
+                                    "</thead>";           
+		return $.ajax({
+				type: "GET",
+              	url:  "/reports/loadCaseReport",
+				data : {
+					divisionId : divisionId,
+					districtId : districtId,
+					upazillaId : upazillaId,
+					unionId : unionId,
+					caseType : caseType,
+					startDate : startDate,
+					endDate : endDate
+				},
+				
+				success: function(data) {
+					var json = JSON.parse(data);
+					var caseInfo = data.split(';');
+					// console.log(data);
+					 var row = "";
+		             //var tbl = "";
+					 for (var i = 1; i < caseInfo.length; i = i + 9) {
+                                var informerName = caseInfo[i];
+                                var victimSex = caseInfo[i+1];
+                                var casetype = caseInfo[i+2];
+                                var mobnumber = caseInfo[i+3];
+                                var divisionname = caseInfo[i+4];
+                                var districtname = caseInfo[i+5];
+                                var upazillaname = caseInfo[i + 6];
+                                var unionname = caseInfo[i + 7];
+                                var currentstatus=caseInfo[i + 8];
+                                
+                                console.log(casetype);
+                           row = row + "<tr><td>" + informerName + "</td><td>"  + mobnumber + 
+                           "</td><td>" + victimSex + "</td><td>" + casetype + "</td><td>"+ divisionname + "</td><td>" + districtname + "</td><td>" + upazillaname + 
+                           "</td><td>" + unionname + "</td><td>"+currentstatus+"</td>"+
+                           "#{deadbolt.externalizedRestriction externalRestrictions:['Edit Case']}"+
+						   "<td><a class='btn btn-mini' href='@{RegisterSchool.details(CaseReport.id)}' class='label label-sm label-warning'>Details</a></td>"+
+				           "<td><a href = '@{RegisterSchool.editCase(CaseReport.id)}' class='label label-sm label-warning'><i class='icon-edit'></i> Edit</a></td>"+
+						   "<td>"+
+						   "<a class='btn btn-mini btn-danger delete_user' id='${CaseReport.id}'>"+ 
+						   "Delete"+
+						   "</a>"+
+						   "</td>"+
+						   "#{/deadbolt.externalizedRestriction}"+
+						   "</td></tr>";
+                           
+                           
+                     }
+                            tbl =thead+ tbl+"<tbody>" + row + "</tbody>";
+                            $("#sample_2").html("");
+                            $("#sample_2").html(tbl);         
+                                
+                }
+			
+			});
+	}
+	});
+	
+	
 </script>
+
+   

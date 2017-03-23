@@ -110,10 +110,34 @@ public class Reports extends Controller {
 		render();
 	}
 	
+	@ExternalRestrictions("View Case")
 	public static void caseReport() {
+		
+		/*List<String> caseType = new ArrayList<String>();
+		
+		caseType.add(0,"Case Type");
+		caseType.add( 1,"Rape");
+		caseType.add( 2,"Mental Torture");
+		caseType.add( 3,"Physical Assault");
+		caseType.add( 4,"Sexual Assault");
+		caseType.add( 5,"Forced Prostitution");
+		caseType.add( 6,"Influenced Suicide");
+		caseType.add( 7,"Abduction");
+		caseType.add( 8,"Forced/Underaged Marriage");
+		caseType.add( 9,"Threat");
+		caseType.add( 10,"Acid Violence");
+		caseType.add( 11,"Domestic Violence");
+		caseType.add( 12,"Physical/Corporal & Mental Punishment");
+		caseType.add( 13,"Other");*/
+		
 		List<GeoDivision> geoDivisionList = GeoDivision.findAll();	
+		//List<GeoDistrict> geoDistrictList = GeoDistrict.findAll();
+	   // List<GeoUpazilla> geoUpazillaList = GeoUpazilla.findAll();
+	    
+		//renderArgs.put("geoDistrictList", geoDistrictList);
+		//renderArgs.put("geoUpazillaList", geoUpazillaList);
 		renderArgs.put("geoDivisionList", geoDivisionList);
-
+       // renderArgs.put("caseType", caseType);
 		List<CaseReport> caseList = CaseReport.findAll();
 		render(caseList);
 	}
@@ -195,11 +219,11 @@ public class Reports extends Controller {
 		return gson.toJson(mp);
 	}
 	
-	public static String LoadCaseReport(Long divisionId, Long districtId, Long upazillaId, Long unionId) throws SQLException, ParseException {
+	public static String LoadCaseReport(Long divisionId, Long districtId, Long upazillaId, Long unionId ,int caseType) throws SQLException {
 
-		Map<String, String> mp = new HashMap<String, String>();
+		String mp = "";
 		
-		mp = CaseReport.getReport(divisionId, districtId, upazillaId, unionId);
+		mp = CaseReport.getCaseReport(divisionId, districtId, upazillaId, unionId , caseType);
 			
 		Gson gson = new Gson();
 

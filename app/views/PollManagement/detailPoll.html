@@ -1,58 +1,47 @@
 #{extends 'main.html' /}
-
+#{set title:'School Details' /}
 <div id="wrapper">
 <div id="containt_area">
-#{if poll?.id}
-    <h1>Poll Option</h1>
-#{/if}
-#{else}
-    <h1>Poll Option</h1>
-#{/else}
 
-<div class="row"><!-- table -->
-						  <div class="panel panel-default">
-										    <div class="panel-heading">#{if school?.id}
-											    <h8>Edit Poll</h8>
-											#{/if}
-											#{else}
-											    <h8>New Poll</h8>
-											#{/else} </div>
-												<div class="table-responsive ">
-												<div class="panel-body">
-	#{form @submitdetail(), class:'form-horizontal'}
-	#{if poll?.id}
-    <input id="polldefination" type="hidden" name="poll.id" value="${poll.id}" />
-    #{/if}
-    <table class="table table-striped">	
-   
-	<tbody>
-	#{if optionList.size == 0}
-	#{list items:input, as:'pol'}
-		<tr>
-		<td>option ${pol}</td>
-		<td><input id=${pol}  name="poll[]" type="text" value=""></input> </td>
-		</tr>
-   #{/list}
-   #{/if}
-   #{else}
-   #{list items:optionList, as:'pol'}
-		<tr>
-		<td>option ${pol.id}</td>
-		<td><input id=${pol.id}  name="poll[]" type="text" value="${pol.options}"></input> </td>
-		</tr>
-   #{/list}
-   
-   #{/else}
-  <tbody>
+<title>Poll Details</title>
+<div class="page-header">
+	<h1>${title}</h1>
+</div>
+
+<table class="table table-striped table-details">
+    <tbody>
+	    <tr>
+	        <td>Poll No.</td>
+	        <td>${poll.id}</td>
+	    </tr>
+	    <tr>
+	        <td>Poll Title.</td>
+	        <td>${poll.title}</td>
+	    </tr>
+	    <tr>
+	        <td>From Date</td>
+	        <td>${poll.startDate}</td>
+	    </tr>
+	    
+	    <tr>
+	        <td>To Date </td>
+	        <td>${poll.endDate}</td>
+	    </tr>
+	    
+	    <tr>
+	        <td>Question Type</td>
+	        <td>${poll.questionType}</td>
+	    </tr>
+	   <tr>
+	     <td>Options: </td>
+	     #{list items: optionitem, as:'optionitem'}
+	     <td width="100">${optionitem}<td>
+	     #{/list}
+	   </tr>
+	  
+    </tbody>
 </table>
-	
-   #{submit /}
-#{/form}
 
-           </div>
-           </div>
-           </div>
-           </div>
-           </div>
-           </div>
-       
+	
+   </div>
+   </div>

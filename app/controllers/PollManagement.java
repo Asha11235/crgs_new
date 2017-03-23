@@ -1,50 +1,133 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import org.h2.util.New;
+
+import models.Data;
+import models.GeoDistrict;
 import models.PollDefination;
 import models.PollQuestionOption;
 import models.User;
 import models.Vote;
 import play.Logger;
 import play.data.validation.Valid;
+import play.db.jpa.GenericModel.JPAQuery;
 import play.mvc.With;
 import controllers.deadbolt.Deadbolt;
 import controllers.deadbolt.ExternalRestrictions;
+import groovyjarjarasm.asm.tree.IntInsnNode;
 
 
 @With(Deadbolt.class) 
 public class PollManagement extends Controller {
 	@ExternalRestrictions("Edit Poll")
-	public static void createPoll(){
-		List<String> questiontype = new ArrayList<String>();
-		questiontype.add("Single Select");
-		questiontype.add("Multipul Select");
-		render("@editPoll",questiontype);
+	public static void createPoll(PollDefination poll , PollQuestionOption pollQuestionOption){
+		
+		List<String> questionType = new ArrayList<String>();
+		questionType.add("Single Select");
+		questionType.add("Multiple Select");
+		
+
+		List<PollDefination> pollList = PollDefination.find("status = ? ", "1").fetch();
+		
+		//render("@editPoll",questiontype);
+		/*List<PollDefination> poll = PollDefination.findById(id);*/
+		render(questionType,poll,pollQuestionOption,pollList);
 	}
 	@ExternalRestrictions("Edit Poll")
 	public static void editPoll(Long id){
+		
 		PollDefination poll = PollDefination.findById(id);
-		List<String> questiontype = new ArrayList<String>();
-		questiontype.add("Single Select");
-		questiontype.add("Multipul Select");
-		render(questiontype,poll);
+		
+		flash("poll", "" + poll.id);
+		
+	
+		
+		List<String> pollQuestionOption2 = PollQuestionOption.find("SELECT options from PollQuestionOption WHERE poll_id = ? ", poll.id).fetch();
+		
+	
+		List<PollQuestionOption> pollQuestionOptions = PollQuestionOption.find("poll_id = ?", poll.id).fetch();
+		
+		PollQuestionOption pollQuestionOption = pollQuestionOptions.get(0);
+		int j=0;
+		List<String>  optionitem = new ArrayList<String>();
+		for(int i=0 ; i< pollQuestionOption2.size() ; i++){
+			//Logger.info("data: "+pollQuestionOption2.get(i) +" " );
+			
+		optionitem.addAll(Arrays.asList(pollQuestionOption2.get(i).split(",")));
+		    
+		}
+		
+		List<String> questionType = new ArrayList<String>();
+		questionType.add(0,"Single Select");
+		questionType.add(1,"Multiple Select");
+		render(questionType,poll,pollQuestionOption,optionitem);
 	}
 	
-	public static void submit(@Valid PollDefination poll){
-		validation.valid(poll);
+	 @ExternalRestrictions("Edit Poll")
+	public static void submit(@Valid PollDefination poll , @Valid PollQuestionOption pollQuestionOption){
+		
+		 validation.valid(poll);
+		 validation.valid(pollQuestionOption);
+		
 		poll.createDate = new Date();
 		poll.creater = User.findByName(session.get("username"));
+		
 		if(validation.hasErrors()){
 			List<String> questiontype = new ArrayList<String>();
 			questiontype.add("Single Select");
-			questiontype.add("Multipul Select");
-			render("@editPoll",poll,questiontype);
+			questiontype.add("Multiple Select");
+			//render("@editPoll",poll,questiontype);
+			
 		}
-		poll.save();
+		
+		if(flash.get("poll") != null){
+			
+			PollDefination editedPollDefination = PollDefination.findById(Long.parseLong(flash.get("poll")));
+			
+			editedPollDefination.optionNumber = poll.optionNumber;
+			editedPollDefination.questionType = poll.questionType;
+			editedPollDefination.resultStatus = poll.resultStatus;
+			editedPollDefination.startDate = poll.startDate ;
+			editedPollDefination.endDate = poll.endDate ;
+			editedPollDefination.status = poll.status;
+			editedPollDefination.title = poll.title ;
+			
+			editedPollDefination.updatedby = User.findByName(session.get("username"));
+            editedPollDefination.updatedDate = new Date();
+            
+            editedPollDefination=editedPollDefination.save();
+           String questionid= PollQuestionOption.findByPollId(editedPollDefination.id);
+          models.PollQuestionOption editedpollQuestionOption = PollQuestionOption.findById(Long.parseLong(questionid));
+            
+          editedpollQuestionOption.poll = editedPollDefination;
+          editedpollQuestionOption.options = pollQuestionOption.options;
+          editedpollQuestionOption.save();
+          //  pollQuestionOption.poll = editedPollDefination ;
+           // pollQuestionOption.save();
+           //editedpollQuestionOption.save();
+			Logger.info("edited");
+		}
+		else{
+			
+				    poll = poll.save();
+				    Logger.info("not edited");
+				   // models.PollQuestionOption nextpollQuestionOption = new models.PollQuestionOption(poll);
+					
+					//nextpollQuestionOption.poll = poll ;
+					//nextpollQuestionOption.options = pollQuestionOption.options;
+				    pollQuestionOption.poll = poll;
+				    pollQuestionOption.save();
+					//nextpollQuestionOption.save();
+		}
+		
+		
 		flash.success("Record saved successfully.");
+		
 		listPoll();
 	}
 	@ExternalRestrictions("View Poll")
@@ -53,25 +136,64 @@ public class PollManagement extends Controller {
 		render(listPoll);
 	}
 	
-	public static void deletePoll(Long id){
-		PollDefination poll = PollDefination.findById(id);
-		poll.delete();
-		ok();
-	}
+	@ExternalRestrictions("Edit Poll")
+    public static int deletePoll(Long id) {
+    	
+    	
+    	int confirm = 1;
+    	if(request.isAjax()) {
+    		//Long id = Long.valueOf(request.params.get("userId"));
+    		PollDefination poll = PollDefination.findById(id);
+    		
+    		 String questionid= PollQuestionOption.findByPollId(poll.id);
+            models.PollQuestionOption pollQuestionOption = PollQuestionOption.findById(Long.parseLong(questionid));
+              
+        	
+	    	notFoundIfNull(id, "id not provided");
+	    	notFoundIfNull(poll, "poll not found");
+	    	
+	    	/*JPAQuery q = Data.find("sender = ?",user);
+	    	List<Data> d = q.fetch();*/
+	    	
+	    	try {
+	    		pollQuestionOption.delete();
+	    		poll.refresh();
+	    		poll.delete();
+			} catch (Exception e) {
+				confirm = 0;
+				e.printStackTrace();
+				Logger.info("error in delete" + e);
+			}
+        	
+    	}
+    	
+    	return confirm;
+    }
 	
+	@ExternalRestrictions("View Poll")
 	public static void detailPoll(Long id){
 		PollDefination poll = PollDefination.findById(id);
 		
-		Integer inputs = Integer.parseInt(poll.optionNumber);
+		//Integer inputs = Integer.parseInt(poll.optionNumber);
 		
-		List<Integer> input = new ArrayList<Integer>();
+		List<String> pollQuestionOption2 = PollQuestionOption.find("SELECT options from PollQuestionOption WHERE poll_id = ? ", poll.id).fetch();
+		
+		List<String>  optionitem = new ArrayList<String>();
+		for(int i=0 ; i< pollQuestionOption2.size() ; i++){
+			Logger.info("data: "+pollQuestionOption2.get(i) +" " );
+			
+		optionitem.addAll(Arrays.asList(pollQuestionOption2.get(i).split(",")));
+		    
+		}
+		
+		/*List<Integer> input = new ArrayList<Integer>();
 		for(int i = 1;i<= Integer.parseInt(poll.optionNumber);i++){
 			input.add(i);
 		}
 		
-		List<PollQuestionOption> optionList = PollQuestionOption.find("poll = ?", poll).fetch();
+		List<PollQuestionOption> optionList = PollQuestionOption.find("poll = ?", poll).fetch();*/
 		
-		render(poll,input,optionList);
+		render(poll,optionitem);
 	}
 	
 	public static void submitdetail(){
@@ -82,7 +204,7 @@ public class PollManagement extends Controller {
 		List<PollQuestionOption> opts = PollQuestionOption.find("poll = ? ", polldef).fetch();
 		if(opts.size() == 0){
 			for(int i = 0; i < options.length;i++){
-				PollQuestionOption option = new PollQuestionOption();
+				PollQuestionOption option = new PollQuestionOption(null);
 				option.poll = polldef;
 				option.options = options[i];
 				option.save();
