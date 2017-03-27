@@ -55,7 +55,7 @@ import java.util.Map;
 
 @Entity
 public class User extends Model implements RoleHolder {
-	@Required
+	@Required(message = "Required!")
 	@Unique
 	@MaxSize(120)
 	@Email
@@ -151,6 +151,8 @@ public class User extends Model implements RoleHolder {
 	public static User authenticate(String username, String password) {
 		return User.find("byNameAndPassword", username, Crypto.passwordHash(password, HashType.SHA512)).first();
 	}
+	
+	
 
 	/**
 	 * Find User by name
@@ -185,7 +187,10 @@ public class User extends Model implements RoleHolder {
 
 	@Override
 	public String toString() {
-		return this.id + " " + this.name + " " + this.email + " ";
+		return "User [email=" + email + ", name=" + name + ", password=" + password + ", confirmPassword="
+				+ confirmPassword + ", displayName=" + displayName + ", role=" + role + ", school=" + school + ", ngo="
+				+ ngo + ", geoDivision=" + geoDivision + ", geoDistrict=" + geoDistrict + ", geoUpazilla=" + geoUpazilla
+				+ "]";
 	}
 
 	public static User findByLogin(String username) {
@@ -350,5 +355,7 @@ public class User extends Model implements RoleHolder {
 		
 		return msg;
 	}
+	
+	
 
 }

@@ -96,35 +96,38 @@
                                             <label class="control-label col-md-2"><h4>GEO LOCATION</h4></label>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-2">Division</label>
-                                            <div id="geoDivision" class="col-md-3" url="@{Users.loadGeoDistrict()}" load-data-container="#geoDistrict">
-                                                #{input 'user.geoDivision.id' , type:'select', items:geoDivisionList, labelProperty:'name', valueProperty:'id' , id:'division'}
-														#{option}Any#{/option}
-												#{/input}
-											 </div>
-                                        </div>
+                                      
                                         
                                         <div class="form-group">
-                                            <label class="control-label col-md-2">District</label>
-                                            <div id="geoDistrict" class="col-md-3" url="@{Users.loadGeoUpazilla()}" load-data-container="#geoUpazilla">
-                                                #{input 'user.geoDistrict.id' , type:'select', items:geoDistrictList,labelProperty:'name', valueProperty:'id' , id:'district'}
-													#{option}Any#{/option}
-												#{/input} 
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label col-md-2">Upazila</label>
-                                            <div id="geoUpazilla" class="col-md-3" url="@{Users.loadGeoUnion()}"  load-data-container="#geoUnion">
-                                                #{input 'user.geoUpazilla.id' , type:'select', items:geoUpazillaList,labelProperty:'name' , valueProperty:'id' , id:'upazilla'}
-													#{option}Any#{/option}
-												#{/input} 
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-actions fluid">
+                                        <label class="control-label col-md-2">Division</label>
+			<div id="geoDivision" class="col-md-3 SEARCH" url="@{Ngos.loadGeoDistrict()}" load-data-container-SEARCH="#geoDistrict">
+				#{select 'division', value:0, items:geoDivisionList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'division'}
+					#{option}Division#{/option}
+				#{/select}
+			</div>
+			</div>
+		</div>
+		
+			<div class="form-group">
+			<label class="control-label col-md-2">District</label>
+				<div id="geoDistrict" class="col-md-3 SEARCH" url="@{Ngos.loadGeoUpazilla()}"  load-data-container-SEARCH="#geoUpazilla">
+					#{select 'district', value:0, items:geoDistrictList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'ngo.geoDistrict.id'}
+						#{option}District#{/option}
+					#{/select}
+				</div>
+			</div>
+			
+			 <div class="form-group">
+                                        <label class="control-label col-md-2">Upazilla</label>
+			<div id="geoUpazilla" class="col-md-3 SEARCH" url="@{Ngos.loadGeoSchool()}" load-data-container-SEARCH="#geoUnion">
+				#{select 'upazilla', value:0, items:geoUpazillaList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'ngo.geoUpazilla.id'}
+						#{option}Upazilla#{/option}
+					#{/select}
+			</div>
+			</div>
+		
+			
+		                 <div class="form-actions fluid">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="col-md-offset-1 col-md-9">

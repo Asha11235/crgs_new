@@ -27,15 +27,17 @@ public class RegisterSchool extends play.mvc.Controller{
 	
 	public static void schoolregister(){
 		List<GeoDivision> geoDivisionList = GeoDivision.findAll();
-		List<GeoDistrict> geoDistrictList = GeoDistrict.findAll();
-		List<GeoUpazilla> geoUpazillaList = GeoUpazilla.findAll();
+	//	List<GeoDistrict> geoDistrictList = GeoDistrict.findAll();
+		//List<GeoUpazilla> geoUpazillaList = GeoUpazilla.findAll();
+	//	List<GeoUnion> geoUnionList = GeoUnion.findAll();
 		List<String> schoolType = new ArrayList<String>();
 		
 		schoolType.add(0, "Girls school");
 		schoolType.add(1, "Boys School");
 		schoolType.add(2, "Combined School");
 		SchoolInformation school = null;
-		render(geoDivisionList,geoDistrictList,geoUpazillaList,schoolType);
+		//render(geoDivisionList,geoDistrictList,geoUpazillaList,schoolType,geoUnionList);
+		render(geoDivisionList,schoolType);
 	}
 	
 	public static void submit(@Valid SchoolInformation school){

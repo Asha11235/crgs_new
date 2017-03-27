@@ -46,24 +46,24 @@
 						#{alert flash.success /}
 					#{/if}
 				<div class="form-body">
-					<div class="form-group">
-						<label for="selector1" class="col-sm-3 control-label">Division</label>
-						<div id="geoDivision" class="col-sm-6 geo" url="@{RegisterSchool.loadGeoDistrict()}" load-data-container="#geoDistrict">
-							#{input 'school.geoDivision.id' , type:'select', items:geoDivisionList, labelProperty:'name' }
-							#{option}Any#{/option}
-							#{/input}
-						</div>
-					</div>
+					 <div class="form-group">
+                                        <label class="control-label col-md-3">Division</label>
+			<div id="geoDivision" class="col-md-6 SEARCH" url="@{Ngos.loadGeoDistrict()}" load-data-container-SEARCH="#geoDistrict">
+				#{select 'division', value:0, items:geoDivisionList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'division'}
+					#{option}Division#{/option}
+				#{/select}
+			</div>
+			</div>
+		</div>
 
-
-					<div class="form-group">
-						<label for="selector1" class="col-sm-3 control-label">District</label>
-						<div id="geoDistrict" class="col-sm-6 geo" url="@{RegisterSchool.loadGeoUpazilla()}"  load-data-container="#geoUpazilla">
-							#{input 'school.geoDistrict.id' , type:'select', items:geoDistrictList,labelProperty:'name' } 
-							#{option}Any#{/option}
-							#{/input}
-						</div>
-					</div>
+				<div class="form-group">
+			<label class="control-label col-md-3">District</label>
+				<div id="geoDistrict" class="col-md-6 SEARCH" url="@{Ngos.loadGeoUpazilla()}"  load-data-container-SEARCH="#geoUpazilla">
+					#{select 'district', value:0, items:geoDistrictList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'ngo.geoDistrict.id'}
+						#{option}District#{/option}
+					#{/select}
+				</div>
+			</div>
 
 					<div class="form-group">
 						<label for="selector1" class="col-sm-3 control-label">Upazilla/Thana</label>
@@ -78,7 +78,7 @@
 					<div class="form-group">
 						<label for="selector1" class="col-sm-3 control-label">Union/Ward</label>
 						<div id="geoUnion" class="col-sm-6 geo"   >
-							#{input 'school.geoUnion.id' , type:'select', items:geoUpazillaList,labelProperty:'name' } 
+							#{input 'school.geoUnion.id' , type:'select', items:geoUnionList,labelProperty:'name' } 
 							#{option}Any#{/option}
 							#{/input}
 						</div>
@@ -90,7 +90,8 @@
 							<input name="school.name" type="text" class="form-control" id="school.name" value="${school?.name}" placeholder="Default Input" >
 						</div>
 					</div>
-
+					
+					
 
 					<div class="form-group ">
 						<label for="focusedinput" class="col-sm-3 control-label">School REG No</label>
@@ -129,7 +130,7 @@
 					<div class="form-group">
 						<label for="focusedinput" class="col-sm-3 control-label">Total Student</label>
 						<div class="col-sm-6">
-							<input name="school.totalStudent" type="number" min="0" value="0" step="1" class="form-control" id="school.totalStudent" value="0" placeholder="Number Input" disabled>
+							<input name="school.totalStudent" type="number" class="form-control" id="school.totalStudent" value="0" placeholder="Number Input" disabled>
 						</div>
 					</div>
 
@@ -162,7 +163,7 @@
 					<div class="form-group">
 						<label for="focusedinput" class="col-sm-3 control-label">Total number of Toilets</label>
 						<div class="col-sm-6">
-							<input name="school.totalToilets" type="number" min="0" value="0" step="1" class="form-control" id="school.totalToilets" value="0" placeholder="Number Input" disabled>
+							<input name="school.totalToilets" type="number" class="form-control" id="school.totalToilets" value="0" placeholder="Number Input" disabled>
 						</div>
 					</div>
 

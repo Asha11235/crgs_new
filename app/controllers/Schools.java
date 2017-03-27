@@ -47,7 +47,7 @@ public class Schools extends Controller{
 		
 		validation.valid(school);
     	Logger.info("validation  " + validation.hasErrors());
-    	
+    	Logger.info("flash: " + flash.get("school"));
     	if(validation.hasErrors() && flash.get("school") == null) {
     		List<Role> roles = Role.findAll();
     		Logger.info("hasError");
@@ -65,23 +65,26 @@ public class Schools extends Controller{
     		preschool.femailToilets = school.femailToilets ;
     		preschool.geoDistrict = school.geoDistrict ;
     		preschool.geoDivision = school.geoDivision ;
+    		preschool.geoUnion = school.geoUnion ;
     		preschool.geoUpazilla = school.geoUpazilla ;
     		preschool.headSirPhonNumber = school.headSirPhonNumber ;
     		preschool.maleStruden = school.maleStruden ;
     		preschool.maleToilets = school.maleToilets ;
     		preschool.name = school.name ;
-    		preschool.registrationDate = school.registrationDate ;
+    		//preschool.registrationDate = school.registrationDate ;
     		preschool.schoolHeadSirMobileNumber = school.schoolHeadSirMobileNumber ;
-    		preschool.schoolRegNo = school.schoolRegNo ;
-    		preschool.approavedStatus = school.schoolRegNo; 
+    		//preschool.schoolRegNo = school.schoolRegNo ;
+    		//preschool.approavedStatus = school.approavedStatus; 
+    		preschool.schoolType = school.schoolType;
+    		preschool.totalStudent = school.totalStudent ;
+    		preschool.totalToilets =school.totalToilets;
     		preschool.save();
     		
     		
     	}
     	else{
     		school.save();
-    		render("@schoolList");
-    		
+    	
     	}
     	
     	//Application.forms();

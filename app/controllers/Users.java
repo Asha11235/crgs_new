@@ -94,13 +94,14 @@ public class Users extends Controller {
     @ExternalRestrictions("Edit User")
     public static void create() {
     	List<GeoDivision> geoDivisionList = GeoDivision.findAll();
-		List<GeoDistrict> geoDistrictList = GeoDistrict.findAll();
-		List<GeoUpazilla> geoUpazillaList = GeoUpazilla.findAll();
+		//List<GeoDistrict> geoDistrictList = GeoDistrict.findAll();
+		//List<GeoUpazilla> geoUpazillaList = GeoUpazilla.findAll();
     	List<Role> roles = Role.findAll();
     	List<User> users = User.find("role = ?", Role.findByName("Mobilizer")).fetch();
     	List<SchoolInformation> schoolList = SchoolInformation.find("approavedStatus = ? ", "Approved").fetch();
     	List<Ngo> ngoList = Ngo.findAll();
-    	render("@edit", users, roles,schoolList,ngoList,geoDivisionList,geoDistrictList,geoUpazillaList);
+    	//render("@edit", users, roles,schoolList,ngoList,geoDivisionList,geoDistrictList,geoUpazillaList);
+    	render("@edit", users, roles,schoolList,ngoList,geoDivisionList);
     }
 
 	@ExternalRestrictions("Edit User")
@@ -111,13 +112,14 @@ public class Users extends Controller {
     	notFoundIfNull(user, "user not found");
     	user.password = null;
     	List<Role> roles = Role.findAll();
-    	List<SchoolInformation> schoolList = SchoolInformation.find("approavedStatus = ? ", "Approved").fetch();
+    	//List<SchoolInformation> schoolList = SchoolInformation.find("approavedStatus = ? ", "Approved").fetch();
     	List<Ngo> ngoList = Ngo.findAll();
     	
     	List<GeoDivision> geoDivisionList = GeoDivision.findAll();
-		List<GeoDistrict> geoDistrictList = GeoDistrict.findAll();
-		List<GeoUpazilla> geoUpazillaList = GeoUpazilla.findAll();
-    	render(user,schoolList,ngoList, roles,geoDivisionList,geoDistrictList,geoUpazillaList);
+		//List<GeoDistrict> geoDistrictList = GeoDistrict.findAll();
+		//List<GeoUpazilla> geoUpazillaList = GeoUpazilla.findAll();
+    	//render(user,schoolList,ngoList, roles,geoDivisionList,geoDistrictList,geoUpazillaList);
+    	render(user,ngoList, roles,geoDivisionList);
     }
 	
 	
@@ -131,13 +133,13 @@ public class Users extends Controller {
     	
     	
     	Logger.info("flashUserId in Submit: " + flash.get("user") + " and user id is : " + user.id);
-    	validation.valid(user);
+    	/*validation.valid(user);
     	if(validation.hasErrors() && flash.get("user") == null) {
     		List<Role> roles = Role.findAll();
-    		//Logger.info("hasError");
+    		Logger.info("hasError" + user.toString() + validation.hasErrors());
     		
         	render("@edit", user, roles);
-        }
+        }*/
     	  
 	    //Logger.info ("id: "+ user.geoUpazilla.id);   
     	if(flash.get("user") != null){
@@ -163,9 +165,7 @@ public class Users extends Controller {
     	}
     	else {
     		user.save();
-    		create();
-    		
-    		
+    		Logger.info("save successfully" + user.toString());
 		}
         
         flash.success("Record saved successfully.");

@@ -25,6 +25,6 @@ public class School {
 	public String schoolSecContactMobileNumber;
 	public String emailOfSchoolAuthority;
 	
-	
+
 	
 }

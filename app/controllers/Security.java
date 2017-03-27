@@ -36,5 +36,6 @@ public class Security extends Secure.Security {
 		return User.authenticate(username, password) != null;
     }
 	
+	
 
 }
