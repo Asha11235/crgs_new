@@ -167,19 +167,20 @@
 						</div>
 					</div>
 
-                    <div class="form-group">
-                                            <label class="control-label col-md-4">Does your school organize 'annual sports competition'        regularly?</label>
-                                            <div class="col-md-3">
-                                                <div class="radio-list" id="school.annualSports">
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="optionsRadios2" id="" value="1"> Yes 
-                                                    </label>
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="optionsRadios2" id="" value="2"> No
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
+                   <div class="form-group">
+							<label class="control-label col-md-3">Does your school organize 'annual sports competition' regularly?</label>
+							<div class="col-md-6">
+								<div class="radio-list">
+									<label class="radio-inline">
+										<input id="res_type_1" name="school.annualSports" value="1" type="radio" required="true"> Yes 
+									</label>
+									<label class="radio-inline">
+										<input id="res_type_2" name="school.annualSports" value="2" type="radio" required="true"> No 
+									</label>
+								</div>
+							</div>
+						</div>
+                   
 
                                         <div class="form-group">
                                             <label class="control-label col-md-3">Name of school focal person /Primary contact person:</label>
@@ -233,14 +234,21 @@
                                                 <input name="school.emailOfSchoolAuthority" type="text" class="form-control" id="school.emailOfSchoolAuthority" value="${school?.emailOfSchoolAuthority}" placeholder="Default Input">
                                             </div>
                                         </div>
+                                        
+                       <div class="form-group" type="hidden">
+                                            
+                                            <div class="col-md-6">
+                                                <input name="school.countForum" type="hidden" class="form-control" id="school.countForum" value="${school?.countForum}" placeholder="Default Input">
+                                            </div>
+                                        </div>
 
 					<div class="form-group">
 						<label for="selector1" class="col-sm-3 control-label">Student Fourm in School</label>
 						<div class="col-sm-6">
 							<div class="checkbox-list">
-								<input type="checkbox" name="school.activeStudent" value="NCTF">NCTF<br>
-								<input type="checkbox" name="school.activeStudent" value="School Cabinet">School Cabinet<br>
-								<input type="checkbox" name="school.activeStudent" value="Other">Other<br>
+								<input type="checkbox" class="forumchecked" name="school.activeStudent" value="NCTF">NCTF<br>
+								<input type="checkbox" class="forumchecked" name="school.activeStudent" value="School Cabinet">School Cabinet<br>
+								<input type="checkbox" class="forumchecked" name="school.activeStudent" value="Other">Other<br>
 							</div>
 						</div>
 					</div>
@@ -278,8 +286,20 @@
 
 <script type='text/javascript'>
 	    $( document ).ready(function() {
-	        console.log( "document loaded  register school" );
-	    });
+	       // console.log( "document loaded  register school" );
+	       
+	       
+	   
+	    
+	    $('.forumchecked').click(function() {
+   
+         //alert($('.forumchecked:checked').size());
+         var counting = $('.forumchecked:checked').size();
+         console.log(counting);
+         document.getElementById("school.countForum").value = counting;
+});
+
+ });
 	    
 </script>
 

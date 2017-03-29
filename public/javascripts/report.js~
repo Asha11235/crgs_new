@@ -1,7 +1,5 @@
 $("document").ready(function(){
 	
-loadData(null, null, null, null, null, null, null);
-
 	var frommdate;
 	var todate;
 	var divisionId;
@@ -23,7 +21,7 @@ loadData(null, null, null, null, null, null, null);
 	
 	
 
-	
+	loadData(null, null, null, null, null, null, null);
 	
 	$(".SEARCH").on("change", function() {
 	

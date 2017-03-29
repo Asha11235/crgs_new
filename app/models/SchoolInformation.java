@@ -32,6 +32,7 @@ public class SchoolInformation extends Model {
 	
 	public String totalTubewells;
 	public String femaleToiletRatio;
+	public String countForum;
 	
 	@ManyToOne
 	public GeoDivision geoDivision;
@@ -53,6 +54,8 @@ public class SchoolInformation extends Model {
 	
 	public String activeStudent;
 	
+	public String annualSports;
+	
 	//@Required
 	//@Max(11)
 	public String schoolHeadSirMobileNumber;
@@ -63,6 +66,8 @@ public class SchoolInformation extends Model {
 	
 	@ManyToOne
 	public User approvedBy;
+	
+	
 	
 	public SchoolInformation(){
 	}

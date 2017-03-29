@@ -3,8 +3,21 @@
 <title>Data Management</title>
 #{set title:"Data Management" /}
 
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
+
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
+<script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
+
+
+
 
 <div class="page-header top">
 	<h1>${title}</h1>
@@ -239,7 +252,13 @@
 	    
 	   loadData(null,null,null,null, null, null, null);
 	    
-	   $('#sample_2').DataTable();
+	   $('#sample_2').DataTable( {
+        dom: 'Bfrtip',
+        "paging": false,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
 	
 	$(".SEARCH").on("change", function() {
 		
@@ -385,7 +404,7 @@
                             tbl =thead+ tbl+"<tbody>" + row + "</tbody>";
                             $("#sample_2").html("");
                             $("#sample_2").html(tbl);   
-                            $('#sample_2').DataTable();              
+                                      
                 }
 			
 			});

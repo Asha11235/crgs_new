@@ -43,7 +43,7 @@ import controllers.deadbolt.Deadbolt;
 import controllers.deadbolt.ExternalRestrictions;
 import controllers.deadbolt.Unrestricted;
 
-//@With(Deadbolt.class)
+@With(Deadbolt.class)
 
 public class DataManagement extends Controller{
 	
