@@ -98,10 +98,10 @@ public class Users extends Controller {
 		//List<GeoUpazilla> geoUpazillaList = GeoUpazilla.findAll();
     	List<Role> roles = Role.findAll();
     	List<User> users = User.find("role = ?", Role.findByName("Mobilizer")).fetch();
-    	List<SchoolInformation> schoolList = SchoolInformation.find("approavedStatus = ? ", "Approved").fetch();
+    	//List<SchoolInformation> schoolList = SchoolInformation.find("approavedStatus = ? ", "Approved").fetch();
     	List<Ngo> ngoList = Ngo.findAll();
     	//render("@edit", users, roles,schoolList,ngoList,geoDivisionList,geoDistrictList,geoUpazillaList);
-    	render("@edit", users, roles,schoolList,ngoList,geoDivisionList);
+    	render("@edit", users, roles,ngoList,geoDivisionList);
     }
 
 	@ExternalRestrictions("Edit User")
@@ -133,17 +133,28 @@ public class Users extends Controller {
     	
     	
     	Logger.info("flashUserId in Submit: " + flash.get("user") + " and user id is : " + user.id);
-    	/*validation.valid(user);
+    	/*validation.valid(user);*/
+    	Logger.info("validation: " + validation.hasErrors());
     	if(validation.hasErrors() && flash.get("user") == null) {
     		List<Role> roles = Role.findAll();
-    		Logger.info("hasError" + user.toString() + validation.hasErrors());
-    		
-        	render("@edit", user, roles);
-        }*/
-    	  
+    		List<GeoDivision> geoDivisionList = GeoDivision.findAll();
+    		List<GeoDistrict> geoDistrictList = GeoDistrict.findAll();
+    		List<GeoUpazilla> geoUpazillaList = GeoUpazilla.findAll();
+    		List<SchoolInformation> schoolList = SchoolInformation.findAll();
+    		List<Ngo>ngoList = Ngo.findAll();
+    		if(user.name==null || user.displayName == null ||  user.email ==null || user.role == null || user.school == null || user.ngo==null || user.geoDivision == null || user.geoDistrict== null || user.geoUpazilla==null){
+    			
+    			flash.success("Error occured.Get null value. Please,try again");
+    		}
+    			
+        	render("@edit", user, roles , geoDivisionList ,ngoList , geoDistrictList , geoUpazillaList , schoolList);
+        }
+    	
+    	
 	    //Logger.info ("id: "+ user.geoUpazilla.id);   
-    	if(flash.get("user") != null){
-    		 
+    	 if(flash.get("user") != null){
+    		
+    		 //Logger.info("not null: "+validation.valid(user).toString());
     		User editedUser = User.findById(Long.parseLong(flash.get("user")));
     		
     		editedUser.name = user.name;
@@ -156,20 +167,36 @@ public class Users extends Controller {
     		editedUser.geoDistrict = user.geoDistrict;
     		editedUser.geoUpazilla = user.geoUpazilla;
     		
+if(user.name==null || user.displayName == null ||  user.email ==null || user.role == null || user.school == null || user.ngo==null || user.geoDivision == null || user.geoDistrict== null || user.geoUpazilla==null){
+	
+	flash.success("Error occured.Get null value. Please,try again");
+    list("0");
+	
+}
+    		
     		//Logger.info("id : " + editedUser.id + " name: " + editedUser.name + " displayname: " + editedUser.displayName + " email: " + editedUser.email + " role: " + editedUser.role.id + " ngoId: " + editedUser.ngo.id + " geoDivisionId: " 
     		//+ editedUser.geoDivision.id + " geoDistrictId: "+ editedUser.geoDistrict.id + " geoUpazilaId: "+ editedUser.geoUpazilla.id);
+else{
+	
+	editedUser.save();
+	flash.success("Record saved successfully.");
+    list("0");
+	
+}
     		
-    		editedUser.save();
-    	    
+    		
     		
     	}
     	else {
+    		
     		user.save();
+    		 flash.success("Record saved successfully.");
+    	     list("0");
+    		
     		Logger.info("save successfully" + user.toString());
 		}
         
-        flash.success("Record saved successfully.");
-        list("0");
+       
     }
     
 
@@ -208,13 +235,29 @@ public class Users extends Controller {
 	    	JPAQuery q = Data.find("sender = ?",user);
 	    	List<Data> d = q.fetch();
 	    	
-	    	try {
+	    	int sizee = d.size();
+	    	//Logger.info("Data : " +  d);
+	    	
+	    	if ( sizee == 0){
+	    	
 	    		user.delete();
+	    		flash.success("Record delete successfully.");
+	    		
+	    	}
+	    	
+	    	else{
+	    		
+	    		confirm = 0;
+	    		flash.success("Record can not be deleted.");
+	    	}
+	    	/*try {
+	    	
 			} catch (Exception e) {
 				confirm = 0;
-				e.printStackTrace();
-				Logger.info("error in delete" + e);
-			}
+				
+				//e.printStackTrace();
+				//Logger.info("error in delete" + e);
+			}*/
         	
     	}
     	
@@ -357,6 +400,15 @@ public class Users extends Controller {
 		List<GeoUnion> geoUnionList = GeoUnion.find("geoUpazilla = ?", geoUpazilla).fetch();
 		
 		render(geoUnionList);
+	}
+    
+ public static void loadGeoSchool(Long id) {
+    	
+		GeoUpazilla geoUpazilla = GeoUpazilla.findById(id);
+		notFoundIfNull(geoUpazilla);
+		List<SchoolInformation> schoolList = SchoolInformation.find("geoUpazilla = ?", geoUpazilla).fetch();
+		
+		render(schoolList);
 	}
   
     public static String loadUser(Long divisionId,Long districtId, Long upazillaId, Long schoolId, 

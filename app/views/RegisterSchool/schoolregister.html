@@ -1,6 +1,6 @@
 #{include 'head.html' /}
 
-<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
 
 
 <body>
@@ -46,43 +46,43 @@
 						#{alert flash.success /}
 					#{/if}
 				<div class="form-body">
-					 <div class="form-group">
-                                        <label class="control-label col-md-3">Division</label>
-			<div id="geoDivision" class="col-md-6 SEARCH" url="@{Ngos.loadGeoDistrict()}" load-data-container-SEARCH="#geoDistrict">
-				#{select 'division', value:0, items:geoDivisionList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'division'}
-					#{option}Division#{/option}
-				#{/select}
+					
+			<div class="form-group">
+			<label for="selector1" class="col-sm-3 control-label">Division</label>
+			<div id="geoDivision" class="col-md-6 SEARCH" url="@{RegisterSchool.loadGeoDistrict()}" load-data-container-SEARCH="#geoDistrict">
+				#{input 'school.geoDivision.id' , type:'select', items:geoDivisionList, labelProperty:'name' }
+							#{option}Any#{/option}
+							#{/input}
 			</div>
 			</div>
-		</div>
-
-				<div class="form-group">
-			<label class="control-label col-md-3">District</label>
-				<div id="geoDistrict" class="col-md-6 SEARCH" url="@{Ngos.loadGeoUpazilla()}"  load-data-container-SEARCH="#geoUpazilla">
-					#{select 'district', value:0, items:geoDistrictList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'ngo.geoDistrict.id'}
-						#{option}District#{/option}
-					#{/select}
+		
+			<div class="form-group">
+			<label for="selector1" class="col-sm-3 control-label">District</label>
+				<div id="geoDistrict" class="col-md-6 SEARCH" url="@{RegisterSchool.loadGeoUpazilla()}"  load-data-container-SEARCH="#geoUpazilla">
+					#{input 'school.geoDistrict.id' , type:'select', items:geoDistrictList, labelProperty:'name' } 
+							#{option}Any#{/option}
+							#{/input}
 				</div>
 			</div>
-
-					<div class="form-group">
-						<label for="selector1" class="col-sm-3 control-label">Upazilla/Thana</label>
-						<div id="geoUpazilla" class="col-sm-6 geo" url="@{RegisterSchool.loadGeoUnion()}"  load-data-container="#geoUnion">
-							#{input 'school.geoUpazilla.id' , type:'select', items:geoUpazillaList,labelProperty:'name' } 
+		
+			<div class="form-group">
+			<label for="selector1" class="col-sm-3 control-label">Upazilla</label>
+				<div id="geoUpazilla" class="col-md-6 SEARCH" url="@{RegisterSchool.loadGeoUnion()}"  load-data-container-SEARCH="#geoUnion">
+					#{input 'school.geoUpazilla.id' , type:'select', items:geoUpazillaList, labelProperty:'name' } 
 							#{option}Any#{/option}
 							#{/input}
-						</div>
-					</div>
-
-
-					<div class="form-group">
-						<label for="selector1" class="col-sm-3 control-label">Union/Ward</label>
-						<div id="geoUnion" class="col-sm-6 geo"   >
-							#{input 'school.geoUnion.id' , type:'select', items:geoUnionList,labelProperty:'name' } 
+				</div>
+			</div>
+		
+			<div class="form-group">
+			<label for="selector1" class="col-sm-3 control-label">Union/Ward</label>
+				<div id="geoUnion" class="col-md-6 SEARCH">
+					#{input 'school.geoUnion.id' , type:'select', items:geoUpazillaList,labelProperty:'name' } 
 							#{option}Any#{/option}
 							#{/input}
-						</div>
-					</div>
+				</div>
+			</div>	
+	
 
 					<div class="form-group ">
 						<label for="focusedinput" class="col-sm-3 control-label">School Name</label>

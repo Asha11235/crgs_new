@@ -1,6 +1,8 @@
 #{extends 'main.html' /}
 
-
+#{if flash.success}
+    #{alert flash.success/}
+#{/if}
 #{form @submit(), class:'form-horizontal'}
 <div class="row">
                     <div class="col-md-12">
@@ -45,7 +47,7 @@
                                                 #{input 'user.displayName' /}
                                             </div>
                                         </div>
-                                        #{if user == null}
+                                       
                                         <div class="form-group">
                                             <label class="control-label col-md-2">Password</label>
                                             <div class="col-md-3">
@@ -59,7 +61,7 @@
                                                 #{input 'user.confirmPassword', type:'password'/}
                                             </div>
                                         </div>
-										#{/if}
+										
                                         <div class="form-group">
                                             <label class="control-label col-md-2">Email</label>
                                             <div class="col-md-3">
@@ -73,15 +75,7 @@
                                                 #{input 'user.role.id', type:'select', items:roles, labelProperty:'name' , valueProperty:'id' , id:'role'/}
                                             </div>
                                         </div>
-                                        
-                                        <div class="form-group">
-                                            <label class="control-label col-md-2">Name of School</label>
-                                            <div class="col-md-3">
-                                                #{input 'user.school.id', type:'select', items:schoolList, labelProperty:'name' , valueProperty:'id' , id:'school'}
-											    	#{option}Any#{/option}
-												#{/input}
-                                            </div>
-                                        </div>
+                                       
 
                                         <div class="form-group">
                                             <label class="control-label col-md-2">Name of NGO</label>
@@ -100,31 +94,43 @@
                                         
                                         <div class="form-group">
                                         <label class="control-label col-md-2">Division</label>
-			<div id="geoDivision" class="col-md-3 SEARCH" url="@{Ngos.loadGeoDistrict()}" load-data-container-SEARCH="#geoDistrict">
-				#{select 'division', value:0, items:geoDivisionList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'division'}
-					#{option}Division#{/option}
-				#{/select}
+			<div id="geoDivision" class="col-md-3 SEARCH" url="@{Users.loadGeoDistrict()}" load-data-container-SEARCH="#geoDistrict">
+				 #{input 'user.geoDivision.id' , type:'select', items:geoDivisionList, labelProperty:'name', valueProperty:'id' , id:'division'}
+														#{option}Any#{/option}
+												#{/input}
+											 </div>
 			</div>
 			</div>
 		</div>
 		
 			<div class="form-group">
 			<label class="control-label col-md-2">District</label>
-				<div id="geoDistrict" class="col-md-3 SEARCH" url="@{Ngos.loadGeoUpazilla()}"  load-data-container-SEARCH="#geoUpazilla">
-					#{select 'district', value:0, items:geoDistrictList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'ngo.geoDistrict.id'}
-						#{option}District#{/option}
-					#{/select}
+				<div id="geoDistrict" class="col-md-3 SEARCH" url="@{Users.loadGeoUpazilla()}"  load-data-container-SEARCH="#geoUpazilla">
+					   #{input 'user.geoDistrict.id' , type:'select', items:geoDistrictList,labelProperty:'name', valueProperty:'id' , id:'district'}
+													#{option}Any#{/option}
+												#{/input} 
 				</div>
 			</div>
 			
 			 <div class="form-group">
                                         <label class="control-label col-md-2">Upazilla</label>
-			<div id="geoUpazilla" class="col-md-3 SEARCH" url="@{Ngos.loadGeoSchool()}" load-data-container-SEARCH="#geoUnion">
-				#{select 'upazilla', value:0, items:geoUpazillaList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'ngo.geoUpazilla.id'}
-						#{option}Upazilla#{/option}
-					#{/select}
+			<div id="geoUpazilla" class="col-md-3 SEARCH" url="@{Users.loadGeoSchool()}" load-data-container-SEARCH="#geoschool">
+				 #{input 'user.geoUpazilla.id' , type:'select', items:geoUpazillaList,labelProperty:'name' , valueProperty:'id' , id:'upazilla'}
+													#{option}Any#{/option}
+												#{/input} 
 			</div>
 			</div>
+			
+			<div class="form-group">
+                                        <label class="control-label col-md-2">Name of School</label>
+			<div id="geoschool" class="col-md-3 SEARCH">
+				 #{input 'user.school.id' , type:'select', items:schoolList,labelProperty:'name' , valueProperty:'id' , id:'school'}
+													#{option}Any#{/option}
+												#{/input} 
+			</div>
+			</div>
+			
+			
 		
 			
 		                 <div class="form-actions fluid">

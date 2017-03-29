@@ -87,21 +87,24 @@ public class User extends Model implements RoleHolder {
 	@ManyToOne
 	public Role role;
 
-	@Required
+	@Required(message = "Can not be null")
 	@ManyToOne(fetch=FetchType.LAZY)
 	public SchoolInformation school;
 
-	@Required
+	@Required(message = "Can not be null")
 	@ManyToOne(fetch=FetchType.LAZY)
 	public Ngo ngo;
 
 	/* GEO-location Hierarchy */
+	@Required(message = "Can not be null")
 	@ManyToOne (fetch=FetchType.LAZY)
 	public GeoDivision geoDivision;
 	
+	@Required(message = "Can not be null")
 	@ManyToOne(fetch=FetchType.LAZY)
 	public GeoDistrict geoDistrict;
 	
+	@Required(message = "Can not be null")
 	@ManyToOne(fetch=FetchType.LAZY)
 	public GeoUpazilla geoUpazilla;
 
@@ -174,7 +177,7 @@ public class User extends Model implements RoleHolder {
 	 * Update password by its hash value
 	 */
 	private void updatePassword() {
-		Logger.info("password set for " + this);
+		//Logger.info("password set for " + this);
 		this.password = Crypto.passwordHash(this.password, HashType.SHA512);
 	}
 
@@ -185,14 +188,14 @@ public class User extends Model implements RoleHolder {
 		return User.find("role = ?", role).fetch();
 	}
 
-	@Override
+	/*@Override
 	public String toString() {
 		return "User [email=" + email + ", name=" + name + ", password=" + password + ", confirmPassword="
 				+ confirmPassword + ", displayName=" + displayName + ", role=" + role + ", school=" + school + ", ngo="
 				+ ngo + ", geoDivision=" + geoDivision + ", geoDistrict=" + geoDistrict + ", geoUpazilla=" + geoUpazilla
 				+ "]";
 	}
-
+*/
 	public static User findByLogin(String username) {
 		return User.find("byName", username).first();
 	}
@@ -244,7 +247,7 @@ public class User extends Model implements RoleHolder {
 	public static String getUserData(Long divisionId, Long districtId, Long upazillaId,
 			Long schoolId, Long roleId, Date startDate, Date endDate) throws SQLException {
 
-		Logger.info("getUserData");
+		//Logger.info("getUserData");
 		String qString = null;
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -315,7 +318,7 @@ public class User extends Model implements RoleHolder {
 
 		qString = qString + whereClause;
 		
-		Logger.info("qString1 : " + qString);
+		//Logger.info("qString1 : " + qString);
 
 		PreparedStatement queryForExecution = conn.prepareStatement(qString);
 		rs = queryForExecution.executeQuery();

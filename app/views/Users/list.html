@@ -6,6 +6,9 @@
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
 <script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
+#{if flash.success}
+    #{alert flash.success/}
+#{/if}
 <div class="row">
                     <div class="col-md-12">
                         <!-- BEGIN PAGE TITLE & BREADCRUMB-->
@@ -256,7 +259,7 @@
                             tbl =thead+ tbl+"<tbody>" + row + "</tbody>";
                             $("#sample_2").html("");
                             $("#sample_2").html(tbl);         
-                                
+                             $('#sample_2').DataTable();
                 }
 			
 			});

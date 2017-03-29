@@ -25,7 +25,10 @@ import models.User;
 
 public class RegisterSchool extends play.mvc.Controller{
 	
+	
 	public static void schoolregister(){
+		
+		
 		List<GeoDivision> geoDivisionList = GeoDivision.findAll();
 	//	List<GeoDistrict> geoDistrictList = GeoDistrict.findAll();
 		//List<GeoUpazilla> geoUpazillaList = GeoUpazilla.findAll();
@@ -35,7 +38,7 @@ public class RegisterSchool extends play.mvc.Controller{
 		schoolType.add(0, "Girls school");
 		schoolType.add(1, "Boys School");
 		schoolType.add(2, "Combined School");
-		SchoolInformation school = null;
+		//SchoolInformation school = null;
 		//render(geoDivisionList,geoDistrictList,geoUpazillaList,schoolType,geoUnionList);
 		render(geoDivisionList,schoolType);
 	}

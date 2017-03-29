@@ -396,14 +396,17 @@ public class Data extends Model {
 		
 		else {
 			
-		}
+		
 		if( (formId != null ) && ( formId== 1 ) )
+		
 		{
 			formclause = " and Water.form_id = " + formId;
 			
 			waterquery = waterquery + whereClause + formclause ;
 			PreparedStatement queryForExecution1 = conn.prepareStatement(waterquery);
 			waterrs = queryForExecution1.executeQuery();
+			
+			Logger.info("water: " + waterquery);
 			
 			try {
 
@@ -520,7 +523,7 @@ public class Data extends Model {
 			
 		}
 			
-		
+		}
 		
 		return msg;
 	}
