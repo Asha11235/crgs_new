@@ -31,22 +31,21 @@ public class DashboardReport {
 		
 		String table_name = "SchoolInformation";
 		
-		String qString = " select count(id) as totalSchool, "+
+		String qString = "select count(id) as totalSchool, "+
 		                 " sum(maleStruden) as maleStudent, "+
 				         " sum(femailStudent) as femaleStudent, "+
 				         " sum(maleToilets) as maleToilet, "+
-				         " sum(femailToilets) as femaleToilet, "+
-				         " sum(countForum) as countForum, "+
+				         " sum(femailToilets) as femaleToilet, "+ 
+				         " sum(countFourm) as countFourm, "+
 				         " (select count(annualSports) as annualSports from SchoolInformation WHERE annualSports='1') as annualSports "+
-				         " from ";
+				         " from "; 
+
 		
-		
-		qString += table_name ;
+		qString += table_name;
 		Connection conn = play.db.DB.getConnection();
 		ResultSet rs = null;
 		PreparedStatement queryForExecution = conn.prepareStatement(qString);
-		
-		Logger.info("query: " + qString);
+		Logger.info("query: " +  qString);
 		try {
 			rs = queryForExecution.executeQuery();
 			while(rs.next()){
@@ -55,17 +54,16 @@ public class DashboardReport {
 				total_girls = rs.getInt("femaleStudent");
 				male_toilet = rs.getInt("maleToilet");
 				female_toilet = rs.getInt("femaleToilet");
-				organized_annual_sports= rs.getInt("annualSports");
-				school_forum = rs.getInt("countForum");
+				school_forum=rs.getInt("countFourm");
+				organized_annual_sports = rs.getInt("annualSports");
 			}
 		} catch (Exception e) {
-			//Logger.info("whole lot of exception");
+			Logger.info("whole lot of exception");
 		}
-		Logger.info("organized_annual_sports: " + organized_annual_sports);
 		total_Toilets = male_toilet	+ female_toilet;
-		//Logger.info("----------------------------------------------------");
-		//Logger.info("total_School : " + total_school + " male toilet : " + male_toilet + " female toilet : " + female_toilet + " total toilet : " + total_Toilets);
-		//Logger.info("----------------------------------------------------");
+		Logger.info("----------------------------------------------------");
+		Logger.info("total_School : " + total_school + " male toilet : " + male_toilet + " female toilet : " + female_toilet + " total toilet : " + total_Toilets);
+		Logger.info("----------------------------------------------------");
 		if(total_boys != 0L)
 			boys_toilet_ratio = (male_toilet * 100) / total_boys;
 		
@@ -104,8 +102,8 @@ public class DashboardReport {
 		String qString = "select count(Water.why_not_potable) as cause from " + table_name;
 		qString += " Where Water.why_not_potable like ? ";
 		
-		//Logger.info("----------------------------------------------------");
-		//Logger.info("query2 string is : " + qString);
+		Logger.info("----------------------------------------------------");
+		Logger.info("query2 string is : " + qString);
 		
 		Connection conn = play.db.DB.getConnection();
 		ResultSet rs = null;
@@ -161,8 +159,8 @@ public class DashboardReport {
 		mp.put("waterCause1", causeOne);mp.put("waterCause2", causeTwo);mp.put("waterCause3", causeThree);
 		mp.put("waterCause4", causeFour);
 		
-		//Logger.info("causeOne : " + causeOne + " causeTwo : " + causeTwo + " causeThree : " + causeThree + " causeFour : " + causeFour);
-		//Logger.info("----------------------------------------------------");
+		Logger.info("causeOne : " + causeOne + " causeTwo : " + causeTwo + " causeThree : " + causeThree + " causeFour : " + causeFour);
+		Logger.info("----------------------------------------------------");
 	}
 	
 	
@@ -174,8 +172,8 @@ public class DashboardReport {
 		String qString = "select count(Sanitation.why_toilet_unusable) as cause from " + table_name;
 		qString += " where Sanitation.why_toilet_unusable like ? ";
 		
-		//Logger.info("----------------------------------------------------");
-		//Logger.info("query2 string is : " + qString);
+		Logger.info("----------------------------------------------------");
+		Logger.info("query2 string is : " + qString);
 
 		
 		Connection conn = play.db.DB.getConnection();
@@ -335,12 +333,12 @@ public class DashboardReport {
 			mp.put("sanitationCause" + key, data.get(key));
 		}
 		
-		//Logger.info("cause1 : " + cause1 + " cause2 : " + cause2 + " cause3 : " + 
-				//cause3 + " cause4 : " + cause4 + "cause5 : " + cause5 + " cause6 : " + cause6 + " cause7 : " + 
-				//cause7 + " cause8 : " + cause8 + "cause9 : " + cause9 + " cause10 : " + cause10 + " cause11 : " + 
-				//cause11 + " cause12 : " + cause12 + "cause13 : " + cause13);
+		Logger.info("cause1 : " + cause1 + " cause2 : " + cause2 + " cause3 : " + 
+				cause3 + " cause4 : " + cause4 + "cause5 : " + cause5 + " cause6 : " + cause6 + " cause7 : " + 
+				cause7 + " cause8 : " + cause8 + "cause9 : " + cause9 + " cause10 : " + cause10 + " cause11 : " + 
+				cause11 + " cause12 : " + cause12 + "cause13 : " + cause13);
 
-		//Logger.info("----------------------------------------------------");
+		Logger.info("----------------------------------------------------");
 	}
 	
 	
@@ -353,8 +351,8 @@ public class DashboardReport {
 		String qString = "select count(SchoolEnvironment.scareSafe_SchoolWay) as scareCause from " + table_name;
 		qString += " where SchoolEnvironment.scareSafe_SchoolWay like ? ";
 		
-		//Logger.info("-----------------------------------------------------------");
-		//Logger.info("query3 string is : " + qString);
+		Logger.info("-----------------------------------------------------------");
+		Logger.info("query3 string is : " + qString);
 
 		
 		Connection conn = play.db.DB.getConnection();
@@ -445,10 +443,10 @@ public class DashboardReport {
 		mp.put("schoolEnvironmentCause3", scare3);mp.put("schoolEnvironmentCause4", scare4);
 		mp.put("schoolEnvironmentCause5", scare5);mp.put("schoolEnvironmentCause6", scare6);*/
 		
-		//Logger.info("scare1 : " + scare1 + " scare2 : " + scare2 + " scare3 : " + 
-				//scare3 + " scare4 : " + scare4 + " scare5 : " + scare5 + " scare6 : " + scare6);
+		Logger.info("scare1 : " + scare1 + " scare2 : " + scare2 + " scare3 : " + 
+				scare3 + " scare4 : " + scare4 + " scare5 : " + scare5 + " scare6 : " + scare6);
 		
-		//Logger.info("----------------------------------------------------");
+		Logger.info("----------------------------------------------------");
 	}
 	
 	
@@ -462,8 +460,8 @@ public class DashboardReport {
 		qString += " where SportsRecreation.whyNot_EqualAccess like ? ";
 		
 		
-		//Logger.info("----------------------------------------------------");
-		//Logger.info("query2 string is : " + qString);
+		Logger.info("----------------------------------------------------");
+		Logger.info("query2 string is : " + qString);
 
 		Connection conn = play.db.DB.getConnection();
 		ResultSet rs = null;
@@ -562,9 +560,9 @@ public class DashboardReport {
 			mp.put("sportsAndRecreationCause" + key, data.get(key));
 		}
 		
-		//Logger.info("cause1 : " + cause1 + " cause2 : " + cause2 + " cause3 : " + cause3 + " cause4 : " + cause4
-				//+ " cause5 : " + cause5 + " cause6 : " + cause6 + "cause7 : " + cause7 + " cause8 : " + cause8);
-		//Logger.info("----------------------------------------------------");
+		Logger.info("cause1 : " + cause1 + " cause2 : " + cause2 + " cause3 : " + cause3 + " cause4 : " + cause4
+				+ " cause5 : " + cause5 + " cause6 : " + cause6 + "cause7 : " + cause7 + " cause8 : " + cause8);
+		Logger.info("----------------------------------------------------");
 	}
 	
 	
@@ -633,12 +631,12 @@ public class DashboardReport {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		//Logger.info("**********************************************************");
-		//Logger.info("waterIssueResolve : " + waterIssueResolved + " waterIssueUnsolved : " + waterIssueUnsolved);
-		//Logger.info("**********************************************************");
+		Logger.info("**********************************************************");
+		Logger.info("waterIssueResolve : " + waterIssueResolved + " waterIssueUnsolved : " + waterIssueUnsolved);
+		Logger.info("**********************************************************");
 		
 		waterIssueResolved = (waterIssueResolved * 100) / (waterIssueResolved + waterIssueUnsolved);
-		//Logger.info("tessttttttttt : " + waterIssueResolved);
+		Logger.info("tessttttttttt : " + waterIssueResolved);
 		mp.put("waterResolved", waterIssueResolved);
 	}
 	
@@ -678,12 +676,12 @@ public class DashboardReport {
 			// TODO: handle exception
 		}
 		
-		//Logger.info("**********************************************************");
-		//Logger.info("sanitationIssueResolved : " + sanitationIssueResolved + " sanitationIssueUnresolved : " + sanitationIssueUnresolved);
-		//Logger.info("**********************************************************");
+		Logger.info("**********************************************************");
+		Logger.info("sanitationIssueResolved : " + sanitationIssueResolved + " sanitationIssueUnresolved : " + sanitationIssueUnresolved);
+		Logger.info("**********************************************************");
 		if((sanitationIssueResolved + sanitationIssueUnresolved)!=0){
 		sanitationIssueResolved = (sanitationIssueResolved * 100) / (sanitationIssueResolved + sanitationIssueUnresolved);
-		//Logger.info("tessttttttttt : " + sanitationIssueResolved);
+		Logger.info("tessttttttttt : " + sanitationIssueResolved);
 		mp.put("sanitationIssueResolved", sanitationIssueResolved);
 		}
 	}
@@ -727,13 +725,13 @@ public class DashboardReport {
 			
 		}
 		
-		//Logger.info("**********************************************************");
-		//Logger.info("schoolEnvironmentIssueResolved : " + schoolEnvironmentIssueResolved + " schoolEnvironmentIssueUnresolved : " + schoolEnvironmentIssueUnresolved);
-		//Logger.info("**********************************************************");
+		Logger.info("**********************************************************");
+		Logger.info("schoolEnvironmentIssueResolved : " + schoolEnvironmentIssueResolved + " schoolEnvironmentIssueUnresolved : " + schoolEnvironmentIssueUnresolved);
+		Logger.info("**********************************************************");
 		
 		if((schoolEnvironmentIssueResolved + schoolEnvironmentIssueUnresolved)!=0){
 		schoolEnvironmentIssueResolved = (schoolEnvironmentIssueResolved * 100) / (schoolEnvironmentIssueResolved + schoolEnvironmentIssueUnresolved);
-		//Logger.info("tessttttttttt : " + schoolEnvironmentIssueResolved);
+		Logger.info("tessttttttttt : " + schoolEnvironmentIssueResolved);
 		mp.put("schoolEnvironmentIssueResolved", schoolEnvironmentIssueResolved);
 		}
 	}

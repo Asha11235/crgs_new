@@ -3,19 +3,23 @@
 <title>Data Management</title>
 #{set title:"Data Management" /}
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
 
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-<script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
-<script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"></script>
+ <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
 <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
 <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
 <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
 <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
 
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
 
 
 
@@ -250,11 +254,10 @@
 	     
 	    $("document").ready(function(){
 	    
-	   loadData(null,null,null,null, null, null, null);
+	  //  loadData(null,null,null,null, null, null, null);
 	    
-	   $('#sample_2').DataTable( {
+	   $('#sample_2').DataTable({
         dom: 'Bfrtip',
-        "paging": false,
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
         ]
@@ -276,8 +279,8 @@
 		var formId = $('#formId').find(":selected").attr("value");
 		
 		
-		console.log("divisionId : "+ divisionId + " districtId : " + districtId + " UpazillaId : "+ upazillaId
-			+ " schoolId : "+ schoolId + " formId : " + formId);
+		//console.log("divisionId : "+ divisionId + " districtId : " + districtId + " UpazillaId : "+ upazillaId
+			//	+ " schoolId : "+ schoolId + " formId : " + formId);
 		loadData(divisionId,districtId,upazillaId,schoolId, formId, null, null);
 	});
 	
@@ -285,7 +288,7 @@
 
 	function loadData(divisionId,districtId,upazillaId,schoolId, formId, startDate, endDate) {
 		
-		//console.log(formId);
+		console.log(formId);
 		//var tbl = "<table class="table table-striped table-bordered table-hover" id="userTable">";
 		var tbl = "" ;
         var thead =  "<table class='table table-striped table-bordered table-hover' id='userTable'>"+
@@ -319,7 +322,7 @@
 				success: function(data) {
 					var json = JSON.parse(data);
 					var dataInfo = data.split(';');
-					console.log(dataInfo.length);
+					// console.log(json);
 					 var row = "";
 		             //var tbl = "";
 					 for (var i = 1; i < dataInfo.length; i = i + 8) {
@@ -404,7 +407,7 @@
                             tbl =thead+ tbl+"<tbody>" + row + "</tbody>";
                             $("#sample_2").html("");
                             $("#sample_2").html(tbl);   
-                                      
+                            $('#sample_2').DataTable();              
                 }
 			
 			});

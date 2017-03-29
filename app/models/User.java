@@ -87,24 +87,21 @@ public class User extends Model implements RoleHolder {
 	@ManyToOne
 	public Role role;
 
-	@Required(message = "Can not be null")
+	@Required
 	@ManyToOne(fetch=FetchType.LAZY)
 	public SchoolInformation school;
 
-	@Required(message = "Can not be null")
+	@Required
 	@ManyToOne(fetch=FetchType.LAZY)
 	public Ngo ngo;
 
 	/* GEO-location Hierarchy */
-	@Required(message = "Can not be null")
 	@ManyToOne (fetch=FetchType.LAZY)
 	public GeoDivision geoDivision;
 	
-	@Required(message = "Can not be null")
 	@ManyToOne(fetch=FetchType.LAZY)
 	public GeoDistrict geoDistrict;
 	
-	@Required(message = "Can not be null")
 	@ManyToOne(fetch=FetchType.LAZY)
 	public GeoUpazilla geoUpazilla;
 
@@ -188,14 +185,14 @@ public class User extends Model implements RoleHolder {
 		return User.find("role = ?", role).fetch();
 	}
 
-	/*@Override
+	@Override
 	public String toString() {
 		return "User [email=" + email + ", name=" + name + ", password=" + password + ", confirmPassword="
 				+ confirmPassword + ", displayName=" + displayName + ", role=" + role + ", school=" + school + ", ngo="
 				+ ngo + ", geoDivision=" + geoDivision + ", geoDistrict=" + geoDistrict + ", geoUpazilla=" + geoUpazilla
 				+ "]";
 	}
-*/
+
 	public static User findByLogin(String username) {
 		return User.find("byName", username).first();
 	}

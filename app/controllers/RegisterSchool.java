@@ -67,7 +67,7 @@ public class RegisterSchool extends play.mvc.Controller{
 		school.registrationDate = new Date();
 		school.approavedStatus = "Pending";
 		
-		Logger.info("annualsports: " + school.annualSports);
+		
 		school.save();
 		flash.success("Record saved successfully");
 		//render();
