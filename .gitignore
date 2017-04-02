@@ -21,6 +21,9 @@ uploads
 uploads/interview/
 media
 publish
+*.iml
+*.ipr
+*.iws
 
 
 
