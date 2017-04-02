@@ -1,12 +1,18 @@
 package controllers;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.h2.util.New;
 
+import com.google.gson.Gson;
+
+import models.CaseReport;
 import models.Data;
 import models.GeoDistrict;
 import models.PollDefination;
@@ -234,12 +240,40 @@ public class PollManagement extends Controller {
 		listPoll();
 	}
 	
-	public static void makePollBox(){
+/*public static String makePollBox(){
 		PollDefination polldef = PollDefination.find("status = '1'").first();
+	
+		Map<String, List> mp = new HashMap<String, List>();
+		
 		List<PollQuestionOption> pollOption = PollQuestionOption.find("poll = ? ", polldef).fetch();
 		
-		render(polldef,pollOption);
+		for(int i=0;i<pollOption.size();i++){
+			
+			Logger.info("value: " + pollOption.get(i));
+		}
+		
+		mp.put("pollOption", pollOption);
+		
+		
+		Gson gson = new Gson();
+
+		return gson.toJson(mp);
+		
 	}
+	
+	*/
+	
+	public static String loadPoll() throws SQLException {
+
+		String mp = "";
+		
+		mp = PollDefination.getPollReport();
+			
+		Gson gson = new Gson();
+
+		return gson.toJson(mp);
+	}
+	
 	
 	/* public static void submit(){
 	    	String polldev = request.params.get("polldef.id");
@@ -257,5 +291,8 @@ public class PollManagement extends Controller {
 	    	}
 	    	flash.success("Thanks for your vote");
 	    }*/
+	
+	
+	
 	
 }

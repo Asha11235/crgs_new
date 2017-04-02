@@ -31,6 +31,11 @@ public class PollQuestionOption extends Model {
 		String option = pollQuestionOptions.substring(1, pollQuestionOptions.length()-1);
 		return option;
 	}
+
+	@Override
+	public String toString() {
+		return "PollQuestionOption [poll=" + poll + ", options=" + options + "]";
+	}
 	
 	
 
