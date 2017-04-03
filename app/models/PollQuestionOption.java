@@ -14,7 +14,7 @@ import sun.org.mozilla.javascript.internal.regexp.SubString;
 @Entity
 public class PollQuestionOption extends Model {
 	
-	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	@ManyToOne
 	public PollDefination poll;
 	
 	public String options;

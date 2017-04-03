@@ -4,19 +4,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.h2.util.New;
 
 import com.google.gson.Gson;
 
-import models.CaseReport;
 import models.Data;
 import models.GeoDistrict;
 import models.PollDefination;
 import models.PollQuestionOption;
+import models.PollVoteReply;
 import models.User;
 import models.Vote;
 import play.Logger;
@@ -50,13 +48,13 @@ public class PollManagement extends Controller {
 		PollDefination poll = PollDefination.findById(id);
 		
 		flash("poll", "" + poll.id);
-		
+		session.put("poll", id);
 	
 		
-		List<String> pollQuestionOption2 = PollQuestionOption.find("SELECT options from PollQuestionOption WHERE poll_id = ? ", poll.id).fetch();
+		List<String> pollQuestionOption2 = PollQuestionOption.find("SELECT options from PollQuestionOption WHERE poll_id = ? ", id).fetch();
 		
 	
-		List<PollQuestionOption> pollQuestionOptions = PollQuestionOption.find("poll_id = ?", poll.id).fetch();
+		List<PollQuestionOption> pollQuestionOptions = PollQuestionOption.find("poll_id = ?", id).fetch();
 		
 		PollQuestionOption pollQuestionOption = pollQuestionOptions.get(0);
 		int j=0;
@@ -91,9 +89,10 @@ public class PollManagement extends Controller {
 			
 		}
 		
-		if(flash.get("poll") != null){
+		Logger.info("poll: " + session.get("poll"));
+		if(session.get("poll") != null){
 			
-			PollDefination editedPollDefination = PollDefination.findById(Long.parseLong(flash.get("poll")));
+			PollDefination editedPollDefination = PollDefination.findById(Long.parseLong(session.get("poll")));
 			
 			editedPollDefination.optionNumber = poll.optionNumber;
 			editedPollDefination.questionType = poll.questionType;
@@ -133,12 +132,13 @@ public class PollManagement extends Controller {
 		
 		
 		flash.success("Record saved successfully.");
-		
+		session.remove("poll");
 		listPoll();
 	}
 	@ExternalRestrictions("View Poll")
 	public static void listPoll(){
 		List<PollDefination> listPoll = PollDefination.find("order by id desc").fetch();
+		Logger.info("called list:");
 		render(listPoll);
 	}
 	
@@ -163,7 +163,7 @@ public class PollManagement extends Controller {
 	    	
 	    	try {
 	    		pollQuestionOption.delete();
-	    		poll.refresh();
+	    		
 	    		poll.delete();
 			} catch (Exception e) {
 				confirm = 0;
@@ -240,59 +240,58 @@ public class PollManagement extends Controller {
 		listPoll();
 	}
 	
-/*public static String makePollBox(){
+	public static void makePollBox(){
 		PollDefination polldef = PollDefination.find("status = '1'").first();
-	
-		Map<String, List> mp = new HashMap<String, List>();
-		
 		List<PollQuestionOption> pollOption = PollQuestionOption.find("poll = ? ", polldef).fetch();
 		
-		for(int i=0;i<pollOption.size();i++){
-			
-			Logger.info("value: " + pollOption.get(i));
+		render(polldef,pollOption);
+	}
+	
+public static void voteReply(String gender, String option, String age,Long pollId){
+		
+		Logger.info("PollId: " + pollId);
+		
+		PollDefination polldef = PollDefination.findById(pollId);
+		
+		PollVoteReply pollvotereply = new PollVoteReply();
+		
+		pollvotereply.gender=gender;
+		pollvotereply.age=age;
+		pollvotereply.poll=polldef;
+		pollvotereply.answer=option;
+		
+		pollvotereply.save();
+		
+		
+		try {
+			if(session.get("username") != null){
+				
+				Forms.landingPage();
+			}
+			else{
+				
+				Secure.login();
+			}
+		
+		}catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-		mp.put("pollOption", pollOption);
 		
 		
-		Gson gson = new Gson();
-
-		return gson.toJson(mp);
-		
+		//Forms.landingPage();
 	}
-	
-	*/
-	
-	public static String loadPoll() throws SQLException {
 
-		String mp = "";
+public static String loadPoll() throws SQLException {
+
+	String mp = "";
+	
+	mp = PollDefination.getPollReport();
 		
-		mp = PollDefination.getPollReport();
-			
-		Gson gson = new Gson();
+	Gson gson = new Gson();
 
-		return gson.toJson(mp);
-	}
-	
-	
-	/* public static void submit(){
-	    	String polldev = request.params.get("polldef.id");
-	    	String [] options = request.params.getAll("group1");
-	    	Logger.info("Voting COntroller "  + polldev);
-	    	PollDefination poll = PollDefination.findById(Long.parseLong(polldev));
-	    	
-	    	for(int i = 0;i<options.length; i++){
-	    		PollQuestionOption option =PollQuestionOption.findById(Long.parseLong(options[i]));
-	    		Vote vote = new Vote();
-	    		vote.poll = poll;
-	    		vote.opton = option;
-	    		vote.date = new Date();
-	    		vote.save();
-	    	}
-	    	flash.success("Thanks for your vote");
-	    }*/
-	
-	
-	
+	return gson.toJson(mp);
+}
 	
 }

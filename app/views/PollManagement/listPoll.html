@@ -67,7 +67,7 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href ="@{PollManagement.editPoll(poll.id)}" class="label label-sm label-warning">
+                                                <a href ="@{PollManagement.editPoll(poll?.id)}" class="label label-sm label-warning">
                                                     Edit
                                                 </a>
                                             </td>
@@ -104,25 +104,27 @@
 	                       console.log("delete success");
 	                    	$('#delete_msg').html("<h3 style="+"color:green"+">School deleted successfully.</h3>");
 	                    	$("#"+pollId).remove(); //row remove when deleted 
-	                    	           location.reload();
+	                    	          
 	                     	
-	                    }
+	                   }
 	                    else{
-	                    	$('#delete_msg').html("<h3 style="+"color:red"+">School cannot be deleted.</h3>");
+	                    	$('#delete_msg').html("<h3 style="+"color:red"+">User cannot be deleted.</h3>");
 	                    }
 	                }
 
 
 	            });
+	            
+	             $(document).ajaxStop(function(){
+         window.location.reload();
+       });
 	           
 	        }
+	        
+	       
 	        return false;
 	         
 	    });
-	    
-	    $(document).ajaxStop(function(){
-         window.location.reload();
-       });
 	    
 	     $("document").ready(function(){
 	    

@@ -54,9 +54,9 @@ public class Schools extends Controller{
     		
         	render("@edit", school, roles);
         }
-    	if(flash.get("school") != null){
+    	if(session.get("school") != null){
     		
-    		SchoolInformation preschool = SchoolInformation.findById(Long.parseLong(flash.get("school")));
+    		SchoolInformation preschool = SchoolInformation.findById(Long.parseLong(session.get("school")));
     		
     		preschool.activeSchoolStudent = school.activeSchoolStudent;
     		preschool.activeStudent = school.activeStudent;
@@ -89,13 +89,13 @@ public class Schools extends Controller{
     	
     	//Application.forms();
         flash.success("Record saved successfully.");
-      
+        session.remove("school");
         schoolList("0");
 	}
 	@ExternalRestrictions("Edit School")
 	public static void editSchool(Long id){
 		SchoolInformation school = SchoolInformation.findById(id);
-		flash("school", "" + school.id);
+		session.put("school",id);
 		List<GeoDivision> geoDivisionList = GeoDivision.findAll();
 		List<GeoDistrict> geoDistrictList = GeoDistrict.findAll();
 		List<GeoUpazilla> geoUpazillaList = GeoUpazilla.findAll();

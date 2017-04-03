@@ -240,10 +240,10 @@
                         </li>
                         <li>&nbsp;</li>
                     </ul>
-
-                   <div class="col-md-12" class="pollmanage">
+                   
+                   <div id="replace">
+                 
                    </div>
-
                     <div class="left-bottom-admin">
                         <div class="col-md-3">
                             <i class="fa fa-user-circle fa-3x"></i>
@@ -258,22 +258,200 @@
             </div>
         </div>
         
-        <script>
-        
-        $(document).ready(function(){
+       <script>
+       
+       $(document).ready(function(){
+       
+      
+        var pollId;
         
         $.ajax({
-				type: "GET",
-              	url:  "/PollManagement/makePollBox",
+        
+        type: "GET",
+        url:  "/Reports/loadPoll",
+        
+        success: function(data) {
+        
+        var json = JSON.parse(data);
+        if(json!="not publish"){
+        console.log(json);
+	  	var startdiv =      ' <div class="col-md-12">'+
+                        '<div class="landing-poll">'+
+                            '<div class="poll-header">'+
+                                'PARTICIPATE IN POLL'+ 
+                            '</div>'+
+                            '<div class="poll-body">'+
+                               
+                                    '<div class="form-body">'+
+                                       ' <div class="form-group">'+
+                                            '<label class="col-md-3 control-label"><strong>Age</strong></label>'+
+                                            '<div class="col-md-9">'+
+                                                '<div class="radio-list">'+
+                                                
+                                                    '<label>'+
+                                                        '<input type="radio" class="ageClass" name="age" value="1"> Below 18'+
+                                                    '</label>'+
+                                                    '<label>'+
+                                                        '<input type="radio" class="ageClass" name="age" value="2"> Above 18'+
+                                                    '</label>'+
+                                                '</div>'+
+                                              '</div>'+
+                                       '</div>'+
+                                     '<div class="form-group" >'+
+                                            '<label class="col-md-3 control-label"><strong>Gender</strong></label>'+
+                                            '<div class="col-md-9">'+
+                                               ' <div class="radio-list">'+
+                                                    '<label>'+
+                                                        '<input type="radio" class="genderClass" name="gender" value="1"> Male'+
+                                                    '</label>'+
+                                                    '<label>'+
+                                                        '<input type="radio" class="genderClass" name="gender" value="2"> Female'+
+                                                    '</label>'+
+                                                    '<label>'+
+                                                        '<input type="radio" class="genderClass" name="gender" value="3"> Other'+
+                                                    '</label>'+
+                                                '</div>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<div class="form-group"  id="pollmanage">';
+
+                    
+                    
+				var pollInfo = data.split(';');
+		        var optionarray;
+		         for (var i = 1; i < pollInfo.length; i = i + 6) {
+                                var title = pollInfo[i];
+                                var questionType = pollInfo[i+1];
+                                var startDate = pollInfo[i+2];
+                                var endDate = pollInfo[i+3];
+                                var options = pollInfo[i+4]
+                                var poll = pollInfo[i+5];
+                               // var todayDate=pollInfo[i+6];
+                                //console.log(todayDate);
+                                
+                             
+                                
+                                startdiv += ' <h4> ' + title + '</h4>'+
+                                       ' </div> ' +
+                                       '<div class="form-group">'+
+                                            '<div class="radio-list">';
+                                            
+                                            
+                                            
+                                            
+                       if(questionType=="Single Select"){
+                                       
+                                     var option = options.split(',');
+                                      
+                                      console.log("option: "+ option.length);
+                                       for( var j=1; j< option.length ; j++){
+                                   startdiv+= '<input type="radio" class="answer" name="answerr" value=" ' + option[j] +'"> ' +option[j] + ' <br>'+
+                                               ' <input name="pollId" type="hidden" class="form-control" id="pollIdd" value="' + poll +' ">';
+                                               console.log(option[j]);
+ 
+                                      }
+                                     
+                                  
+                                      }
+                                      
+                                      
+                                      
+                        else if(questionType=="Multiple Select"){
+                                        var option = options.split(',');
+                                console.log("option: "+ option.length);
+                               var option = options.split(',');
+                               for( var j=1; j< option.length ; j++){
+                                   startdiv+= '<input type="checkbox" class="answer" name="answerr" value=" ' + option[j] +'"> ' +option[j] + ' <br>'+
+                                               ' <input name="pollId" type="hidden" class="form-control" id="pollIdd" value="' + poll +' ">';
+ 
+                                      }
+                                 
+                               }
+                               
+                                  startdiv +=   '</div>'+
+                                       ' </div>'+
+                                      ' <div class="form-group">'+
+                                            '<div class="col-md-5">'+
+                                                '<button type="submit" id="submitBtn" class="btn btn-sm black-background">VOTE</button>'+
+                                            '</div>'+
+                                            '<div class="col-md-7">'+
+                                               '<button type="button" class="btn btn-sm black-background">PREVIOUS</button>'+
+                                            '</div>'+
+                                        '</div>'+
+
+                                        '<div class="form-group">'+
+                                            '<label class="col-md-offset-4 control-label"><strong>Total</strong></label>'+
+                                        '</div>'+
+
+                                        '<div class="form-group">'+
+                                           ' <label class="col-md-offset-3 control-label">'+
+                                                '<button type="button" class="btn btn-default btn-xs">0</button>'+
+                                                '<button type="button" class="btn btn-default btn-xs">0</button>'+
+                                                '<button type="button" class="btn btn-default btn-xs">0</button>'+
+                                                '<button type="button" class="btn btn-default btn-xs">0</button>'+
+                                            '</label>'+
+                                        '</div>'+
+                                    '</div>'+    
+                                        '</div>'+
+                                      '</div>'+
+                               
+                            '</div>'+
+                        '</div>'+
+                    '</div>';
+                                    
+                                    $("#replace").html("");
+                                    $("#replace").html(startdiv);  
+	         
+	             $("#submitBtn").on("click",function(){
+	    
+					  var gender =  $('.genderClass').val();
+						
+					  var age = $('.ageClass').val();
+					  
+					  var option=new Array();
+					  
+					   $(".answer:checked").each(function(){
+                                     option.push($(this).val());
+					  });
+					  
+					  console.log("checkedvalue: "+option);
+					  
+					  var pollId = $('#pollIdd').val();
+					  
+					  console.log(pollId);
+				
+						savePollReply(gender,age,option , pollId);
+	             });
+                                            
+                                            
+             }                               
+                                            
+        }
+        
+        }
+        
+        });
+       });
+       
+       function savePollReply(gender,age,options,pollId) {
+		
+		var option = JSON.stringify(options);
+		console.log(option);
+		return $.ajax({
+				type: "POST",
+              	url:  "/Reports/voteReply",
+				data : {
+					gender : gender,
+					age : age,
+					option : option,
+					pollId:pollId
+				},
 				
 				success: function(data) {
 				
-				var json = JSON.parse(data);
+				console.log("value saved");
+				}
+			});
 		
-	           console.log(json);
-                }
-			
-			}
-		);
-        });
-        </script>
+		}
+       </script>
