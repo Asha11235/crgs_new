@@ -63,13 +63,14 @@ public class PollDefination extends Model{
 		Connection conn = play.db.DB.getConnection();
 		ResultSet rs = null;
 		int flag=0;
-		qString = " SELECT PollDefination.title , PollDefination.questionType , "+
-				" PollDefination.startDate,PollDefination.endDate , "+
-				" PollDefination.id as poll_id , "+
-				" PollQuestionOption.options "+
-				" FROM PollDefination "+
-				" JOIN PollQuestionOption ON PollDefination.id = PollQuestionOption.poll_id "+
-				" WHERE PollDefination.status=1";
+		qString =   " SELECT PollDefination.title , PollDefination.questionType , "+
+					" PollDefination.startDate,PollDefination.endDate , "+
+					" PollDefination.id as poll_id , "+
+					" PollQuestionOption.options "+
+					" FROM PollDefination "+
+					" JOIN PollQuestionOption ON PollDefination.id = PollQuestionOption.poll_id "+
+					" WHERE PollDefination.status=1 "+
+					" ORDER BY NewCrgs.PollDefination.created_at ASC ";
 		
 		PreparedStatement queryForExecution = conn.prepareStatement(qString);
 		rs = queryForExecution.executeQuery();

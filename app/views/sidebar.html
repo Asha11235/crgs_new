@@ -264,6 +264,7 @@
        
       
         var pollId;
+       
         
         $.ajax({
         
@@ -273,6 +274,8 @@
         success: function(data) {
         
         var json = JSON.parse(data);
+         var pollIdarray;
+        //console.log(data);
         if(json!="not publish"){
         console.log(json);
 	  	var startdiv =      ' <div class="col-md-12">'+
@@ -329,8 +332,8 @@
                                // var todayDate=pollInfo[i+6];
                                 //console.log(todayDate);
                                 
-                             
                                 
+                             
                                 startdiv += ' <h4> ' + title + '</h4>'+
                                        ' </div> ' +
                                        '<div class="form-group">'+
@@ -343,11 +346,11 @@
                                        
                                      var option = options.split(',');
                                       
-                                      console.log("option: "+ option.length);
+                                      //console.log("option: "+ option.length);
                                        for( var j=1; j< option.length ; j++){
                                    startdiv+= '<input type="radio" class="answer" name="answerr" value=" ' + option[j] +'"> ' +option[j] + ' <br>'+
                                                ' <input name="pollId" type="hidden" class="form-control" id="pollIdd" value="' + poll +' ">';
-                                               console.log(option[j]);
+                                               //console.log(option[j]);
  
                                       }
                                      
@@ -358,7 +361,7 @@
                                       
                         else if(questionType=="Multiple Select"){
                                         var option = options.split(',');
-                                console.log("option: "+ option.length);
+                                //console.log("option: "+ option.length);
                                var option = options.split(',');
                                for( var j=1; j< option.length ; j++){
                                    startdiv+= '<input type="checkbox" class="answer" name="answerr" value=" ' + option[j] +'"> ' +option[j] + ' <br>'+
@@ -375,20 +378,18 @@
                                                 '<button type="submit" id="submitBtn" class="btn btn-sm black-background">VOTE</button>'+
                                             '</div>'+
                                             '<div class="col-md-7">'+
-                                               '<button type="button" class="btn btn-sm black-background">PREVIOUS</button>'+
+                                               '<button type="button" id="previousBtn" class="btn btn-sm black-background">PREVIOUS</button>'+
                                             '</div>'+
                                         '</div>'+
 
-                                        '<div class="form-group">'+
-                                            '<label class="col-md-offset-4 control-label"><strong>Total</strong></label>'+
-                                        '</div>'+
+                                        
 
                                         '<div class="form-group">'+
                                            ' <label class="col-md-offset-3 control-label">'+
-                                                '<button type="button" class="btn btn-default btn-xs">0</button>'+
-                                                '<button type="button" class="btn btn-default btn-xs">0</button>'+
-                                                '<button type="button" class="btn btn-default btn-xs">0</button>'+
-                                                '<button type="button" class="btn btn-default btn-xs">0</button>'+
+                                                '<input type="hidden" class="btn btn-default btn-xs"></input>'+
+                                                '<input type="hidden" class="btn btn-default btn-xs"></input>'+
+                                                '<input type="hidden" class="btn btn-default btn-xs"></input>'+
+                                                '<input type="hidden" class="btn btn-default btn-xs"></input>'+
                                             '</label>'+
                                         '</div>'+
                                     '</div>'+    
@@ -399,8 +400,9 @@
                         '</div>'+
                     '</div>';
                                     
-                                    $("#replace").html("");
-                                    $("#replace").html(startdiv);  
+                                    
+                    
+                    var polliiid =  $('#pollIdd').val();
 	         
 	             $("#submitBtn").on("click",function(){
 	    
@@ -410,21 +412,26 @@
 					  
 					  var option=new Array();
 					  
+					  
 					   $(".answer:checked").each(function(){
                                      option.push($(this).val());
 					  });
 					  
-					  console.log("checkedvalue: "+option);
+					  //console.log("checkedvalue: "+option);
 					  
 					  var pollId = $('#pollIdd').val();
 					  
-					  console.log(pollId);
+					
 				
 						savePollReply(gender,age,option , pollId);
 	             });
+                
                                             
-                                            
-             }                               
+                                           
+             }  
+             
+             $("#replace").html("");
+             $("#replace").html(startdiv);                            
                                             
         }
         
@@ -454,4 +461,6 @@
 			});
 		
 		}
+		
+		
        </script>
