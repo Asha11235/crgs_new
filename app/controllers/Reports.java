@@ -236,8 +236,8 @@ public static void voteReply(String gender, String option, String age,String pol
 		
 		Logger.info("PollId: " + pollId);
 		
-		Long pollid= Long.parseLong(pollId);
-		PollDefination polldef = PollDefination.findById(pollid);
+		//Long pollid= Long.parseLong(pollId);
+		PollDefination polldef = PollDefination.findById(pollId);
 		
 		PollVoteReply pollvotereply = new PollVoteReply();
 		

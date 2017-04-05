@@ -247,11 +247,13 @@ public class PollManagement extends Controller {
 		render(polldef,pollOption);
 	}
 	
-public static void voteReply(String gender, String option, String age,Long pollId){
-		
+public static void voteReply(String gender, String option, String age,String pollId){
+	
+	
+	    pollId=pollId.trim(); 
 		Logger.info("PollId: " + pollId);
-		
-		PollDefination polldef = PollDefination.findById(pollId);
+		Long pollid= Long.parseLong(pollId);
+		PollDefination polldef = PollDefination.findById(pollid);
 		
 		PollVoteReply pollvotereply = new PollVoteReply();
 		

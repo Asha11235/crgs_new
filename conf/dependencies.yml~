@@ -1,0 +1,17 @@
+# Application dependencies
+
+require:
+    - play
+    - play -> secure
+    - play -> chronostamp 0.1
+    - play -> deadbolt 1.5.4
+    - org.fusesource.mqtt-client -> mqtt-client 1.1
+    - net.sf.opencsv -> opencsv 2.3
+
+repositories:
+    - nexus:
+        type: http
+        #artifact: "http://115.127.27.2/nexus/content/repositories/thirdparty/mpower/[module]/[revision]/[module]-[revision].zip"
+        artifact: "http://192.168.21.211/[module]-[revision].zip"
+        contains:
+            - mpower -> *

@@ -96,7 +96,7 @@ public class PollDefination extends Model{
 				options = rs.getString("options") ;
 				pollId=rs.getString("poll_id");
 				
-				msg = msg + ";" + title + ";" + questiontype +  ";" + startdate + ";" + enddate + ";" + options + ";" + pollId ;
+				msg = msg + ";" + title + ";" + questiontype +  ";" + startdate + ";" + enddate + ";" + options + ";" + pollId + ":" ;
 				//count++;
 			}
 		} catch (SQLException e1) {

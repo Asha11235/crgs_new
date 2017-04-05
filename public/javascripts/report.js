@@ -2,14 +2,14 @@ $("document").ready(function(){
 	
 loadData(null, null, null, null, null, null, null);
 
-	var frommdate;
+	var fromdate;
 	var todate;
 	var divisionId;
 	var districtId;
 	var upazillaId;
 	var studentType;
 	var schoolId;
-	var schoolId;
+	
 	
 	
 	$(".dateSEARCH").on("change",function(){
