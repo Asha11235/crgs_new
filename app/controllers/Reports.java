@@ -145,23 +145,39 @@ public class Reports extends Controller {
 	}
 
 	public static String loadReport(Long formId, Long divisionId,Long districtId, Long upazillaId, Long schoolId, 
-			Long studentType, String startDate1, String endDate1) throws SQLException {
+			Long studentType, String startDatee, String endDatee) throws SQLException {
 
 		Map<String, Long> mp = new HashMap<String, Long>();
-		
-		Date startDate = null;
-		Date endDate = null;
-		
-		if(startDate1 != null && endDate1 != null){
+
+
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date startDate = new Date();
+		Date endDate = new Date();
+
+
+		Logger.info("startDatee: " + startDatee + "  endDatee: "+ endDatee);
+
+		if(startDatee.length() == 0 || endDatee.length()==0){
+
+			startDate = null;
+			endDate = null;
+
+		}
+
+		if(startDatee.length() != 0 && endDatee.length() != 0 ){
 			try {
-				startDate = new SimpleDateFormat("dd/MM/yyyy").parse(startDate1);
-				endDate = new SimpleDateFormat("dd/MM/yyyy").parse(endDate1);
+				Logger.info("check");
+				startDate = sdf.parse(startDatee);
+				endDate = sdf.parse(endDatee);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
+
+		Logger.info("rstartDate: " + startDate + "rendDate: "+ endDate);
 		switch (Integer.parseInt("" + formId)) {
 
 		case 1:

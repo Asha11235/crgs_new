@@ -1,212 +1,212 @@
-#{extends 'main.html' /} 
+#{extends 'main.html' /}
 
 <title>Sanitation Report</title>
 
 #{set title:'Sanitation Report' /}
 
 <div class="row">
-	<div class="col-md-12">
-		<!-- BEGIN PAGE TITLE & BREADCRUMB-->
-		<h3 class="page-title">SANITATION REPORT</h3>
-		<input id = 'formId' type ='hidden' value = '2'>
-		<!-- END PAGE TITLE & BREADCRUMB-->
-	</div>
+    <div class="col-md-12">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">SANITATION REPORT</h3>
+        <input id = 'formId' type ='hidden' value = '2'>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
 </div>
 <!-- BEGIN PAGE CONTENT-->
 <div class="row">
-	<div class="col-md-12">
-		<div class="col-md-2">
-			<div class="form-group">
-			<div id="geoDivision" class="col-md-12 SEARCH" url="@{Ngos.loadGeoDistrict()}" load-data-container-SEARCH="#geoDistrict">
+    <div class="col-md-12">
+        <div class="col-md-2">
+            <div class="form-group">
+                <div id="geoDivision" class="col-md-12 SEARCH" url="@{Ngos.loadGeoDistrict()}" load-data-container-SEARCH="#geoDistrict">
 				#{select 'division', value:0, items:geoDivisionList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'division'}
 					#{option}Division#{/option}
 				#{/select}
-			</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-			<div class="form-group">
-			<div id="geoDistrict" class="col-md-12 SEARCH" url="@{Ngos.loadGeoUpazilla()}"  load-data-container-SEARCH="#geoUpazilla">
-			
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <div id="geoDistrict" class="col-md-12 SEARCH" url="@{Ngos.loadGeoUpazilla()}"  load-data-container-SEARCH="#geoUpazilla">
+
 				#{select 'district', value:0, items:geoDistrictList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'ngo.geoDistrict.id'}
 					#{option}District#{/option}
 				#{/select}
-			</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-			<div class="form-group">
-			<div id="geoUpazilla" class="col-md-12 SEARCH" url="@{Ngos.loadGeoSchool()}"  load-data-container-SEARCH="#geoSchool">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <div id="geoUpazilla" class="col-md-12 SEARCH" url="@{Ngos.loadGeoSchool()}"  load-data-container-SEARCH="#geoSchool">
 				#{select 'upazilla', value:0, items:geoUpazillaList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'ngo.geoUpazilla.id'}
 					#{option}Upazilla#{/option}
 				#{/select}
-			</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-			<div class="form-group">
-			<div id="geoSchool" class="col-md-12 SEARCH" url="@{Ngos.loadGeoSchool()}"  load-data-container-SEARCH="#geoUnion">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <div id="geoSchool" class="col-md-12 SEARCH" url="@{Ngos.loadGeoSchool()}"  load-data-container-SEARCH="#geoUnion">
 				#{select 'school', value:0, items:schoolList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'school'}
 					#{option}School#{/option}
 				#{/select}
-			</div>
-			</div>
-		</div>
-		<div class="col-md-2 SEARCH">
-			<div class="form-group">
-				<select class="form-control" id = "schoolType">
-                      <option value>Student type</option>
-                      <option value="1">Boy</option>
-                      <option value="2">Girl</option>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 SEARCH">
+            <div class="form-group">
+                <select class="form-control" id = "schoolType">
+                    <option value>Student type</option>
+                    <option value="1">Boy</option>
+                    <option value="2">Girl</option>
                 </select>
-			</div>
-		</div>
-		<div class="col-md-2">&nbsp;</div>
-		
-		  <div class="col-md-8 pull-right">
-                                <div class="col-md-6 SEARCH">
-                                    <label class="control-label col-md-6 text-right SEARCH">From:</label>
-                                    <div class="col-md-6 SEARCH">
-                                        <div class="input-group input-big date date-picker SEARCH" data-date-format="dd/mm/yyyy" data-date-viewmode="years" data-date-minviewmode="months">
-                                            <input type="text"  id="fromDate" value="" class="form-control dateSEARCH" readonly   >
-                                            <span class="input-group-btn SEARCH">
+            </div>
+        </div>
+        <div class="col-md-2">&nbsp;</div>
+
+        <div class="col-md-8 pull-right">
+            <div class="col-md-6 SEARCH">
+                <label class="control-label col-md-6 text-right SEARCH">From:</label>
+                <div class="col-md-6 SEARCH">
+                    <div class="input-group input-big date date-picker SEARCH" data-date-format="dd/mm/yyyy" data-date-viewmode="years" data-date-minviewmode="months">
+                        <input type="text"  id="fromDate" value="" class="form-control dateSEARCH" readonly   >
+                        <span class="input-group-btn SEARCH">
                                                 <button class="btn btn-info" type="button"><i class="fa fa-calendar SEARCH"></i></button>
                                             </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 SEARCH">
-                                    <label class="control-label col-md-2 SEARCH">To</label>
-                                    <div class="col-md-6 SEARCH">
-                                        <div class="input-group input-big date date-picker SEARCH" data-date-format="dd/mm/yyyy" data-date-viewmode="years" data-date-minviewmode="months">
-                                            <input type="text" id="toDate" value="" class="form-control dateSEARCH" readonly >
-                                            <span class="input-group-btn SEARCH">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 SEARCH">
+                <label class="control-label col-md-2 SEARCH">To</label>
+                <div class="col-md-6 SEARCH">
+                    <div class="input-group input-big date date-picker SEARCH" data-date-format="dd/mm/yyyy" data-date-viewmode="years" data-date-minviewmode="months">
+                        <input type="text" id="toDate" value="" class="form-control dateSEARCH" readonly >
+                        <span class="input-group-btn SEARCH">
                                                 <button class="btn btn-info SEARCH" type="button"><i class="fa fa-calendar SEARCH"></i></button>
                                             </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-	
+                    </div>
+                </div>
+            </div>
+        </div>
 
-		<div class="col-md-5">
-			<h3>DATA SUBMISSION STATUS</h3>
-			<table class="table table-bordered text-center">
-				<thead>
-					<th colspan="3">No. of Data Submitted</th>
-					<th>No. of Schools</th>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Boys</td>
-						<td>Girls</td>
-						<td>Total</td>
-						<td rowspan="2" id = "total_school"></td>
-					</tr>
-					<tr>
-						<td id = "boys"></td>
-						<td id = "girls"></td>
-						<td id = "boysPlusgirls"></td>
-					</tr>
-				</tbody>
-			</table>
 
-			<h3>ISSUES RAISED TO SCHOOL AUTHORITY</h3>
-			<table class="table table-bordered">
-				<thead>
-					<th colspan="3">No. of Data Submitted</th>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Boys</td>
-						<td>Girls</td>
-						<td>Total</td>
-					</tr>
-					<tr>
-						<td id = "is_sanitation_prob_informed_boys"></td>
-						<td id = "is_sanitation_prob_informed_girls"></td>
-						<td id = "is_sanitation_prob_informed_boysPlusis_sanitation_prob_informed_girls"></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+        <div class="col-md-5">
+            <h3>DATA SUBMISSION STATUS</h3>
+            <table class="table table-bordered text-center">
+                <thead>
+                <th colspan="3">No. of Data Submitted</th>
+                <th>No. of Schools</th>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Boys</td>
+                    <td>Girls</td>
+                    <td>Total</td>
+                    <td rowspan="2" id = "total_school"></td>
+                </tr>
+                <tr>
+                    <td id = "boys"></td>
+                    <td id = "girls"></td>
+                    <td id = "boysPlusgirls"></td>
+                </tr>
+                </tbody>
+            </table>
 
-		<div class="col-md-5">
-			<h3>SCHOOL SANITATION STATUS</h3>
-			<div class="form-group">
-				<button class="btn btn-danger btn-full align-left">Total
-					Active/Inactive Toilets</button>
-			</div>
+            <h3>ISSUES RAISED TO SCHOOL AUTHORITY</h3>
+            <table class="table table-bordered">
+                <thead>
+                <th colspan="3">No. of Data Submitted</th>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Boys</td>
+                    <td>Girls</td>
+                    <td>Total</td>
+                </tr>
+                <tr>
+                    <td id = "is_sanitation_prob_informed_boys"></td>
+                    <td id = "is_sanitation_prob_informed_girls"></td>
+                    <td id = "is_sanitation_prob_informed_boysPlusis_sanitation_prob_informed_girls"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
-			<div class="form-group">
-				<button class="btn btn-danger btn-full align-left">No. of
-					Students having Access to Functioning Toilents</button>
-			</div>
-		</div>
+        <div class="col-md-5">
+            <h3>SCHOOL SANITATION STATUS</h3>
+            <div class="form-group">
+                <button class="btn btn-danger btn-full align-left">Total
+                    Active/Inactive Toilets</button>
+            </div>
 
-		<div class="col-md-1">
-			<h3>BOYS</h3>
-			<div class="form-group">
-				<button class="btn btn-default" style="width: 100%" id = "total_activeOrInAcitve_toilet_boys"></button>
-			</div>
-			<div class="form-group">
-				<button class="btn btn-default" style="width: 100%">9</button>
-			</div>
-		</div>
+            <div class="form-group">
+                <button class="btn btn-danger btn-full align-left">No. of
+                    Students having Access to Functioning Toilents</button>
+            </div>
+        </div>
 
-		<div class="col-md-1">
-			<h3>GIRLS</h3>
-			<div class="form-group">
-				<button class="btn btn-default" style="width: 100%" id = "total_activeOrInAcitve_toilet_girls"></button>
-			</div>
-			<div class="form-group">
-				<button class="btn btn-default" style="width: 100%">145</button>
-			</div>
-		</div>
+        <div class="col-md-1">
+            <h3>BOYS</h3>
+            <div class="form-group">
+                <button class="btn btn-default" style="width: 100%" id = "total_activeOrInAcitve_toilet_boys"></button>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" style="width: 100%">9</button>
+            </div>
+        </div>
 
-		<div class="row">
-			<div class="col-md-12">
-				<div class="clearfix">
-					<hr style="border-width: 5px;" />
-				</div>
-				<h3>CAUSES OF UNUSABLE TOILETS</h3>
+        <div class="col-md-1">
+            <h3>GIRLS</h3>
+            <div class="form-group">
+                <button class="btn btn-default" style="width: 100%" id = "total_activeOrInAcitve_toilet_girls"></button>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" style="width: 100%">145</button>
+            </div>
+        </div>
 
-				<div class="col-md-12" id = "unUsableToilet">
-					<!-- ----------------------------------unUsableToilet----------------------------------- -->
-				</div>
-			</div>
-		</div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="clearfix">
+                    <hr style="border-width: 5px;" />
+                </div>
+                <h3>CAUSES OF UNUSABLE TOILETS</h3>
 
-		<div class="row">
-			<div class="col-md-12">
-				<div class="clearfix">
-					<hr style="border-width: 5px;" />
-				</div>
-				<h3>ISSUE RAISING MEDIUM / MECHANISM</h3>
+                <div class="col-md-12" id = "unUsableToilet">
+                    <!-- ----------------------------------unUsableToilet----------------------------------- -->
+                </div>
+            </div>
+        </div>
 
-				<div class="col-md-12" id = "issue">
-					<!-- ----------------------------------issue----------------------------------- -->
-				</div>
-			</div>
-		</div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="clearfix">
+                    <hr style="border-width: 5px;" />
+                </div>
+                <h3>ISSUE RAISING MEDIUM / MECHANISM</h3>
 
-		<div class="row">
-			<div class="col-md-12">
-				<div class="clearfix">
-					<hr style="border-width: 5px;" />
-				</div>
-				<h3>SCHOOL AUTHORITY RESPONSE STATUS & TIME</h3>
+                <div class="col-md-12" id = "issue">
+                    <!-- ----------------------------------issue----------------------------------- -->
+                </div>
+            </div>
+        </div>
 
-				<div class="col-md-12" id = "response">
-					<!-- ----------------------------------response----------------------------------- -->
-				</div>
-			</div>
-		</div>
-		<div class="clearfix">
-			<hr style="border-width: 5px;" />
-		</div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="clearfix">
+                    <hr style="border-width: 5px;" />
+                </div>
+                <h3>SCHOOL AUTHORITY RESPONSE STATUS & TIME</h3>
 
-	</div>
+                <div class="col-md-12" id = "response">
+                    <!-- ----------------------------------response----------------------------------- -->
+                </div>
+            </div>
+        </div>
+        <div class="clearfix">
+            <hr style="border-width: 5px;" />
+        </div>
+
+    </div>
 </div>
 #{script 'mpower-sanitation-report.js' /}
 #{script 'report.js' /}

@@ -117,11 +117,11 @@
                                                 <td>${pollList.startDate} - ${pollList.endDate}</td>
                                                 <td>${pollList.title}</td>
                                                 <td>
-                                                    <a href="#" class="text-danger"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                    <a href="@{PollManagement.editPoll(pollList?.id)}" class="text-danger"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 
-                                                    <a href="#" class="text-danger"><i class="fa fa-bar-chart" aria-hidden="true"></i></a>
+                                                    <a href="@{PollManagement.getPollGraph(pollList?.id)}" class="text-danger"><i class="fa fa-bar-chart" aria-hidden="true"></i></a>
 
-                                                    <a href="#" class="text-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                    <a href="${pollList?.id}" class="text-danger"><i class="fa fa-trash delete_poll" aria-hidden="true"></i></a>
                                                 </td>
                                             </tr>
                                            #{/list} 
@@ -140,6 +140,46 @@
     </div>
     
     <script>
+    
+    	    
+	    $(".delete_poll").click(function(){  
+			var pollId = $(this).attr("id");
+	        if(confirm("Are you sure to delete this Poll?"))
+	        {
+	            $.ajax({
+	                type: "GET",
+	              	url:  "@{PollManagement.deletePoll}",
+	                data: {
+	                	id: pollId
+	                },
+	                success: function(data) {
+						console.log(data);
+	                    if(data == 1){
+	                       console.log("delete success");
+	                    	$('#delete_msg').html("<h3 style="+"color:green"+">School deleted successfully.</h3>");
+	                    	$("#"+pollId).remove(); //row remove when deleted 
+	                    	          
+	                     	
+	                   }
+	                    else{
+	                    	$('#delete_msg').html("<h3 style="+"color:red"+">User cannot be deleted.</h3>");
+	                    }
+	                }
+
+
+	            });
+	            
+	             $(document).ajaxStop(function(){
+         window.location.reload();
+       });
+	           
+	        }
+	        
+	       
+	        return false;
+	         
+	    });
+	    
     
    $(document).ready(function() {
    

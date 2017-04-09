@@ -52,34 +52,78 @@ public class Sanitation extends Model{
 	
 	
 	public static Map<String, Long> getSanitationData(Long divisionId,Long districtId, Long upazillaId, Long schoolId, Long studentType, Date startDate, Date endDate) throws SQLException{
-		
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		String firstDateOfPreviousMonth = null;
 		String lastDateOfPreviousMonth = null;
 
 		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.MONTH, -1);
 
-		calendar.set(Calendar.DATE, 1);
-		if(startDate == null)
-			startDate = calendar.getTime();
-		calendar.set(Calendar.DATE,calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
-		if(endDate == null)
-			endDate = calendar.getTime();
+		String whereClause="";
 
-		try {
-			firstDateOfPreviousMonth = dateFormat.format(startDate) + " 00:00:00";
-			lastDateOfPreviousMonth = dateFormat.format(endDate) + " 23:59:59";
 
-		} catch (Exception e) {
-			e.printStackTrace();
+
+
+		Logger.info("startDate: " + startDate + "endDate: "+ endDate);
+		if(startDate == null || endDate == null) {
+
+
+
+			Calendar cal = Calendar.getInstance();
+			int month = cal.get(Calendar.MONTH) - 1;
+
+			Logger.info("month " + month);
+			cal.set(cal.get(Calendar.YEAR), month, 1);
+
+			Date startDate1 = cal.getTime();
+
+			cal.set(Calendar.DATE, cal.getActualMaximum(Calendar.DATE));
+			Date endDate1 = cal.getTime();
+
+			Logger.info("startDate: " + startDate1 + "endDate: " + endDate1);
+
+			whereClause = " Where Sanitation.created_at between cast( '" + startDate1 + "' as DateTime) and cast( '" + endDate1 + "'  as DateTime)";
+
+			/*try {
+				firstDateOfPreviousMonth = dateFormat.format(startDate1) + " 00:00:00";
+				lastDateOfPreviousMonth = dateFormat.format(endDate1) + " 23:59:59";
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}*/
+
+
 		}
+
+
+		if(startDate!=null && endDate !=null) {
+			Calendar cal1 = Calendar.getInstance();
+			cal1.setTime(startDate);
+			firstDateOfPreviousMonth = cal1.get(Calendar.YEAR) + "-" + (cal1.get(Calendar.MONTH) + 1) + "-" + cal1.get(Calendar.DATE);
+
+			Calendar cal2 = Calendar.getInstance();
+			cal1.setTime(endDate);
+			lastDateOfPreviousMonth = cal2.get(Calendar.YEAR) + "-" + (cal2.get(Calendar.MONTH) + 1) + "-" + cal2.get(Calendar.DATE);
+
+			whereClause = " Where Sanitation.created_at between cast( '" + firstDateOfPreviousMonth + "' as DateTime) and cast( '" + lastDateOfPreviousMonth + "'  as DateTime)";
+
+			/*try {
+				firstDateOfPreviousMonth = dateFormat.format(firstDateOfPreviousMonth) + " 00:00:00";
+				lastDateOfPreviousMonth = dateFormat.format(lastDateOfPreviousMonth) + " 23:59:59";
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+*/
+		}
+
 
 		Connection conn = play.db.DB.getConnection();
 		ResultSet rs = null;
-		
+
 		String qString = null;
-		String whereClause = " Where Sanitation.created_at between cast( ? as DateTime) and cast( ?  as DateTime)";
+
 		String table_name = "Sanitation";
 		//String table_name = "Sanitation join SchoolInformation on Sanitation.school_id = SchoolInformation.id";
 		if(divisionId != null || districtId != null && upazillaId != null && schoolId != null && studentType != null){
@@ -104,28 +148,38 @@ public class Sanitation extends Model{
 				"sum(Sanitation.is_sanitation_prob_informed) as isInformed " +
 				"from " + table_name;
 		
-		qString += whereClause + " and Sanitation.res_type = ?";
+		qString += whereClause ;
+
+		if(studentType!=null) {
+
+			if (studentType == 1) {
+
+				qString += "  and Sanitation.res_type = 1 ";
+			} else if (studentType == 2) {
+
+				qString += "  and Sanitation.res_type = 2 ";
+			}
+		}
 		
-		Logger.info("query1 string is : " + qString);
-		
-		PreparedStatement queryForExecution = conn.prepareStatement(qString);
-		queryForExecution.setString(1, firstDateOfPreviousMonth);
+		//Logger.info("query1 string is : " + qString);
+
+			PreparedStatement queryForExecution = conn.prepareStatement(qString);
+
+			rs = queryForExecution.executeQuery();
+		/*queryForExecution.setString(1, firstDateOfPreviousMonth);
 		queryForExecution.setString(2, lastDateOfPreviousMonth);
 		
 		
-		
+		*/
 		long boys = 0, girls = 0,
 			boys_school = 0, girls_school = 0,
 			total_activeOrInAcitve_toilet_boys = 0,total_activeOrInAcitve_toilet_girls = 0,
 			is_sanitation_prob_informed_boys = 0, is_sanitation_prob_informed_girls = 0;
 		
 		if(studentType == null || studentType == 1L){
-			queryForExecution.setString(3, "1");
-			Logger.info("*****************************boys data *****************************************");
+
 			try {
-				
-				rs = queryForExecution.executeQuery();
-				
+
 				while (rs.next()) {
 					boys = rs.getInt("student");
 					boys_school = rs.getInt("school");
@@ -140,12 +194,9 @@ public class Sanitation extends Model{
 		
 		
 		if(studentType == null || studentType == 2L){
-			queryForExecution.setString(3, "2");
-			Logger.info("*****************************girls data *****************************************");
+
 			try {
-				
-				rs = queryForExecution.executeQuery();
-				
+
 				while (rs.next()) {
 					girls = rs.getInt("student");
 					girls_school = rs.getInt("school");
@@ -165,13 +216,12 @@ public class Sanitation extends Model{
 		qString = "select count(Sanitation.why_toilet_unusable) as cause from " + table_name;
 		qString += whereClause + " and Sanitation.why_toilet_unusable like ? ";
 		
-		Logger.info("query2 string is : " + qString);
+		//Logger.info("query2 string is : " + qString);
 		
 		queryForExecution = conn.prepareStatement(qString);	
-		queryForExecution.setString(1, firstDateOfPreviousMonth);
-		queryForExecution.setString(2, lastDateOfPreviousMonth);
+
 		
-		queryForExecution.setString(3, "%1%");
+		queryForExecution.setString(1, "%1%");
 		try {
 			
 			rs = queryForExecution.executeQuery();
@@ -182,7 +232,7 @@ public class Sanitation extends Model{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		queryForExecution.setString(3, "%2%");
+		queryForExecution.setString(1, "%2%");
 		try {
 			rs = queryForExecution.executeQuery();
 			
@@ -192,7 +242,7 @@ public class Sanitation extends Model{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		queryForExecution.setString(3, "%3%");
+		queryForExecution.setString(1, "%3%");
 		try {
 			rs = queryForExecution.executeQuery();
 			while(rs.next()){
@@ -201,7 +251,7 @@ public class Sanitation extends Model{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		queryForExecution.setString(3, "%4%");
+		queryForExecution.setString(1, "%4%");
 		try {
 			rs = queryForExecution.executeQuery();
 			while(rs.next()){
@@ -210,7 +260,7 @@ public class Sanitation extends Model{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		queryForExecution.setString(3, "%5%");
+		queryForExecution.setString(1, "%5%");
 		try {
 			
 			rs = queryForExecution.executeQuery();
@@ -221,7 +271,7 @@ public class Sanitation extends Model{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		queryForExecution.setString(3, "%6%");
+		queryForExecution.setString(1, "%6%");
 		try {
 			rs = queryForExecution.executeQuery();
 			
@@ -231,7 +281,7 @@ public class Sanitation extends Model{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		queryForExecution.setString(3, "%7%");
+		queryForExecution.setString(1, "%7%");
 		try {
 			rs = queryForExecution.executeQuery();
 			while(rs.next()){
@@ -240,7 +290,7 @@ public class Sanitation extends Model{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		queryForExecution.setString(3, "%8%");
+		queryForExecution.setString(1, "%8%");
 		try {
 			rs = queryForExecution.executeQuery();
 			while(rs.next()){
@@ -249,7 +299,7 @@ public class Sanitation extends Model{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		queryForExecution.setString(3, "%9%");
+		queryForExecution.setString(1, "%9%");
 		try {
 			
 			rs = queryForExecution.executeQuery();
@@ -260,7 +310,7 @@ public class Sanitation extends Model{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		queryForExecution.setString(3, "%10%");
+		queryForExecution.setString(1, "%10%");
 		try {
 			rs = queryForExecution.executeQuery();
 			
@@ -270,7 +320,7 @@ public class Sanitation extends Model{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		queryForExecution.setString(3, "%11%");
+		queryForExecution.setString(1, "%11%");
 		try {
 			rs = queryForExecution.executeQuery();
 			while(rs.next()){
@@ -279,7 +329,7 @@ public class Sanitation extends Model{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		queryForExecution.setString(3, "%12%");
+		queryForExecution.setString(1, "%12%");
 		try {
 			rs = queryForExecution.executeQuery();
 			while(rs.next()){
@@ -288,7 +338,7 @@ public class Sanitation extends Model{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		queryForExecution.setString(3, "%13%");
+		queryForExecution.setString(1, "%13%");
 		try {
 			rs = queryForExecution.executeQuery();
 			while(rs.next()){
@@ -323,13 +373,12 @@ public class Sanitation extends Model{
 				qString = "select count(Sanitation.how_informed_sanitation_prob) as issue from " + table_name;
 				qString += whereClause + " and Sanitation.how_informed_sanitation_prob like ?";
 				
-				Logger.info("query3 string is : " + qString);
+				//Logger.info("query3 string is : " + qString);
 				
 				queryForExecution = conn.prepareStatement(qString);	
-				queryForExecution.setString(1, firstDateOfPreviousMonth);
-				queryForExecution.setString(2, lastDateOfPreviousMonth);
+
 				
-				queryForExecution.setString(3, "%1%");
+				queryForExecution.setString(1, "%1%");
 				try {
 					
 					rs = queryForExecution.executeQuery();
@@ -340,7 +389,7 @@ public class Sanitation extends Model{
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				queryForExecution.setString(3, "%2%");
+				queryForExecution.setString(1, "%2%");
 				try {
 					rs = queryForExecution.executeQuery();
 					
@@ -350,7 +399,7 @@ public class Sanitation extends Model{
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				queryForExecution.setString(3, "%3%");
+				queryForExecution.setString(1, "%3%");
 				try {
 					rs = queryForExecution.executeQuery();
 					while(rs.next()){
@@ -359,7 +408,7 @@ public class Sanitation extends Model{
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				queryForExecution.setString(3, "%4%");
+				queryForExecution.setString(1, "%4%");
 				try {
 					rs = queryForExecution.executeQuery();
 					while(rs.next()){
@@ -369,7 +418,7 @@ public class Sanitation extends Model{
 					// TODO: handle exception
 				}
 				
-				queryForExecution.setString(3, "%5%");
+				queryForExecution.setString(1, "%5%");
 				try {
 					rs = queryForExecution.executeQuery();
 					while(rs.next()){
@@ -384,7 +433,7 @@ public class Sanitation extends Model{
 					issue3 = (issue3 * 100) / totalIssue; issue4 = (issue4 * 100)/ totalIssue;
 					issue5 = (issue5 * 100) / totalIssue;
 				}
-				Logger.info("issue1 : " + issue1 + " issue2 : " + issue2 + " issue3 : " + issue3 + " issue4 : " + issue4 + " issue5 : " + issue5);
+			//	Logger.info("issue1 : " + issue1 + " issue2 : " + issue2 + " issue3 : " + issue3 + " issue4 : " + issue4 + " issue5 : " + issue5);
 
 				//ISSUE RAISING MEDIUM / MECHANISM -------------------------------------------end
 				
@@ -399,10 +448,9 @@ public class Sanitation extends Model{
 				qString += whereClause + " and Sanitation.took_step_sanitation_prob like ? ";
 				
 				queryForExecution = conn.prepareStatement(qString);	
-				queryForExecution.setString(1, firstDateOfPreviousMonth);
-				queryForExecution.setString(2, lastDateOfPreviousMonth);
+
 				
-				queryForExecution.setString(3, "%1%");
+				queryForExecution.setString(1, "%1%");
 				try {
 					
 					rs = queryForExecution.executeQuery();
@@ -413,7 +461,7 @@ public class Sanitation extends Model{
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				queryForExecution.setString(3, "%2%");
+				queryForExecution.setString(1, "%2%");
 				try {
 					rs = queryForExecution.executeQuery();
 					
@@ -423,7 +471,7 @@ public class Sanitation extends Model{
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				queryForExecution.setString(3, "%3%");
+				queryForExecution.setString(1, "%3%");
 				try {
 					rs = queryForExecution.executeQuery();
 					while(rs.next()){
@@ -432,7 +480,7 @@ public class Sanitation extends Model{
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				queryForExecution.setString(3, "%4%");
+				queryForExecution.setString(1, "%4%");
 				try {
 					rs = queryForExecution.executeQuery();
 					while(rs.next()){
@@ -442,7 +490,7 @@ public class Sanitation extends Model{
 					// TODO: handle exception
 				}
 				
-				queryForExecution.setString(3, "%5%");
+				queryForExecution.setString(1, "%5%");
 				try {
 					rs = queryForExecution.executeQuery();
 					while(rs.next()){
@@ -451,7 +499,7 @@ public class Sanitation extends Model{
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				queryForExecution.setString(3, "%6%");
+				queryForExecution.setString(1, "%6%");
 				try {
 					rs = queryForExecution.executeQuery();
 					while(rs.next()){
@@ -460,7 +508,7 @@ public class Sanitation extends Model{
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				queryForExecution.setString(3, "%7%");
+				queryForExecution.setString(1, "%7%");
 				try {
 					rs = queryForExecution.executeQuery();
 					while(rs.next()){

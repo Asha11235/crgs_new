@@ -49,37 +49,65 @@ public class SportsRecreation extends Model{
 	
 	
 	public static Map<String, Long> getSportsRecreationData(Long divisionId,Long districtId, Long upazillaId, Long schoolId, Long studentType, Date startDate, Date endDate) throws SQLException{
-		
-		
-		Logger.info("StudentType : " + studentType);
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		String firstDateOfPreviousMonth = null;
 		String lastDateOfPreviousMonth = null;
 
 		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.MONTH, -1);
 
-		calendar.set(Calendar.DATE, 1);
-		if(startDate == null)
-			startDate = calendar.getTime();
-		calendar.set(Calendar.DATE,calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
-		if(endDate == null)
-			endDate = calendar.getTime();
+		String whereClause="";
 
-		try {
-			firstDateOfPreviousMonth = dateFormat.format(startDate) + " 00:00:00";
-			lastDateOfPreviousMonth = dateFormat.format(endDate) + " 23:59:59";
 
-		} catch (Exception e) {
-			e.printStackTrace();
+
+		Logger.info("startDate: " + startDate + "endDate: "+ endDate);
+		if(startDate == null || endDate == null) {
+
+
+
+			Calendar cal = Calendar.getInstance();
+			int month = cal.get(Calendar.MONTH) - 1;
+
+			Logger.info("month " + month);
+			cal.set(cal.get(Calendar.YEAR), month, 1);
+
+			Date startDate1 = cal.getTime();
+
+			cal.set(Calendar.DATE, cal.getActualMaximum(Calendar.DATE));
+			Date endDate1 = cal.getTime();
+
+			Logger.info("startDate: " + startDate1 + "endDate: " + endDate1);
+
+			whereClause = " Where SportsRecreation.created_at between cast( '" + startDate1 + "' as DateTime) and cast( '" + endDate1 + "'  as DateTime)";
+
+
+
+
 		}
+
+
+		if(startDate!=null && endDate !=null) {
+			Calendar cal1 = Calendar.getInstance();
+			cal1.setTime(startDate);
+			firstDateOfPreviousMonth = cal1.get(Calendar.YEAR) + "-" + (cal1.get(Calendar.MONTH) + 1) + "-" + cal1.get(Calendar.DATE);
+
+			Calendar cal2 = Calendar.getInstance();
+			cal1.setTime(endDate);
+			lastDateOfPreviousMonth = cal2.get(Calendar.YEAR) + "-" + (cal2.get(Calendar.MONTH) + 1) + "-" + cal2.get(Calendar.DATE);
+
+			whereClause = " Where SportsRecreation.created_at between cast( '" + firstDateOfPreviousMonth + "' as DateTime) and cast( '" + lastDateOfPreviousMonth + "'  as DateTime)";
+
+
+
+		}
+
 
 		Connection conn = play.db.DB.getConnection();
 		ResultSet rs = null;
-		
+
 		String qString = null;
-		String whereClause = " Where SportsRecreation.created_at between cast( ? as DateTime) and cast( ? as DateTime)";
-		String table_name = "SportsRecreation";
+        String table_name = "SportsRecreation";
 		
 		if(divisionId != null || districtId != null && upazillaId != null && schoolId != null && studentType != null){
 			table_name = "SportsRecreation join SchoolInformation on SportsRecreation.school_id = SchoolInformation.id";
@@ -102,16 +130,25 @@ public class SportsRecreation extends Model{
 				"sum(SportsRecreation.instrumentUsable) as instrumentUsable, " +
 				"sum(SportsRecreation.instrumentEqualAccess) as instrumentEqualAccess " +
 				"from " + table_name;
-		
-		qString += whereClause + "  and SportsRecreation.res_type = ?";
-		
-		Logger.info("query1 string is : " + qString);
-		
+
+		qString += whereClause ;
+
+		if(studentType!=null){
+
+			if(studentType == 1){
+
+				qString += "  and SportsRecreation.res_type = 1 ";
+			}
+
+			else if(studentType == 2){
+
+				qString += "  and SportsRecreation.res_type = 2 ";
+			}
+		}
+
 		PreparedStatement queryForExecution = conn.prepareStatement(qString);
-		queryForExecution.setString(1, firstDateOfPreviousMonth);
-		queryForExecution.setString(2, lastDateOfPreviousMonth);
-		
-		
+
+		rs = queryForExecution.executeQuery();
 		
 		long boys = 0, girls = 0,
 			boys_school = 0, girls_school = 0,
@@ -119,10 +156,10 @@ public class SportsRecreation extends Model{
 			instrumentEqualAccess_boys = 0, instrumentEqualAccess_girls = 0;
 
 		if(studentType == null || studentType == 1L){
-			queryForExecution.setString(3, "1");
+			//queryForExecution.setString(3, "1");
 			try {
 				
-				rs = queryForExecution.executeQuery();
+				//rs = queryForExecution.executeQuery();
 				
 				while (rs.next()) {
 					boys = rs.getInt("student");
@@ -137,10 +174,10 @@ public class SportsRecreation extends Model{
 		}
 		
 		if(studentType == null || studentType == 2L){
-			queryForExecution.setString(3, "2");
+			//queryForExecution.setString(3, "2");
 			try {
 				
-				rs = queryForExecution.executeQuery();
+				//rs = queryForExecution.executeQuery();
 				
 				while (rs.next()) {
 					girls = rs.getInt("student");
@@ -163,10 +200,10 @@ public class SportsRecreation extends Model{
 		Logger.info("query2 string is : " + qString);
 		
 		queryForExecution = conn.prepareStatement(qString);	
-		queryForExecution.setString(1, firstDateOfPreviousMonth);
-		queryForExecution.setString(2, lastDateOfPreviousMonth);
+		/*queryForExecution.setString(1, firstDateOfPreviousMonth);
+		queryForExecution.setString(2, lastDateOfPreviousMonth);*/
 		
-		queryForExecution.setString(3, "%1%");
+		queryForExecution.setString(1, "%1%");
 		try {
 			
 			rs = queryForExecution.executeQuery();
@@ -177,7 +214,7 @@ public class SportsRecreation extends Model{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		queryForExecution.setString(3, "%2%");
+		queryForExecution.setString(1, "%2%");
 		try {
 			rs = queryForExecution.executeQuery();
 			
@@ -187,7 +224,7 @@ public class SportsRecreation extends Model{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		queryForExecution.setString(3, "%3%");
+		queryForExecution.setString(1, "%3%");
 		try {
 			rs = queryForExecution.executeQuery();
 			while(rs.next()){
@@ -196,7 +233,7 @@ public class SportsRecreation extends Model{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		queryForExecution.setString(3, "%4%");
+		queryForExecution.setString(1, "%4%");
 		try {
 			rs = queryForExecution.executeQuery();
 			while(rs.next()){
@@ -205,7 +242,7 @@ public class SportsRecreation extends Model{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		queryForExecution.setString(3, "%5%");
+		queryForExecution.setString(1, "%5%");
 		try {
 			rs = queryForExecution.executeQuery();
 			while(rs.next()){
@@ -214,7 +251,7 @@ public class SportsRecreation extends Model{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		queryForExecution.setString(3, "%6%");
+		queryForExecution.setString(1, "%6%");
 		try {
 			rs = queryForExecution.executeQuery();
 			while(rs.next()){
@@ -223,7 +260,7 @@ public class SportsRecreation extends Model{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		queryForExecution.setString(3, "%7%");
+		queryForExecution.setString(1, "%7%");
 		try {
 			rs = queryForExecution.executeQuery();
 			while(rs.next()){
@@ -232,7 +269,7 @@ public class SportsRecreation extends Model{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		queryForExecution.setString(3, "%8%");
+		queryForExecution.setString(1, "%8%");
 		try {
 			rs = queryForExecution.executeQuery();
 			while(rs.next()){
@@ -265,10 +302,10 @@ public class SportsRecreation extends Model{
 				Logger.info("query3 string is : " + qString);
 				
 				queryForExecution = conn.prepareStatement(qString);	
-				queryForExecution.setString(1, firstDateOfPreviousMonth);
+				/*queryForExecution.setString(1, firstDateOfPreviousMonth);
 				queryForExecution.setString(2, lastDateOfPreviousMonth);
-				
-				queryForExecution.setString(3, "%1%");
+				*/
+				queryForExecution.setString(1, "%1%");
 				try {
 					
 					rs = queryForExecution.executeQuery();
@@ -279,7 +316,7 @@ public class SportsRecreation extends Model{
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				queryForExecution.setString(3, "%2%");
+				queryForExecution.setString(1, "%2%");
 				try {
 					rs = queryForExecution.executeQuery();
 					
@@ -289,7 +326,7 @@ public class SportsRecreation extends Model{
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				queryForExecution.setString(3, "%3%");
+				queryForExecution.setString(1, "%3%");
 				try {
 					rs = queryForExecution.executeQuery();
 					while(rs.next()){
@@ -298,7 +335,7 @@ public class SportsRecreation extends Model{
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				queryForExecution.setString(3, "%4%");
+				queryForExecution.setString(1, "%4%");
 				try {
 					rs = queryForExecution.executeQuery();
 					while(rs.next()){
@@ -308,7 +345,7 @@ public class SportsRecreation extends Model{
 					// TODO: handle exception
 				}
 				
-				queryForExecution.setString(3, "%5%");
+				queryForExecution.setString(1, "%5%");
 				try {
 					rs = queryForExecution.executeQuery();
 					while(rs.next()){
@@ -317,7 +354,7 @@ public class SportsRecreation extends Model{
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				queryForExecution.setString(3, "%6%");
+				queryForExecution.setString(1, "%6%");
 				try {
 					rs = queryForExecution.executeQuery();
 					while(rs.next()){
@@ -326,7 +363,7 @@ public class SportsRecreation extends Model{
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				queryForExecution.setString(3, "%7%");
+				queryForExecution.setString(1, "%7%");
 				try {
 					rs = queryForExecution.executeQuery();
 					while(rs.next()){
@@ -357,10 +394,10 @@ public class SportsRecreation extends Model{
 				qString += whereClause + " and SportsRecreation.lastMonth_Activity like ? ";
 				
 				queryForExecution = conn.prepareStatement(qString);	
-				queryForExecution.setString(1, firstDateOfPreviousMonth);
-				queryForExecution.setString(2, lastDateOfPreviousMonth);
+				/*queryForExecution.setString(1, firstDateOfPreviousMonth);
+				queryForExecution.setString(2, lastDateOfPreviousMonth);*/
 				
-				queryForExecution.setString(3, "%1%");
+				queryForExecution.setString(1, "%1%");
 				try {
 					
 					rs = queryForExecution.executeQuery();
@@ -371,7 +408,7 @@ public class SportsRecreation extends Model{
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				queryForExecution.setString(3, "%2%");
+				queryForExecution.setString(1, "%2%");
 				try {
 					rs = queryForExecution.executeQuery();
 					
@@ -381,7 +418,7 @@ public class SportsRecreation extends Model{
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				queryForExecution.setString(3, "%3%");
+				queryForExecution.setString(1, "%3%");
 				try {
 					rs = queryForExecution.executeQuery();
 					while(rs.next()){
@@ -390,7 +427,7 @@ public class SportsRecreation extends Model{
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				queryForExecution.setString(3, "%4%");
+				queryForExecution.setString(1, "%4%");
 				try {
 					rs = queryForExecution.executeQuery();
 					while(rs.next()){
@@ -400,7 +437,7 @@ public class SportsRecreation extends Model{
 					// TODO: handle exception
 				}
 				
-				queryForExecution.setString(3, "%5%");
+				queryForExecution.setString(1, "%5%");
 				try {
 					rs = queryForExecution.executeQuery();
 					while(rs.next()){
@@ -409,7 +446,7 @@ public class SportsRecreation extends Model{
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				queryForExecution.setString(3, "%6%");
+				queryForExecution.setString(1, "%6%");
 				try {
 					rs = queryForExecution.executeQuery();
 					while(rs.next()){
@@ -418,7 +455,7 @@ public class SportsRecreation extends Model{
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				queryForExecution.setString(3, "%7%");
+				queryForExecution.setString(1, "%7%");
 				try {
 					rs = queryForExecution.executeQuery();
 					while(rs.next()){

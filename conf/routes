@@ -95,6 +95,7 @@ GET     /registerschool								RegisterSchool.schoolregister();
 GET     /submitCase							        RegisterSchool.submitCase();
 GET     /resourcelist								RegisterSchool.resourceList();
 GET     /createPoll                                 PollManagement.createPoll
-
+GET     /Secure/loadPoll                    		Secure.loadPoll
+POST    /Secure/voteReply                   Secure.voteReply
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}

@@ -285,15 +285,17 @@ public static void voteReply(String gender, String option, String age,String pol
 		//Forms.landingPage();
 	}
 
-public static String loadPoll() throws SQLException {
-
-	String mp = "";
-	
-	mp = PollDefination.getPollReport();
+		public static String loadPoll() throws SQLException {
 		
-	Gson gson = new Gson();
-
-	return gson.toJson(mp);
-}
+			String mp = "";
+			
+			mp = PollDefination.getPollReport();
+				
+			Gson gson = new Gson();
+		
+			return gson.toJson(mp);
+		}
+  
+	
 	
 }

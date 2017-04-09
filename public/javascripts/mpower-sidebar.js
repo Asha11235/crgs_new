@@ -20,7 +20,7 @@
         
         
         
-        console.log(polllist.length); 
+        //console.log(polllist.length);
         var n=0;
         pollDesign(polllist,n);
                       
@@ -106,7 +106,7 @@
                                        for( var j=1; j< option.length ; j++){
                                    startdiv+= '<input type="radio" class="answer" name="answerr" value=" ' + option[j] +'"> ' +option[j] + ' <br>'+
                                                ' <input name="pollId" type="hidden" class="form-control" id="pollIdd" value="' + poll +' ">';
-                                               console.log(poll);
+                                              // console.log(poll);
  
                                       }
                                      
@@ -122,7 +122,7 @@
                                for( var j=1; j< option.length ; j++){
                                    startdiv+= '<input type="checkbox" class="answer" name="answerr" value=" ' + option[j] +'"> ' +option[j] + ' <br>'+
                                                ' <input name="pollId" type="hidden" class="form-control" id="pollIdd" value="' + poll +' ">';
-                                                console.log(poll);
+                                              //  console.log(poll);
                                       }
                                  
                                }
@@ -163,7 +163,7 @@
 	         
 	             $("#submitBtn").on("click",function(){
 	    
-	               console.log("clickS");
+	              // console.log("clickS");
 					  var gender =  $('.genderClass').val();
 						
 					  var age = $('.ageClass').val();
@@ -179,14 +179,14 @@
 					  
 					  var pollId = $('#pollIdd').val();
 					  
-					  console.log(gender +" " + age +" " + option +" " + polliiid);
+					  //console.log(gender +" " + age +" " + option +" " + polliiid);
 					  
 					  savePollReply(gender,age,option , polliiid);
 	             });
                 
                    $("#previousBtn").on("click",function(){ 
                    
-                   console.log("clickS");
+                   //console.log("clickS");
                    n++;
                    if(n> data.length-1){
                      n=0;
@@ -207,7 +207,7 @@
 		 function savePollReply(gender,age,options,pollId) {
 		
 		var option = JSON.stringify(options);
-		  console.log(gender +" " + age +" " + options +" " + pollId);
+		  //console.log(gender +" " + age +" " + options +" " + pollId);
 		return $.ajax({
 				type: "POST",
               	url:  "/PollManagement/voteReply",
@@ -220,7 +220,7 @@
 				
 				success: function(data) {
 				
-				console.log("value saved");
+				//console.log("value saved");
 				}
 			});
 		
