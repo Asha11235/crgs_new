@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2e3f578-5dd9-4aaa-acd9-985ef7c759cf" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/PollManagement/pollGraph.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Save The children - CRGS.iws" afterPath="$PROJECT_DIR$/Save The children - CRGS.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/PollManagement.java" afterPath="$PROJECT_DIR$/app/controllers/PollManagement.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/PollDefination.java" afterPath="$PROJECT_DIR$/app/models/PollDefination.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/routes" afterPath="$PROJECT_DIR$/conf/routes" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/mpower-sidebar.js" afterPath="$PROJECT_DIR$/public/javascripts/mpower-sidebar.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -52,13 +47,13 @@
       <file leaf-file-name="pollGraph.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/PollManagement/pollGraph.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1141">
-              <caret line="84" column="34" lean-forward="true" selection-start-line="84" selection-start-column="34" selection-end-line="84" selection-end-column="34" />
+            <state relative-caret-position="979">
+              <caret line="195" column="0" lean-forward="true" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
               <folding>
-                <marker date="1491901830152" expanded="true" signature="4511:4526" ph="..." />
-                <marker date="1491901830152" expanded="true" signature="4971:4986" ph="..." />
-                <marker date="1491901830152" expanded="true" signature="5041:5056" ph="..." />
-                <marker date="1491901830152" expanded="true" signature="5469:5484" ph="..." />
+                <marker date="1491902078636" expanded="true" signature="4511:4526" ph="..." />
+                <marker date="1491902078636" expanded="true" signature="4971:4986" ph="..." />
+                <marker date="1491902078636" expanded="true" signature="5041:5056" ph="..." />
+                <marker date="1491902078636" expanded="true" signature="5469:5484" ph="..." />
               </folding>
             </state>
           </provider>
@@ -87,7 +82,7 @@
       <file leaf-file-name="waterReport.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/Reports/waterReport.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
+            <state relative-caret-position="475">
               <caret line="249" column="19" lean-forward="false" selection-start-line="249" selection-start-column="10" selection-end-line="249" selection-end-column="19" />
               <folding />
             </state>
@@ -97,8 +92,8 @@
       <file leaf-file-name="report.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascripts/report.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="36" column="68" lean-forward="true" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="68" />
+            <state relative-caret-position="324">
+              <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -806,12 +801,12 @@
       <workItem from="1491716059988" duration="117000" />
       <workItem from="1491716469241" duration="16841000" />
       <workItem from="1491801203563" duration="19465000" />
-      <workItem from="1491886622858" duration="7073000" />
+      <workItem from="1491886622858" duration="7593000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60714000" />
+    <option name="totallyTimeSpent" value="61234000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="0" />
@@ -1257,22 +1252,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Reports/waterReport.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="249" column="19" lean-forward="false" selection-start-line="249" selection-start-column="10" selection-end-line="249" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/report.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="36" column="68" lean-forward="true" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/mpower-sidebar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="369">
@@ -1305,15 +1284,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/report.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/Reports/waterReport.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="249" column="19" lean-forward="false" selection-start-line="249" selection-start-column="10" selection-end-line="249" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/PollManagement/pollGraph.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1141">
-          <caret line="84" column="34" lean-forward="true" selection-start-line="84" selection-start-column="34" selection-end-line="84" selection-end-column="34" />
+        <state relative-caret-position="979">
+          <caret line="195" column="0" lean-forward="true" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
           <folding>
-            <marker date="1491901830152" expanded="true" signature="4511:4526" ph="..." />
-            <marker date="1491901830152" expanded="true" signature="4971:4986" ph="..." />
-            <marker date="1491901830152" expanded="true" signature="5041:5056" ph="..." />
-            <marker date="1491901830152" expanded="true" signature="5469:5484" ph="..." />
+            <marker date="1491902078636" expanded="true" signature="4511:4526" ph="..." />
+            <marker date="1491902078636" expanded="true" signature="4971:4986" ph="..." />
+            <marker date="1491902078636" expanded="true" signature="5041:5056" ph="..." />
+            <marker date="1491902078636" expanded="true" signature="5469:5484" ph="..." />
           </folding>
         </state>
       </provider>
