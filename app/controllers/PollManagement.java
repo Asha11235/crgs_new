@@ -318,10 +318,10 @@ public static void voteReply(String gender, String option, String age,String pol
 		//render();
 			}
 
-			 public static String loadPollGraph(String gender , String age) throws SQLException {
+			 public static String loadPollGraph() throws SQLException {
 
 
-			   Logger.info("gender: " + gender + " age: " + age);
+			  // Logger.info("gender: " + gender + " age: " + age);
 
 
 				 String mp = "";
@@ -334,11 +334,15 @@ public static void voteReply(String gender, String option, String age,String pol
 
 			 }
 
-			public static String loadPollGraphResult(String pollId,String gender,String age){
+			public static String loadPollGraphResult(String pollId,String gender,String age)throws SQLException{
 
+				String mp = "";
 
+				mp = PollDefination.getPollGraphResultData(pollId,gender,age);
 
-			return null;
+				Gson gson = new Gson();
+
+				return gson.toJson(mp);
 			}
   
 	

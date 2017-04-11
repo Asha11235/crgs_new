@@ -1,0 +1,245 @@
+#{include 'head.html' /}
+
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="@{Forms.landingPage()}"><img src="/public/images/logo.png" alt=""/></a>
+            <p class="slogan ">NCTF Voice - for better sanitation and hygiene at my school</p>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!-- <ul class="nav navbar-nav">
+                <li class="active"><a href="./secure/login">Log-in <span class="sr-only">(current)</span></a></li>
+            </ul> -->
+
+        #{if currentUser}
+            <ul class="nav navbar-nav navbar-right">
+                <li><a>${currentUser?.displayName}</a></li>
+                <li><a href="@@{Secure.logout()}">Logout</a></li>
+            </ul>
+        #{/if}
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN PORTLET-->
+        <div class="portlet">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-reorder"></i>Resources
+                </div>
+            </div>
+            <div class="portlet-body">
+            *{<!-- BEGIN FORM-->}*
+            *{<a href="javascript:;" class="btn btn-danger pull-right" data-toggle="modal"}*
+            *{data-target="#ResourceModal">Upload</a>}*
+            *{<br/>}*
+            *{<br/>}*
+            *{<!-- BEGIN Resource Modal -->}*
+            *{<div id="ResourceModal" class="modal fade" role="dialog">}*
+            *{<div class="modal-dialog">}*
+            *{<!-- Modal content-->}*
+            *{<div class="modal-content">}*
+            *{<div class="modal-header login-mod-header">}*
+            *{<button type="button" class="close" data-dismiss="modal">&times;</button>}*
+            *{<h4 class="modal-title"><strong>UPLOAD A CONTENT</strong></h4>}*
+            *{</div>}*
+            *{<div class="modal-body">}*
+            *{<form class="form-horizontal" role="form">}*
+            *{#{form @submit(), class:"form-horizontal", method:'post', enctype:'multipart/form-data'}}*
+            *{<div class="form-body">}*
+            *{<div class="form-group">}*
+            *{<label class="col-md-3 control-label">Content Title</label>}*
+            *{<div class="col-md-9">}*
+            *{<input name="resourceManagement.contentTitle" type="text"}*
+            *{class="form-control" id="resourceManagement.contentTitle"}*
+            *{value="${resourceManagement?.contentTitle}"}*
+            *{placeholder="Default Input">}*
+            *{</div>}*
+            *{</div>}*
+            *{<div class="form-group">}*
+            *{<label class="col-md-3 control-label">Category</label>}*
+            *{<div class="col-md-9">}*
+            *{<div class="col-sm-6">}*
+            *{#{input 'resourceManagement.categoryList' , type:'select', items:categoryList  , onchange:'test()'}}*
+            *{ #{option}Any#{/option}}*
+            *{#{/input}}*
+            *{</div>}*
+            *{<select class="form-control" name="" id="">}*
+            *{<option value=""></option>}*
+            *{</select>}*
+            *{</div>}*
+            *{</div>}*
+            *{<div class="form-group">}*
+            *{<label class="col-md-3 control-label">Version</label>}*
+            *{<div class="col-md-9">}*
+            *{<input name="resourceManagement.resourceVersion" type="text"}*
+            *{class="form-control" id="resourceManagement.resourceVersion"}*
+            *{value="${resourceManagement?.resourceVersion}"}*
+            *{placeholder="Default Input">}*
+            *{</div>}*
+            *{</div>}*
+            *{<div class="form-group">}*
+            *{<label class="col-md-3 control-label">Update Date</label>}*
+            *{<div class="col-md-9">}*
+            *{<div class="input-group input-medium date date-picker"}*
+            *{data-date-format="dd-mm-yyyy">}*
+            *{<input class="form-control" readonly="" type="text">}*
+            *{<input name="resourceManagement.updated_at" type="text"}*
+            *{class="form-control" id="resourceManagement.updated_at"}*
+            *{value="${resourceManagement?.updated_at}"}*
+            *{placeholder="Default Input">}*
+            *{<span class="input-group-btn">}*
+            *{<button class="btn btn-default" type="button"><i}*
+            *{class="fa fa-calendar"></i></button>}*
+            *{</span>}*
+            *{</div>}*
+            *{</div>}*
+            *{</div>}*
+
+            *{<div class="form-group">}*
+            *{<label class="control-label col-md-3">Comment(if any)</label>}*
+            *{<div class="col-md-9">}*
+            *{<textarea class="form-control" name="" id=""></textarea>}*
+            *{<input name="resourceManagement.comment" type="text"}*
+            *{class="form-control" id="resourceManagement.comment"}*
+            *{value="${resourceManagement?.comment}"}*
+            *{placeholder="Default Input">}*
+            *{</div>}*
+            *{</div>}*
+
+            *{<div class="form-group">}*
+            *{<label class="control-label col-md-3">Upload File</label>}*
+            *{<div class="col-md-9">}*
+            *{<input type="file" name="newFile" class="form-control"/>}*
+            *{<input name="resourceManagement.filePath" type="file"}*
+            *{class="form-control" id="resourceManagement.filePath"}*
+            *{value="${resourceManagement?.filePath}"}*
+            *{placeholder="Default Input">}*
+            *{</div>}*
+            *{</div>}*
+
+            *{<div class="form-group">}*
+            *{<div class="col-md-offset-1 col-md-8">}*
+            *{<button type="submit" class="btn btn-danger">UPLOAD & SAVE</button>}*
+            *{<button type="button" class="btn btn-danger" data-dismiss="modal">}*
+            *{CANCEL}*
+            *{</button>}*
+            *{</div>}*
+            *{</div>}*
+            *{</div>}*
+            *{</form>}*
+            *{#{/form}}*
+            *{</div>}*
+            *{</div>}*
+            *{</div>}*
+            *{</div>}*
+            *{<!-- End Resource Modal -->}*
+                <div class="clearfix"></div>
+                <table class="table table-striped table-bordered table-hover" id="sample_2">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Version</th>
+                        <th>Upload Date</th>
+                        <th>Download</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    #{list items:resourceManagementList, as:'resourceManagement'}
+                    <tr id="${resourceManagement.id}">
+                        <td>${resourceManagement.contentTitle}</td>
+                        <td>${resourceManagement.categoryList}</td>
+                        <td>${resourceManagement.resourceVersion}</td>
+                        <td>${resourceManagement.updated_at}</td>
+                        <td>
+                            #{deadbolt.externalizedRestriction externalRestrictions:['Download ResourceManagement']}
+                                <a class="label label-sm label-warning"
+                                   href="@{ResourceManagements.saveFile(resourceManagement?.filePath)}">Download</a>
+                            #{/deadbolt.externalizedRestriction}
+                        </td>
+                        <td>
+                            #{deadbolt.externalizedRestriction externalRestrictions:['Delete ResourceManagement']}
+                                <a class="label label-sm label-warning delete_resource" id="${resourceManagement.id}"><i
+                                        class="icon-remove icon-white"></i>
+                                    Delete</a>
+                            #{/deadbolt.externalizedRestriction}
+                        </td>
+                    </tr>
+                    #{/list}
+                    #{else}
+                    <tr>
+                        <td colspan="8">No User Available</td>
+                    </tr>
+                    #{/else}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+*{<div class="container">}*
+*{<div class="clearfix"></div>}*
+*{<table class="table table-striped table-bordered table-hover" id="sample_2">}*
+*{<thead>}*
+*{<tr>}*
+*{<th>Title</th>}*
+*{<th>Category</th>}*
+*{<th>Version</th>}*
+*{<th>Upload Date</th>}*
+*{<th>Download</th>}*
+*{<th>Delete</th>}*
+*{</tr>}*
+*{</thead>}*
+*{<tbody>}*
+
+*{#{list items:resourceManagementList, as:'resourceManagement'}}*
+*{<tr id="${resourceManagement.id}">}*
+*{<td>${resourceManagement.contentTitle}</td>}*
+*{<td>${resourceManagement.categoryList}</td>}*
+*{<td>${resourceManagement.resourceVersion}</td>}*
+*{<td>${resourceManagement.updated_at}</td>}*
+*{<td>}*
+*{#{deadbolt.externalizedRestriction externalRestrictions:['Download ResourceManagement']}}*
+*{<a class="label label-sm label-warning"}*
+*{href="@{ResourceManagements.saveFile(resourceManagement?.filePath)}">Download</a>}*
+*{#{/deadbolt.externalizedRestriction}}*
+*{</td>}*
+*{<td>}*
+*{#{deadbolt.externalizedRestriction externalRestrictions:['Delete ResourceManagement']}}*
+*{<a class="label label-sm label-warning delete_resource" id="${resourceManagement.id}"><i}*
+*{class="icon-remove icon-white"></i>}*
+*{Delete</a>}*
+*{#{/deadbolt.externalizedRestriction}}*
+*{</td>}*
+*{</tr>}*
+*{#{/list}}*
+*{#{else}}*
+*{<tr>}*
+*{<td colspan="8">No User Available</td>}*
+*{</tr>}*
+*{#{/else}}*
+*{</tbody>}*
+*{</table>}*
+*{</div>}*
+*{</div>}*
+
+
+</body>
+
+</html>

@@ -77,35 +77,27 @@
 
         var genderId;
         var ageId;
+        var pollId;
 
-        ajaxcall(null,null)
-
-    });
-
-    function ajaxcall(gender,age){
 
         $.ajax({
 
             type: "GET",
-            data : {
-                gender : gender,
-                age : age
-            },
             url:  "/PollManagement/loadPollGraph",
 
             success: function(data) {
 
-               // console.log(data);
+                console.log(data);
 
                 pollgraphdesign(data);
 
+
             }
+
 
         });
 
-    }
-
-
+    });
 
     function pollgraphdesign(data){
 
@@ -114,11 +106,13 @@
                 '<div class="form-group">'+
                 '<div class="col-md-5" style="padding-left: 0">';
 
-       // console.log("function: " +data);
+        console.log("function: " +data);
 
         var graphInfo=data.split(";");
 
         for(var i=1;i<graphInfo.length;i+=8){
+
+            pollId= graphInfo[i+5];
 
             startdiv +=   '<p class="text-italic"><strong>Duration:</strong> ' + graphInfo[i+2] +' - ' +graphInfo[i+3] +'</p>'+
                     '<p class="text-italic"><strong>Total Days: ' + graphInfo[i+1]+'</strong></p>'+
@@ -149,7 +143,7 @@
                     '</div>'+
                     '<div class="col-md-8 btn btn-default">';
 
-                  var options= graphInfo[i+4];
+
 
                   var answer = graphInfo[i+6];
                    answer= answer.split(",");
@@ -162,8 +156,12 @@
                    startdiv +=  '</div>'+
                            '</div>'+
                            '<div class="form-group">'+
-                           '<div class="col-sm-12">'+
-                           '<img src="assets/img/chart.png" width="90%">'+
+                           '<div class="col-sm-12">';
+
+                   var options= graphInfo[i+4];
+
+
+                   startdiv +='<img src="assets/img/chart.png" width="90%">'+
                            '</div>'+
                            '</div>'+
                            '</div>'+
@@ -181,7 +179,7 @@
 
         $(".SEARCH").on("change", function() {
 
-           // console.log("changed");
+            console.log("changed");
 
             if (typeof $(this).find(":selected").attr("value") == "undefined") {
                 return;
@@ -190,11 +188,34 @@
                 genderId = $('#gender').find(":selected").attr("value");
                 ageId = $('#age').find(":selected").attr("value");
 
-                console.log("gender: " + genderId + " age: " + ageId);
+                console.log("gender: " + genderId + " age: " + ageId + " id: " + pollId);
 
-                ajaxcall(genderId,ageId);
+                ajaxcall(pollId,genderId,ageId);
 
         });
+
+
+    }
+
+
+    function ajaxcall(pollId,gender,age){
+
+        return $.ajax({
+            type: "GET",
+            url:  "/PollManagement/loadPollGraphResult",
+            data : {
+                gender : gender,
+                age : age,
+                pollId : pollId
+            },
+
+            success: function(data) {
+
+                console.log(data);
+            }
+        });
+
+
 
     }
 </script>

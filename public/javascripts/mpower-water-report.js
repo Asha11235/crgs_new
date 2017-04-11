@@ -33,6 +33,8 @@
     }
     
     function drawIssue(dataArray, id){
+
+        console.log(dataArray);
         var width = 1020, height = 500;
         var margin = {left: 240, right : 0, top: 70, bottom: 70}
         var verticalGap = 70;

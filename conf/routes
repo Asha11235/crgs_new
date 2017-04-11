@@ -72,6 +72,9 @@ GET		 reports/overallReport				Report.overallReport
 GET     /public/                                staticDir:public
 GET     /uploads/                               staticDir:uploads
 
+#Resource Download
+GET		/getfile						    	ResourceManagements.saveFile
+GET     /resources								ResourceManagements.resources
 
 #Data Management
 GET		 /datamanagement/schoollist				DataManagement.schoolList

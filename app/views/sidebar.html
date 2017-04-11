@@ -134,15 +134,17 @@
                             </a>
                         </li>
 						#{/deadbolt.externalizedRestriction}
-						
+
+                    #{deadbolt.externalizedRestriction externalRestrictions:['View Resource', 'Edit Resource']}
                         <li class="">
-                             <a href="@{ResourceManagement.resourceList()}">
+                            <a href="@{ResourceManagements.resourcesList()}">
                                 <i class="fa fa-file-o"></i>
                                 <span class="title">
                                     Resource Management
                                 </span>
                             </a>
                         </li>
+                    #{/deadbolt.externalizedRestriction}
 
                         #{deadbolt.externalizedRestriction externalRestrictions:['View NGO', 'Edit NGO']}
                         <li class="">
