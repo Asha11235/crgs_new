@@ -134,7 +134,10 @@
                                                 '<button type="submit" id="submitBtn" class="btn btn-sm black-background">VOTE</button>'+
                                             '</div>'+
                                             '<div class="col-md-7">'+
-                                               '<button type="submit" id="previousBtn" class="btn btn-sm black-background">PREVIOUS</button>'+
+                                              '<a href ="/pollGraph" class="btn btn-sm black-background">'+
+                                               'Previous'+
+                                               '</a>'+
+                                              /* '<button type="submit" id="previousBtn" href ="@{PollManagement.pollGraph()}" class="btn btn-sm black-background">PREVIOUS</button>'+*/
                                             '</div>'+
                                         '</div>'+
 
@@ -184,10 +187,10 @@
 					  savePollReply(gender,age,option , polliiid);
 	             });
                 
-                   $("#previousBtn").on("click",function(){ 
+              /*     $("#previousBtn").on("click",function(){
                    
                    //console.log("clickS");
-                   n++;
+                  /!* n++;
                    if(n> data.length-1){
                      n=0;
                      pollDesign(data,n);
@@ -196,8 +199,23 @@
                    
                      pollDesign(data,n);
                    }
-                  
-                  });   
+                  *!/
+
+                       $.ajax({
+
+                           type: "GET",
+                           url:  "/PollManagement/pollGraph",
+
+                           success: function(data) {
+
+                              console.log("load pollGraph");
+
+
+                           }
+
+                       });
+
+                  });*/
                                       
                                            
              }  

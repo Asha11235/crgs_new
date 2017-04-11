@@ -1,0 +1,200 @@
+#{extends 'main.html' /}
+<!-- BEGIN CONTENT -->
+<title>Previous Poll Results</title>
+            <!-- BEGIN PAGE CONTENT-->
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="form-horizontal">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="col-md-2" style="background-color: #f00; color: #fff; padding: 2px; font-weight: bold; font-size: 19px;">
+                                    Online Poll Result
+                                </div>
+
+                            </div>
+
+
+                     <div class="replace">
+                        #{list items:pollDefinationList, as:'poll'}
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-5" style="padding-left: 0">
+                                        <p class="text-italic"><strong>Duration:</strong> ${poll.startDate} -  ${poll.endDate}</p>
+                                        <p class="text-italic"><strong>Day(s):</strong> 2</p>
+                                    </div>
+                                    <div class="col-md-7" style="padding-left: 0">
+                                        <div class="col-md-6" style="padding-left: 0">
+                                        #{select 'ageList', value:0, items:ageList, labelProperty:'name', valueProperty:'id', class:'form-control pull-right', id:'age'}
+                                            #{option}Age#{/option}
+                                        #{/select}
+                                        </div>
+                                        <div class="col-md-6" style="padding-left: 0">
+                                        #{select 'gender', value:0, items:genderList, labelProperty:'name', valueProperty:'id', class:'form-control pull-right', id:'gender'}
+                                            #{option}Gender#{/option}
+                                        #{/select}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h3 class="form-section"> ${poll.title}</h3>
+                                <h5 class="pollid"> <strong>Poll ID:</strong>${poll.id}</h5>
+
+                                <div class="form-group">
+                                    <div class="col-sm-3 btn btn-default">
+                                        Total Vote: 2307
+                                    </div>
+                                    <div class="col-md-8 btn btn-default">
+                                        <div class="col-md-4">
+                                            Yes: 914
+                                        </div>
+                                        <div class="col-md-4">
+                                            No: 1297
+                                        </div>
+                                        <div class="col-md-4">
+                                            Not Known: 96
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <img src="assets/img/chart.png" width="90%">
+                                    </div>
+                                </div>
+                            </div>
+                        #{/list}
+                     </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- END PAGE CONTENT-->
+<script>
+
+    $(document).ready(function(){
+
+        var genderId;
+        var ageId;
+
+        ajaxcall(null,null)
+
+    });
+
+    function ajaxcall(gender,age){
+
+        $.ajax({
+
+            type: "GET",
+            data : {
+                gender : gender,
+                age : age
+            },
+            url:  "/PollManagement/loadPollGraph",
+
+            success: function(data) {
+
+               // console.log(data);
+
+                pollgraphdesign(data);
+
+            }
+
+        });
+
+    }
+
+
+
+    function pollgraphdesign(data){
+
+        var startdiv = '<div class="replace">'+
+                '<div class="col-md-6">'+
+                '<div class="form-group">'+
+                '<div class="col-md-5" style="padding-left: 0">';
+
+       // console.log("function: " +data);
+
+        var graphInfo=data.split(";");
+
+        for(var i=1;i<graphInfo.length;i+=8){
+
+            startdiv +=   '<p class="text-italic"><strong>Duration:</strong> ' + graphInfo[i+2] +' - ' +graphInfo[i+3] +'</p>'+
+                    '<p class="text-italic"><strong>Total Days: ' + graphInfo[i+1]+'</strong></p>'+
+                    '</div>'+
+                    '<div class="col-md-7" style="padding-left: 0">'+
+                    '<div class="col-md-6" style="padding-left: 0">'+
+                    '<select class="form-control SEARCH" id = "gender">'+
+                    '<option value>Gender</option>'+
+                    '<option value="1">Male</option>'+
+                    '<option value="2">Female</option>'+
+                    '<option value="3">Other</option>'+
+                    '</select>'+
+                    '</div>'+
+                    '<div class="col-md-6" style="padding-left: 0">'+
+                    '<select class="form-control SEARCH" id = "age">'+
+                    '<option value>Age</option>'+
+                    '<option value="1">Below 18</option>'+
+                    '<option value="2"> Above 18</option>'+
+                    '</select>'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>'+
+                    '<h3 class="form-section"> ' + graphInfo[i] +'</h3>'+
+                    '<h5 class="pollid"> <strong>Poll ID:</strong>' + graphInfo[i+5] +'</h5>'+
+
+                    '<div class="form-group">'+
+                    '<div class="col-sm-3 btn btn-default">' + graphInfo[i+7] +
+                    '</div>'+
+                    '<div class="col-md-8 btn btn-default">';
+
+                  var options= graphInfo[i+4];
+
+                  var answer = graphInfo[i+6];
+                   answer= answer.split(",");
+
+                   for(var j=1;j<answer.length;j++){
+
+                       startdiv += '<div class="col-md-4">' + answer[j] +'</div>';
+                   }
+
+                   startdiv +=  '</div>'+
+                           '</div>'+
+                           '<div class="form-group">'+
+                           '<div class="col-sm-12">'+
+                           '<img src="assets/img/chart.png" width="90%">'+
+                           '</div>'+
+                           '</div>'+
+                           '</div>'+
+                           '</div>';
+
+
+
+        }
+
+
+
+        $(".replace").html("");
+        $(".replace").html(startdiv);
+
+
+        $(".SEARCH").on("change", function() {
+
+           // console.log("changed");
+
+            if (typeof $(this).find(":selected").attr("value") == "undefined") {
+                return;
+            }
+
+                genderId = $('#gender').find(":selected").attr("value");
+                ageId = $('#age').find(":selected").attr("value");
+
+                console.log("gender: " + genderId + " age: " + ageId);
+
+                ajaxcall(genderId,ageId);
+
+        });
+
+    }
+</script>

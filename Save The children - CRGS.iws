@@ -2,22 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2e3f578-5dd9-4aaa-acd9-985ef7c759cf" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Save The children - CRGS.iml" afterPath="$PROJECT_DIR$/Save The children - CRGS.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Save The children - CRGS.ipr" afterPath="$PROJECT_DIR$/Save The children - CRGS.ipr" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/PollManagement/pollGraph.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Save The children - CRGS.iws" afterPath="$PROJECT_DIR$/Save The children - CRGS.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/PollManagement.java" afterPath="$PROJECT_DIR$/app/controllers/PollManagement.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/Reports.java" afterPath="$PROJECT_DIR$/app/controllers/Reports.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Sanitation.java" afterPath="$PROJECT_DIR$/app/models/Sanitation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/SchoolEnvironment.java" afterPath="$PROJECT_DIR$/app/models/SchoolEnvironment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/SportsRecreation.java" afterPath="$PROJECT_DIR$/app/models/SportsRecreation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Water.java" afterPath="$PROJECT_DIR$/app/models/Water.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/PollManagement/createPoll.html" afterPath="$PROJECT_DIR$/app/views/PollManagement/createPoll.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Reports/sanitationReport.html" afterPath="$PROJECT_DIR$/app/views/Reports/sanitationReport.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Reports/waterReport.html" afterPath="$PROJECT_DIR$/app/views/Reports/waterReport.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Secure/login.html" afterPath="$PROJECT_DIR$/app/views/Secure/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/PollDefination.java" afterPath="$PROJECT_DIR$/app/models/PollDefination.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/routes" afterPath="$PROJECT_DIR$/conf/routes" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/mpower-sidebar.js" afterPath="$PROJECT_DIR$/public/javascripts/mpower-sidebar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/report.js" afterPath="$PROJECT_DIR$/public/javascripts/report.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -41,55 +31,104 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Reports.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/Reports.java">
+      <file leaf-file-name="PollDefination.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/PollDefination.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="185" column="12" lean-forward="false" selection-start-line="185" selection-start-column="12" selection-end-line="185" selection-end-column="12" />
+            <state relative-caret-position="395">
+              <caret line="264" column="4" lean-forward="true" selection-start-line="264" selection-start-column="4" selection-end-line="264" selection-end-column="4" />
+              <folding>
+                <marker date="1491901711704" expanded="true" signature="1516:1924" ph="SELECT PollD... PollDefination" />
+                <marker date="1491901711704" expanded="true" signature="3886:4513" ph="SELECT NewCr... PollDefination" />
+                <marker date="1491901711704" expanded="true" signature="5792:5920" ph="SELECT count... PollVoteReply" />
+                <marker date="1491901711704" expanded="true" signature="5792:5921" ph="SELECT count... PollVoteReply" />
+                <marker date="1491901711704" expanded="true" signature="5792:5922" ph="SELECT count... PollVoteReply" />
+                <marker date="1491901711704" expanded="true" signature="5792:5924" ph="SELECT count... PollVoteReply" />
+                <marker date="1491901711704" expanded="true" signature="6399:6593" ph="SELECT count... PollVoteReply" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pollGraph.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/PollManagement/pollGraph.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1141">
+              <caret line="84" column="34" lean-forward="true" selection-start-line="84" selection-start-column="34" selection-end-line="84" selection-end-column="34" />
+              <folding>
+                <marker date="1491901830152" expanded="true" signature="4511:4526" ph="..." />
+                <marker date="1491901830152" expanded="true" signature="4971:4986" ph="..." />
+                <marker date="1491901830152" expanded="true" signature="5041:5056" ph="..." />
+                <marker date="1491901830152" expanded="true" signature="5469:5484" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/conf/routes">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1710">
+              <caret line="95" column="79" lean-forward="false" selection-start-line="95" selection-start-column="79" selection-end-line="95" selection-end-column="79" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Water.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/Water.java">
+      <file leaf-file-name="mpower-sidebar.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/mpower-sidebar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="159" column="53" lean-forward="false" selection-start-line="159" selection-start-column="53" selection-end-line="159" selection-end-column="53" />
-              <folding>
-                <element signature="e#13920#13934#0" expanded="true" />
-                <marker date="1491740438610" expanded="true" signature="3283:3353" ph="Water join S... " />
-                <marker date="1491740438610" expanded="true" signature="3790:4096" ph="select count... missingValue" />
-                <marker date="1491740438610" expanded="true" signature="6438:6488" ph="select count... missingValue" />
-                <marker date="1491740438610" expanded="true" signature="8321:8379" ph="select count... missingValue" />
-                <marker date="1491740438610" expanded="true" signature="10637:10710" ph="select count... missingValue" />
-              </folding>
+            <state relative-caret-position="369">
+              <caret line="236" column="18" lean-forward="true" selection-start-line="231" selection-start-column="16" selection-end-line="236" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SportsRecreation.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/models/SportsRecreation.java">
+      <file leaf-file-name="waterReport.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/Reports/waterReport.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="98" column="50" lean-forward="false" selection-start-line="98" selection-start-column="50" selection-end-line="98" selection-end-column="50" />
-              <folding>
-                <marker date="1491742466558" expanded="true" signature="3022:3114" ph="SportsRecrea... " />
-                <marker date="1491742466558" expanded="true" signature="3553:3823" ph="select count... missingValue" />
-                <marker date="1491742466558" expanded="true" signature="5590:5654" ph="select count... missingValue" />
-                <marker date="1491742466558" expanded="true" signature="8655:8723" ph="select count... missingValue" />
-                <marker date="1491742466558" expanded="true" signature="11759:11836" ph="select count... missingValue" />
-              </folding>
+            <state relative-caret-position="461">
+              <caret line="249" column="19" lean-forward="false" selection-start-line="249" selection-start-column="10" selection-end-line="249" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="report.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/report.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="36" column="68" lean-forward="true" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PollManagement.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/PollManagement.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="367">
+              <caret line="323" column="46" lean-forward="false" selection-start-line="323" selection-start-column="46" selection-end-line="323" selection-end-column="46" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>console.log</find>
+      <find>hidden</find>
       <find>sani</find>
+      <find>form</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -106,20 +145,23 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/conf/routes" />
         <option value="$PROJECT_DIR$/conf/application.conf" />
         <option value="/opt/play/modules/secure/app/controllers/Secure.java" />
         <option value="$PROJECT_DIR$/app/views/Secure/login.html" />
-        <option value="$PROJECT_DIR$/public/javascripts/mpower-sidebar.js" />
-        <option value="$PROJECT_DIR$/app/models/PollDefination.java" />
         <option value="$PROJECT_DIR$/app/views/Reports/waterReport.html" />
         <option value="$PROJECT_DIR$/app/views/Reports/sanitationReport.html" />
         <option value="$PROJECT_DIR$/app/controllers/Reports.java" />
         <option value="$PROJECT_DIR$/public/javascripts/report.js" />
-        <option value="$PROJECT_DIR$/app/models/Water.java" />
         <option value="$PROJECT_DIR$/app/models/Sanitation.java" />
         <option value="$PROJECT_DIR$/app/models/SchoolEnvironment.java" />
         <option value="$PROJECT_DIR$/app/models/SportsRecreation.java" />
+        <option value="$PROJECT_DIR$/app/views/PollManagement/createPoll.html" />
+        <option value="$PROJECT_DIR$/public/javascripts/mpower-sidebar.js" />
+        <option value="$PROJECT_DIR$/conf/routes" />
+        <option value="$PROJECT_DIR$/app/models/Water.java" />
+        <option value="$PROJECT_DIR$/app/models/PollDefination.java" />
+        <option value="$PROJECT_DIR$/app/controllers/PollManagement.java" />
+        <option value="$PROJECT_DIR$/app/views/PollManagement/pollGraph.html" />
       </list>
     </option>
   </component>
@@ -152,6 +194,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -302,16 +345,42 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PollManagement" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Save The children - CRGS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Save The children - CRGS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crgs_new" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Save The children - CRGS.ipr" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -736,11 +805,13 @@
       <workItem from="1491456724897" duration="17015000" />
       <workItem from="1491716059988" duration="117000" />
       <workItem from="1491716469241" duration="16841000" />
+      <workItem from="1491801203563" duration="19465000" />
+      <workItem from="1491886622858" duration="7073000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34122000" />
+    <option name="totallyTimeSpent" value="60714000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="0" />
@@ -760,10 +831,9 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.043110084" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -775,6 +845,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -821,6 +892,73 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/views/Reports/waterReport.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="249" column="23" lean-forward="false" selection-start-line="249" selection-start-column="23" selection-end-line="249" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/report.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/mpower-water-report.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Sanitation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1039">
+          <caret line="93" column="15" lean-forward="false" selection-start-line="87" selection-start-column="12" selection-end-line="93" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/SchoolEnvironment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="153" column="47" lean-forward="false" selection-start-line="153" selection-start-column="47" selection-end-line="153" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/SportsRecreation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="98" column="50" lean-forward="false" selection-start-line="98" selection-start-column="50" selection-end-line="98" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/Reports.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1332">
+          <caret line="133" column="0" lean-forward="true" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Water.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="894" column="0" lean-forward="true" selection-start-line="894" selection-start-column="0" selection-end-line="894" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <marker date="1491743044134" expanded="true" signature="3283:3353" ph="Water join S... " />
+            <marker date="1491743044134" expanded="true" signature="3790:4096" ph="select count... missingValue" />
+            <marker date="1491743044134" expanded="true" signature="6438:6488" ph="select count... missingValue" />
+            <marker date="1491743044134" expanded="true" signature="8321:8379" ph="select count... missingValue" />
+            <marker date="1491743044134" expanded="true" signature="10637:10710" ph="select count... missingValue" />
+            <marker date="1491743044134" expanded="true" signature="15272:15275" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/Reports.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1746">
@@ -833,13 +971,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1491740590466" expanded="true" signature="3660:3740" ph="Sanitation j... " />
-            <marker date="1491740590466" expanded="true" signature="4179:4415" ph="select count... missingValue" />
-            <marker date="1491740590466" expanded="true" signature="6258:6317" ph="select count... missingValue" />
-            <marker date="1491740590466" expanded="true" signature="10594:10662" ph="select count... missingValue" />
-            <marker date="1491740590466" expanded="true" signature="12897:12973" ph="select count... missingValue" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -847,7 +978,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1458">
           <caret line="81" column="82" lean-forward="false" selection-start-line="81" selection-start-column="82" selection-end-line="81" selection-end-column="82" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -855,16 +985,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <element signature="e#6326#6345#0#HTML" expanded="false" />
-            <element signature="e#6502#6521#0#HTML" expanded="false" />
-            <element signature="e#6711#6730#0#HTML" expanded="false" />
-            <element signature="e#6888#6907#0#HTML" expanded="false" />
-            <element signature="e#7081#7107#0#HTML" expanded="false" />
-            <element signature="e#7545#7571#0#HTML" expanded="false" />
-            <element signature="e#7997#8023#0#HTML" expanded="false" />
-            <element signature="e#8383#8409#0#HTML" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -872,7 +992,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -880,7 +999,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2088">
           <caret line="116" column="26" lean-forward="false" selection-start-line="116" selection-start-column="26" selection-end-line="116" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -889,12 +1007,13 @@
         <state relative-caret-position="1674">
           <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
           <folding>
-            <element signature="e#13920#13934#0" expanded="true" />
-            <marker date="1491740438610" expanded="true" signature="3283:3353" ph="Water join S... " />
-            <marker date="1491740438610" expanded="true" signature="3790:4096" ph="select count... missingValue" />
-            <marker date="1491740438610" expanded="true" signature="6438:6488" ph="select count... missingValue" />
-            <marker date="1491740438610" expanded="true" signature="8321:8379" ph="select count... missingValue" />
-            <marker date="1491740438610" expanded="true" signature="10637:10710" ph="select count... missingValue" />
+            <element signature="imports" expanded="false" />
+            <marker date="1491743044134" expanded="true" signature="3283:3353" ph="Water join S... " />
+            <marker date="1491743044134" expanded="true" signature="3790:4096" ph="select count... missingValue" />
+            <marker date="1491743044134" expanded="true" signature="6438:6488" ph="select count... missingValue" />
+            <marker date="1491743044134" expanded="true" signature="8321:8379" ph="select count... missingValue" />
+            <marker date="1491743044134" expanded="true" signature="10637:10710" ph="select count... missingValue" />
+            <marker date="1491743044134" expanded="true" signature="15272:15275" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -911,13 +1030,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1491740590466" expanded="true" signature="3660:3740" ph="Sanitation j... " />
-            <marker date="1491740590466" expanded="true" signature="4179:4415" ph="select count... missingValue" />
-            <marker date="1491740590466" expanded="true" signature="6258:6317" ph="select count... missingValue" />
-            <marker date="1491740590466" expanded="true" signature="10594:10662" ph="select count... missingValue" />
-            <marker date="1491740590466" expanded="true" signature="12897:12973" ph="select count... missingValue" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -925,7 +1037,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1458">
           <caret line="81" column="82" lean-forward="false" selection-start-line="81" selection-start-column="82" selection-end-line="81" selection-end-column="82" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -933,16 +1044,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <element signature="e#6326#6345#0#HTML" expanded="false" />
-            <element signature="e#6502#6521#0#HTML" expanded="false" />
-            <element signature="e#6711#6730#0#HTML" expanded="false" />
-            <element signature="e#6888#6907#0#HTML" expanded="false" />
-            <element signature="e#7081#7107#0#HTML" expanded="false" />
-            <element signature="e#7545#7571#0#HTML" expanded="false" />
-            <element signature="e#7997#8023#0#HTML" expanded="false" />
-            <element signature="e#8383#8409#0#HTML" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -950,7 +1051,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -958,7 +1058,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2088">
           <caret line="116" column="26" lean-forward="false" selection-start-line="116" selection-start-column="26" selection-end-line="116" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -967,12 +1066,13 @@
         <state relative-caret-position="1674">
           <caret line="93" column="0" lean-forward="true" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
           <folding>
-            <element signature="e#13920#13934#0" expanded="true" />
-            <marker date="1491740438610" expanded="true" signature="3283:3353" ph="Water join S... " />
-            <marker date="1491740438610" expanded="true" signature="3790:4096" ph="select count... missingValue" />
-            <marker date="1491740438610" expanded="true" signature="6438:6488" ph="select count... missingValue" />
-            <marker date="1491740438610" expanded="true" signature="8321:8379" ph="select count... missingValue" />
-            <marker date="1491740438610" expanded="true" signature="10637:10710" ph="select count... missingValue" />
+            <element signature="imports" expanded="false" />
+            <marker date="1491743044134" expanded="true" signature="3283:3353" ph="Water join S... " />
+            <marker date="1491743044134" expanded="true" signature="3790:4096" ph="select count... missingValue" />
+            <marker date="1491743044134" expanded="true" signature="6438:6488" ph="select count... missingValue" />
+            <marker date="1491743044134" expanded="true" signature="8321:8379" ph="select count... missingValue" />
+            <marker date="1491743044134" expanded="true" signature="10637:10710" ph="select count... missingValue" />
+            <marker date="1491743044134" expanded="true" signature="15272:15275" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -988,13 +1088,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1890">
           <caret line="105" column="0" lean-forward="true" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/conf/routes">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1026,57 +1119,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/PollManagement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4315">
-          <caret line="287" column="37" lean-forward="false" selection-start-line="287" selection-start-column="29" selection-end-line="287" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/mpower-sidebar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="22" column="10" lean-forward="false" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/PollDefination.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="116" column="51" lean-forward="true" selection-start-line="114" selection-start-column="12" selection-end-line="116" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/Reports/sanitationReport.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="547">
           <caret line="211" column="23" lean-forward="false" selection-start-line="211" selection-start-column="23" selection-end-line="211" selection-end-column="23" />
-          <folding>
-            <element signature="e#6326#6345#0#HTML" expanded="false" />
-            <element signature="e#6502#6521#0#HTML" expanded="false" />
-            <element signature="e#6711#6730#0#HTML" expanded="false" />
-            <element signature="e#6888#6907#0#HTML" expanded="false" />
-            <element signature="e#7081#7107#0#HTML" expanded="false" />
-            <element signature="e#7545#7571#0#HTML" expanded="false" />
-            <element signature="e#7997#8023#0#HTML" expanded="false" />
-            <element signature="e#8383#8409#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Reports/waterReport.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="249" column="23" lean-forward="false" selection-start-line="249" selection-start-column="23" selection-end-line="249" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/report.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1084,15 +1130,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/Reports.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="185" column="12" lean-forward="false" selection-start-line="185" selection-start-column="12" selection-end-line="185" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1100,13 +1137,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1039">
           <caret line="93" column="15" lean-forward="false" selection-start-line="87" selection-start-column="12" selection-end-line="93" selection-end-column="15" />
-          <folding>
-            <marker date="1491740590466" expanded="true" signature="3660:3740" ph="Sanitation j... " />
-            <marker date="1491740590466" expanded="true" signature="4179:4415" ph="select count... missingValue" />
-            <marker date="1491740590466" expanded="true" signature="6258:6317" ph="select count... missingValue" />
-            <marker date="1491740590466" expanded="true" signature="10594:10662" ph="select count... missingValue" />
-            <marker date="1491740590466" expanded="true" signature="12897:12973" ph="select count... missingValue" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1114,42 +1144,176 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="153" column="47" lean-forward="false" selection-start-line="153" selection-start-column="47" selection-end-line="153" selection-end-column="47" />
-          <folding>
-            <marker date="1491742144242" expanded="true" signature="3226:3320" ph="SchoolEnviro... " />
-            <marker date="1491742144242" expanded="true" signature="3759:4086" ph="select count... missingValue" />
-            <marker date="1491742144242" expanded="true" signature="6109:6173" ph="select count... missingValue" />
-            <marker date="1491742144242" expanded="true" signature="8742:8802" ph="select count... missingValue" />
-            <marker date="1491742144242" expanded="true" signature="11165:11241" ph="select count... missingValue" />
-            <marker date="1491742144242" expanded="true" signature="13635:13719" ph="select count... missingValue" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Water.java">
+    <entry file="file://$PROJECT_DIR$/app/controllers/Reports.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="159" column="53" lean-forward="false" selection-start-line="159" selection-start-column="53" selection-end-line="159" selection-end-column="53" />
-          <folding>
-            <element signature="e#13920#13934#0" expanded="true" />
-            <marker date="1491740438610" expanded="true" signature="3283:3353" ph="Water join S... " />
-            <marker date="1491740438610" expanded="true" signature="3790:4096" ph="select count... missingValue" />
-            <marker date="1491740438610" expanded="true" signature="6438:6488" ph="select count... missingValue" />
-            <marker date="1491740438610" expanded="true" signature="8321:8379" ph="select count... missingValue" />
-            <marker date="1491740438610" expanded="true" signature="10637:10710" ph="select count... missingValue" />
-          </folding>
+        <state relative-caret-position="18">
+          <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/SportsRecreation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
+        <state relative-caret-position="18">
           <caret line="98" column="50" lean-forward="false" selection-start-line="98" selection-start-column="50" selection-end-line="98" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/PollQuestionOption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/PollGraph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="20" lean-forward="true" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/PollManagement/createPoll.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="121" column="82" lean-forward="false" selection-start-line="121" selection-start-column="82" selection-end-line="121" selection-end-column="82" />
           <folding>
-            <marker date="1491742466558" expanded="true" signature="3022:3114" ph="SportsRecrea... " />
-            <marker date="1491742466558" expanded="true" signature="3553:3823" ph="select count... missingValue" />
-            <marker date="1491742466558" expanded="true" signature="5590:5654" ph="select count... missingValue" />
-            <marker date="1491742466558" expanded="true" signature="8655:8723" ph="select count... missingValue" />
-            <marker date="1491742466558" expanded="true" signature="11759:11836" ph="select count... missingValue" />
+            <marker date="1491385208770" expanded="true" signature="8996:9007" ph="..." />
+            <marker date="1491385208770" expanded="true" signature="9285:9294" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1242">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/RegisterSchool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="35" column="8" lean-forward="false" selection-start-line="35" selection-start-column="8" selection-end-line="39" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/Reports/caseReport.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="43" column="25" lean-forward="true" selection-start-line="30" selection-start-column="12" selection-end-line="46" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/RegisterSchool/schoolregister.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4338">
+          <caret line="241" column="107" lean-forward="false" selection-start-line="241" selection-start-column="48" selection-end-line="241" selection-end-column="196" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/sidebar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="236" column="39" lean-forward="true" selection-start-line="236" selection-start-column="39" selection-end-line="236" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/PollManagement/listPoll.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1332">
+          <caret line="74" column="67" lean-forward="false" selection-start-line="74" selection-start-column="51" selection-end-line="74" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/routes">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1710">
+          <caret line="95" column="79" lean-forward="false" selection-start-line="95" selection-start-column="79" selection-end-line="95" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Water.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3780">
+          <caret line="232" column="46" lean-forward="false" selection-start-line="232" selection-start-column="8" selection-end-line="232" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <marker date="1491743044134" expanded="true" signature="3283:3353" ph="Water join S... " />
+            <marker date="1491743044134" expanded="true" signature="3790:4096" ph="select count... missingValue" />
+            <marker date="1491743044134" expanded="true" signature="6438:6488" ph="select count... missingValue" />
+            <marker date="1491743044134" expanded="true" signature="8321:8379" ph="select count... missingValue" />
+            <marker date="1491743044134" expanded="true" signature="10637:10710" ph="select count... missingValue" />
+            <marker date="1491743044134" expanded="true" signature="15272:15275" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/Reports/waterReport.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="461">
+          <caret line="249" column="19" lean-forward="false" selection-start-line="249" selection-start-column="10" selection-end-line="249" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/report.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="36" column="68" lean-forward="true" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/mpower-sidebar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="236" column="18" lean-forward="true" selection-start-line="231" selection-start-column="16" selection-end-line="236" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/PollDefination.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="264" column="4" lean-forward="true" selection-start-line="264" selection-start-column="4" selection-end-line="264" selection-end-column="4" />
+          <folding>
+            <marker date="1491901711704" expanded="true" signature="1516:1924" ph="SELECT PollD... PollDefination" />
+            <marker date="1491901711704" expanded="true" signature="3886:4513" ph="SELECT NewCr... PollDefination" />
+            <marker date="1491901711704" expanded="true" signature="5792:5920" ph="SELECT count... PollVoteReply" />
+            <marker date="1491901711704" expanded="true" signature="5792:5921" ph="SELECT count... PollVoteReply" />
+            <marker date="1491901711704" expanded="true" signature="5792:5922" ph="SELECT count... PollVoteReply" />
+            <marker date="1491901711704" expanded="true" signature="5792:5924" ph="SELECT count... PollVoteReply" />
+            <marker date="1491901711704" expanded="true" signature="6399:6593" ph="SELECT count... PollVoteReply" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/PollManagement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="323" column="46" lean-forward="false" selection-start-line="323" selection-start-column="46" selection-end-line="323" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/PollManagement/pollGraph.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1141">
+          <caret line="84" column="34" lean-forward="true" selection-start-line="84" selection-start-column="34" selection-end-line="84" selection-end-column="34" />
+          <folding>
+            <marker date="1491901830152" expanded="true" signature="4511:4526" ph="..." />
+            <marker date="1491901830152" expanded="true" signature="4971:4986" ph="..." />
+            <marker date="1491901830152" expanded="true" signature="5041:5056" ph="..." />
+            <marker date="1491901830152" expanded="true" signature="5469:5484" ph="..." />
           </folding>
         </state>
       </provider>

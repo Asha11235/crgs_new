@@ -295,6 +295,51 @@ public static void voteReply(String gender, String option, String age,String pol
 		
 			return gson.toJson(mp);
 		}
+
+		public static void pollGraph(){
+
+
+	        List<PollDefination> pollDefinationList = PollDefination.find(" status= 0 ").fetch();
+			List<String> ageList = new ArrayList<String>();
+
+			ageList.add(0,"All");
+			ageList.add(1, "Below 18'+");
+			ageList.add(2, "Above 18'+");
+
+			List<String> genderList = new ArrayList<String>();
+
+			genderList.add(0,"All");
+			genderList.add(1, "Male");
+			genderList.add(2, "Female");
+			genderList.add(3,"Other");
+
+	         render(pollDefinationList,ageList,genderList);
+
+		//render();
+			}
+
+			 public static String loadPollGraph(String gender , String age) throws SQLException {
+
+
+			   Logger.info("gender: " + gender + " age: " + age);
+
+
+				 String mp = "";
+
+				 mp = PollDefination.getPollGraphData();
+
+				 Gson gson = new Gson();
+
+				 return gson.toJson(mp);
+
+			 }
+
+			public static String loadPollGraphResult(String pollId,String gender,String age){
+
+
+
+			return null;
+			}
   
 	
 	

@@ -86,13 +86,14 @@ GET 	 /home/shakil/WorkspacePerforce/dev_java/crgs/uploads/{fileName}     MediaA
 
 
 # new link for external weblink
-GET		/dashboard					    Dashboard.list
-GET		/pollgraph					    PollGraph.index
+        GET		/dashboard					    Dashboard.list
+
 
 #School Registeration Router
 
 GET     /registerschool								RegisterSchool.schoolregister();
 GET     /submitCase							        RegisterSchool.submitCase();
+GET     /pollGraph                                  PollManagement.pollGraph();
 GET     /resourcelist								RegisterSchool.resourceList();
 GET     /createPoll                                 PollManagement.createPoll
 GET     /Secure/loadPoll                    		Secure.loadPoll
