@@ -100,6 +100,7 @@ GET     /pollGraph                                  PollManagement.pollGraph();
 GET     /resourcelist								RegisterSchool.resourceList();
 GET     /createPoll                                 PollManagement.createPoll
 GET     /Secure/loadPoll                    		Secure.loadPoll
+GET     /Secure/pollGraph                    		Secure.pollGraph
 POST    /Secure/voteReply                   Secure.voteReply
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}

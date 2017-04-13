@@ -1,7 +1,17 @@
-#{extends 'main.html' /}
+#{include 'head.html' /}
 <!-- BEGIN CONTENT -->
 <title>Previous Poll Results</title>
+<head>
+<style>
+    body {
+        background-color: white;
+    }
+
+
+</style>
+</head>
             <!-- BEGIN PAGE CONTENT-->
+<body>
             <div class="row">
                 <div class="col-md-12">
                     <form class="form-horizontal">
@@ -70,6 +80,7 @@
                     </form>
                 </div>
             </div>
+
             <!-- END PAGE CONTENT-->
 <script>
 
@@ -85,7 +96,7 @@
         $.ajax({
 
             type: "GET",
-            url:  "/PollManagement/loadPollGraph",
+            url:  "/Secure/loadPollGraph",
 
             success: function(data) {
 
@@ -203,7 +214,7 @@
 
         return $.ajax({
             type: "GET",
-            url:  "/PollManagement/loadPollGraphResult",
+            url:  "/Secure/loadPollGraphResult",
             data : {
                 gender : gender,
                 age : age,
@@ -380,7 +391,7 @@
 
             var canvas = d3.select(id).append("svg").attr("width",width).attr("height", height);
 
-            canvas.append("rect").attr("width", width).attr("height",height).attr("fill","#00FFFFFF");
+            //canvas.append("rect").attr("width", width).attr("height",height).attr("fill","#00FFFFFF");
 
             canvas.append("line").attr("x1", margin.left).attr("y1", height - margin.bottom).attr("x2", width)
                     .attr("y2", height - margin.bottom).attr("stroke-width", 2).attr("stroke", "#A6A7A6");
@@ -420,3 +431,6 @@
 
 
 </script>
+
+
+</body>
