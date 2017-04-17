@@ -8,6 +8,7 @@ javadoc
 # except for .gitignore
 !.gitignore
 # Ignore Play! working directory #
+CRGS.iws
 db
 eclipse
 log
