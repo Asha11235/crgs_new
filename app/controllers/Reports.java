@@ -259,7 +259,7 @@ public static void voteReply(String gender, String option, String age,String pol
 		
 		pollvotereply.gender=gender;
 		pollvotereply.age=age;
-		pollvotereply.poll=polldef;
+		//pollvotereply.poll=polldef;
 		pollvotereply.answer=option;
 		
 		Logger.info("optn: " +  option);

@@ -375,6 +375,7 @@
         url:  "/Secure/loadPoll",
         
         success: function(data) {
+            console.log("got it");
         console.log(data);
         var json = JSON.parse(data);
          var pollIdarray;
@@ -497,8 +498,10 @@
                                                 '<button type="submit" id="submitBtn" class="btn btn-sm black-background">VOTE</button>'+
                                             '</label>'+
                                             '<label class="col-md-offset-2 control-label">'+
-                                               '<button type="submit" id="previousBtn" class="btn btn-sm black-background">PREVIOUS</button>'+
-                                            '</label>'+
+                                          '<a href ="/secure/pollGraph" class="btn btn-sm black-background">'+
+                                          'Previous'+
+                                          '</a>'+
+                                          '</label>'+
                                         '</div>'+
                                           '<div class="form-group">'+
                                            ' <label class="col-md-offset-3 control-label">'+
@@ -541,21 +544,6 @@
 
 					  savePollReply(gender,age,option , polliiid);
 	             });
-
-                   $("#previousBtn").on("click",function(){
-
-                   console.log("clickS");
-                   n++;
-                   if(n> data.length-1){
-                     n=0;
-                     pollDesign(data,n);
-                   }
-                   else if(n < data.length-1){
-
-                     pollDesign(data,n);
-                   }
-
-                  });
 
 
              }

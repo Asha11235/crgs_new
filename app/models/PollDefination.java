@@ -273,6 +273,7 @@ public class PollDefination extends Model{
 		ResultSet rs1=null;
 		String whereclause="";
 		String msg="";
+		int flag=0;
 
 		qString = " SELECT PollDefination.id , " +
 				" PollDefination.title ,\n" +
@@ -292,12 +293,12 @@ public class PollDefination extends Model{
 
 		if(gender.length()!=0){
 
-			whereclause += " and PollVoteReply.gender=" + gender;
+			whereclause += " and PollVoteReply.gender= '" + gender + "'";
 		}
 
 		if(age.length()!=0){
 
-			whereclause += " and PollVoteReply.age=" + age;
+			whereclause += " and PollVoteReply.age='" + age + "'";
 		}
 
 
@@ -307,8 +308,6 @@ public class PollDefination extends Model{
 		Logger.info("qString: "+qString);
 		rs = queryForExecution.executeQuery();
 
-
-
 		String title=null;
 		String answer=null;
 		String startdate=null;
@@ -316,7 +315,6 @@ public class PollDefination extends Model{
 		String options=null;
 		String totaldays=null;
 		String answerammount=null;
-
 
 		while (rs.next()) {
 
@@ -329,111 +327,175 @@ public class PollDefination extends Model{
 
 			msg = msg + ";" + title + ";" + totaldays +  ";" + startdate + ";" + enddate + ";" + options + " ; " + pollId ;
 
+			flag++;
+
 		}
 
-		//String[] answerList = answer.split(",");
+		Logger.info("flag: " +flag);
 
-		answer = answer.substring(1, answer.length()-1);
-		answer=answer.trim();
+		if(flag!=0) {
 
-		//Logger.info(answer);
-		String[] optionList = answer.split(",");
 
-		//Logger.info("optionList: "+optionList.length);
+			String[] answerList = answer.split(",");
 
-		String answerammount2="";
-		for (int i = 0; i < optionList.length; i++) {
-			String var1 = optionList[i].substring(1, optionList[i].length() - 1);
-			String var = var1.trim();
-			//Logger.info(var);
+			answer = answer.substring(1, answer.length() - 1);
+			answer = answer.trim();
 
-			String qString2 = "SELECT count(PollVoteReply.answer) as countinganswer" +
+			//Logger.info(answer);
+			String[] optionList = answer.split(",");
+
+			//Logger.info("optionList: "+optionList.length);
+
+			String answerammount2 = "";
+			for (int i = 0; i < optionList.length; i++) {
+				String var1 = optionList[i].substring(1, optionList[i].length() - 1);
+				String var = var1.trim();
+				//Logger.info(var);
+
+				String qString2 = "SELECT count(PollVoteReply.answer) as countinganswer" +
+						" FROM PollVoteReply " +
+						" WHERE PollVoteReply.answer LIKE ?";
+
+				//Logger.info("qString2" + qString2);
+
+				qString2 += whereclause;
+				PreparedStatement queryForExecution2 = conn.prepareStatement(qString2);
+
+				queryForExecution2.setString(1, "%" + var + "%");
+
+				ResultSet rs3 = queryForExecution2.executeQuery();
+
+				while (rs3.next()) {
+
+					answerammount = rs3.getString("countinganswer");
+					answerammount2 = answerammount2 + "," + var + ":" + answerammount;
+
+
+				}
+
+
+			}
+
+			msg = msg + ";" + answerammount2;
+
+			String[] alloption = options.split(",");
+
+
+			Logger.info(String.valueOf(alloption.length));
+
+
+			//String answerammount4="";
+			String answerammount4 = null;
+			for (int i = 0; i < alloption.length; i++) {
+				//String var1 = optionList[i].substring(1, optionList[i].length() - 1);
+				String var = alloption[i].trim();
+				Logger.info(var);
+
+				String qString4 = "SELECT count(PollVoteReply.answer) as countinganswer" +
+						" FROM PollVoteReply " +
+						" WHERE PollVoteReply.answer LIKE ?";
+
+
+				qString4 += whereclause;
+				PreparedStatement queryForExecution2 = conn.prepareStatement(qString4);
+
+				queryForExecution2.setString(1, "%" + var + "%");
+
+				//Logger.info("qString2" + qString4);
+
+				ResultSet rs3 = queryForExecution2.executeQuery();
+
+
+				while (rs3.next()) {
+
+					String ans = rs3.getString("countinganswer");
+					//Logger.info(answerammount4);
+					answerammount4 = answerammount4 + "," + ans;
+					Logger.info(answerammount4);
+
+				}
+
+				Logger.info(answerammount4);
+			}
+
+			msg = msg + ";" + answerammount4;
+
+
+			String qString3 = "SELECT count(PollVoteReply.answer) as counting " +
 					" FROM PollVoteReply " +
-					" WHERE PollVoteReply.answer LIKE ?";
+					" JOIN PollDefination ON PollVoteReply.poll_id= PollDefination.id " +
+					" WHERE PollDefination.id  =" + pollId;
 
-			//Logger.info("qString2" + qString2);
+			qString3 += whereclause;
 
-			qString2 += whereclause ;
-			PreparedStatement queryForExecution2 = conn.prepareStatement(qString2);
+			PreparedStatement queryForExecution3 = conn.prepareStatement(qString3);
+			ResultSet rs2 = queryForExecution3.executeQuery();
 
-			queryForExecution2.setString(1, "%"+var+"%");
+			while (rs2.next()) {
 
-			ResultSet rs3 = queryForExecution2.executeQuery();
-
-			while (rs3.next()) {
-
-				answerammount = rs3.getString("countinganswer");
-				answerammount2 = answerammount2 + "," +var + ":" + answerammount ;
-
+				answerammount = rs2.getString("counting");
+				String answerammount3 = "Total Vote: " + answerammount;
+				msg = msg + ";" + answerammount3;
 
 			}
 
 
 		}
 
-		msg = msg  + ";" + answerammount2;
+		else if(flag==0){
+
+			msg="";
+
+			qString = " SELECT PollDefination.id , " +
+					" PollDefination.title ,\n" +
+					" PollDefination.startDate, \n" +
+					" PollDefination.endDate,\n" +
+					" DATEDIFF (\n" +
+					"        str_to_date(PollDefination.endDate, '%d/%m/%Y'),\n" +
+					"        str_to_date(PollDefination.startDate, '%d/%m/%Y')\n" +
+					"    ) AS datedifference , \n" +
+					" PollQuestionOption.options,\n" +
+					" PollVoteReply.answer\n" +
+					" FROM PollDefination\n" +
+					" JOIN PollQuestionOption ON PollQuestionOption.poll_id= PollDefination.id\n" +
+					" JOIN PollVoteReply ON PollVoteReply.poll_id= PollDefination.id\n" +
+					" WHERE PollDefination.status=0";
 
 
-		String[] alloption = options.split(",");
+			PreparedStatement queryForExecution5 = conn.prepareStatement(qString);
+			//Logger.info("qString: "+qString);
+			rs = queryForExecution5.executeQuery();
 
 
-		Logger.info(String.valueOf(alloption.length));
+
+			String title1=null;
+			String answer1=null;
+			String startdate1=null;
+			String enddate1=null;
+			String options1=null;
+			String pollId1=null;
+			String totaldays1=null;
+			String answerammount1=null;
 
 
-		String answerammount4="";
-		for (int i = 0; i < alloption.length; i++) {
-			//String var1 = optionList[i].substring(1, optionList[i].length() - 1);
-			String var = alloption[i].trim();
-			//Logger.info(var);
+			while (rs.next()) {
 
-			String qString4 = "SELECT count(PollVoteReply.answer) as countinganswer" +
-					" FROM PollVoteReply " +
-					" WHERE PollVoteReply.answer LIKE ?";
+				title1 = rs.getString("title");
+				totaldays1 = rs.getString("datedifference");
+				startdate1 = rs.getString("startDate");
+				enddate1 = rs.getString("endDate");
+				options1 = rs.getString("options");
+				answer1 = rs.getString("answer");
+				pollId = rs.getString("id");
 
-			Logger.info("qString2" + qString4);
-
-			qString4 += whereclause ;
-			PreparedStatement queryForExecution2 = conn.prepareStatement(qString4);
-
-			queryForExecution2.setString(1, "%"+var+"%");
-
-			ResultSet rs3 = queryForExecution2.executeQuery();
-
-			while (rs3.next()) {
-
-				answerammount4 = rs3.getString("countinganswer");
-				answerammount4 = answerammount4 + ","  + answerammount4 ;
-
+				msg = msg + ";" + title1 + ";" + totaldays1 +  ";" + startdate1 + ";" + enddate1 + ";" + options1 + " ; " + pollId ;
 
 			}
 
-
+			msg=msg + ";" + "," + "0" + ";" + "Total Vote: 0";
 		}
 
-		msg = msg  + ";" + answerammount4;
-
-
-
-
-		String	qString3="SELECT count(PollVoteReply.answer) as counting " +
-				" FROM PollVoteReply " +
-				" JOIN PollDefination ON PollVoteReply.poll_id= PollDefination.id "+
-				" WHERE PollDefination.id  =" + pollId;
-
-		qString3 += whereclause ;
-
-		PreparedStatement queryForExecution3 = conn.prepareStatement(qString3);
-		ResultSet rs2 = queryForExecution3.executeQuery();
-
-		while (rs2.next()) {
-
-			answerammount = rs2.getString("counting");
-			String answerammount3 = "Total Vote: " + answerammount;
-			msg = msg + ";" + answerammount3;
-
-		}
-
-		//Logger.info(msg);
+		Logger.info(msg);
 
 		return msg;
 	}

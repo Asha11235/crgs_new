@@ -37,7 +37,7 @@ public class Role extends Model implements models.deadbolt.Role {
 	}
 
 	// From Role Interface
-	@Override
+	//@Override
 	public String getRoleName() {
 		return this.name;
 	}

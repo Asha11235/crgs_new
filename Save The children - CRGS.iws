@@ -2,16 +2,275 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2e3f578-5dd9-4aaa-acd9-985ef7c759cf" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/ResourceManagement.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ResourceManagement/resourceList.html" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/SecurePoll.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/Secure/pollGraph.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/README.textile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/build.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/documentation/manual/home.textile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/lib/play-chronostamp.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/manifest" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/samples-and-tests/chronostamp-app/app/controllers/Application.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/samples-and-tests/chronostamp-app/app/jobs/Bootstrap.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/samples-and-tests/chronostamp-app/app/models/Article.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/samples-and-tests/chronostamp-app/app/models/Quote.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/samples-and-tests/chronostamp-app/app/views/Application/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/samples-and-tests/chronostamp-app/app/views/errors/404.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/samples-and-tests/chronostamp-app/app/views/errors/500.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/samples-and-tests/chronostamp-app/app/views/main.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/samples-and-tests/chronostamp-app/conf/application.conf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/samples-and-tests/chronostamp-app/conf/dependencies.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/samples-and-tests/chronostamp-app/conf/initial-data.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/samples-and-tests/chronostamp-app/conf/messages" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/samples-and-tests/chronostamp-app/conf/routes" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/samples-and-tests/chronostamp-app/public/images/favicon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/samples-and-tests/chronostamp-app/public/javascripts/jquery-1.5.2.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/samples-and-tests/chronostamp-app/public/stylesheets/main.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/samples-and-tests/chronostamp-app/test/Application.test.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/samples-and-tests/chronostamp-app/test/ApplicationTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/samples-and-tests/chronostamp-app/test/BasicTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/samples-and-tests/chronostamp-app/test/data.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/src/play.plugins" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/src/play/modules/chronostamp/ChronostampEnhancer.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/src/play/modules/chronostamp/ChronostampPlugin.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/chronostamp-0.1/src/play/modules/chronostamp/NoChronostamp.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/LICENSE.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/README.textile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/controllers/deadbolt/AbstractDeadboltHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/controllers/deadbolt/Deadbolt.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/controllers/deadbolt/DeadboltHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/controllers/deadbolt/ExternalRestrictions.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/controllers/deadbolt/ExternalizedRestrictionsAccessor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/controllers/deadbolt/JSON.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/controllers/deadbolt/Restrict.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/controllers/deadbolt/RestrictedResource.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/controllers/deadbolt/RestrictedResourcesHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/controllers/deadbolt/Restrictions.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/controllers/deadbolt/RoleHolderPresent.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/controllers/deadbolt/Unrestricted.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/controllers/deadbolt/XML.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/controllers/deadbolt/reports/DeadboltReporter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/models/deadbolt/AccessResult.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/models/deadbolt/ExternalizedRestriction.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/models/deadbolt/ExternalizedRestrictions.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/models/deadbolt/NullRoleHolder.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/models/deadbolt/Role.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/models/deadbolt/RoleHolder.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/models/deadbolt/reports/ControllerReport.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/models/deadbolt/reports/MethodReport.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/models/deadbolt/reports/ProjectReport.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/views/deadbolt/reports/DeadboltReporter/report.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/views/tags/deadbolt/externalizedRestriction.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/views/tags/deadbolt/restrict.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/views/tags/deadbolt/restrictedResource.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/app/views/tags/deadbolt/roleHolderPresent.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/build.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/commands.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/conf/messages" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/conf/routes" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/documentation/manual/home.textile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/lib/play-deadbolt.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/manifest" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/public/stylesheets/report.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/app/controllers/AccessControlPreferences.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/app/controllers/AclApplication.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/app/controllers/AclController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/app/controllers/AclDeadboltHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/app/controllers/AclRestrictedResourcesHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/app/jobs/AclTestDataLoader.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/app/model/AccessControlPreference.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/app/model/AclApplicationRole.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/app/model/AclUser.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/app/model/Photo.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/app/model/StatusUpdate.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/app/security/AccessChainHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/app/views/AccessControlPreferences/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/app/views/AclApplication/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/app/views/Secure/login.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/app/views/errors/404.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/app/views/errors/500.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/app/views/main.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/conf/application.conf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/conf/messages" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/conf/routes" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/public/images/favicon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/public/javascripts/jquery-1.4.2.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/acl/public/stylesheets/main.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/app/controllers/ContentTypeApplication.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/app/controllers/JSONController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/app/controllers/MyDeadboltHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/app/controllers/RootController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/app/controllers/XMLController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/app/models/MyRoleHolder.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/app/views/ContentTypeApplication/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/app/views/ContentTypeApplication/jsonContent.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/app/views/ContentTypeApplication/xmlContent.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/app/views/JSONController/jsonControllerResponse.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/app/views/JSONController/xmlResponseFromJSONControllerResponse.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/app/views/XMLController/jsonResponseFromXMLControllerResponse.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/app/views/XMLController/xmlControllerResponse.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/app/views/errors/403.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/app/views/errors/403.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/app/views/errors/404.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/app/views/errors/500.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/app/views/main.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/conf/application.conf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/conf/messages" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/conf/routes" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/public/images/favicon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/public/javascripts/jquery-1.4.2.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/content-types/public/stylesheets/main.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/integration-with-secure/app/controllers/Application.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/integration-with-secure/app/controllers/MyDeadboltHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/integration-with-secure/app/jobs/TestDataLoader.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/integration-with-secure/app/models/ApplicationRole.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/integration-with-secure/app/models/User.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/integration-with-secure/app/views/Application/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/integration-with-secure/app/views/Secure/login.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/integration-with-secure/app/views/errors/403.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/integration-with-secure/app/views/errors/404.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/integration-with-secure/app/views/errors/500.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/integration-with-secure/app/views/main.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/integration-with-secure/conf/application.conf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/integration-with-secure/conf/messages" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/integration-with-secure/conf/routes" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/integration-with-secure/public/images/favicon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/integration-with-secure/public/javascripts/jquery-1.4.2.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/integration-with-secure/public/stylesheets/main.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/controllers/AllowedRestrictedResourceClassSample.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/controllers/DenyRestrictedResourceClassSample.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/controllers/ExternalRestrictionSample.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/controllers/MyDeadboltHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/controllers/MyRestrictedResourcesHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/controllers/NegationSample.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/controllers/RestrictSample.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/controllers/RestrictedMethodsInRestrictedResourceClassSample.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/controllers/RestrictedResourceMethodsInRestrictedClassSample.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/controllers/RestrictedResourceMethodsSample.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/controllers/RestrictedResourceTagRestrictions.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/controllers/RestrictionsSample.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/controllers/TagExternalizedRestriction.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/controllers/TagRestrictions.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/controllers/Unrestricted.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/deadbolt/MyExternalizedRestriction.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/deadbolt/MyExternalizedRestrictions.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/deadbolt/MyExternalizedRestrictionsAccessor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/models/MyRole.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/models/MyRoleHolder.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/views/ExternalRestrictionSample/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/views/NegationSample/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/views/RestrictSample/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/views/RestrictedResourceMethodsSample/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/views/RestrictedResourceTagRestrictions/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/views/RestrictionsSample/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/views/TagExternalizedRestriction/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/views/TagRestrictions/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/views/Unrestricted/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/views/authorised.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/views/errors/404.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/views/errors/500.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/views/main.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/app/views/unauthorised.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/conf/application.conf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/conf/messages" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/conf/routes" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/public/images/favicon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/target/scala-2.9.1/cache/compile/copy-resources" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/target/scala-2.9.1/cache/update/inputs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/target/scala-2.9.1/cache/update/output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/target/streams/$global/compilers/$global/out" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/target/streams/$global/ivy-configuration/$global/out" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/target/streams/$global/ivy-sbt/$global/out" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/target/streams/$global/project-descriptors/$global/out" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/target/streams/$global/update/$global/out" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/target/streams/compile/$global/$global/data" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/target/streams/compile/compile-inputs/$global/out" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/target/streams/compile/compile/$global/out" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/target/streams/compile/copy-resources/$global/out" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/restriction-samples/target/streams/compile/run/$global/out" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-not-present/app/controllers/Index.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-not-present/app/controllers/MyDeadboltHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-not-present/app/controllers/MyRestrictedResourcesHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-not-present/app/controllers/RoleHolderPresentController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-not-present/app/controllers/RoleHolderPresentForMethodController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-not-present/app/deadbolt/MyExternalizedRestriction.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-not-present/app/deadbolt/MyExternalizedRestrictions.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-not-present/app/deadbolt/MyExternalizedRestrictionsAccessor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-not-present/app/views/Index/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-not-present/app/views/authorised.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-not-present/app/views/errors/404.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-not-present/app/views/errors/500.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-not-present/app/views/main.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-not-present/app/views/unauthorised.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-not-present/conf/application.conf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-not-present/conf/messages" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-not-present/conf/routes" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-not-present/public/images/favicon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-present/app/controllers/Index.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-present/app/controllers/MyDeadboltHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-present/app/controllers/MyRestrictedResourcesHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-present/app/controllers/RoleHolderPresentController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-present/app/controllers/SpecificRestrictionController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-present/app/deadbolt/MyExternalizedRestriction.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-present/app/deadbolt/MyExternalizedRestrictions.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-present/app/deadbolt/MyExternalizedRestrictionsAccessor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-present/app/models/MyRole.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-present/app/models/MyRoleHolder.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-present/app/views/Index/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-present/app/views/authorised.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-present/app/views/errors/404.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-present/app/views/errors/500.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-present/app/views/main.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-present/app/views/unauthorised.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-present/conf/application.conf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-present/conf/messages" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-present/conf/routes" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/role-holder-present/public/images/favicon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/unrestricted-samples/app/controllers/Index.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/unrestricted-samples/app/controllers/MyDeadboltHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/unrestricted-samples/app/controllers/MyRestrictedResourcesHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/unrestricted-samples/app/controllers/RestrictedController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/unrestricted-samples/app/controllers/UnrestrictedController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/unrestricted-samples/app/deadbolt/MyExternalizedRestriction.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/unrestricted-samples/app/deadbolt/MyExternalizedRestrictions.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/unrestricted-samples/app/deadbolt/MyExternalizedRestrictionsAccessor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/unrestricted-samples/app/models/MyRole.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/unrestricted-samples/app/models/MyRoleHolder.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/unrestricted-samples/app/views/Index/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/unrestricted-samples/app/views/authorised.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/unrestricted-samples/app/views/errors/404.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/unrestricted-samples/app/views/errors/500.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/unrestricted-samples/app/views/main.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/unrestricted-samples/app/views/unauthorised.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/unrestricted-samples/conf/application.conf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/unrestricted-samples/conf/messages" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/unrestricted-samples/conf/routes" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/samples-and-tests/unrestricted-samples/public/images/favicon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/modules/deadbolt-1.5.4/src/play.plugins" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README" afterPath="$PROJECT_DIR$/README" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Save The children - CRGS.iml" afterPath="$PROJECT_DIR$/Save The children - CRGS.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Save The children - CRGS.ipr" afterPath="$PROJECT_DIR$/Save The children - CRGS.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Save The children - CRGS.iws" afterPath="$PROJECT_DIR$/Save The children - CRGS.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/PollManagement.java" afterPath="$PROJECT_DIR$/app/controllers/PollManagement.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/AccessControlList.java" afterPath="$PROJECT_DIR$/app/controllers/AccessControlList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/PollGraph.java" afterPath="$PROJECT_DIR$/app/controllers/PollGraph.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/Reports.java" afterPath="$PROJECT_DIR$/app/controllers/Reports.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/ResourceManagements.java" afterPath="$PROJECT_DIR$/app/controllers/ResourceManagements.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Aco.java" afterPath="$PROJECT_DIR$/app/models/Aco.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/DashboardReport.java" afterPath="$PROJECT_DIR$/app/models/DashboardReport.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/PollDefination.java" afterPath="$PROJECT_DIR$/app/models/PollDefination.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/PollQuestionOption.java" afterPath="$PROJECT_DIR$/app/models/PollQuestionOption.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/PollVoteReply.java" afterPath="$PROJECT_DIR$/app/models/PollVoteReply.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Role.java" afterPath="$PROJECT_DIR$/app/models/Role.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/User.java" afterPath="$PROJECT_DIR$/app/models/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/utils/SchoolWashComparetor.java" afterPath="$PROJECT_DIR$/app/utils/SchoolWashComparetor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/PollManagement/pollGraph.html" afterPath="$PROJECT_DIR$/app/views/PollManagement/pollGraph.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/main.html" afterPath="$PROJECT_DIR$/app/views/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/sidebar.html" afterPath="$PROJECT_DIR$/app/views/sidebar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/RegisterSchool/schoolregister.html" afterPath="$PROJECT_DIR$/app/views/RegisterSchool/schoolregister.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Secure/login.html" afterPath="$PROJECT_DIR$/app/views/Secure/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/head.html" afterPath="$PROJECT_DIR$/app/views/head.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/application.conf" afterPath="$PROJECT_DIR$/conf/application.conf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/dependencies.yml" afterPath="$PROJECT_DIR$/conf/dependencies.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/routes" afterPath="$PROJECT_DIR$/conf/routes" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/mpower-water-report.js" afterPath="$PROJECT_DIR$/public/javascripts/mpower-water-report.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/secure" afterPath="$PROJECT_DIR$/modules/secure" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,127 +294,128 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PollDefination.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/PollDefination.java">
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="333" column="10" lean-forward="false" selection-start-line="333" selection-start-column="10" selection-end-line="333" selection-end-column="10" />
+            <state relative-caret-position="387">
+              <caret line="134" column="6" lean-forward="false" selection-start-line="134" selection-start-column="6" selection-end-line="134" selection-end-column="6" />
               <folding>
-                <marker date="1491907262816" expanded="true" signature="1516:1924" ph="SELECT PollD... PollDefination" />
-                <marker date="1491907262816" expanded="true" signature="3886:4513" ph="SELECT NewCr... PollDefination" />
-                <marker date="1491907262816" expanded="true" signature="5792:5920" ph="SELECT count... PollVoteReply" />
-                <marker date="1491907262816" expanded="true" signature="5792:5921" ph="SELECT count... PollVoteReply" />
-                <marker date="1491907262816" expanded="true" signature="5792:5922" ph="SELECT count... PollVoteReply" />
-                <marker date="1491907262816" expanded="true" signature="5792:5924" ph="SELECT count... PollVoteReply" />
-                <marker date="1491907262816" expanded="true" signature="6399:6593" ph="SELECT count... PollVoteReply" />
-                <marker date="1491907262816" expanded="true" signature="7278:7912" ph="SELECT PollD... PollDefination" />
-                <marker date="1491907262816" expanded="true" signature="7278:7932" ph="SELECT PollD... PollDefination" />
-                <marker date="1491907262816" expanded="true" signature="9311:9437" ph="SELECT count... PollVoteReply" />
-                <marker date="1491907262816" expanded="true" signature="10224:10350" ph="SELECT count... PollVoteReply" />
-                <marker date="1491907262816" expanded="true" signature="10819:11004" ph="SELECT count... PollVoteReply" />
+                <element signature="e#0#8869#0" expanded="true" />
+                <marker date="1492407615494" expanded="true" signature="6737:7283" ph="SELECT User.... User" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/main.html">
+      <file leaf-file-name="DashboardReport.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/DashboardReport.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="310">
+              <caret line="591" column="59" lean-forward="false" selection-start-line="591" selection-start-column="59" selection-end-line="591" selection-end-column="59" />
+              <folding>
+                <element signature="e#525#539#0" expanded="true" />
+                <element signature="e#9537#9543#0" expanded="true" />
+                <element signature="e#12732#12738#0" expanded="true" />
+                <element signature="e#16357#16363#0" expanded="true" />
+                <element signature="e#17071#17080#0" expanded="true" />
+                <element signature="e#17119#17125#0" expanded="true" />
+                <marker date="1492407831054" expanded="true" signature="931:1377" ph="select count... " />
+                <marker date="1492407831054" expanded="true" signature="1249:1337" ph="select count... SchoolInformation" />
+                <marker date="1492407831054" expanded="true" signature="3340:3390" ph="select count... missingValue" />
+                <marker date="1492407831054" expanded="true" signature="5567:5626" ph="select count... missingValue" />
+                <marker date="1492407831054" expanded="true" signature="10600:10671" ph="select count... missingValue" />
+                <marker date="1492407831054" expanded="true" signature="13776:13840" ph="select count... missingValue" />
+                <marker date="1492407831054" expanded="true" signature="17711:17754" ph="select count... missingValue" />
+                <marker date="1492407831054" expanded="true" signature="18280:18323" ph="select count... missingValue" />
+                <marker date="1492407831054" expanded="true" signature="19278:19328" ph="select count... missingValue" />
+                <marker date="1492407831054" expanded="true" signature="19886:19934" ph="select count... missingValue" />
+                <marker date="1492407831054" expanded="true" signature="21049:21106" ph="select count... missingValue" />
+                <marker date="1492407831054" expanded="true" signature="21703:21758" ph="select count... missingValue" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Aco.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/Aco.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="486">
+              <caret line="72" column="6" lean-forward="false" selection-start-line="72" selection-start-column="6" selection-end-line="72" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AccessControlList.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/AccessControlList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="44" column="51" lean-forward="false" selection-start-line="44" selection-start-column="51" selection-end-line="44" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Role.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/Role.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="39" column="6" lean-forward="false" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Secure.java" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/play/modules/secure/app/controllers/Secure.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="14" column="30" lean-forward="false" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+              <folding>
+                <element signature="e#8102#8110#0" expanded="true" />
+                <element signature="e#8269#8277#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="play.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/play.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="2" column="29" lean-forward="false" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Security.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/Security.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="234">
-              <caret line="85" column="50" lean-forward="false" selection-start-line="85" selection-start-column="50" selection-end-line="85" selection-end-column="50" />
+              <caret line="25" column="31" lean-forward="false" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pollGraph.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/PollManagement/pollGraph.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="213" column="32" lean-forward="false" selection-start-line="213" selection-start-column="32" selection-end-line="213" selection-end-column="32" />
-              <folding>
-                <marker date="1491906257220" expanded="true" signature="4363:4378" ph="..." />
-                <marker date="1491906257220" expanded="true" signature="4858:4873" ph="..." />
-                <marker date="1491906257220" expanded="true" signature="4928:4943" ph="..." />
-                <marker date="1491906257220" expanded="true" signature="5356:5371" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mpower-water-report.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/mpower-water-report.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="34" column="18" lean-forward="false" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mpower-sidebar.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/mpower-sidebar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="218" column="38" lean-forward="false" selection-start-line="218" selection-start-column="38" selection-end-line="218" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sidebar.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/sidebar.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="67" column="29" lean-forward="true" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ResourceManagements.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ResourceManagements.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/ResourceManagements.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="24" lean-forward="true" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="waterReport.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/Reports/waterReport.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="249" column="19" lean-forward="false" selection-start-line="249" selection-start-column="10" selection-end-line="249" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="report.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/report.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1296">
-              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PollManagement.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/PollManagement.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="340" column="78" lean-forward="false" selection-start-line="340" selection-start-column="78" selection-end-line="340" selection-end-column="78" />
+            <state relative-caret-position="72">
+              <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding>
-                <element signature="e#888#896#0" expanded="true" />
-                <element signature="e#1791#1799#0" expanded="true" />
-                <element signature="e#2054#2062#0" expanded="true" />
-                <element signature="e#2592#2600#0" expanded="true" />
-                <element signature="e#6095#6103#0" expanded="true" />
-                <element signature="e#8965#8973#0" expanded="true" />
-                <element signature="e#9112#9120#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -167,6 +427,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -176,6 +437,10 @@
       <find>hidden</find>
       <find>sani</find>
       <find>form</find>
+      <find>i+6</find>
+      <find>i+7</find>
+      <find>session</find>
+      <find>O</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -193,11 +458,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/conf/application.conf" />
-        <option value="/opt/play/modules/secure/app/controllers/Secure.java" />
-        <option value="$PROJECT_DIR$/app/views/Secure/login.html" />
         <option value="$PROJECT_DIR$/app/views/Reports/waterReport.html" />
         <option value="$PROJECT_DIR$/app/views/Reports/sanitationReport.html" />
-        <option value="$PROJECT_DIR$/app/controllers/Reports.java" />
         <option value="$PROJECT_DIR$/public/javascripts/report.js" />
         <option value="$PROJECT_DIR$/app/models/Sanitation.java" />
         <option value="$PROJECT_DIR$/app/models/SchoolEnvironment.java" />
@@ -207,11 +469,31 @@
         <option value="$PROJECT_DIR$/app/models/Water.java" />
         <option value="$PROJECT_DIR$/app/controllers/PollManagement.java" />
         <option value="$PROJECT_DIR$/public/javascripts/mpower-water-report.js" />
+        <option value="$PROJECT_DIR$/app/views/main.html" />
+        <option value="$PROJECT_DIR$/app/views/sidebar.html" />
         <option value="$PROJECT_DIR$/app/views/PollManagement/pollGraph.html" />
         <option value="$PROJECT_DIR$/app/models/PollDefination.java" />
-        <option value="$PROJECT_DIR$/app/views/main.html" />
+        <option value="$PROJECT_DIR$/app/controllers/PollGraph.java" />
+        <option value="$PROJECT_DIR$/app/views/RegisterSchool/schoolregister.html" />
+        <option value="/opt/play/modules/secure/app/controllers/Secure.java" />
+        <option value="$PROJECT_DIR$/app/views/head.html" />
+        <option value="$PROJECT_DIR$/app/views/Secure/pollGraph.html" />
+        <option value="$PROJECT_DIR$/app/controllers/SecurePoll.java" />
         <option value="$PROJECT_DIR$/conf/routes" />
-        <option value="$PROJECT_DIR$/app/views/sidebar.html" />
+        <option value="$PROJECT_DIR$/app/views/Secure/login.html" />
+        <option value="$USER_HOME$/play/modules/secure/app/controllers/Secure.java" />
+        <option value="$PROJECT_DIR$/app/controllers/Reports.java" />
+        <option value="$PROJECT_DIR$/app/controllers/ResourceManagements.java" />
+        <option value="$PROJECT_DIR$/app/models/PollQuestionOption.java" />
+        <option value="$PROJECT_DIR$/app/models/PollVoteReply.java" />
+        <option value="$PROJECT_DIR$/app/utils/SchoolWashComparetor.java" />
+        <option value="$PROJECT_DIR$/app/models/User.java" />
+        <option value="$PROJECT_DIR$/app/models/Role.java" />
+        <option value="$PROJECT_DIR$/app/models/DashboardReport.java" />
+        <option value="$PROJECT_DIR$/app/models/Aco.java" />
+        <option value="$PROJECT_DIR$/app/controllers/AccessControlList.java" />
+        <option value="$PROJECT_DIR$/play.sh" />
+        <option value="$PROJECT_DIR$/README" />
       </list>
     </option>
   </component>
@@ -223,10 +505,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
-    <option name="y" value="24" />
-    <option name="width" value="1301" />
-    <option name="height" value="744" />
+    <option name="x" value="64" />
+    <option name="y" value="-11" />
+    <option name="width" value="1303" />
+    <option name="height" value="780" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -244,7 +526,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -326,104 +607,31 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Save The children - CRGS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Save The children - CRGS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crgs_new" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="conf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Save The children - CRGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Save The children - CRGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crgs_new" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Save The children - CRGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Save The children - CRGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crgs_new" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Secure" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Save The children - CRGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Save The children - CRGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crgs_new" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PollManagement" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Save The children - CRGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Save The children - CRGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crgs_new" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -431,6 +639,14 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Save The children - CRGS.ipr" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views/Secure" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -857,45 +1073,48 @@
       <workItem from="1491716469241" duration="16841000" />
       <workItem from="1491801203563" duration="19465000" />
       <workItem from="1491886622858" duration="7593000" />
+      <workItem from="1491974794605" duration="12834000" />
+      <workItem from="1492334763821" duration="5153000" />
+      <workItem from="1492407563667" duration="4111000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66754000" />
+    <option name="totallyTimeSpent" value="97410000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1301" height="744" extended-state="0" />
+    <frame x="64" y="-11" width="1303" height="780" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20522675" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -915,18 +1134,18 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.043110084" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -941,135 +1160,11 @@
     </breakpoint-manager>
     <watches-manager />
   </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/javascripts/mpower-water-report.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Sanitation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1039">
-          <caret line="93" column="15" lean-forward="false" selection-start-line="87" selection-start-column="12" selection-end-line="93" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/SchoolEnvironment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="153" column="47" lean-forward="false" selection-start-line="153" selection-start-column="47" selection-end-line="153" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/SportsRecreation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="98" column="50" lean-forward="false" selection-start-line="98" selection-start-column="50" selection-end-line="98" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/Reports.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1332">
-          <caret line="133" column="0" lean-forward="true" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Water.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="894" column="0" lean-forward="true" selection-start-line="894" selection-start-column="0" selection-end-line="894" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/Reports.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1746">
-          <caret line="156" column="0" lean-forward="false" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Sanitation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Reports/waterReport.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1458">
-          <caret line="81" column="82" lean-forward="false" selection-start-line="81" selection-start-column="82" selection-end-line="81" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Reports/sanitationReport.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/mpower-water-report.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/report.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2088">
-          <caret line="116" column="26" lean-forward="false" selection-start-line="116" selection-start-column="26" selection-end-line="116" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Water.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1674">
-          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/Reports.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1746">
-          <caret line="156" column="0" lean-forward="false" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Sanitation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Reports/waterReport.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1458">
-          <caret line="81" column="82" lean-forward="false" selection-start-line="81" selection-start-column="82" selection-end-line="81" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Reports/sanitationReport.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/mpower-water-report.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1088,9 +1183,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1674">
           <caret line="93" column="0" lean-forward="true" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1115,27 +1207,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/Security.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/play/modules/secure/app/controllers/Secure.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="23" column="77" lean-forward="false" selection-start-line="23" selection-start-column="77" selection-end-line="23" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Secure/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="421" column="35" lean-forward="true" selection-start-line="421" selection-start-column="35" selection-end-line="421" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/Reports/sanitationReport.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="547">
@@ -1157,14 +1228,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/Reports.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/SportsRecreation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -1172,28 +1235,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/PollQuestionOption.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/PollGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="20" lean-forward="true" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/PollManagement/createPoll.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="121" column="82" lean-forward="false" selection-start-line="121" selection-start-column="82" selection-end-line="121" selection-end-column="82" />
-          <folding>
-            <marker date="1491385208770" expanded="true" signature="8996:9007" ph="..." />
-            <marker date="1491385208770" expanded="true" signature="9285:9294" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1211,18 +1256,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/RegisterSchool/schoolregister.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4338">
-          <caret line="241" column="107" lean-forward="false" selection-start-line="241" selection-start-column="48" selection-end-line="241" selection-end-column="196" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/PollManagement/listPoll.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1332">
           <caret line="74" column="67" lean-forward="false" selection-start-line="74" selection-start-column="51" selection-end-line="74" selection-end-column="67" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1230,130 +1267,301 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3780">
           <caret line="232" column="46" lean-forward="false" selection-start-line="232" selection-start-column="8" selection-end-line="232" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/ResourceManagements.java" />
+    <entry file="file://$PROJECT_DIR$/public/javascripts/report.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2484">
+          <caret line="138" column="42" lean-forward="false" selection-start-line="136" selection-start-column="8" selection-end-line="140" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/Reports/waterReport.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4482">
+          <caret line="249" column="19" lean-forward="false" selection-start-line="249" selection-start-column="10" selection-end-line="249" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/mpower-water-report.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1206">
+          <caret line="67" column="36" lean-forward="false" selection-start-line="63" selection-start-column="28" selection-end-line="67" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/sidebar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-718">
+          <caret line="67" column="29" lean-forward="false" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/PollGraph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="24" lean-forward="true" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/PollDefination.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1752">
+          <caret line="484" column="55" lean-forward="true" selection-start-line="484" selection-start-column="55" selection-end-line="484" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/mpower-sidebar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="142" column="0" lean-forward="true" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/custom.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/custom.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="180" column="26" lean-forward="false" selection-start-line="180" selection-start-column="20" selection-end-line="180" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/PollManagement/pollGraph.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/head.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3222">
+          <caret line="179" column="85" lean-forward="false" selection-start-line="179" selection-start-column="85" selection-end-line="179" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1278">
+          <caret line="71" column="7" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/RegisterSchool/schoolregister.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5328">
+          <caret line="296" column="0" lean-forward="false" selection-start-line="295" selection-start-column="0" selection-end-line="296" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/Secure/pollGraph.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7074">
+          <caret line="393" column="14" lean-forward="false" selection-start-line="393" selection-start-column="14" selection-end-line="393" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/play/modules/secure/app/controllers/Secure.java" />
+    <entry file="file://$PROJECT_DIR$/app/utils/SchoolComponets.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/util/Comparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="108" column="17" lean-forward="false" selection-start-line="108" selection-start-column="17" selection-end-line="108" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/routes">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1854">
+          <caret line="103" column="68" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="103" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/SecurePoll.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="900">
+          <caret line="57" column="83" lean-forward="false" selection-start-line="57" selection-start-column="83" selection-end-line="57" selection-end-column="83" />
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Reports/waterReport.html">
+    <entry file="file://$PROJECT_DIR$/app/views/Secure/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="249" column="19" lean-forward="false" selection-start-line="249" selection-start-column="10" selection-end-line="249" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/mpower-water-report.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="34" column="18" lean-forward="false" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/report.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1296">
-          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        <state relative-caret-position="6732">
+          <caret line="374" column="22" lean-forward="false" selection-start-line="374" selection-start-column="22" selection-end-line="374" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/PollManagement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="340" column="78" lean-forward="false" selection-start-line="340" selection-start-column="78" selection-end-line="340" selection-end-column="78" />
+        <state relative-caret-position="5256">
+          <caret line="315" column="14" lean-forward="false" selection-start-line="298" selection-start-column="8" selection-end-line="318" selection-end-column="13" />
           <folding>
-            <element signature="e#888#896#0" expanded="true" />
-            <element signature="e#1791#1799#0" expanded="true" />
-            <element signature="e#2054#2062#0" expanded="true" />
-            <element signature="e#2592#2600#0" expanded="true" />
-            <element signature="e#6095#6103#0" expanded="true" />
-            <element signature="e#8965#8973#0" expanded="true" />
-            <element signature="e#9112#9120#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/PollManagement/pollGraph.html">
+    <entry file="file://$PROJECT_DIR$/app/controllers/Reports.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="213" column="32" lean-forward="false" selection-start-line="213" selection-start-column="32" selection-end-line="213" selection-end-column="32" />
+        <state relative-caret-position="3816">
+          <caret line="271" column="36" lean-forward="false" selection-start-line="271" selection-start-column="36" selection-end-line="271" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/PollQuestionOption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="18" column="4" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
           <folding>
-            <marker date="1491906257220" expanded="true" signature="4363:4378" ph="..." />
-            <marker date="1491906257220" expanded="true" signature="4858:4873" ph="..." />
-            <marker date="1491906257220" expanded="true" signature="4928:4943" ph="..." />
-            <marker date="1491906257220" expanded="true" signature="5356:5371" ph="..." />
+            <element signature="e#815#816#0" expanded="false" />
+            <element signature="e#894#895#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/PollDefination.java">
+    <entry file="file://$PROJECT_DIR$/app/models/PollVoteReply.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="333" column="10" lean-forward="false" selection-start-line="333" selection-start-column="10" selection-end-line="333" selection-end-column="10" />
-          <folding>
-            <marker date="1491907262816" expanded="true" signature="1516:1924" ph="SELECT PollD... PollDefination" />
-            <marker date="1491907262816" expanded="true" signature="3886:4513" ph="SELECT NewCr... PollDefination" />
-            <marker date="1491907262816" expanded="true" signature="5792:5920" ph="SELECT count... PollVoteReply" />
-            <marker date="1491907262816" expanded="true" signature="5792:5921" ph="SELECT count... PollVoteReply" />
-            <marker date="1491907262816" expanded="true" signature="5792:5922" ph="SELECT count... PollVoteReply" />
-            <marker date="1491907262816" expanded="true" signature="5792:5924" ph="SELECT count... PollVoteReply" />
-            <marker date="1491907262816" expanded="true" signature="6399:6593" ph="SELECT count... PollVoteReply" />
-            <marker date="1491907262816" expanded="true" signature="7278:7912" ph="SELECT PollD... PollDefination" />
-            <marker date="1491907262816" expanded="true" signature="7278:7932" ph="SELECT PollD... PollDefination" />
-            <marker date="1491907262816" expanded="true" signature="9311:9437" ph="SELECT count... PollVoteReply" />
-            <marker date="1491907262816" expanded="true" signature="10224:10350" ph="SELECT count... PollVoteReply" />
-            <marker date="1491907262816" expanded="true" signature="10819:11004" ph="SELECT count... PollVoteReply" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="85" column="50" lean-forward="false" selection-start-line="85" selection-start-column="50" selection-end-line="85" selection-end-column="50" />
+        <state relative-caret-position="108">
+          <caret line="6" column="32" lean-forward="false" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/conf/routes">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="76" column="77" lean-forward="false" selection-start-line="76" selection-start-column="77" selection-end-line="76" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/mpower-sidebar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="218" column="38" lean-forward="false" selection-start-line="218" selection-start-column="38" selection-end-line="218" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/ResourceManagements.java">
+    <entry file="file://$PROJECT_DIR$/app/utils/SchoolWashComparetor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="5" column="32" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="32" />
+          <caret line="5" column="6" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/sidebar.html">
+    <entry file="file://$PROJECT_DIR$/app/models/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="67" column="29" lean-forward="true" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="29" />
+        <state relative-caret-position="387">
+          <caret line="134" column="6" lean-forward="false" selection-start-line="134" selection-start-column="6" selection-end-line="134" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#8869#0" expanded="true" />
+            <marker date="1492407615494" expanded="true" signature="6737:7283" ph="SELECT User.... User" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Role.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="39" column="6" lean-forward="false" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/DashboardReport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="591" column="59" lean-forward="false" selection-start-line="591" selection-start-column="59" selection-end-line="591" selection-end-column="59" />
+          <folding>
+            <element signature="e#525#539#0" expanded="true" />
+            <element signature="e#9537#9543#0" expanded="true" />
+            <element signature="e#12732#12738#0" expanded="true" />
+            <element signature="e#16357#16363#0" expanded="true" />
+            <element signature="e#17071#17080#0" expanded="true" />
+            <element signature="e#17119#17125#0" expanded="true" />
+            <marker date="1492407831054" expanded="true" signature="931:1377" ph="select count... " />
+            <marker date="1492407831054" expanded="true" signature="1249:1337" ph="select count... SchoolInformation" />
+            <marker date="1492407831054" expanded="true" signature="3340:3390" ph="select count... missingValue" />
+            <marker date="1492407831054" expanded="true" signature="5567:5626" ph="select count... missingValue" />
+            <marker date="1492407831054" expanded="true" signature="10600:10671" ph="select count... missingValue" />
+            <marker date="1492407831054" expanded="true" signature="13776:13840" ph="select count... missingValue" />
+            <marker date="1492407831054" expanded="true" signature="17711:17754" ph="select count... missingValue" />
+            <marker date="1492407831054" expanded="true" signature="18280:18323" ph="select count... missingValue" />
+            <marker date="1492407831054" expanded="true" signature="19278:19328" ph="select count... missingValue" />
+            <marker date="1492407831054" expanded="true" signature="19886:19934" ph="select count... missingValue" />
+            <marker date="1492407831054" expanded="true" signature="21049:21106" ph="select count... missingValue" />
+            <marker date="1492407831054" expanded="true" signature="21703:21758" ph="select count... missingValue" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Aco.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="72" column="6" lean-forward="false" selection-start-line="72" selection-start-column="6" selection-end-line="72" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/AccessControlList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="44" column="51" lean-forward="false" selection-start-line="44" selection-start-column="51" selection-end-line="44" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/ResourceManagements.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="24" lean-forward="true" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+        <state relative-caret-position="72">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/Security.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="25" column="31" lean-forward="false" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/play/modules/secure/app/controllers/Secure.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="14" column="30" lean-forward="false" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+          <folding>
+            <element signature="e#8102#8110#0" expanded="true" />
+            <element signature="e#8269#8277#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/play.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="29" lean-forward="false" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -1361,9 +1569,80 @@
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Save The children - CRGS</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectJDKs.UI">
         <settings>
-          <last-edited>1.7</last-edited>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -5,6 +5,7 @@ require:
     - play -> secure
     - play -> chronostamp 0.1
     - play -> deadbolt 1.5.4
+    - javassist -> javassist 3.18.0-GA
     - org.fusesource.mqtt-client -> mqtt-client 1.1
     - net.sf.opencsv -> opencsv 2.3
 

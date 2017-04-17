@@ -132,7 +132,7 @@ public class User extends Model implements RoleHolder {
 	}
 
 	// From RoleHolder Interface
-	@Override
+	//@Override
 	public List<? extends Role> getRoles() {
 		List<Role> list = new ArrayList<Role>();
 		list.add(this.role);
@@ -355,7 +355,7 @@ public class User extends Model implements RoleHolder {
 		
 		return msg;
 	}
-	
-	
+
+
 
 }

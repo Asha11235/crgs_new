@@ -1,0 +1,436 @@
+#{include 'head.html' /}
+<!-- BEGIN CONTENT -->
+<title>Previous Poll Results</title>
+<head>
+<style>
+    body {
+        background-color: white;
+    }
+
+
+</style>
+</head>
+            <!-- BEGIN PAGE CONTENT-->
+<body>
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="form-horizontal">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="col-md-2" style="background-color: #f00; color: #fff; padding: 2px; font-weight: bold; font-size: 19px;">
+                                    Online Poll Result
+                                </div>
+
+                            </div>
+
+
+                     <div class="replace">
+                        #{list items:pollDefinationList, as:'poll'}
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-5" style="padding-left: 0">
+                                        <p class="text-italic"><strong>Duration:</strong> ${poll.startDate} -  ${poll.endDate}</p>
+                                        <p class="text-italic"><strong>Day(s):</strong> 2</p>
+                                    </div>
+                                    <div class="col-md-7" style="padding-left: 0">
+                                        <div class="col-md-6" style="padding-left: 0">
+                                        #{select 'ageList', value:0, items:ageList, labelProperty:'name', valueProperty:'id', class:'form-control pull-right', id:'age'}
+                                            #{option}Age#{/option}
+                                        #{/select}
+                                        </div>
+                                        <div class="col-md-6" style="padding-left: 0">
+                                        #{select 'gender', value:0, items:genderList, labelProperty:'name', valueProperty:'id', class:'form-control pull-right', id:'gender'}
+                                            #{option}Gender#{/option}
+                                        #{/select}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h3 class="form-section"> ${poll.title}</h3>
+                                <h5 class="pollid"> <strong>Poll ID:</strong>${poll.id}</h5>
+
+                                <div class="form-group">
+                                    <div class="col-sm-3 btn btn-default">
+                                        Total Vote: 2307
+                                    </div>
+                                    <div class="col-md-8 btn btn-default">
+                                        <div class="col-md-4">
+                                            Yes: 914
+                                        </div>
+                                        <div class="col-md-4">
+                                            No: 1297
+                                        </div>
+                                        <div class="col-md-4">
+                                            Not Known: 96
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <img src="assets/img/chart.png" width="90%">
+                                    </div>
+                                </div>
+                            </div>
+                        #{/list}
+                     </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- END PAGE CONTENT-->
+<script>
+
+    $(document).ready(function(){
+
+        var genderId;
+        var ageId;
+        var pollId;
+        var reply;
+        var options;
+
+
+        $.ajax({
+
+            type: "GET",
+            url:  "/Secure/loadPollGraph",
+
+            success: function(data) {
+
+                console.log(data);
+
+                pollgraphdesign(data);
+
+
+            }
+
+
+        });
+
+    });
+
+    function pollgraphdesign(data){
+
+        var startdiv = '<div class="replace">'+
+                '<div class="col-md-6">'+
+                '<div class="form-group">'+
+                '<div class="col-md-5" style="padding-left: 0">';
+
+        console.log("function: " +data);
+
+        var graphInfo=data.split(";");
+
+        for(var i=1;i<graphInfo.length;i+=8){
+
+            pollId= graphInfo[i+5];
+
+            startdiv +=   '<p class="text-italic"><strong>Duration:</strong> ' + graphInfo[i+2] +' - ' +graphInfo[i+3] +'</p>'+
+                    '<p class="text-italic"><strong>Total Days: ' + graphInfo[i+1]+'</strong></p>'+
+                    '</div>'+
+                    '<div class="col-md-7" style="padding-left: 0">'+
+                    '<div class="col-md-6" style="padding-left: 0">'+
+                    '<select class="form-control SEARCH" id = "gender">'+
+                    '<option value>Gender</option>'+
+                    '<option value="1">Male</option>'+
+                    '<option value="2">Female</option>'+
+                    '<option value="3">Other</option>'+
+                    '</select>'+
+                    '</div>'+
+                    '<div class="col-md-6" style="padding-left: 0">'+
+                    '<select class="form-control SEARCH" id = "age">'+
+                    '<option value>Age</option>'+
+                    '<option value="1">Below 18</option>'+
+                    '<option value="2"> Above 18</option>'+
+                    '</select>'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>'+
+                    '<h3 class="form-section"> ' + graphInfo[i] +'</h3>'+
+                    '<h5 class="pollid"> <strong>Poll ID:</strong>' + graphInfo[i+5] +'</h5>'+
+
+                    '<div class="form-group">'+
+                    '<div class="col-sm-3 btn btn-default">' + graphInfo[i+7] +
+                    '</div>'+
+                    '<div class="col-md-8 btn btn-default">';
+
+
+
+                  var answer = graphInfo[i+6];
+                   answer= answer.split(",");
+
+                   for(var j=1;j<answer.length;j++){
+
+                       startdiv += '<div class="col-md-4">' + answer[j] +'</div>';
+                   }
+
+                   startdiv +=  '</div>'+
+                           '</div>'+
+                           '<div class="form-group">'+
+                           '<div class="col-sm-12" id="issue">';
+
+                   var options= graphInfo[i+4];
+
+
+                   startdiv += '</div>'+
+                           '</div>'+
+                           '</div>'+
+                           '</div>';
+
+
+
+        }
+
+
+
+        $(".replace").html("");
+        $(".replace").html(startdiv);
+
+
+        $(".SEARCH").on("change", function() {
+
+            console.log("changed");
+
+            if (typeof $(this).find(":selected").attr("value") == "undefined") {
+                return;
+            }
+
+                genderId = $('#gender').find(":selected").attr("value");
+                ageId = $('#age').find(":selected").attr("value");
+
+                console.log("gender: " + genderId + " age: " + ageId + " id: " + pollId);
+
+                ajaxcall(pollId,genderId,ageId);
+
+        });
+
+
+    }
+
+
+    function ajaxcall(pollId,gender,age){
+
+        return $.ajax({
+            type: "GET",
+            url:  "/Secure/loadPollGraphResult",
+            data : {
+                gender : gender,
+                age : age,
+                pollId : pollId
+            },
+
+            success: function(data) {
+
+
+
+                var startdiv = '<div class="replace">'+
+                        '<div class="col-md-6">'+
+                        '<div class="form-group">'+
+                        '<div class="col-md-5" style="padding-left: 0">';
+
+                console.log("function: " +data);
+
+                var graphInfo=data.split(";");
+
+                for(var i=1;i<graphInfo.length;i+=9){
+
+                    pollId= graphInfo[i+5];
+                    var reply=graphInfo[i+6];
+                    if (typeof reply !== 'undefined') {
+                        reply=reply.split(",");
+                    }
+
+                    options= graphInfo[i+4];
+                    console.log(options);
+                    //var option= graphInfo[i+4];
+                    var ansrate= graphInfo[i+7];
+
+                    startdiv +=   '<p class="text-italic"><strong>Duration:</strong> ' + graphInfo[i+2] +' - ' +graphInfo[i+3] +'</p>'+
+                            '<p class="text-italic"><strong>Total Days: ' + graphInfo[i+1]+'</strong></p>'+
+                            '</div>'+
+                            '<div class="col-md-7" style="padding-left: 0">'+
+                            '<div class="col-md-6" style="padding-left: 0">'+
+                            '<select class="form-control SEARCH" id = "gender">'+
+                            '<option value>Gender</option>'+
+                            '<option value="1">Male</option>'+
+                            '<option value="2">Female</option>'+
+                            '<option value="3">Other</option>'+
+                            '</select>'+
+                            '</div>'+
+                            '<div class="col-md-6" style="padding-left: 0">'+
+                            '<select class="form-control SEARCH" id = "age">'+
+                            '<option value>Age</option>'+
+                            '<option value="1">Below 18</option>'+
+                            '<option value="2"> Above 18</option>'+
+                            '</select>'+
+                            '</div>'+
+                            '</div>'+
+                            '</div>'+
+                            '<h3 class="form-section"> ' + graphInfo[i] +'</h3>'+
+                            '<h5 class="pollid"> <strong>Poll ID:</strong>' + graphInfo[i+5] +'</h5>'+
+
+                            '<div class="form-group">'+
+                            '<div class="col-sm-3 btn btn-default">' + graphInfo[i+8] +
+                            '</div>'+
+                            '<div class="col-md-8 btn btn-default">';
+
+                    if (typeof foo !== 'undefined') {
+                        for (var j = 1; j < reply.length; j++) {
+
+                            startdiv += '<div class="col-md-4">' + reply[j] + '</div>';
+                        }
+                    }
+
+                    else{
+
+                        startdiv += '<div class="col-md-4">' + '0' + '</div>';
+                    }
+
+                    startdiv +=  '</div>'+
+                            '</div>'+
+                            '<div class="form-group">'+
+                            '<div class="col-sm-12" id="issue">';
+
+
+
+
+                    startdiv +='</div>'+
+                            '</div>'+
+                            '</div>'+
+                            '</div>';
+
+
+
+
+
+
+                }
+
+
+
+
+
+                $(".replaced").html("");
+                $(".replaced").html(startdiv);
+
+                console.log(ansrate);
+                var rate=new Array();
+
+                if(typeof ansrate !== 'undefined' && typeof rate !== 'undefined'){
+
+                    ansrate = ansrate.substring(4, ansrate.length);
+
+                    console.log(ansrate);
+
+                    ansrate=ansrate.split(",");
+
+
+                    for(var p=0;p<ansrate.length;p++){
+
+                        rate.push(ansrate[p]);
+                    }
+                }
+
+
+
+                options=options.split(",");
+
+
+
+                $("#issue").html("");
+
+                drawIssue(options,rate, "#issue");
+
+
+                $(".SEARCH").on("change", function() {
+
+                    console.log("changed");
+
+                    if (typeof $(this).find(":selected").attr("value") == "undefined") {
+                        return;
+                    }
+
+                    genderId = $('#gender').find(":selected").attr("value");
+                    ageId = $('#age').find(":selected").attr("value");
+
+                    console.log("gender: " + genderId + " age: " + ageId + " id: " + pollId);
+
+
+
+                    ajaxcall(pollId,genderId,ageId);
+
+                });
+
+
+            }
+        });
+        function drawIssue(options,rate, id){
+
+            var now = new Array();
+
+            for(var p=1;p<rate.length;p++){
+
+                now.push(rate[p]);
+            }
+
+            console.log(now);
+
+            var i=1;
+            var width = 1020, height = 500;
+            var margin = {left: 240, right : 0, top: 70, bottom: 70}
+            var verticalGap = 70;
+            var horizontalGap = 10;
+            var scaleMultiplier = 7;
+
+            var widthScale = d3.scale.linear().domain([0, 100]).range([0,100])
+
+            var colorScale = d3.scale.ordinal().domain([0,1,2,3,4])
+                    .range(["#D7DF21","#F1592A","#0F75BC","#61CCEE","#FCB040"])
+
+            var canvas = d3.select(id).append("svg").attr("width",width).attr("height", height);
+
+            //canvas.append("rect").attr("width", width).attr("height",height).attr("fill","#00FFFFFF");
+
+            canvas.append("line").attr("x1", margin.left).attr("y1", height - margin.bottom).attr("x2", width)
+                    .attr("y2", height - margin.bottom).attr("stroke-width", 2).attr("stroke", "#A6A7A6");
+
+            canvas.append("line").attr("x1", margin.left).attr("y1", height - margin.bottom + 1)
+                    .attr("x2", margin.left).attr("y2", 5).attr("stroke-width", 2).attr("stroke", "#A6A7A6");
+
+
+
+            canvas.selectAll(".issueBar").append("rect").data(now).enter().append("rect").attr("class", "issueBar")
+                    .attr("width", function(d) { return widthScale(d) * scaleMultiplier;}).attr("height", 30)
+                    .attr("x", margin.left + 1).attr("y", function(d,i){ return 90 + 100 * i;})
+                    .attr("fill", function(d,i){return colorScale( i);})
+
+
+
+            canvas.selectAll(".issueY").append("text")
+                    .data(options).enter().append("text").text(function(d){return d}).attr("class", "issueY")
+                    .attr("x", 110).attr("y", function (d,i) {
+                        return 90 + 110 * i;
+                    })
+
+                    .attr("text-align", "left")
+
+            var horizontalLabel = [1,2,3,4,5,6,7,8,9,10]
+            canvas.selectAll(".issueX").append("text").data(horizontalLabel).enter().append("text")
+                    .text(function(d){return ""+ d * 10;}).attr("class", "issueX")
+                    .attr("x", function(d){return (margin.left + 10 * d * scaleMultiplier);})
+                    .attr("y", 450).attr("text-align", "left")
+
+            canvas.append("text").text("(Response in %)").attr("x", 550).attr("y", 480)
+
+        }
+    }
+
+
+
+
+</script>
+
+
+</body>

@@ -111,5 +111,71 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	*{#{script src:'main.js' /}}*
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
-    
+
+
+#{script 'jquery.min.js' /}
+#{if play.mode == "DEV"}
+	#{script 'jquery.fancybox-1.3.4.js' /}
+	#{script 'jquery.easing-1.3.pack.js' /}
+*{#{script 'jquery.history.js' /}}*
+	#{script src:'bootstrap.js' /}
+	#{script src:'bootbox.js' /}
+    <!-- Uniform -->
+	#{script src:'jquery.uniform.js' /}
+#{/if}
+
+#{else}
+
+*{#{script 'jquery.fancybox-1.3.4.pack.js' /}
+		#{script 'jquery.easing-1.3.pack.js' /}}*
+	#{script src:'bootstrap.min.js' /}
+*{#{script src:'bootbox.min.js' /}
+		<!-- Uniform -->
+		<!-- #{script src:'jquery.uniform.min.js' /} -->}*
+#{/else}
+
+
+#{stylesheet 'bootstrap.min.css' /}
+#{stylesheet 'bootstrap-responsive.min.css' /}
+#{stylesheet 'bootstrap-responsive.css' /}
+#{stylesheet 'bootstrap-datetimepicker.css' /}
+#{stylesheet 'bootstrap-datetimepicker.min.css' /}
+#{stylesheet 'clndr.css' /}
+#{stylesheet 'custom.css' /}
+#{stylesheet 'datepicker.css' /}
+#{stylesheet 'flexslider.css' /}
+#{stylesheet 'font-awesome.css'/}
+#{stylesheet 'font-awesome.min.css'/}
+#{stylesheet 'jqvmap.css'/}
+#{stylesheet 'lines.css'/}
+
+
+#{script 'bootstrap-datepicker.js' /}
+    <!-- #{script 'jquery.uniform.min.js' /} -->
+#{script 'jquery.cokie.min.js' /}
+
+#{script 'metisMenu.min.js' /}
+#{script 'custom.js' /}
+#{script 'bootstrap.min.js' /}
+#{script 'app.js' /}
+#{script 'index.js' /}
+#{script 'tasks.js' /}
+#{script 'form-components.js' /}
+#{script 'mpower-geolocation.js' /}
+#{script 'moment.js' /}
+#{script 'daterangepicker.js' /}
+
+    <!-- my addition end -->
+#{stylesheet 'style-base.css' /}
+#{stylesheet 'style.css' /}
+#{stylesheet 'style-responsive.css' /}
+#{stylesheet 'default.css' /}
+    <!-- #{stylesheet 'uniform.default.css' /} -->
+#{stylesheet 'daterangepicker.css' /}
+
+
+#{get 'moreScripts' /}
+*{#{script src:'main.js' /}}*
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 </head>

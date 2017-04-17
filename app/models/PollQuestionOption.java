@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 
 import net.sf.oval.constraint.Length;
 import play.db.jpa.Model;
-import sun.org.mozilla.javascript.internal.regexp.SubString;
+
 
 @Entity
 public class PollQuestionOption extends Model {

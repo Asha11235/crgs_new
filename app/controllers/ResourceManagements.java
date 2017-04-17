@@ -32,7 +32,7 @@ public class ResourceManagements extends Controller {
 
     @ExternalRestrictions("View Resource")
     public static void resourcesList() {
-        List<String> categoryList = new ArrayList<>();
+        List<String> categoryList = new ArrayList<String>();
         categoryList.add("PDF");
         categoryList.add("Audio");
         categoryList.add("Video");

@@ -20,7 +20,7 @@ public class AccessControlList extends Controller implements DeadboltHandler {
         render();
     }
 
-	@Override
+//	@Override
 	public void beforeRoleCheck() {
 		Unrestricted actionUnrestricted = getActionAnnotation(Unrestricted.class);
         if(actionUnrestricted == null) {
@@ -39,26 +39,26 @@ public class AccessControlList extends Controller implements DeadboltHandler {
         }
 	}
 
-	@Override
+//	@Override
 	public RoleHolder getRoleHolder() {
 		String name = Secure.Security.connected();
 		//Logger.info("RoleHolder Name : " + name);
 		return User.find("byName", name).first();
 	}
 
-	@Override
+	//@Override
 	public void onAccessFailure(String controllerClassName) {
 		Logger.error("Hit an authorisation issue when trying to access [%s]", controllerClassName);
 		forbidden();
 	}
 
-	@Override
+//	@Override
 	public ExternalizedRestrictionsAccessor getExternalizedRestrictionsAccessor() {
 		//Logger.info("ExternalizedRestrictionsAccessor");
 		return new Aco();
 	}
 
-	@Override
+//	@Override
 	public RestrictedResourcesHandler getRestrictedResourcesHandler() {
 		return null;
 	}

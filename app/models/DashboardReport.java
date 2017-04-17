@@ -322,7 +322,7 @@ public class DashboardReport {
 			cause13 = (cause13 * 100) / totalCause;
 		}
 		
-		List<Long> causes = new ArrayList<>();
+		List<Long> causes = new ArrayList<Long>();
 		causes.add(cause1);causes.add(cause2);causes.add(cause3);causes.add(cause4);causes.add(cause5);
 		causes.add(cause6);causes.add(cause7);causes.add(cause8);causes.add(cause9);causes.add(cause10);
 		causes.add(cause11);causes.add(cause12);causes.add(cause13);
@@ -429,7 +429,7 @@ public class DashboardReport {
 			scare5 = (scare5 * 100)/ totalScare; scare6 = (scare6 * 100) / totalScare; 
 		}
 		
-		List<Long> causes = new ArrayList<>();
+		List<Long> causes = new ArrayList<Long>();
 		causes.add(scare1);causes.add(scare2);causes.add(scare3);causes.add(scare4);causes.add(scare5);
 		causes.add(scare6);
 		
@@ -550,7 +550,7 @@ public class DashboardReport {
 			cause7 = (cause7 * 100) / totalCause; cause8 = (cause8 * 100) / totalCause;
 		}
 		
-		List<Long> causes = new ArrayList<>();
+		List<Long> causes = new ArrayList<Long>();
 		causes.add(cause1);causes.add(cause2);causes.add(cause3);causes.add(cause4);causes.add(cause5);
 		causes.add(cause6);causes.add(cause7);causes.add(cause8);
 		
@@ -568,8 +568,8 @@ public class DashboardReport {
 	
 	public static Map<String, Long> getTopFive(List<Long> data){
 		
-		List<Integer> keys = new ArrayList<>();
-		List<Long> values = new ArrayList<>();
+		List<Integer> keys = new ArrayList<Integer>();
+		List<Long> values = new ArrayList<Long>();
 		
 		int taken = 0;
 		
@@ -589,7 +589,7 @@ public class DashboardReport {
 			values.add(value);
 		}
 		
-		Map<String, Long> result = new HashMap<>();
+		Map<String, Long> result = new HashMap<String, Long>();
 
 		for(int i = 0; i < 5; i++){
 			result.put("" + keys.get(i), values.get(i));
