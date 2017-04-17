@@ -1,4 +1,4 @@
-s# Routes
+# Routes
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
@@ -101,7 +101,9 @@ GET     /resourcelist								RegisterSchool.resourceList();
 GET     /createPoll                                 PollManagement.createPoll
 GET     /Secure/loadPoll                    		Secure.loadPoll
 GET     /Secure/pollGraph                    		Secure.pollGraph
+
 POST    /Secure/voteReply                           Secure.voteReply
 GET    /SecurePoll/loadPoll                         SecurePoll.loadPoll();
+
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
