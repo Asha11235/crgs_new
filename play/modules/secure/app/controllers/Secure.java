@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
-
+import models.ResourceManagement;
 import com.google.gson.Gson;
 import models.PollDefination;
 import models.PollVoteReply;
@@ -18,7 +18,7 @@ import play.utils.*;
 
 public class Secure extends Controller {
 
-    @Before(unless={"login", "authenticate", "logout" , "loadPoll" , "voteReply" , "pollGraph" , "loadPollGraph", "loadPollGraphResult"})
+    @Before(unless={"login", "authenticate", "logout" , "loadPoll" , "voteReply" , "pollGraph" , "loadPollGraph", "loadPollGraphResult" , "resources"})
     static void checkAccess() throws Throwable {
         // Authent
     	play.Logger.debug("inside Secure.checkAccess()");
@@ -304,6 +304,13 @@ public class Secure extends Controller {
 
 
         //Forms.landingPage();
+    }
+
+
+ public static void resources() {
+        List<ResourceManagement> resourceManagementList = ResourceManagement.findAll();
+
+        render(resourceManagementList);
     }
 
 

@@ -8,9 +8,6 @@ javadoc
 # except for .gitignore
 !.gitignore
 # Ignore Play! working directory #
-Save The children - CRGS.iws
-Save The children - CRGS.ipr
-Save The children - CRGS.iml
 db
 eclipse
 log
