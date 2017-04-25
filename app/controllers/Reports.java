@@ -248,56 +248,116 @@ public class Reports extends Controller {
 		return gson.toJson(mp);
 	}
 	
-public static void voteReply(String gender, String option, String age,String pollId){
-		
-		Logger.info("PollId: " + pollId);
-		
-		//Long pollid= Long.parseLong(pollId);
-		PollDefination polldef = PollDefination.findById(pollId);
-		
-		PollVoteReply pollvotereply = new PollVoteReply();
-		
-		pollvotereply.gender=gender;
-		pollvotereply.age=age;
-		//pollvotereply.poll=polldef;
-		pollvotereply.answer=option;
-		
-		Logger.info("optn: " +  option);
-		pollvotereply.save();
-		
-		
-		try {
-			if(session.get("username") != null){
-				
-				Forms.landingPage();
+	public static void voteReply(String gender, String option, String age,String pollId){
+
+			Logger.info("PollId: " + pollId);
+
+			//Long pollid= Long.parseLong(pollId);
+			PollDefination polldef = PollDefination.findById(pollId);
+
+			PollVoteReply pollvotereply = new PollVoteReply();
+
+			pollvotereply.gender=gender;
+			pollvotereply.age=age;
+			//pollvotereply.poll=polldef;
+			pollvotereply.answer=option;
+
+			Logger.info("optn: " +  option);
+			pollvotereply.save();
+
+
+			try {
+				if(session.get("username") != null){
+
+					Forms.landingPage();
+				}
+				else{
+
+					Secure.login();
+				}
+
+			}catch (Throwable e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			else{
-				
-				Secure.login();
-			}
-		
-		}catch (Throwable e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+
+
+			//Forms.landingPage();
 		}
-		
-		
-		
-		//Forms.landingPage();
+
+	public static String loadPoll() throws SQLException {
+
+		String mp = "";
+
+		mp = PollDefination.getPollReport();
+
+		//Logger.info("mp:" + mp);
+
+		Gson gson = new Gson();
+
+		return gson.toJson(mp);
 	}
 
-public static String loadPoll() throws SQLException {
 
-	String mp = "";
-	
-	mp = PollDefination.getPollReport();
-	
-	//Logger.info("mp:" + mp);
-		
-	Gson gson = new Gson();
+	public static String getWaterDataDetails(String formId,String dataId) throws SQLException {
 
-	return gson.toJson(mp);
-}
+		String msg = "";
+
+		msg=Data.waterDataDetail(formId,dataId);
+
+
+		Gson gson = new Gson();
+
+		return gson.toJson(msg);
+	}
+
+	public static String getSanitationDataDetails(String formId,String dataId) throws SQLException {
+
+		Logger.info("hit!: " + formId + " " + dataId);
+
+		String msg = "";
+
+          msg=Data.sanitationDataDetails(formId,dataId);
+
+
+		Gson gson = new Gson();
+
+		return gson.toJson(msg);
+	}
+
+	public static String getEnviornmentDataDetails(String formId,String dataId) throws SQLException {
+
+
+		Logger.info("hittttt");
+
+
+		String msg = "";
+
+		msg=Data.schoolEnviornmentDataDetails(formId,dataId);
+
+
+		Gson gson = new Gson();
+
+		return gson.toJson(msg);
+	}
+
+	public static String getSportsDataDetails(String formId,String dataId) throws SQLException {
+
+
+		Logger.info("hittttt");
+
+
+		String msg = "";
+
+		msg=Data.schoolSportsDataDetails(formId,dataId);
+
+
+		Gson gson = new Gson();
+
+		return gson.toJson(msg);
+
+	}
 	
 
 }

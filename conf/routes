@@ -79,6 +79,8 @@ GET     /resources								Secure.resources
 #Data Management
 GET		 /datamanagement/schoollist				DataManagement.schoolList
 GET 	 /datamanagement/viewDetails/{id}		DataManagement.viewDetails
+GET      /datamanagement/dataDetails/{id}       DataManagement.dataDetails
+
 GET      /searchSchool 							Forms.searchSchoolList
 GET      /searchData								Forms.searchDataList
 GET      /viewDataList							Forms.viewDataList

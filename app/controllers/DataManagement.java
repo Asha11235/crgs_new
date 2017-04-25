@@ -2,6 +2,7 @@ package controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.*;
 import org.osgi.framework.hooks.service.FindHook;
 
 import com.google.gson.Gson;
@@ -12,24 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import models.Aco;
-import models.CaseReport;
-import models.Data;
-import models.Form;
-import models.FormDefination;
-import models.GeoDistrict;
-import models.GeoDivision;
-import models.GeoRegion;
-import models.GeoUnion;
-import models.GeoUpazilla;
-import models.Role;
-import models.Sanitation;
-import models.SchoolEnvironment;
-import models.SchoolInformation;
-import models.SportsRecreation;
-import models.UnitData;
-import models.User;
-import models.Water;
 import play.Logger;
 import play.data.validation.Valid;
 import play.db.jpa.GenericModel.JPAQuery;
@@ -174,10 +157,40 @@ public class DataManagement extends Controller{
 	}
 	
 	@ExternalRestrictions("View Data")
-	public static void dataDetails(Long id){
-		//Logger.info("id: "+ id);
+	public static void dataDetails(Long id) throws SQLException {
+
+		Logger.info("id: "+ id);
+
+		//dataId=dataId.trim();
+
+		//Long iid = Long.parseLong(dataId);
 		Data data = Data.findById(id);
-		render(data);
+
+		String approvalStatus = Data.getApprovalStatus(id);
+
+		if(approvalStatus.equals("0")){
+
+			renderArgs.put("approvalStatus",approvalStatus);
+
+		}
+
+        else if(approvalStatus.equals("1")){
+
+		    TeacherResponse teacherResponse = TeacherResponse.find("data_id=?",id).first();
+
+		    renderArgs.put("teacherResponse",teacherResponse);
+
+            //renderArgs.put("approvalStatus",approvalStatus);
+
+        }
+		String totalStudent = Data.getTotalStudent(id);
+
+		Logger.info("totalStudent: " + totalStudent);
+
+		renderArgs.put("totalStudent",totalStudent);
+
+
+		render(data,totalStudent);
 		
 	}
 	
@@ -229,4 +242,43 @@ public class DataManagement extends Controller{
 	    	
 	    	return confirm;
 	    }
+
+	public static void submitTeacherResponse(TeacherResponse teacherResponse) throws SQLException {
+
+		/*TeacherResponse teacherResponse = new TeacherResponse();
+
+		//teacherResponse.data.id=
+
+        teacherResponse.comment = comment ;
+        teacherResponse.isSolved = isSolved;
+        teacherResponse.reason = reasons;*/
+
+		Long id = teacherResponse.data.id;
+
+		Data data = Data.findById(id);
+
+		data.approvalStatus=1;
+
+		data.save();
+
+		String userid = session.get("username");
+
+		User users = User.findByName(userid);
+
+		teacherResponse.user= users;
+
+
+        teacherResponse.save();
+
+
+		/*teacherResponse.save();
+		Logger.info("Record saved successfully.");*/
+
+		//render("@dataDetails",id);
+
+        dataDetails(id);
+
+	}
 }
+
+

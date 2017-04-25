@@ -1,41 +1,259 @@
 #{extends 'main.html' /}
 #{set title:'Data Details' /}
 <title>Data Details</title>
+<style>
 
+    tr.demo,td.demo {
+        height: 50px;
+        vertical-align: top;
+        border: 1px solid black;
+    }
+
+</style>
 
 <div class="page-header">
 	<h1>${title}</h1>
 </div>
 
-<table class="table table-striped table-details">
-    <tbody>
-	    <tr>
-	        <td>Data Id</td>
-	        <td>${data.id}</td>
-	    </tr>
-	    <tr>
-	        <td>School ID</td>
-	        <td>${data.schools.schoolRegNo}</td>
-	    </tr>
-	    <tr>
-	        <td>School Name</td>
-	        <td>${data.schools.name}</td>
-	    </tr>
-	    <tr>
-	        <td>Receive Time </td>
-	        <td>${data.received}</td>
-	    </tr>
-	    <tr>
-	        <td>Sender</td>
-	        <td>${data.sender.name}</td>
-	    </tr>
-	    <tr>
-	        <td>Form</td>
-	        <td>${data.form.shortName}</td>
-	    </tr>
-	    <tr>
-	        <td>Response</td>
-	        <td>${data.approvalStatus}</td>
-	    </tr>
-    </tbody>
-</table>
+
+            <!-- BEGIN PAGE CONTENT-->
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="form-section">SCHOOL INFORMATION</h4>
+                    <div class="well">
+                    #{form @submitTeacherResponse(), class:'form-horizontal form-bordered well'}
+                        <table class="table borderless">
+                            <tr>
+                                <th>School ID:</th>
+                                <td>${data.schools.id}</td>
+                                <th>School Name:</th>
+                                <td>${data.schools.name}</td>
+                                <th>Reg Date:</th>
+                                <td>${data.schools.created_at}</td>
+                                <th><h4>SCHOOL FOCAL PERSON:</h4></th>
+                                <td>${data.schools.nameOfFocalPerson}</td>
+                            </tr>
+                            <tr>
+                                <th>Division:</th>
+                                <td>${data.schools.geoDivision.name}</td>
+                                <th>District:</th>
+                                <td>${data.schools.geoDistrict.name}</td>
+                                <th>Upazilla:</th>
+                                <td>${data.schools.geoUpazilla.name}</td>
+                                <th><h4>CONTACT:</h4></th>
+                                <td>${data.schools.schoolHeadSirMobileNumber}</td>
+                            </tr>
+                            <tr>
+                                <th colspan="2"><h4>SCHOOL FOCAL PERSON:</h4></th>
+                                <td colspan="6">
+                                    <div class="btn-group btn-group-solid">
+                                        <button type="button" class="btn black-background">Boys</button>
+                                        <button type="button" class="btn btn-warning">${data.schools.maleStruden}</button>
+                                    </div>
+                                    <div class="btn-group btn-group-solid">
+                                        <button type="button" class="btn black-background">Girls</button>
+                                        <button type="button" class="btn btn-warning">${data.schools.femailStudent}</button>
+                                    </div>
+                                    <div class="btn-group btn-group-solid">
+                                        <button type="button" class="btn black-background">Total</button>
+                                        <button type="button" class="btn btn-warning">${totalStudent}</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+
+
+                    <h4 class="form-section">FORM DETAILS</h4>
+
+                   <table width="100%" id="sample_2">
+                       <!--      <tr>
+                            <td width="60%"><strong>Type of Respondent</strong></td>
+                            <td>Male</td>
+                        </tr>
+                        <tr>
+                            <td><strong>What is the source of drinking water?</strong></td>
+                            <td>Tubewell</td>
+                        </tr>
+                        <tr>
+                            <td><strong>How many drinking water sources are available?</strong></td>
+                            <td>11</td>
+                        </tr>
+                        <tr>
+                            <td><strong>...</strong></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><strong>...</strong></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><strong>How was the overall water supply situation of the school in the last month?</strong></td>
+                            <td>5</td>
+                        </tr>-->
+                    </table>
+
+                    <input id = 'formId' type ='hidden' value = "${data.form.id}">
+                    <input id = 'dataId' type ='hidden' name='teacherResponse.data.id' value = "${data.id}">
+                    <input id = 'schoolId' type ='hidden' name='teacherResponse.schools.id' value = "${data.schools.id}">
+
+                #{if approvalStatus}
+                #{deadbolt.externalizedRestriction externalRestrictions:['Edit Teacher Response']}
+
+                    <h4 class="form-section">TEACHER'S RESPONSE</h4>
+                    <div class="col-md-10 well">
+                        <table class="table borderless">
+                            <tr>
+                                <th id="responseQuestion">Was the problem to drinking water solve?</th>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="radio-list" >
+                                            <label class="radio-inline"><input type="radio" class="solveclass" id="isSolved" name="teacherResponse.isSolved" value="1" /> হ্যাঁ</label>
+                                            <label class="radio-inline"><input type="radio" class="solveclass"  id="isSolved" name="teacherResponse.isSolved" value="2"/> না</label>
+                                        </div>
+                                    </div>
+                                </td>
+                                <th rowspan="2">
+                                    Comment:<br/>
+                                    <textarea class="form-control" id="comment" name="teacherResponse.comment"></textarea>
+                                </th>
+                            </tr>
+                            <tr id="reasonList">
+                                <div >
+                                <th>কেন, সমাধান করা হয়নি?</th>
+                                <td>
+                                    <div class="checkbox-list " >
+                                        <label>
+                                            <input type="checkbox" class="reason" name="teacherResponse.reason" value="জনবলের অভাব"/> জনবলের অভাব
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" class="reason" name="teacherResponse.reason" value="কাউকে দায়িত্ব দেয়া হয়নি"/> কাউকে দায়িত্ব দেয়া হয়নি
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" class="reason" name="teacherResponse.reason" value="দায়িত্বপ্রাপ্ত ব্যাক্তির অবহেলা"/> দায়িত্বপ্রাপ্ত ব্যাক্তির অবহেলা
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" class="reason" name="teacherResponse.reason" value="দায়িত্ব প্রাপ্ত শিক্ষক নাই"/> দায়িত্ব প্রাপ্ত শিক্ষক নাই
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" class="reason" name="teacherResponse.reason" value="সমস্যার বিষয়টি জানা ছিল না"/> সমস্যার বিষয়টি জানা ছিল না
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" class="reason" name="teacherResponse.reason" value="প্রয়োজনীয় উপকরণ নাই"/> প্রয়োজনীয় উপকরণ নাই
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" class="reason" name="teacherResponse.reason" value="বাজেট স্বল্পতা (নির্দিষ্ট মাসের জন্য)"/> বাজেট স্বল্পতা (নির্দিষ্ট মাসের জন্য)
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" class="reason" name="teacherResponse.reason" value="বাজেট বরাদ্ধ নাই"/> বাজেট বরাদ্ধ নাই
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" class="reason" name="teacherResponse.reason" value="ব্যবস্থাপনা কমিটিকে জানানো হয়েছে, এখনো সিদ্ধান্ত হয়নি"/> ব্যবস্থাপনা কমিটিকে জানানো হয়েছে, এখনো সিদ্ধান্ত হয়নি
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" class="reason" name="teacherResponse.reason" value="পানি সরবরাহ নাই"/> পানি সরবরাহ নাই
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" class="reason" name="teacherResponse.reason" value=" স্কুলের চলমান পরীক্ষার কারনে ব্যস্ততা"/> স্কুলের চলমান পরীক্ষার কারনে ব্যস্ততা
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" class="reason" name="teacherResponse.reason" value="অন্যান্য"/> অন্যান্য
+                                        </label>
+                                    </div>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col-md-2 margin-top-20">
+                        <div class="margin-top-20">&nbsp;</div>
+                        <div class="margin-top-20">&nbsp;</div>
+                        <button class="btn btn-danger btn-full" id="submitResponse" type="submit">Submit</button>
+                        <br/>
+                        <br/>
+                        <button class="btn btn-danger btn-full" type="reset">Reset</button>
+                    </div>
+                 </div>
+
+                #{/deadbolt.externalizedRestriction}
+                #{/if}
+                    #{/form}
+                #{if teacherResponse}
+                    #{deadbolt.externalizedRestriction externalRestrictions:['View Teacher Response']}
+
+                        <h4 class="form-section">TEACHER'S RESPONSE</h4>
+                        <div class="col-md-10 well">
+                            <table class="table borderless">
+                                <tr>
+                                    <th id="responseQuestion">Was the problem to drinking water solve?</th>
+                                    <td>
+                                        <div class="form-group">
+                                            #{if "${teacherResponse.isSolved}" =="1"}
+                                                হ্যাঁ
+                                            #{/if}
+                                            #{if  "${teacherResponse.isSolved}"=="2"}
+                                                না
+                                            #{/if}
+                                        </div>
+                                    </td>
+                                    <tr>
+                                    <th>Comment:</th>
+                                    <td>
+                                        ${teacherResponse.comment}
+                                    </td>
+                            </tr>
+                                <tr >
+                                #{if  "${teacherResponse.isSolved}"=="2"}
+
+                                        <th>কেন, সমাধান করা হয়নি?</th>
+                                        <td>
+                                           ${teacherResponse.reason}
+                                    </td>
+                                #{/if}
+                                </tr>
+                            </table>
+                        </div>
+
+
+                    </div>
+
+                    #{/deadbolt.externalizedRestriction}
+                #{/if}
+
+            </div>
+            <!-- END PAGE CONTENT-->
+
+#{script 'mpower-data-details.js' /}
+
+<script>
+    $(document).ready(function () {
+
+         $("#reasonList").hide();
+
+         $(".solveclass").on("change",function(){
+
+             var solve = $(this).val();
+
+             console.log("solve: " + solve);
+
+             if( solve=="2"){
+
+                 $("#reasonList").show();
+             }
+
+             if( solve=="1"){
+
+                 $("#reasonList").hide();
+             }
+
+
+         });
+
+
+    });
+</script>
+

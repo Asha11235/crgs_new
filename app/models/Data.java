@@ -140,6 +140,61 @@ public class Data extends Model {
 		this.form = form;
 		this.xml = xml;
 	}
+
+
+	public static String getTotalStudent(Long id) throws SQLException {
+
+		Connection conn = play.db.DB.getConnection();
+		ResultSet rs = null;
+
+		String query = "";
+        String totalStudent="";
+		query = " SELECT SUM(SchoolInformation.maleStruden) +SUM(SchoolInformation.femailStudent) " +
+				" as ItemSum " +
+				" from SchoolInformation , Data where Data.schools_id= SchoolInformation.id and Data.id= " + id;
+
+		PreparedStatement queryForExecution1 = conn.prepareStatement(query);
+		rs = queryForExecution1.executeQuery();
+
+		try {
+
+			while (rs.next()) {
+
+				totalStudent= rs.getString("ItemSum");
+			}
+		}catch(Exception e){
+
+			}
+
+		return totalStudent;
+	}
+
+	public static String getApprovalStatus(Long id) throws SQLException {
+
+		Connection conn = play.db.DB.getConnection();
+		ResultSet rs = null;
+
+		String query = "";
+		String approvalStatus="";
+		query = " SELECT Data.approvalStatus \n" +
+				"FROM Data\n" +
+				"WHERE Data.id=" + id;
+
+		PreparedStatement queryForExecution1 = conn.prepareStatement(query);
+		rs = queryForExecution1.executeQuery();
+
+		try {
+
+			while (rs.next()) {
+
+				approvalStatus= rs.getString("approvalStatus");
+			}
+		}catch(Exception e){
+
+		}
+
+		return approvalStatus;
+	}
 	
 	public static List<Data> findByRoleName(Role role){
 		
@@ -522,6 +577,403 @@ public class Data extends Model {
 			
 		
 		
+		return msg;
+	}
+
+
+	public static String sanitationDataDetails(String formId,String dataId) throws SQLException {
+
+
+		Logger.info(dataId);
+		Connection conn = play.db.DB.getConnection();
+		ResultSet rs = null;
+
+		String query = "";
+		String msg = "";
+		query = "SELECT  NewCrgs.Sanitation.res_type, \n" +
+				"        NewCrgs.Sanitation.num_toilet_unusable, \n" +
+				"        NewCrgs.Sanitation.why_toilet_unusable,\n" +
+				"        NewCrgs.Sanitation.toilet_clean_interval,\n" +
+				"        NewCrgs.Sanitation.harpic,\n" +
+				"        NewCrgs.Sanitation.is_sanitation_prob_informed,\n" +
+				"        NewCrgs.Sanitation.how_informed_sanitation_prob,\n" +
+				"        NewCrgs.Sanitation.how_informed_sanitation_prob_other,\n" +
+				"        NewCrgs.Sanitation.took_step_sanitation_prob,\n" +
+				"        NewCrgs.Sanitation.rank_sanitation\n" +
+				"FROM NewCrgs.Sanitation\n" +
+				"WHERE NewCrgs.Sanitation.data_id=" +dataId ;
+
+		PreparedStatement queryForExecution = conn.prepareStatement(query);
+		rs = queryForExecution.executeQuery();
+
+		String resType=null;
+		String numberOfToiletUnusable=null;
+		String whyToiletUnusable=null;
+		String toiletCleanInterval=null;
+		String harpic=null;
+		String isSanitationProbInformed=null;
+		String howInformedProb=null;
+		String howInformedProbOther=null;
+		String tookStep=null;
+		String rank=null;
+
+
+		try {
+
+			while (rs.next()) {
+
+				resType=rs.getString("res_type");
+				numberOfToiletUnusable=rs.getString("num_toilet_unusable");
+				whyToiletUnusable=rs.getString("why_toilet_unusable");
+				toiletCleanInterval=rs.getString("toilet_clean_interval");
+				harpic=rs.getString("harpic");
+				isSanitationProbInformed=rs.getString("is_sanitation_prob_informed");
+				howInformedProb=rs.getString("how_informed_sanitation_prob");
+				howInformedProbOther=rs.getString("how_informed_sanitation_prob_other");
+				tookStep=rs.getString("took_step_sanitation_prob");
+				rank=rs.getString("rank_sanitation");
+
+				//msg=msg + ";" + resType ;
+
+
+             msg=msg + ";" + resType + ";" + numberOfToiletUnusable + ";" + whyToiletUnusable + ";" + toiletCleanInterval +
+					   ";" + harpic + ";" + isSanitationProbInformed + ";" + howInformedProb + ";" + howInformedProbOther +
+					   ";" + tookStep + ";" + rank;
+			}
+
+			/*if( numberOfToiletUnusable!=null){
+
+				msg = msg + ";" + numberOfToiletUnusable;
+			}
+
+			else if(numberOfToiletUnusable==null){
+
+				msg = msg + ";" + "no";
+
+			}
+
+			if( whyToiletUnusable!=null){
+
+				msg = msg + ";" + whyToiletUnusable;
+			}
+
+			else if(whyToiletUnusable==null){
+
+				msg = msg + ";" + "no";
+
+			}
+
+			if( toiletCleanInterval!=null){
+
+				msg = msg + ";" + toiletCleanInterval;
+			}
+
+			else if(toiletCleanInterval==null){
+
+				msg = msg + ";" + "no";
+
+			}
+
+			if( harpic!=null){
+
+				msg = msg + ";" + harpic;
+			}
+
+			else if(harpic==null){
+
+				msg = msg + ";" + "no";
+
+			}
+
+			if( isSanitationProbInformed!=null){
+
+				msg = msg + ";" + isSanitationProbInformed;
+
+				if(isSanitationProbInformed.equals("1")){
+
+					msg = msg + ";" + howInformedProb;
+
+					if(howInformedProb.contains("5")){
+
+						msg = msg + ";" + howInformedProbOther ;
+					}
+
+					else{
+
+						msg = msg + ";" + "no" ;
+					}
+				}
+			}
+
+			else if(isSanitationProbInformed==null){
+
+				msg = msg + ";" + "no" + ";" + "no" + ";" + "no";
+
+			}
+
+
+			if( tookStep!=null){
+
+				msg = msg + ";" + tookStep;
+			}
+
+			else if(tookStep==null){
+
+				msg = msg + ";" + "no";
+
+			}
+
+			if( rank!=null){
+
+				msg = msg + ";" + rank;
+			}
+
+			else if(rank==null){
+
+				msg = msg + ";" + "no";
+
+			}*/
+		} catch (Exception e) {
+
+
+
+		}
+
+		return msg;
+	}
+
+	public static String waterDataDetail(String formId , String dataId) throws SQLException {
+
+		Connection conn = play.db.DB.getConnection();
+		ResultSet rs = null;
+
+		String query = "";
+		String msg = "";
+		query = "SELECT  Water.res_type, \n" +
+				"        Water.water_source, \n" +
+				"        Water.num_waterSource,\n" +
+				"        Water.activeWaterSource,\n" +
+				"        Water.is_potable,\n" +
+				"        Water.why_not_potable,\n" +
+				"        Water.why_not_potable_other,\n"+
+				"        Water.is_tank_cleaned,\n" +
+				"        Water.is_informed_authority_water_prob,\n" +
+				"        Water.how_informed_water_prob,\n" +
+				"        Water.how_informed_water_prob_other,\n" +
+				"        Water.water_prob_solved_authority,\n" +
+				"        Water.rank_water\n" +
+				"FROM Water\n" +
+				"WHERE Water.data_id=" +dataId ;
+
+		PreparedStatement queryForExecution = conn.prepareStatement(query);
+		rs = queryForExecution.executeQuery();
+
+		String resType=null;
+		String waterSource=null;
+		String numWaterSource=null;
+		String activeWaterSource=null;
+		String isPotable=null;
+		String whyNotPotable=null;
+		String isTankCleaned=null;
+		String isInformedAuthorityWaterProb=null;
+		String whyNotPotableOther=null;
+		String howInformedWaterProb=null;
+		String howInformedWaterProbOther=null;
+		String waterProbSolvedAuthority=null;
+		String rank=null;
+
+		try {
+
+			while (rs.next()) {
+
+				resType = rs.getString("res_type");
+				waterSource = rs.getString("water_source");
+				numWaterSource = rs.getString("num_waterSource");
+				activeWaterSource = rs.getString("activeWaterSource");
+				isPotable = rs.getString("is_potable");
+				whyNotPotable = rs.getString("why_not_potable");
+				whyNotPotableOther = rs.getString("why_not_potable_other");
+				isTankCleaned = rs.getString("is_tank_cleaned");
+				isInformedAuthorityWaterProb = rs.getString("is_informed_authority_water_prob");
+				howInformedWaterProb = rs.getString("how_informed_water_prob");
+				howInformedWaterProbOther = rs.getString("how_informed_water_prob_other");
+				waterProbSolvedAuthority = rs.getString("water_prob_solved_authority");
+				rank = rs.getString("rank_water");
+
+				Logger.info("rank: "+rank);
+
+				//msg = msg + ";" + resType;
+
+
+            msg=msg + ";" + resType + ";" + waterSource + ";" + numWaterSource + ";" + activeWaterSource +
+					   ";" + isPotable + ";" + whyNotPotable + ";" + whyNotPotableOther + ";" + isTankCleaned +
+					   ";" + isInformedAuthorityWaterProb +  ";" + howInformedWaterProb + ";" + howInformedWaterProbOther + ";" + waterProbSolvedAuthority + ";" + rank;
+
+
+
+			}
+
+		}catch(Exception e){
+
+
+
+		}
+
+			return msg;
+		}
+
+	public static String schoolEnviornmentDataDetails(String formId , String dataId) throws SQLException {
+
+		Connection conn = play.db.DB.getConnection();
+		ResultSet rs = null;
+
+		String query = "";
+		String msg = "";
+
+		query="SELECT " +
+				"SchoolEnvironment.res_type, " +
+				"SchoolEnvironment.cleanInterval_SchoolYard, " +
+				"SchoolEnvironment.cleanInterval_ClassRoom, " +
+				"SchoolEnvironment.StuHearTeacher, " +
+				"SchoolEnvironment.stuSeatArrange, " +
+				"SchoolEnvironment.teacherStage, " +
+				"SchoolEnvironment.complained_SchoolEnvironment, " +
+				"SchoolEnvironment.how_informed_Environment_prob, " +
+				"SchoolEnvironment.how_informed_Environment_prob_other, " +
+				"SchoolEnvironment.took_step_Environment_prob, " +
+				"SchoolEnvironment.rank_Environment, " +
+				"SchoolEnvironment.rank_Edu_Quality, " +
+				"SchoolEnvironment.scareSafe_SchoolWay, " +
+				"SchoolEnvironment.yhy_not_feel_safe, " +
+				"SchoolEnvironment.schoolCanteen " +
+				"FROM " +
+				"SchoolEnvironment "+
+				"WHERE SchoolEnvironment.data_id=" +dataId ;
+
+		PreparedStatement queryForExecution = conn.prepareStatement(query);
+		rs = queryForExecution.executeQuery();
+
+		String resType=null;
+		String cleanIntervalSchoolYard=null;
+		String cleanIntervalClassRoom=null;
+		String stuHearTeacher=null;
+		String stuSeatArrange=null;
+		String teacherStage=null;
+		String complainedSchoolEnvironment=null;
+		String howInformedEnvironmentProb=null;
+		String howInformedEnvironmentProbOther=null;
+		String tookStepEnvironmentProb=null;
+		String rankEnvironment=null;
+		String rankEduQuality=null;
+		String scareSafeSchoolWay=null;
+		String yhyNotFeelSage=null;
+		String schoolCanteen=null;
+
+		try{
+
+			while(rs.next()){
+
+				resType = rs.getString("res_type");
+				cleanIntervalSchoolYard = rs.getString("cleanInterval_SchoolYard");
+				cleanIntervalClassRoom = rs.getString("cleanInterval_ClassRoom");
+				stuHearTeacher = rs.getString("StuHearTeacher");
+				stuSeatArrange = rs.getString("stuSeatArrange");
+				teacherStage = rs.getString("teacherStage");
+				complainedSchoolEnvironment = rs.getString("complained_SchoolEnvironment");
+				howInformedEnvironmentProb = rs.getString("how_informed_Environment_prob");
+				howInformedEnvironmentProbOther = rs.getString("how_informed_Environment_prob_other");
+				tookStepEnvironmentProb = rs.getString("took_step_Environment_prob");
+				rankEnvironment = rs.getString("rank_Environment");
+				rankEduQuality = rs.getString("rank_Edu_Quality");
+				scareSafeSchoolWay = rs.getString("scareSafe_SchoolWay");
+				yhyNotFeelSage = rs.getString("yhy_not_feel_safe");
+				schoolCanteen = rs.getString("schoolCanteen");
+
+
+			}
+
+			msg=msg + ";" + resType + ";" + cleanIntervalSchoolYard + ";" + cleanIntervalClassRoom + ";" + stuHearTeacher +
+					  ";" + stuSeatArrange + ";" + teacherStage + ";" + complainedSchoolEnvironment + ";" + howInformedEnvironmentProb +
+					  ";" + howInformedEnvironmentProbOther +  ";" + tookStepEnvironmentProb + ";" + rankEnvironment +
+					  ";" + rankEduQuality + ";" + scareSafeSchoolWay + ";" + "," + yhyNotFeelSage + ";" + schoolCanteen;
+
+			Logger.info("teacher: " + stuHearTeacher);
+
+
+		}catch(Exception e){
+
+		}
+
+
+
+		return msg;
+	}
+
+	public static String schoolSportsDataDetails(String formId , String dataId) throws SQLException {
+
+		Connection conn = play.db.DB.getConnection();
+		ResultSet rs = null;
+
+		String query = "";
+		String msg = "";
+
+		query="SELECT \n" +
+				"SportsRecreation.res_type,\n" +
+				"SportsRecreation.facilitiesAvailable,\n" +
+				"SportsRecreation.instrumentUsable,\n" +
+				"SportsRecreation.schoolType,\n" +
+				"SportsRecreation.instrumentEqualAccess,\n" +
+				"SportsRecreation.whyNot_EqualAccess,\n" +
+				"SportsRecreation.sportsTeacher,\n" +
+				"SportsRecreation.lastMonth_Activity,\n" +
+				"SportsRecreation.rank_SportsRecreation\n" +
+				"FROM\n" +
+				"SportsRecreation "+
+				"WHERE SportsRecreation.data_id=" +dataId ;
+
+		PreparedStatement queryForExecution = conn.prepareStatement(query);
+		rs = queryForExecution.executeQuery();
+
+		String resType=null;
+		String facilitiesAvailable=null;
+		String instrumentUsable=null;
+		String schoolType=null;
+		String instrumentEqualAccess=null;
+		String whyNotEqualAccess=null;
+		String sportsTeacher=null;
+		String lastMonthActivity=null;
+		String rankSportsRecreation=null;
+
+
+		try{
+
+			while(rs.next()){
+
+				resType = rs.getString("res_type");
+				facilitiesAvailable = rs.getString("facilitiesAvailable");
+				instrumentUsable = rs.getString("instrumentUsable");
+				schoolType = rs.getString("schoolType");
+				instrumentEqualAccess = rs.getString("instrumentEqualAccess");
+				whyNotEqualAccess = rs.getString("whyNot_EqualAccess");
+				sportsTeacher = rs.getString("sportsTeacher");
+				lastMonthActivity = rs.getString("lastMonth_Activity");
+				rankSportsRecreation = rs.getString("rank_SportsRecreation");
+
+
+
+			}
+
+			msg=msg + ";" + resType + ";" + "," +facilitiesAvailable + ";" + instrumentUsable + ";" + schoolType +
+					";" + instrumentEqualAccess + ";" + "," +whyNotEqualAccess + ";" + sportsTeacher + ";" + "," +lastMonthActivity +
+					";" + rankSportsRecreation ;
+
+
+		}catch(Exception e){
+
+		}
+
+
+
 		return msg;
 	}
 }

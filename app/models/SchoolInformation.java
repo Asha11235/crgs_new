@@ -42,7 +42,8 @@ public class SchoolInformation extends Model {
 	@ManyToOne
 	public GeoUnion geoUnion;
 	
-	
+	public String nameOfFocalPerson;
+
 	public String headSirPhonNumber;
 	
 	public String classTeacherPhoneNumber;
