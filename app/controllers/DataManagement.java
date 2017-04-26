@@ -128,20 +128,57 @@ public class DataManagement extends Controller{
 		for (int i = 0; i < dataList.size(); i++) {
 			System.out.println(dataList.get(i).received_date);
 		}*/
-		
-		List<Water> waterList = Water.findAll();
-		List<Sanitation> sanitationList = Sanitation.findAll();
-		List<SportsRecreation> sportsRecreationList = SportsRecreation.findAll();
-		List<SchoolEnvironment> schoolEnvironmentList = SchoolEnvironment.findAll();
-		
-		
-		List<GeoDivision> geoDivisionList = GeoDivision.findAll();
-		List<GeoDistrict> geoDistrictList = GeoDistrict.findAll();
-		List<GeoUpazilla> geoUpazillaList = GeoUpazilla.findAll();
-		List<Form> formList = Form.findAll();
-		List<SchoolInformation> schoolList = SchoolInformation.findAll();
-		
-		render(geoDivisionList, geoDistrictList, geoUpazillaList,schoolList, formList,waterList,sanitationList,sportsRecreationList,schoolEnvironmentList);
+
+		String users = session.get("username");
+
+		User user = User.findByName(users);
+
+        List<Water> waterList=new ArrayList<Water>();
+        List<Sanitation> sanitationList =new ArrayList<Sanitation>();
+        List<SportsRecreation> sportsRecreationList =new ArrayList<SportsRecreation>();
+        List<SchoolEnvironment> schoolEnvironmentList =new ArrayList<SchoolEnvironment>();
+
+
+
+        List<GeoDivision> geoDivisionList = GeoDivision.findAll();
+        List<GeoDistrict> geoDistrictList = GeoDistrict.findAll();
+        List<GeoUpazilla> geoUpazillaList = GeoUpazilla.findAll();
+        List<Form> formList = Form.findAll();
+        List<SchoolInformation> schoolList = SchoolInformation.findAll();
+
+		Long roleId = user.role.id;
+
+
+
+
+		if(roleId==3){
+
+            Long schoolId = user.school.id;
+            Logger.info("school: " + schoolId + "roleId: " + roleId);
+
+		    waterList=Water.find("school_id=?",schoolId).fetch();
+		    Logger.info("size: " + waterList.size());
+            sanitationList = Sanitation.find("school_id=?",schoolId).fetch();
+            sportsRecreationList = SportsRecreation.find("school_id=?",schoolId).fetch();
+            schoolEnvironmentList = SchoolEnvironment.find("school_id=?",schoolId).fetch();
+
+            render(geoDivisionList, geoDistrictList, geoUpazillaList,schoolList, formList,waterList,sanitationList,sportsRecreationList,schoolEnvironmentList);
+        }
+
+
+		else if(roleId!=3){
+
+            waterList = Water.findAll();
+            Logger.info("size: " + waterList.size());
+            sanitationList = Sanitation.findAll();
+            sportsRecreationList = SportsRecreation.findAll();
+            schoolEnvironmentList = SchoolEnvironment.findAll();
+
+            render(geoDivisionList, geoDistrictList, geoUpazillaList,schoolList, formList,waterList,sanitationList,sportsRecreationList,schoolEnvironmentList);
+
+        }
+
+
 	}
 	
 	

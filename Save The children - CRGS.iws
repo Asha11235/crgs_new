@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2e3f578-5dd9-4aaa-acd9-985ef7c759cf" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/TeacherResponse.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/mpower-data-details.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Save The children - CRGS.iws" afterPath="$PROJECT_DIR$/Save The children - CRGS.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/DataManagement.java" afterPath="$PROJECT_DIR$/app/controllers/DataManagement.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/Reports.java" afterPath="$PROJECT_DIR$/app/controllers/Reports.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Data.java" afterPath="$PROJECT_DIR$/app/models/Data.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Sanitation.java" afterPath="$PROJECT_DIR$/app/models/Sanitation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/SchoolInformation.java" afterPath="$PROJECT_DIR$/app/models/SchoolInformation.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/DataManagement/dataDetails.html" afterPath="$PROJECT_DIR$/app/views/DataManagement/dataDetails.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/DataManagement/viewDetails.html" afterPath="$PROJECT_DIR$/app/views/DataManagement/viewDetails.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/RegisterSchool/schoolregister.html" afterPath="$PROJECT_DIR$/app/views/RegisterSchool/schoolregister.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/routes" afterPath="$PROJECT_DIR$/conf/routes" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,10 +30,14 @@
       <file leaf-file-name="DataManagement.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/DataManagement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="180" column="43" lean-forward="false" selection-start-line="180" selection-start-column="28" selection-end-line="180" selection-end-column="43" />
+            <state relative-caret-position="146">
+              <caret line="156" column="69" lean-forward="false" selection-start-line="156" selection-start-column="69" selection-end-line="156" selection-end-column="69" />
               <folding>
-                <marker date="1493111974234" expanded="true" signature="1175:1206" ph="select * fro... SchoolInformation" />
+                <element signature="e#4127#4134#0" expanded="true" />
+                <element signature="e#4192#4204#0" expanded="true" />
+                <element signature="e#4274#4292#0" expanded="true" />
+                <element signature="e#4364#4383#0" expanded="true" />
+                <marker date="1493121737106" expanded="true" signature="1175:1206" ph="select * fro... SchoolInformation" />
               </folding>
             </state>
           </provider>
@@ -98,11 +92,28 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="viewDetails.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/DataManagement/viewDetails.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2196">
+              <caret line="152" column="24" lean-forward="true" selection-start-line="152" selection-start-column="24" selection-end-line="152" selection-end-column="24" />
+              <folding>
+                <marker date="1493016739981" expanded="true" signature="8900:8911" ph="..." />
+                <marker date="1493016739981" expanded="true" signature="9154:9163" ph="..." />
+                <marker date="1493016739981" expanded="true" signature="11244:11250" ph="&amp;nbsp;" />
+                <marker date="1493016739981" expanded="true" signature="11274:11280" ph="&amp;nbsp;" />
+                <marker date="1493016739981" expanded="true" signature="14326:14337" ph="..." />
+                <marker date="1493016739981" expanded="true" signature="14623:14632" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="dataDetails.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/DataManagement/dataDetails.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="207" column="28" lean-forward="false" selection-start-line="207" selection-start-column="28" selection-end-line="207" selection-end-column="28" />
+            <state relative-caret-position="180">
+              <caret line="118" column="42" lean-forward="false" selection-start-line="118" selection-start-column="42" selection-end-line="118" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -171,8 +182,8 @@
         <option value="$PROJECT_DIR$/app/views/RegisterSchool/schoolregister.html" />
         <option value="$PROJECT_DIR$/conf/routes" />
         <option value="$PROJECT_DIR$/app/models/TeacherResponse.java" />
-        <option value="$PROJECT_DIR$/app/controllers/DataManagement.java" />
         <option value="$PROJECT_DIR$/public/javascripts/mpower-data-details.js" />
+        <option value="$PROJECT_DIR$/app/controllers/DataManagement.java" />
         <option value="$PROJECT_DIR$/app/views/DataManagement/dataDetails.html" />
       </list>
     </option>
@@ -762,12 +773,12 @@
       <workItem from="1492924571872" duration="18948000" />
       <workItem from="1493010273850" duration="4759000" />
       <workItem from="1493022419202" duration="6743000" />
-      <workItem from="1493095109471" duration="17592000" />
+      <workItem from="1493095109471" duration="20217000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93451000" />
+    <option name="totallyTimeSpent" value="96076000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="75" y="34" width="1301" height="744" extended-state="0" />
@@ -1137,41 +1148,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/DataManagement/viewDetails.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-460">
-          <caret line="126" column="64" lean-forward="false" selection-start-line="126" selection-start-column="28" selection-end-line="126" selection-end-column="64" />
-          <folding>
-            <marker date="1493016739981" expanded="true" signature="8900:8911" ph="..." />
-            <marker date="1493016739981" expanded="true" signature="9154:9163" ph="..." />
-            <marker date="1493016739981" expanded="true" signature="11244:11250" ph="&amp;nbsp;" />
-            <marker date="1493016739981" expanded="true" signature="11274:11280" ph="&amp;nbsp;" />
-            <marker date="1493016739981" expanded="true" signature="14326:14337" ph="..." />
-            <marker date="1493016739981" expanded="true" signature="14623:14632" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Data.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="187" column="31" lean-forward="true" selection-start-line="187" selection-start-column="31" selection-end-line="187" selection-end-column="31" />
-          <folding>
-            <marker date="1493095708476" expanded="true" signature="3427:3625" ph="SELECT SUM(S... SchoolInformation" />
-            <marker date="1493095708476" expanded="true" signature="4091:4163" ph="SELECT SUM(S... SchoolInformation" />
-            <marker date="1493095708476" expanded="true" signature="5783:6377" ph="SELECT Data.... Water" />
-            <marker date="1493095708476" expanded="true" signature="6407:7031" ph="SELECT Data.... Sanitation" />
-            <marker date="1493095708476" expanded="true" signature="7065:7731" ph="SELECT Data.... SchoolEnvironment" />
-            <marker date="1493095708476" expanded="true" signature="7763:8423" ph="SELECT Data.... SportsRecreation" />
-            <marker date="1493095708476" expanded="true" signature="17479:18139" ph="SELECT NewCr... Sanitation" />
-            <marker date="1493095708476" expanded="true" signature="21045:21316" ph="SELECT NewCr... " />
-            <marker date="1493095708476" expanded="true" signature="21045:21658" ph="SELECT NewCr... Sanitation" />
-            <marker date="1493095708476" expanded="true" signature="23704:24520" ph="SELECT Schoo... SchoolEnvironmentWHERE" />
-            <marker date="1493095708476" expanded="true" signature="26907:27400" ph="SELECT Schoo... SchoolEnvironment" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/Users.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-6576">
@@ -1231,18 +1207,57 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/DataManagement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="180" column="43" lean-forward="false" selection-start-line="180" selection-start-column="28" selection-end-line="180" selection-end-column="43" />
+        <state relative-caret-position="146">
+          <caret line="156" column="69" lean-forward="false" selection-start-line="156" selection-start-column="69" selection-end-line="156" selection-end-column="69" />
           <folding>
-            <marker date="1493111974234" expanded="true" signature="1175:1206" ph="select * fro... SchoolInformation" />
+            <element signature="e#4127#4134#0" expanded="true" />
+            <element signature="e#4192#4204#0" expanded="true" />
+            <element signature="e#4274#4292#0" expanded="true" />
+            <element signature="e#4364#4383#0" expanded="true" />
+            <marker date="1493121737106" expanded="true" signature="1175:1206" ph="select * fro... SchoolInformation" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Data.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="187" column="31" lean-forward="true" selection-start-line="187" selection-start-column="31" selection-end-line="187" selection-end-column="31" />
+          <folding>
+            <marker date="1493095708476" expanded="true" signature="3427:3625" ph="SELECT SUM(S... SchoolInformation" />
+            <marker date="1493095708476" expanded="true" signature="4091:4163" ph="SELECT SUM(S... SchoolInformation" />
+            <marker date="1493095708476" expanded="true" signature="5783:6377" ph="SELECT Data.... Water" />
+            <marker date="1493095708476" expanded="true" signature="6407:7031" ph="SELECT Data.... Sanitation" />
+            <marker date="1493095708476" expanded="true" signature="7065:7731" ph="SELECT Data.... SchoolEnvironment" />
+            <marker date="1493095708476" expanded="true" signature="7763:8423" ph="SELECT Data.... SportsRecreation" />
+            <marker date="1493095708476" expanded="true" signature="17479:18139" ph="SELECT NewCr... Sanitation" />
+            <marker date="1493095708476" expanded="true" signature="21045:21316" ph="SELECT NewCr... " />
+            <marker date="1493095708476" expanded="true" signature="21045:21658" ph="SELECT NewCr... Sanitation" />
+            <marker date="1493095708476" expanded="true" signature="23704:24520" ph="SELECT Schoo... SchoolEnvironmentWHERE" />
+            <marker date="1493095708476" expanded="true" signature="26907:27400" ph="SELECT Schoo... SchoolEnvironment" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/DataManagement/viewDetails.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2196">
+          <caret line="152" column="24" lean-forward="true" selection-start-line="152" selection-start-column="24" selection-end-line="152" selection-end-column="24" />
+          <folding>
+            <marker date="1493016739981" expanded="true" signature="8900:8911" ph="..." />
+            <marker date="1493016739981" expanded="true" signature="9154:9163" ph="..." />
+            <marker date="1493016739981" expanded="true" signature="11244:11250" ph="&amp;nbsp;" />
+            <marker date="1493016739981" expanded="true" signature="11274:11280" ph="&amp;nbsp;" />
+            <marker date="1493016739981" expanded="true" signature="14326:14337" ph="..." />
+            <marker date="1493016739981" expanded="true" signature="14623:14632" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/DataManagement/dataDetails.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="207" column="28" lean-forward="false" selection-start-line="207" selection-start-column="28" selection-end-line="207" selection-end-column="28" />
+        <state relative-caret-position="180">
+          <caret line="118" column="42" lean-forward="false" selection-start-line="118" selection-start-column="42" selection-end-line="118" selection-end-column="42" />
           <folding />
         </state>
       </provider>
