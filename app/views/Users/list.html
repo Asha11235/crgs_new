@@ -31,13 +31,13 @@
                             <div class="portlet-body">
                                 <div class="row">
                                   <div class="col-md-2">
-			<div class="form-group">
-			<div id="geoDivision" class="col-md-12 SEARCH" url="@{Ngos.loadGeoDistrict()}" load-data-container-SEARCH="#geoDistrict">
-				#{select 'division', value:0, items:geoDivisionList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'division'}
-					#{option}Division#{/option}
-				#{/select}
-			</div>
-			</div>
+									<div class="form-group">
+									<div id="geoDivision" class="col-md-12 SEARCH" url="@{Ngos.loadGeoDistrict()}" load-data-container-SEARCH="#geoDistrict">
+										#{select 'division', value:0, items:geoDivisionList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'division'}
+											#{option}Division#{/option}
+										#{/select}
+									</div>
+									</div>
 		</div>
 		<div class="col-md-2">
 			<div class="form-group">

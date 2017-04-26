@@ -1,13 +1,12 @@
-#{extends 'main.html' /} 
+#{extends 'main.html' /}
+#{set title:"Data Management" /}
 
 <title>Data Management</title>
-#{set title:"Data Management" /}
+
 
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
 <script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
-
-<script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
  <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"></script>
@@ -28,185 +27,189 @@
 </div>
 
 <!-- BEGIN PAGE CONTENT-->
-
-		<!-- BEGIN PORTLET-->
-		<div class="portlet">
-			<div class="portlet-title">
-				<div class="caption">
-					<i class="fa fa-reorder"></i>Data Management
-				</div>
-			</div>
-			<div class="portlet-body">
-				<div class="row">
-			            <div class="col-md-2">
-					        <div class="form-group">
-								<div id="geoDivision" class="col-md-12 SEARCH" url="@{Ngos.loadGeoDistrict()}" load-data-container-SEARCH="#geoDistrict">
-									#{select 'division', value:0, items:geoDivisionList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'division'}
-										#{option}Division#{/option}
-									#{/select}
-								</div>
-							</div>
-		                </div>
-					    <div class="col-md-2">
-			                <div class="form-group">
-								<div id="geoDistrict" class="col-md-12 SEARCH" url="@{Ngos.loadGeoUpazilla()}"  load-data-container-SEARCH="#geoUpazilla">
-									#{select 'district', value:0, items:geoDistrictList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'ngo.geoDistrict.id'}
-										#{option}District#{/option}
-									#{/select}
-								</div>
-			                </div>
-		                </div>
-		                <div class="col-md-2">
-			                <div class="form-group">
-								<div id="geoUpazilla" class="col-md-12 SEARCH" url="@{Ngos.loadGeoSchool()}"  load-data-container-SEARCH="#geoSchool">
-									#{select 'upazilla', value:0, items:geoUpazillaList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'ngo.geoUpazilla.id'}
-										#{option}Upazilla#{/option}
-									#{/select}
-								</div>
-			                </div>
-		                </div>
-					    <div class="col-md-2">
-			                <div class="form-group">
-								<div id="geoSchool" class="col-md-12 SEARCH"  url="@{Ngos.loadGeoSchool()}"  load-data-container-SEARCH="#geoUnion">
-									#{select 'school', value:0, items:schoolList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'school'}
-										#{option}School#{/option}
-									#{/select}
-								</div>
-			                </div>
-		                </div>
-                  
-				
-						<div class="col-md-2">
-							<div class="form-group">
-								<div id="role" class="col-md-12 SEARCH" >
-									#{select 'form.name', value:0, items:formList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'formId'}
-										#{option}Form#{/option}
-									#{/select}
-								</div>
-							</div>
-						</div>
-				</div>
-
-				<!-- BEGIN FORM-->
-				<table class="table table-striped table-bordered table-hover"
-					id="sample_2">
-					<thead>
-						<tr>
-							<th>Data ID</th>
-							<th>School ID</th>
-							<th>School Name</th>
-							<th>Address</th>
-							<th>Receive Time</th>
-							<th>Sender</th>
-							<th>From</th>
-							<th>Response</th>
-							<th>&nbsp;</th>
-							<th>&nbsp;</th>
-						</tr>
-					</thead>
-					<tbody>
-						%{Water}%
-						#{list items:waterList, as:'water'}
-						<tr class="odd gradeX">
-							<td>${water.data.id}</td>
-							<td>${water.school?.schoolRegNo}</td>
-							<td>${water.school?.name}</td>
-							<td>${water.school?.geoUpazilla?.name}</td>
-							<td>${water?.date}</td>
-							<td>${water.sender?.displayName}</td>
-							<td>${water.form?.shortName}</td>
-							<td>${water.data?.approvalStatus}</td>
-							
-							 #{deadbolt.externalizedRestriction externalRestrictions:['Edit Data']}
-							<td><a class='btn btn-mini details' href='@{DataManagement.dataDetails(water.data?.id)}'>Details</a></td>
-							<td>
-							<a class='btn btn-mini btn-danger delete_data' id = '${water.data?.id}'><i class='icon-remove icon-white'></i> Delete</a>
-							<i class='icon-remove icon-white'></i>
-							</a>
-							</td>
-							#{/deadbolt.externalizedRestriction}
-						</tr>
-						#{/list}
-						
-						%{Sanitation}%
-						#{list items:sanitationList, as:'sanitation'}
-						<tr class="odd gradeX">
-							<td>${sanitation.data.id}</td>
-							<td>${sanitation.school?.schoolRegNo}</td>
-							<td>${sanitation.school?.name}</td>
-							<td>${sanitation.school?.geoUpazilla?.name}</td>
-							<td>${sanitation?.date}</td>
-							<td>${sanitation.sender?.displayName}</td>
-							<td>${sanitation.form?.shortName}</td>
-							<td>${sanitation.data?.approvalStatus}</td>
-
-							 #{deadbolt.externalizedRestriction externalRestrictions:['Edit Data']}
-							<td><a class='btn btn-mini details' href='@{DataManagement.dataDetails(sanitation.data.id)}'>Details</a></td>
-							<td>
-							<a class='btn btn-mini btn-danger delete_data' id = '${sanitation.data?.id}'><i class='icon-remove icon-white'></i> Delete</a>
-							<i class='icon-remove icon-white'></i>
-							</a>
-							</td>
-							#{/deadbolt.externalizedRestriction}
-						</tr>
-						#{/list}
-						
-						%{sports}%
-						#{list items:sportsRecreationList, as:'sportsRecreation'}
-						<tr class="odd gradeX">
-							<td>${sportsRecreation.data?.id}</td>
-							<td>${sportsRecreation.school?.schoolRegNo}</td>
-							<td>${sportsRecreation.school?.name}</td>
-							<td>${sportsRecreation.school?.geoUpazilla?.name}</td>
-							<td>${sportsRecreation?.date}</td>							<td><a class='btn btn-mini details' href='@{DataManagement.dataDetails(sanitation.data.id)}'>Details</a></td>
-
-							<td>${sportsRecreation.sender?.displayName}</td>
-							<td>${sportsRecreation.form?.shortName}</td>
-							<td>${sportsRecreation.data?.approvalStatus}</td>
-							#{deadbolt.externalizedRestriction externalRestrictions:['Edit Data']}
-							<td><a class='btn btn-mini details' href='@{DataManagement.dataDetails(sportsRecreation.data?.id)}'>Details</a></td>
-							<td>
-							<a class='btn btn-mini btn-danger delete_data' id = '${sportsRecreation.data?.id}'><i class='icon-remove icon-white'></i> Delete</a>
-							<i class='icon-remove icon-white'></i>
-							</a>
-							</td>
-							#{/deadbolt.externalizedRestriction}
-						</tr>
-						#{/list}
-						
-						%{Environment}%
-						#{list items:schoolEnvironmentList, as:'schoolEnvironment'}
-						<tr class="odd gradeX">
-							<td>${schoolEnvironment.data?.id}</td>
-							<td>${schoolEnvironment.school?.schoolRegNo}</td>
-							<td>${schoolEnvironment.school?.name}</td>
-							<td>${schoolEnvironment.school?.geoUpazilla?.name}</td>
-							<td>${schoolEnvironment?.date}</td>
-							<td>${schoolEnvironment.sender?.displayName}</td>
-							<td>${schoolEnvironment.form?.shortName}</td>
-							<td>${schoolEnvironment.data?.approvalStatus}</td>
-							#{deadbolt.externalizedRestriction externalRestrictions:['Edit Data']}
-							<td><a class='btn btn-mini details' href='@{DataManagement.dataDetails(schoolEnvironment.data?.id)}'>Details</a></td>
-							<td>
-							<a class='btn btn-mini btn-danger delete_data' id = '${schoolEnvironment.data?.id}'><i class='icon-remove icon-white'></i> Delete</a>
-							<i class='icon-remove icon-white'></i>
-							</a>
-							</td>
-							#{/deadbolt.externalizedRestriction}
-						</tr>
-						#{/list}
-					</tbody>
-				</table>
-			</div>
-		</div>
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN PORTLET-->
+        <div class="portlet">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-reorder"></i>Data Management
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="row">
+				#{deadbolt.externalizedRestriction externalRestrictions:['filter data management']}
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <div id="geoDivision" class="col-md-12 SEARCH" url="@{Ngos.loadGeoDistrict()}" load-data-container-SEARCH="#geoDistrict">
+							#{select 'division', value:0, items:geoDivisionList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'division'}
+								#{option}Division#{/option}
+							#{/select}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <div id="geoDistrict" class="col-md-12 SEARCH" url="@{Ngos.loadGeoUpazilla()}"  load-data-container-SEARCH="#geoUpazilla">
+							#{select 'district', value:0, items:geoDistrictList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'ngo.geoDistrict.id'}
+								#{option}District#{/option}
+							#{/select}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <div id="geoUpazilla" class="col-md-12 SEARCH" url="@{Ngos.loadGeoSchool()}"  load-data-container-SEARCH="#geoSchool">
+							#{select 'upazilla', value:0, items:geoUpazillaList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'ngo.geoUpazilla.id'}
+								#{option}Upazilla#{/option}
+							#{/select}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <div id="geoSchool" class="col-md-12 SEARCH"  url="@{Ngos.loadGeoSchool()}"  load-data-container-SEARCH="#geoUnion">
+							#{select 'school', value:0, items:schoolList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'school'}
+								#{option}School#{/option}
+							#{/select}
+                            </div>
+                        </div>
+                    </div>
 
 
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <div id="role" class="col-md-12 SEARCH" >
+							#{select 'form.name', value:0, items:formList, labelProperty:'name', valueProperty:'id', class:'form-control', id:'formId'}
+								#{option}Form#{/option}
+							#{/select}
+                            </div>
+                        </div>
+                    </div>
+
+				#{/deadbolt.externalizedRestriction}
+
+                    <!--/span-->
+                </div>
+                <!-- BEGIN FORM-->
+                <table class="table table-striped table-bordered table-hover" id="sample_2">
+                    <thead>
+                    <tr>
+                        <th>Data ID</th>
+                        <th>School ID</th>
+                        <th>School Name</th>
+                        <th>Address</th>
+                        <th>Receive Time</th>
+                        <th>Sender</th>
+                        <th>From</th>
+                        <th>Response</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+					%{Water}%
+					#{list items:waterList, as:'water'}
+                    <tr class="odd gradeX">
+                        <td>${water.data.id}</td>
+                        <td>${water.school?.schoolRegNo}</td>
+                        <td>${water.school?.name}</td>
+                        <td>${water.school?.geoUpazilla?.name}</td>
+                        <td>${water?.date}</td>
+                        <td>${water.sender?.displayName}</td>
+                        <td>${water.form?.shortName}</td>
+                        <td>${water.data?.approvalStatus}</td>
+
+						#{deadbolt.externalizedRestriction externalRestrictions:['Edit Data']}
+                            <td><a class='btn btn-mini details' href='@{DataManagement.dataDetails(water.data?.id)}'>Details</a></td>
+                            <td>
+                                <a class='btn btn-mini btn-danger delete_data' id = '${water.data?.id}'><i class='icon-remove icon-white'></i> Delete</a>
+                                <i class='icon-remove icon-white'></i>
+                                </a>
+                            </td>
+						#{/deadbolt.externalizedRestriction}
+                    </tr>
+					#{/list}
+
+					%{Sanitation}%
+					#{list items:sanitationList, as:'sanitation'}
+                    <tr class="odd gradeX">
+                        <td>${sanitation.data.id}</td>
+                        <td>${sanitation.school?.schoolRegNo}</td>
+                        <td>${sanitation.school?.name}</td>
+                        <td>${sanitation.school?.geoUpazilla?.name}</td>
+                        <td>${sanitation?.date}</td>
+                        <td>${sanitation.sender?.displayName}</td>
+                        <td>${sanitation.form?.shortName}</td>
+                        <td>${sanitation.data?.approvalStatus}</td>
+
+						#{deadbolt.externalizedRestriction externalRestrictions:['Edit Data']}
+                            <td><a class='btn btn-mini details' href='@{DataManagement.dataDetails(sanitation.data.id)}'>Details</a></td>
+                            <td>
+                                <a class='btn btn-mini btn-danger delete_data' id = '${sanitation.data?.id}'><i class='icon-remove icon-white'></i> Delete</a>
+                                <i class='icon-remove icon-white'></i>
+                                </a>
+                            </td>
+						#{/deadbolt.externalizedRestriction}
+                    </tr>
+					#{/list}
+
+					%{sports}%
+					#{list items:sportsRecreationList, as:'sportsRecreation'}
+                    <tr class="odd gradeX">
+                        <td>${sportsRecreation.data?.id}</td>
+                        <td>${sportsRecreation.school?.schoolRegNo}</td>
+                        <td>${sportsRecreation.school?.name}</td>
+                        <td>${sportsRecreation.school?.geoUpazilla?.name}</td>
+                        <td>${sportsRecreation?.date}</td>                          <td><a class='btn btn-mini details' href='@{DataManagement.dataDetails(sanitation.data.id)}'>Details</a></td>
+
+                        <td>${sportsRecreation.sender?.displayName}</td>
+                        <td>${sportsRecreation.form?.shortName}</td>
+                        <td>${sportsRecreation.data?.approvalStatus}</td>
+						#{deadbolt.externalizedRestriction externalRestrictions:['Edit Data']}
+                            <td><a class='btn btn-mini details' href='@{DataManagement.dataDetails(sportsRecreation.data?.id)}'>Details</a></td>
+                            <td>
+                                <a class='btn btn-mini btn-danger delete_data' id = '${sportsRecreation.data?.id}'><i class='icon-remove icon-white'></i> Delete</a>
+                                <i class='icon-remove icon-white'></i>
+                                </a>
+                            </td>
+						#{/deadbolt.externalizedRestriction}
+                    </tr>
+					#{/list}
+
+					%{Environment}%
+					#{list items:schoolEnvironmentList, as:'schoolEnvironment'}
+                    <tr class="odd gradeX">
+                        <td>${schoolEnvironment.data?.id}</td>
+                        <td>${schoolEnvironment.school?.schoolRegNo}</td>
+                        <td>${schoolEnvironment.school?.name}</td>
+                        <td>${schoolEnvironment.school?.geoUpazilla?.name}</td>
+                        <td>${schoolEnvironment?.date}</td>
+                        <td>${schoolEnvironment.sender?.displayName}</td>
+                        <td>${schoolEnvironment.form?.shortName}</td>
+                        <td>${schoolEnvironment.data?.approvalStatus}</td>
+						#{deadbolt.externalizedRestriction externalRestrictions:['Edit Data']}
+                            <td><a class='btn btn-mini details' href='@{DataManagement.dataDetails(schoolEnvironment.data?.id)}'>Details</a></td>
+                            <td>
+                                <a class='btn btn-mini btn-danger delete_data' id = '${schoolEnvironment.data?.id}'><i class='icon-remove icon-white'></i> Delete</a>
+                                <i class='icon-remove icon-white'></i>
+                                </a>
+                            </td>
+						#{/deadbolt.externalizedRestriction}
+                    </tr>
+					#{/list}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
 
 
-
-	    $(".delete_data").click(function(){
+    $(".delete_data").click(function(){
 			var dataId = $(this).attr("id");
 			console.log(${sanitation.data?.id});
 	        if(confirm("Are you sure to delete this Data?"))
@@ -244,21 +247,27 @@
 	    });
 	    
 	     
-	    $("document").ready(function(){
+	    $(document).ready(function(){
+
 
             $('#sample_2').DataTable({
+                "pagingType": "full_numbers",
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ]
             } );
-	    
-	  loadData(null,null,null,null, null, null, null);
+
+
+
+
+            //loadData(null,null,null,null, null, null, null);
 	    
 
 	
 	$(".SEARCH").on("change", function() {
-		
+
+
 		if(typeof $(this).find(":selected").attr("value") == "undefined"){
 			return;
 		}
@@ -281,11 +290,16 @@
 
 
 	function loadData(divisionId,districtId,upazillaId,schoolId, formId, startDate, endDate) {
-		
+
+
+       // table.destroy();
+
 		//console.log(formId);
 		//var tbl = "<table class="table table-striped table-bordered table-hover" id="userTable">";
+
+
 		var tbl = "" ;
-        var thead =  "<table class='table table-striped table-bordered table-hover' id='userTable'>"+
+        var thead =  "<table class='table table-striped table-bordered table-hover' id='sample_2'>"+
                                     "<thead>"+
                                         "<tr>"+
                                             "<th>Data ID</th>"+
@@ -314,12 +328,15 @@
 				},
 				
 				success: function(data) {
-					var json = JSON.parse(data);
+                    $('#sample_2').DataTable().clear();
+
+                    var json = JSON.parse(data);
 					var dataInfo = data.split(';');
 					// console.log(json);
 
 					 var row = "";
 		             //var tbl = "";
+                    var table = $('#sample_2').DataTable();
 					 for (var i = 1; i < dataInfo.length; i = i + 8) {
 
 					            var dataid = dataInfo[i];
@@ -330,27 +347,28 @@
                                 var displayname = dataInfo[i+5];
                                 var shortname = dataInfo[i + 6];
                                 var status = dataInfo[i + 7];
-                        // console.log(dataInfo[i]);
+                        // console.log(dataInfo[i]);\
+                         var startdeadbolt = "#{deadbolt.externalizedRestriction externalRestrictions:['Edit Data']}";
+                         var frst =  startdeadbolt + "<a class='btn btn-mini details' id='" + dataid + "'  href='/datamanagement/dataDetails/"+dataid+"'>Details</a>";
+                         var lastdeadbolt = "#{/deadbolt.externalizedRestriction}";
+                         var last = lastdeadbolt + "<a class='btn btn-mini btn-danger delete_data' id='" + dataid + "'><i class='icon-remove icon-white'></i> Delete</a>";
+                         table.row.add([
+                             dataid,
+                             schoolid,
+                             schoolname,
+                             address,
+                             createdat,
+                             displayname,
+                             shortname,
+                             status,
+                             frst,
+                             last
+                         ]).draw();
 
-                              row = row + "<tr><td>" + dataid + "</td><td>" + schoolid + "</td><td>" + schoolname + "</td><td>" + address +
-                           "</td><td>" + createdat + "</td><td>" + displayname + "</td><td>" + shortname +
-                           "</td><td>" + status + "</td>"+
-                           "#{deadbolt.externalizedRestriction externalRestrictions:['Edit Data']}"+
-						   "<td><a class='details' id='" + dataid + "'  href='/datamanagement/dataDetails/"+dataid+"'>Details</a></td>"+
-						   "<td>"+
-						   "<a class='btn btn-mini btn-danger delete_data' id='" + dataid + "'><i class='icon-remove icon-white'></i> Delete</a>"+
-						   "<i class='icon-remove icon-white'></i>"+
-						   "</a>"+
-						   "</td>"+
-						   "#{/deadbolt.externalizedRestriction}"+
-						   "</td></tr>";
 
                            
                      }
-                            tbl =thead+ tbl+"<tbody>" + row + "</tbody>";
-                            $("#sample_2").html("");
-                            $("#sample_2").html(tbl);   
-                            //$('#sample_2').DataTable();
+
 
 
 
@@ -398,7 +416,8 @@
 
 
 	}
-	});
+
+        });
 
   
 </script>
